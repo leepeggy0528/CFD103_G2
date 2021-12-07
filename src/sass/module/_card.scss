@@ -1,0 +1,84 @@
+.card {
+    @include card();
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    width: 220px;
+    margin: 20px 10px;
+    transition: all 1s ease;
+
+    &:hover {
+        @include shadow(20px);
+        cursor: pointer;
+    }
+
+
+    .iSave {
+        width: 25px;
+        position: absolute;
+        right: 0px;
+        margin: 10px;
+    }
+
+    >.pic {
+        >img {
+            @include picBorderR();
+        }
+    }
+
+    .main {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+
+        h3 {
+            color: $mainBlue;
+            flex-grow: 1;
+
+        }
+
+        >p {
+            margin-top: -5px;
+            padding: 0 $padding 5px $padding;
+            flex-grow: 0;
+
+        }
+
+        time {
+            margin-bottom: 5px;
+            padding: 0 $padding 5px $padding;
+            flex-grow: 0;
+
+        }
+    }
+
+    .sub {
+        display: flex;
+        justify-content: space-between;
+        flex-grow: 0;
+        margin: $margin;
+        font-size: $font-1;
+
+        .author {
+            display: flex;
+            align-items: center;
+
+            .pic {
+                margin-right: 5px;
+            }
+        }
+
+        .hot {
+            display: flex;
+            align-items: center;
+
+
+            .pic {
+                width: 15px;
+                margin-right: 5px;
+            }
+        }
+
+    }
+}
