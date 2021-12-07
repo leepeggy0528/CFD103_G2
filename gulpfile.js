@@ -14,37 +14,37 @@ function taskcon(cb) {
 // print cmd
 exports.console = taskcon;
 
-function taskA(cb){
+function taskA(cb) {
     console.log('任務A');
     cb();
 }
 
-function taskB(cb){
+function taskB(cb) {
     console.log('任務B');
     cb();
 }
 
 //同步
-exports.a = series(taskA,taskB);//依序執行
-exports.b = parallel(taskA,taskB);//同時執行
+exports.a = series(taskA, taskB);//依序執行
+exports.b = parallel(taskA, taskB);//同時執行
 
 //壓縮照片
 const imagemin = require('gulp-imagemin');
 
-function imgmin(){
+function imgmin() {
     return src('src/images/*.*')
-    .pipe(imagemin([
-        imagemin.mozjpeg({quality: 70, progressive: true})
-         // 壓縮品質 quality越低 -> 壓縮越大 -> 品質越差 
-    ]))
-    .pipe(dest('dist/images'))
+        .pipe(imagemin([
+            imagemin.mozjpeg({ quality: 70, progressive: true })
+            // 壓縮品質 quality越低 -> 壓縮越大 -> 品質越差 
+        ]))
+        .pipe(dest('dist/images'))
 }
 
 exports.img = imgmin;
 
 //圖片搬家
-function moveimg(){
-    return src('src/images/*.*').pipe(dest('dist/images'));
+function moveimg() {
+    return src(['src/images/*.*', 'src/images/**/*.*']).pipe(dest('dist/images'));
 }
 
 //SASS
@@ -76,7 +76,7 @@ function includeHTML() {
         }))
         .pipe(dest('dist'));
 }
-exports.html =  includeHTML;
+exports.html = includeHTML;
 
 // JS
 const uglify = require('gulp-uglify');
@@ -84,23 +84,23 @@ const babel = require('gulp-babel');
 
 function ugjs() {
     return src('src/js/*.js')
-    .pipe(uglify())
-    .pipe(babel({
-        presets: ['@babel/env']
-    }))// es6 -> es5
-    .pipe(dest('dist/js'))
+        .pipe(uglify())
+        .pipe(babel({
+            presets: ['@babel/env']
+        }))// es6 -> es5
+        .pipe(dest('dist/js'))
 }
 
 exports.ug = ugjs
 
 //監看
-function watchsass(){
-    watch(['./src/sass/*.scss', './src/sass/**/*.scss'],sassstyle); // ** 第二層路徑
-    watch(['src/*.html','src/layout/*.html'],includeHTML); // ** 第二層路徑
-    watch('src/js/*.js',ugjs); // ** 第二層路徑
+function watchsass() {
+    watch(['./src/sass/*.scss', './src/sass/**/*.scss'], sassstyle); // ** 第二層路徑
+    watch(['src/*.html', 'src/layout/*.html'], includeHTML); // ** 第二層路徑
+    watch('src/js/*.js', ugjs); // ** 第二層路徑
 }
 
-exports.w = watchsass; 
+exports.w = watchsass;
 
 //同步瀏覽
 const browserSync = require('browser-sync');
@@ -115,24 +115,26 @@ function browser(done) {
         },
         port: 3000
     });
-    watch(['./src/sass/*.scss', './src/sass/**/*.scss'],sassstyle).on('change',reload); // ** 第二層路徑
-    watch(['src/*.html','src/layout/*.html'],includeHTML).on('change',reload); // ** 第二層路徑
-    watch('src/js/*.js',ugjs).on('change',reload);
-    watch('src/images/*.*',moveimg).on('change',reload);
+    watch(['./src/sass/*.scss', './src/sass/**/*.scss'], sassstyle).on('change', reload); // ** 第二層路徑
+    watch(['src/*.html', 'src/layout/*.html'], includeHTML).on('change', reload); // ** 第二層路徑
+    watch('src/js/*.js', ugjs).on('change', reload);
+    watch(['src/images/*.*', 'src/images/**/*.*'], moveimg).on('change', reload);
+
     done();
 }
 
-exports.default =series(parallel(includeHTML, sassstyle, ugjs, moveimg), browser);
+exports.default = series(parallel(includeHTML, sassstyle, ugjs, moveimg), browser);
+
 
 //清除舊檔案
 const clean = require('gulp-clean');
 
 function clear() {
-  return src('dist' ,{ read: false ,allowEmpty: true })//不去讀檔案結構，增加刪除效率  / allowEmpty : 允許刪除空的檔案
-  .pipe(clean({force: true})); //強制刪除檔案 
+    return src('dist', { read: false, allowEmpty: true })//不去讀檔案結構，增加刪除效率  / allowEmpty : 允許刪除空的檔案
+        .pipe(clean({ force: true })); //強制刪除檔案 
 }
 
 exports.clearall = clear;
 
 //上線打包
-exports.packages = series(clear , parallel(includeHTML, sassstyle, ugjs), imgmin);
+exports.packages = series(clear, parallel(includeHTML, sassstyle, ugjs), imgmin);
