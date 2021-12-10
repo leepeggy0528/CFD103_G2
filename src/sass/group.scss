@@ -1,0 +1,146 @@
+@import './style.scss';
+
+h2 {
+    text-align: center;
+}
+
+.sort {
+    width: 100%;
+    margin-bottom: 25px;
+    font-weight: bold;
+    display: flex;
+    background-color: #f7f7f7;
+
+    >a {
+        display: block;
+        width: 50%;
+        font-size: $font-5;
+        padding: 15px;
+        text-align: center;
+        position: relative;
+        color: $linkBlue;
+
+        &:after {
+            content: '';
+            display: block;
+            width: 0px;
+            height: 0px;
+            border-top: 7px solid transparent;
+            border-bottom: 7px solid $linkBlue;
+            border-left: 7px solid transparent;
+            border-right: 7px solid transparent;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            // opacity: 0;
+            transform: translateX(-50%) scaleY(0);
+            transform-origin: bottom;
+            transition: all .1s;
+
+        }
+
+        &:before {
+            content: '';
+            display: block;
+            width: 100%;
+            height: 2px;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            transform: scale(0);
+            transition: all .5s;
+
+        }
+
+        &:hover {
+            color: $mainBlue;
+
+            &:after {
+                transform: translateX(-50%) scaleY(1);
+                border-bottom: 7px solid $mainBlue;
+            }
+
+            &:before {
+                background-color: $mainBlue;
+                transform: scale(1);
+            }
+
+        }
+    }
+}
+
+
+
+/* ========filter======== */
+.iFilter {
+    margin: 10px;
+    text-align: right;
+
+    img {
+        width: 30px;
+        padding: 10px;
+        @include borderR();
+        transition: all .5s;
+
+        &:hover {
+            cursor: pointer;
+            background-color: $bgYellow;
+
+        }
+    }
+}
+
+
+
+
+.filter {
+    display: none;
+    background-color: $bgYellow;
+    color: $linkBlue;
+    border: 2px solid $mainYellow;
+    padding: $padding;
+    @include borderR();
+
+
+    table {
+        width: 100%;
+        text-align: center;
+        color: $linkBlue;
+
+
+
+        tr {
+            td {
+                padding: $padding;
+
+                &:first-child {
+                    font-weight: bold;
+                }
+            }
+
+            &:nth-child(2) {
+                border-top: 1px solid $mainYellow;
+            }
+        }
+    }
+}
+
+.filter.show-filter {
+    display: block;
+}
+
+/* ========group card======== */
+.pageGroup {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 20px 0;
+}
+/*分頁數字*/
+.page {
+    text-align: center;
+    margin-bottom: 40px;
+
+    button {
+        margin: 5px;
+    }
+}
