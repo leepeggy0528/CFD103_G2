@@ -1,0 +1,107 @@
+@import './style';
+a{text-decoration: none;
+    color: #025A78;}
+  li{list-style: none;}
+  .title {
+      text-align: center;
+      color: #025A78;
+      margin: 10px;
+  }
+  
+    .insta-item{
+      margin: auto;
+      max-width: 1200px;
+      
+    }
+  
+    .insta-item-i{
+  
+      background-color: #FFF9D6;
+    }
+  
+    .insta-item-me{
+      display: flex;
+      border-radius: 10%;
+    }
+  
+    .insta-item-me img{
+      width:50px;
+      border-radius: 10%;
+      padding: 10px;
+    }
+  
+    .me{
+      text-align: center;
+      margin-top: auto;
+      margin-bottom: auto;
+    }
+    .comment-item{
+      display: flex;
+      align-items: center;
+      position: relative;
+      margin: 10px;
+    }
+  
+   .warn{
+     display: flex;
+     justify-content: flex-end;
+     
+   }
+  
+   .warn-btn{
+     border: 0px;
+     color: #025A78;
+   }
+  
+    .container{
+      max-width: 1200px;
+      margin: auto;
+    }
+   
+    .ul{
+      max-width: 1000px;
+    }
+  
+    .insta-item-commend{
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 10px;
+      background-color: #F3F3F3;
+      
+    }
+  
+    .commend{
+      text-align: center;
+      padding: 20px;
+    }
+  
+    .insta-item-text{
+      text-align: center;
+      margin: auto;
+      
+    }
+  
+    .insta-item-text-i{
+      width: 95%;
+      margin-top: 50px;
+      height: 100px;
+      resize: none;
+      background-color: #FFF9D6;
+      
+    }
+  
+    .insta-item-submit{
+      display: flex;
+      justify-content: center;
+    }
+  
+  
+    .sub{
+    padding: 10px 20px;
+    border-radius: 100px;
+    background-color: #FFF9D6;
+    width: 100px;
+      border: none;
+    }
+  

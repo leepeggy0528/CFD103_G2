@@ -1,0 +1,285 @@
+@import './style';
+
+h1{
+    font-size: 36px;
+    margin: 10px;
+}
+
+h2{
+    font-size: 26px;
+    margin: 10px;
+}
+a{text-decoration: none;}
+li{list-style: none;}
+
+ .title{
+    text-align: center;
+    color: $mainBlue;
+ }
+
+ .title-item{
+     color: $mainBlue;
+ }
+ .search-item{
+    display: block;
+    max-width: 1200px;
+    margin: auto;
+    position: relative;
+}
+.search-article{
+    width: 100%;
+    display: block;
+    background-color: #fff9d6;
+    height: 50px;
+    font-size: $h2;
+    border: none;
+}
+ .search-item .search-icon{
+position: absolute;
+right: 0;
+top: 0;
+bottom: 0;
+margin: auto;
+}
+
+.search-item .search-icon{
+    background-color: #fff9d6;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+
+
+.tager-box{
+   display: none;
+    
+}
+.container-box{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.insta-item{
+    max-width: 1200px;
+    display: flex;
+    justify-content: space-evenly;
+    margin: auto;
+}
+
+.btnBlue{
+    text-align: center;
+}
+
+.insta-item-main-i{
+    max-width: 800px;
+    border: 1px solid #6B879D;
+    background-color: #F3F3F3;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 50px;
+    justify-content: center;
+    padding: 10px;
+    position: relative;
+}
+
+.insta-item-v{
+    position: absolute;
+    right: 0px;
+    top: 0px;
+}
+.v{
+    border: none;
+}
+
+.insta-item-main-picture{
+    max-width: 500px;
+}
+
+
+.pic img{
+    border-radius: 10%;
+    width: 100%;
+}
+
+.insta-item-main-me{
+    display: flex;
+    margin-top: 20px;
+}
+
+.insta-item-main-me p{
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.me{
+    width: 50px;
+    
+}
+
+.me img{
+    border-radius:50%;
+}
+.insta-item-main-text{
+    max-width: 500px;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin: 10px;
+}
+
+.seemore{
+    display: flex;
+    justify-content: end;
+}
+
+
+.comment-item{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+}
+
+.comment-time{
+    display: flex;
+    justify-content: flex-end;
+    margin: 10px 0px;
+}
+.item{
+    width: 30px;
+    vertical-align: bottom;
+}
+
+
+.insta-item-sub{
+    width: 250px;
+    margin-top: 50px;
+}
+
+.tag-box{
+    width: 250px;
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #6B879D;
+    background-color:$bgYellow;
+
+}
+
+.tag{
+    display: flex;
+}
+
+p,
+label {
+    font: 1rem 'Fira Sans', sans-serif;
+}
+
+input {
+    margin: .4rem;
+}
+
+
+.link {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.link a{
+    margin: 10px;
+    border: 1px solid #6B879D;
+    border-radius: 100px;
+    padding: 10px 20px;
+}
+.link a:hover{
+    background-color: #6B879D;
+    color:#F3F3F3;
+}
+
+.fix-btn{
+   display: none;
+}
+
+@media only screen and (max-width: 1024px){
+
+
+
+
+.tager-box{
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: center;
+    width: calc(100vw - 10%);
+    height: 100px;
+    background-color: #fff9d6;
+    border: 1px solid #6B879D;
+    display: block;
+}
+
+.tager-box h2{
+    margin-top: 10px;
+   text-align: center;
+   color: #6B879D;
+}
+
+.tagers{
+    margin-top: 10px;
+    text-align: center;
+    padding: 10px;
+  
+}
+
+.search-item{
+    margin-left: auto;
+    margin-right: auto;
+}
+.insta-item-sub{
+    display: none;
+}
+
+.title-item{
+   text-align: center;
+}
+.insta-item-main-i{
+    max-width: 800px;
+    border: 1px solid #6B879D;
+    background-color: #F3F3F3;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 50px;
+    justify-content: center;
+    margin: 30px;
+}
+
+
+
+.insta-item-main-picture img{
+    width: 100%;
+}
+
+.insta-item-main-me{
+    display: flex;
+    margin-top: 20px;
+    justify-content: center;
+}
+
+.fix-btn{
+   margin-left: auto;
+   margin-left: auto;
+    display: block;
+    position: fixed;
+    top:85%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.7;
+}
+
+.link a{
+    border: none;
+    border-radius: 100px;
+    padding: 0px;
+}
+
+}
