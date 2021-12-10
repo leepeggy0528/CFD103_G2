@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/customized-card.css">
+    <script src="./js/customizedCard.js"></script>
+    <title>客製卡片</title>
+</head>
+
+<body>
+    @@include('./layout/header.html')
+    <div class="container">
+        <h2>客製卡片</h2>
+        <section class="customized-card">
+            <div class="wrap-preview">
+                <div class="card-preview">
+
+                    <div class="pic">
+                        <img src="./images/card/colorful-line.jpg" alt="">
+                    </div>
+                </div>
+                <div class="write">
+                    <textarea name="" id="" placeholder="輸入卡片內容"></textarea>
+                </div>
+            </div>
+            <div class="wrap-pattern">
+                <div class="choose-pattern">
+                    <div class="pic">
+
+                    </div>
+                    <div class="pic">
+                        <img src="./images/card/cute.jpg" alt="">
+                    </div>
+
+                    <div class="pic">
+                        <img src="./images/card/dot.jpg" alt="">
+                    </div>
+                    <div class="pic">
+                        <img src="./images/card/colorful-line.jpg" alt="">
+                    </div>
+                </div>
+                <div class="btn-wrap">
+                    <button id="openFdList" class="btn">選擇好友</button>
+                    <button class="btnBlue">寄出卡片</button>
+                </div>
+            </div>
+            <section id="selectFdList" class="select-friend">
+                <button class="iClose">
+                    <img id="closeFdList" src="./images/icon/close.png" alt="">
+                </button>
+                <div class="wrap">
+                    <header>
+                        <h3>好友列表</h3>
+
+                        <input type="text" placeholder="搜尋">
+
+                    </header>
+                    <ul class="friend-list">
+                        <li class="item-wrap">
+                            <div class="item">
+                                <p class="no">01</p>
+                                <div class="pic mdCircle">
+                                    <img src="./images/user/andy.jpg" alt="">
+                                </div>
+                                <p>陳傑瑞</p>
+                                <div class="selected">
+                                    <img src="./images/icon/add.png" alt="">
+                                </div>
+                            </div>
+                        </li>
+                        <li class="item-wrap">
+                            <div class="item">
+                                <p class="no">01</p>
+                                <div class="pic mdCircle">
+                                    <img src="./images/user/andy.jpg" alt="">
+                                </div>
+                                <p>陳傑瑞</p>
+                                <div class="selected">
+                                    <img src="./images/icon/add.png" alt="">
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="item-wrap">
+                            <div class="item">
+                                <p class="no">01</p>
+                                <div class="pic mdCircle">
+                                    <img src="./images/user/andy.jpg" alt="">
+                                </div>
+                                <p>陳傑瑞</p>
+                                <div class="selected">
+                                    <img src="./images/icon/add.png" alt="">
+                                </div>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+                <button class="btnYellow">確認</button>
+            </section>
+        </section>
+
+    </div>
+
+    @@include('./layout/footer.html')
+</body>
+
+</html>
