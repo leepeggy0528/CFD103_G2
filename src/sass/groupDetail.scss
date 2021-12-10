@@ -1,0 +1,275 @@
+@import './style.scss';
+
+/*page start*/
+h2 {
+    color: $mainBlue;
+}
+
+// slider
+.slider {
+    margin: 10px;
+
+    .owl-carousel {
+        position: relative;
+
+        .owl-nav {
+
+            top: 50%;
+            left: 50%;
+            background-color: aquamarine;
+
+            .owl-prev,
+            .owl-next {
+                position: absolute;
+                display: flex;
+                // align-items: center;
+
+                >span {
+                    display: inline-block;
+                    font-size: 80px;
+                    color: white;
+                    line-height: 80px;
+                    padding-bottom: 10px;
+                }
+            }
+
+            .owl-prev {
+                top: 50%;
+                left: 0;
+                margin-top: -80px;
+            }
+
+            .owl-next {
+                top: 50%;
+                right: 0;
+                margin-top: -80px;
+            }
+
+        }
+
+        .owl-dots {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+        }
+    }
+}
+
+// 內容
+.main {
+    display: flex;
+    position: relative;
+
+    article {
+        width: 75%;
+
+        .desc,
+        .plan {
+            margin-bottom: 60px;
+
+            .title {
+                background-color: $bgYellow;
+                @include borderR();
+                margin: 10px;
+            }
+
+            .content {
+                // border: 1px solid $shawdowGray;
+                @include borderR();
+                margin: 10px;
+            }
+        }
+
+        .plan {
+            .timeline {
+                margin: 30px 20px 20px 50px;
+
+
+                li+li {
+                    position: relative;
+
+                    &::after {
+                        content: '';
+                        display: block;
+                        width: 2px;
+                        height: 100px;
+                        background-color: $mainBlue;
+                        position: absolute;
+                        bottom: 0;
+                        left: 29px;
+                    }
+                }
+
+                .item {
+                    display: flex;
+                    align-items: center;
+                    margin-bottom: 30px;
+
+                    .node {
+                        z-index: 1;
+                        width: 60px;
+                        height: 60px;
+                        background-color: $mainBlue;
+                        border-radius: 50%;
+
+                        span {
+                            display: inline-block;
+                            width: 100%;
+                            line-height: 60px;
+                            text-align: center;
+                            color: white;
+                        }
+
+                    }
+
+                    p {
+                        background-color: $bgGray;
+                        padding: 5px 20px;
+                        @include borderR();
+                        margin-left: -10px;
+                        z-index: 0;
+
+                    }
+                }
+            }
+        }
+
+        .comment {
+            margin-bottom: 60px;
+
+            h2 {
+                margin: 10px;
+            }
+        }
+
+    }
+
+    aside {
+
+        width: 25%;
+        margin: $margin;
+
+        .info {
+            position: sticky;
+            top: 10px;
+            border: 1px solid $shawdowGray;
+            @include borderR();
+            padding: 10px;
+
+
+            .info-item {
+                display: flex;
+                align-items: center;
+
+                .pic {
+                    width: 20px;
+                    margin: 10px;
+                }
+
+                p {
+                    padding: 5px;
+
+                    small {
+                        display: block;
+                        font-size: 12px;
+                    }
+                }
+            }
+
+            .registered {
+                text-align: right;
+                font-size: $font-3;
+
+            }
+
+            .sign-up {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-top: 1px solid $shawdowGray;
+                padding-top: 10px;
+
+                .btnYellow {
+                    border: none;
+                    width: 90%;
+                }
+
+                >.pic {
+                    width: 10%;
+                    margin-left: 10px;
+                }
+            }
+        }
+    }
+}
+
+// 留言區
+.comment {
+    .wrap {
+        background-color: $bgGray;
+        margin: 10px;
+        @include borderR();
+
+        .wrap-item {
+            margin-top: 10px;
+
+
+            .user {
+                display: flex;
+                align-items: center;
+
+
+                >span {
+                    display: inline-block;
+                    margin: 10px;
+                }
+            }
+
+            >p {
+                margin-left: 30px;
+            }
+        }
+    }
+
+    .leave-comment {
+        margin: 10px;
+
+
+
+        form {
+            width: 100%;
+
+            textarea {
+                width: 100%;
+                @include borderR();
+                resize: none;
+                font-size: 18px;
+                padding: 10px;
+                color: $textBlack;
+                border: 1px solid $shawdowGray;
+
+                &:focus {
+                    border: 1px solid $textBlack;
+                }
+            }
+
+            .btn-pos {
+                text-align: right;
+
+                .btnYellow {
+                    width: 100px;
+                }
+            }
+
+        }
+    }
+}
+
+// 類似活動
+.similar,
+.same-loc {
+    display: flex;
+    margin-bottom: 60px;
+}

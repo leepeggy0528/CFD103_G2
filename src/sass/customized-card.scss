@@ -1,0 +1,279 @@
+@import './style.scss';
+
+h2 {
+    color: $mainBlue;
+    text-align: center;
+}
+
+.container {
+    margin: 50px auto;
+}
+
+.customized-card {
+    display: flex;
+
+    .wrap-preview {
+        width: 70%;
+        margin: 10px;
+
+        .card-preview {
+            height: 450px;
+            background-color: rgb(235, 235, 235);
+            display: flex;
+            align-items: center;
+            @include borderR();
+
+            .pic {
+                width: 70%;
+                margin: 0 auto;
+
+
+                img {
+                    @include borderR();
+                    box-shadow: 8px 8px 3px rgba(0, 0, 0, 0.219);
+                }
+            }
+
+        }
+
+        .write {
+            margin-top: 20px;
+            @include borderR();
+
+
+            textarea {
+                box-sizing: border-box;
+                resize: none;
+                width: 100%;
+                height: 100px;
+                border: 1px solid gray;
+                padding: 10px;
+                font-size: 20px;
+                @include borderR();
+
+                &::placeholder {
+                    font-size: 20px;
+
+                }
+            }
+        }
+    }
+
+    .wrap-pattern {
+        width: 30%;
+
+
+        .choose-pattern {
+            width: 100%;
+            height: 450px;
+            margin: 10px;
+            overflow-y: scroll;
+
+            background-color: $mainYellow;
+            position: relative;
+
+            &::-webkit-scrollbar {
+                width: 8px;
+            }
+
+            &::-webkit-scrollbar-track {
+                background-color: rgb(236, 236, 236);
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background-color: rgb(243, 248, 201);
+
+            }
+
+            @include borderR();
+
+            .card-tag,
+            .sticker-tag {
+                display: inline-block;
+                writing-mode: vertical-lr;
+                width: 20px;
+                padding: 5px 10px;
+                background-color: aquamarine;
+                position: absolute;
+
+            }
+
+            .pic {
+                margin: 30px auto;
+                width: 80%;
+
+                img {
+                    @include borderR();
+                    box-shadow: 8px 8px 3px rgba(0, 0, 0, 0.219);
+                }
+            }
+        }
+
+        .btn-wrap {
+            display: flex;
+            flex-direction: column;
+            margin: 10px;
+
+            button {
+                @include borderR();
+                padding-top: 15px;
+                padding-bottom: 15px;
+                font-size: 18px;
+
+            }
+
+            .btn {
+                border: none;
+                color: $mainBlue;
+                background-color: darken($bgGray, 10%);
+
+                &:hover {
+                    background-color: darken($bgGray, 5%);
+
+                }
+            }
+        }
+
+
+    }
+
+    .select-friend {
+        position: relative;
+        position: fixed;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        box-sizing: border-box;
+        width: 25vw;
+        height: 80vh;
+        overflow-y: scroll;
+        background-color: rgb(255, 255, 255);
+        top: 10vh;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 20px 20px;
+        @include borderR();
+        display: none;
+
+        &::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        &::-webkit-scrollbar-track {
+            background-color: rgb(146, 146, 146);
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: rgb(235, 235, 235);
+
+        }
+
+        .iClose {
+
+            width: 5vh;
+            width: 5vh;
+            background: transparent;
+            border: none;
+            position: absolute;
+            right: 5px;
+            top: 10px;
+
+            #closeFdList {
+                cursor: pointer;
+            }
+        }
+
+        .wrap {
+
+
+            header {
+                background-color: rgb(255, 255, 255);
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 10px;
+
+                h3 {
+                    &::first-letter {
+                        font-size: 150%;
+                    }
+
+                    font-size: 18px;
+                }
+
+                input {
+                    display: flex;
+                    margin-right: 10px;
+                    padding: 10px;
+                    width: 40%;
+                    @include borderR();
+                    border: 1px solid $shawdowGray;
+                    outline: none;
+
+                    color: $textBlack;
+
+                    &:focus {
+                        border: 1px solid $mainBlue;
+                    }
+                }
+
+            }
+
+            .friend-list {
+                .item {
+                    display: inline-block;
+                    // background-color: blanchedalmond;
+                    height: 13vh;
+                    margin: 10px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    padding: 10px;
+                    border: 1px solid black;
+                    @include borderR();
+
+                    p {
+                        font-size: 20px;
+
+                        &:hover {
+                            text-decoration: none;
+                        }
+
+                    }
+
+                    .no {
+                        width: 3vh;
+                        height: 3vh;
+                        text-align: center;
+                    }
+
+                    .pic {
+                        width: 10vh;
+                        height: 10vh;
+
+                        img {
+                            width: 10vh;
+                            height: 10vh;
+                            object-fit: cover;
+                            @include borderR(50%);
+                        }
+                    }
+
+                    .selected {
+                        width: 4vh;
+                        height: 4vh;
+                        padding: 10px;
+
+                        >img {
+                            cursor: pointer;
+                        }
+                    }
+                }
+            }
+
+        }
+
+
+
+    }
+}

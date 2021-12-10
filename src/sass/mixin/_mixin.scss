@@ -29,6 +29,7 @@
     font-size: $font-1;
     margin: $margin;
     display: inline-block;
+    cursor: pointer;
 }
 
 @mixin btnBorder($val:$mainBlue) {

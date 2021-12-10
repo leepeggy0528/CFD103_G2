@@ -10,7 +10,7 @@
 
     &:hover {
         @include shadow(20px);
-        cursor: pointer;
+
     }
 
 
@@ -22,7 +22,7 @@
     }
 
     >.pic {
-        >img {
+        img {
             @include picBorderR();
         }
     }

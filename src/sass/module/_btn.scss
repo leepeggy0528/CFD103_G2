@@ -4,6 +4,7 @@
     background-color: $mainBlue;
     color: $white;
     letter-spacing: 3px;
+    border: none;
 
     &:hover {
         background-color: lighten($mainBlue, $lighten);
@@ -15,7 +16,6 @@
     @include borderR(100px);
     @include btn();
     @include btnBorder();
-
     background-color: $white;
     color: $mainBlue;
 
@@ -30,6 +30,7 @@
     @include btn();
     background-color: $subYellow;
     color: $textBlack;
+    border: none;
 
     &:hover {
         background-color: lighten($subYellow, $lighten);
@@ -42,6 +43,7 @@
     @include btn();
     background-color: $white;
     color: $textBlack;
+    border: 1px solid $mainBlue;
 
     &:hover {
         // background-color: darken($white, $darken);
@@ -56,6 +58,7 @@
     padding: 10px;
     font-size: $font-1;
     background-color: $white;
+    cursor: pointer;
 
     &:hover {
         border: 1px solid $textBlack;
@@ -72,6 +75,7 @@
     border: 1px solid $linkBlue;
     background-color: $white;
     padding: 10px;
+    cursor: pointer;
 
     &:hover {
         border: 1px solid $textBlack;

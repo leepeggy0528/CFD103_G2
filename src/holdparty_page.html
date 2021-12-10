@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>建立揪團</title>
+    <link rel="stylesheet" href="css/holdparty_page.css">
+
+</head>
+<body>
+    @@include('./layout/header.html')
+    <article>
+        <section class="main_plan">
+            <form action="#" class="container">
+                <div class="img_group">
+                    <ul class="pic_show">
+                        <!-- 圖片新增在此瀏覽  用slider 呈現-->
+                        <!-- <li>
+                            <img src="images/leo/image.png" alt="">
+                        </li> -->
+                        <li>
+                            <img src="images/leo/image.png" alt="">
+                        </li>
+                    </ul>
+                </div> 
+                <div class="upload">
+                    <!-- 點擊上傳圖片 -->
+                    <input type="file" name="upFile" id="upFile" style="display:none" required>
+                    <label for="upFile">
+                </div>
+                <h3>行程安排</h3>
+                <ul class="arrange">
+                    <!-- 1 -->
+                    <li>
+                        <label for="">活動名稱</label>
+                        <input type="text" required>
+                    </li>
+                    <!-- 2 -->
+                    <li>
+                        <label for="">活動時間</label>
+                        <input type="date" required> ~ <input type="date" required>
+                    </li>
+                    <!-- 3 -->
+                    <li>
+                        <label for="">主要活動縣市</label> 
+                        <select name="" id="" required>
+                            <option value="宜蘭縣">宜蘭縣</option>
+                            <option value="基隆市">基隆市</option>
+                            <option value="新北市">新北市</option>
+                            <option value="台北市">台北市</option>
+                            <option value="桃園市">桃園市</option>
+                            <option value="新竹縣">新竹縣</option>
+                            <option value="新竹市">新竹市</option>
+                            <option value="苗栗縣">苗栗縣</option>
+                            <option value="台中市">台中市</option>
+                            <option value="南投縣">南投縣</option>
+                            <option value="彰化縣">彰化縣</option>
+                            <option value="雲林縣">雲林縣</option>
+                            <option value="嘉義縣">嘉義縣</option>
+                            <option value="嘉義市">嘉義市</option>
+                            <option value="台南市">台南市</option>
+                            <option value="高雄市">高雄市</option>
+                            <option value="屏東縣">屏東縣</option>
+                            <option value="花蓮縣">花蓮縣</option>
+                            <option value="台東縣">台東縣</option>
+                            <option value="澎湖縣">澎湖縣</option>
+                            <option value="金門縣">金門縣</option>
+                            <option value="連江縣">連江縣</option>
+                        </select>
+                    </li>
+                    <!-- 4 -->
+                    <li>
+                        <label for="">聚會類型</label>
+                        <select name="" id="" required>
+                            <option value="美食">美食</option>
+                            <option value="學習">學習</option>
+                            <option value="燒腦">燒腦</option>
+                            <option value="休閒">休閒</option>
+                            <option value="夜市">夜市</option>
+                            <option value="購物">購物</option>
+                            <option value="旅行">旅行</option>
+                            <option value="運動">運動</option>
+                        </select>
+                    </li>
+                    <!-- 5 -->
+                    <li>
+                        <label for="">活動費用</label>
+                        <select name="" id="" required>
+                            <option value="0">免費</option>
+                            <option value="1">各付各</option>
+                            <option value="2">平均分</option>
+                        </select>
+                    </li>
+                    <!-- 6 -->
+                    <li>
+                        <label for="">人數</label>
+                        <input type="number" required> ~ <input type="number" required>
+                    </li>
+                    <!-- 7 -->
+                    <li>
+                        <label for="">報名截止時間</label>
+                        <input type="time" required>
+                    </li>
+                </ul>
+                <div class="detail">
+                    <p class="party_day">DAY<span id="change_day">1</span></p>
+                    <ul class="place_group place_group_show">
+                        <li class="place">
+                            <p class="input_time">20:00</p>
+                            <h2>你好嗎餐酒館</h2>
+                             <span id="place_delect" class="place_delect">X</span>
+                        </li>
+                        <li class="place">
+                            <p class="input_time">20:00</p>
+                            <h2>你好嗎餐酒館</h2>
+                             <span id="place_delect" class="place_delect">X</span>
+                        </li>
+                        <li class="place">
+                            <p class="input_time">20:00</p>
+                            <h2>你好嗎餐酒館</h2>
+                             <span id="place_delect" class="place_delect">X</span>
+                        </li>
+                        <li class="place">
+                            <p class="input_time">20:00</p>
+                            <h2>你好嗎餐酒館</h2>
+                             <span id="place_delect" class="place_delect">X</span>
+                        </li>
+                        <li class="place">
+                            <p class="input_time">20:00</p>
+                            <h2>你好嗎餐酒館</h2>
+                             <span id="place_delect" class="place_delect">X</span>
+                        </li>
+                        <li class="place">
+                            <p class="input_time">20:00</p>
+                            <h2>你好嗎餐酒館</h2>
+                             <span id="place_delect" class="place_delect">X</span>
+                        </li>
+                        <li id="add_place" class="add_place">+</li>
+                        <li id="delect_place" class="delect_place">移除</li>
+                    </ul>
+                    <ul class="place_group">
+                        <li class="place">
+                            <p class="input_time">20:00</p>
+                            <h2>你好嗎餐酒館</h2>
+                             <span id="place_delect" class="place_delect">X</span>
+                        </li>
+                        <li class="place">
+                            <p class="input_time">20:00</p>
+                            <h2>你好嗎餐酒館</h2>
+                             <span id="place_delect" class="place_delect">X</span>
+                        </li>
+                        <li class="place">
+                            <p class="input_time">20:00</p>
+                            <h2>你好嗎餐酒館</h2>
+                             <span id="place_delect" class="place_delect">X</span>
+                        </li>
+                        <li id="add_place" class="add_place">+</li>
+                    </ul>
+                    <ul class="day_list">
+                        <li class="day_list_active">
+                            <p>Day1</p>
+                        </li>
+                        <!-- 當add_day 點案 在day_list內add_day前新增 【<li>Day2</li>】  -->
+                        <li>
+                            <p>Day2</p>
+                        </li>
+                        <!-- /////// -->
+                        <li id="add_day">+</li>
+                    </ul>
+                </div>
+
+                <h3>活動描述</h3>
+                <div class="write">
+                    <textarea name="" id=""></textarea>
+                    <p class="limit_words"><span class="limit_words_count">0</span>/200</p>
+                </div>
+                <button type="button" class="btnBlue">
+                    <p>立即建團</p>
+                    <div class="pic">
+                        <img src="images/leo/coin.png" alt="">
+                    </div>
+                </button>
+            </form>           
+        </section>
+    </article>
+    @@include('./layout/footer.html')
+    <script>
+        
+    </script>
+
+    
+</body>
+</html>
+
+
+
