@@ -1,9 +1,16 @@
 //input form
 .login-wrapper {
   width: $formwidth;
+  height: 650px;
   background-color: $mainBlue;
-  padding: 50px 10px 50px;
-  margin: 50px auto;
+  opacity: .8;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  margin: auto;
+  z-index: 1;
   @include borderR;
 }
 
@@ -41,10 +48,10 @@ textarea:focus {
   outline: none;
 }
 
-.input:focus~label,
-.input:valid~label,
-textarea:focus~label,
-textarea:valid~label {
+.input:focus~.shrink,
+.input:valid~.shrink,
+textarea:focus~.shrink,
+textarea:valid~.shrink {
   top: 5px;
   font-size: $font-1;
   color: $pageBlue;
@@ -55,7 +62,7 @@ textarea:focus~.bar:before {
   width: $forminputwidth;
 }
 
-label {
+.shrink {
   color: $pageBlue;
   font-size: $font-2;
   font-weight: normal;
