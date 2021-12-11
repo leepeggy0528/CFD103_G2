@@ -26,16 +26,34 @@ h2 {
             .pic {
                 width: 70%;
                 margin: 0 auto;
-
+                position: relative;
 
                 img {
                     @include borderR();
-                    box-shadow: 8px 8px 3px rgba(0, 0, 0, 0.219);
+                    box-shadow: 3px 3px 10px rgba(180, 179, 139, 0.459);
+                }
+
+                .inputText {
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, - 50%);
+                    width: 450px;
+                    height: 280px;
+                    overflow: hidden;
+                    box-sizing: border-box;
+                    padding: 10px;
+                    line-height: 20px * 1.5;
+                    font-size: 20px;
+                    text-align: justify;
+                    word-break: break-all;
+                    // border: 1px solid gray;
+
                 }
             }
-
         }
 
+        //文字盒子
         .write {
             margin-top: 20px;
             @include borderR();
@@ -46,8 +64,9 @@ h2 {
                 resize: none;
                 width: 100%;
                 height: 100px;
-                border: 1px solid gray;
                 padding: 10px;
+                border: 1px solid gray;
+                color: $textBlack;
                 font-size: 20px;
                 @include borderR();
 
@@ -60,7 +79,10 @@ h2 {
     }
 
     .wrap-pattern {
-        width: 30%;
+        width: 40%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
 
 
         .choose-pattern {
@@ -104,15 +126,26 @@ h2 {
 
                 img {
                     @include borderR();
-                    box-shadow: 8px 8px 3px rgba(0, 0, 0, 0.219);
+                    box-shadow: 3px 3px 10px rgba(180, 179, 139, 0.459);
+
+                    &:hover {
+                        box-shadow: 0px 0px 30px rgb(255, 255, 255)
+                    }
                 }
+
+                //選取卡片
+                .selectCard.cardFocus {
+                    box-shadow: 0px 0px 30px rgb(255, 255, 255)
+                }
+
             }
         }
+
 
         .btn-wrap {
             display: flex;
             flex-direction: column;
-            margin: 10px;
+
 
             button {
                 @include borderR();
@@ -121,159 +154,134 @@ h2 {
                 font-size: 18px;
 
             }
-
-            .btn {
-                border: none;
-                color: $mainBlue;
-                background-color: darken($bgGray, 10%);
-
-                &:hover {
-                    background-color: darken($bgGray, 5%);
-
-                }
-            }
         }
-
-
     }
 
-    .select-friend {
+
+}
+
+//lightbox
+.sendCardLayer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(173, 173, 173, 0.527);
+    display: none;
+
+    .sendCard {
         position: relative;
-        position: fixed;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
         box-sizing: border-box;
         width: 25vw;
-        height: 80vh;
-        overflow-y: scroll;
+        height: 90vh;
+        margin: 5vh auto;
         background-color: rgb(255, 255, 255);
-        top: 10vh;
-        left: 50%;
-        transform: translateX(-50%);
         padding: 20px 20px;
         @include borderR();
-        display: none;
 
-        &::-webkit-scrollbar {
-            width: 8px;
-        }
 
-        &::-webkit-scrollbar-track {
-            background-color: rgb(146, 146, 146);
-        }
 
-        &::-webkit-scrollbar-thumb {
-            background-color: rgb(235, 235, 235);
-
-        }
 
         .iClose {
-
+            padding: 1vh;
             width: 5vh;
-            width: 5vh;
-            background: transparent;
+            background: darken($bgGray, 10%);
+            border-radius: 50%;
             border: none;
             position: absolute;
             right: 5px;
             top: 10px;
+
+            &:hover {
+                background: darken($bgGray, 5%);
+            }
 
             #closeFdList {
                 cursor: pointer;
             }
         }
 
-        .wrap {
+        .friend-search {
+            box-sizing: border-box;
+            width: 100%;
+            margin: 10px 0;
+            padding: 5px 10px;
+            color: $textBlack;
+            @include borderR();
+            outline: none;
+            border: 1px solid darken($mainYellow, 10%);
+
+            &:focus {
+                border: 2px solid $mainYellow;
+            }
+        }
+
+        >ul {
+            display: block;
+            width: 100%;
+            height: 35vh;
+            margin-top: 5px;
+            overflow-y: scroll;
+
+            &::-webkit-scrollbar {
+                width: 5px;
+            }
+
+            &::-webkit-scrollbar-track {
+                background-color: rgb(209, 209, 209);
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background-color: rgb(235, 235, 235);
+            }
 
 
-            header {
-                background-color: rgb(255, 255, 255);
+            li {
+                display: block;
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
                 padding: 10px;
+                @include borderR();
 
-                h3 {
-                    &::first-letter {
-                        font-size: 150%;
-                    }
-
-                    font-size: 18px;
+                &:hover {
+                    background: rgb(245, 245, 245);
                 }
 
-                input {
-                    display: flex;
-                    margin-right: 10px;
-                    padding: 10px;
-                    width: 40%;
-                    @include borderR();
-                    border: 1px solid $shawdowGray;
-                    outline: none;
-
-                    color: $textBlack;
-
-                    &:focus {
-                        border: 1px solid $mainBlue;
-                    }
-                }
-
-            }
-
-            .friend-list {
-                .item {
-                    display: inline-block;
-                    // background-color: blanchedalmond;
-                    height: 13vh;
-                    margin: 10px;
+                .user {
                     display: flex;
                     align-items: center;
-                    justify-content: space-between;
-                    padding: 10px;
-                    border: 1px solid black;
-                    @include borderR();
+                }
 
-                    p {
-                        font-size: 20px;
+                >span {
+                    display: block;
+                }
 
-                        &:hover {
-                            text-decoration: none;
-                        }
+                .headshot {
+                    margin-right: 15px;
+                    width: 50px;
+                    height: 50px;
+                    object-fit: cover;
+                    object-position: center center;
+                    border-radius: 50%;
+                }
 
-                    }
+                .send {
+                    font-size: 12px;
+                }
 
-                    .no {
-                        width: 3vh;
-                        height: 3vh;
-                        text-align: center;
-                    }
-
-                    .pic {
-                        width: 10vh;
-                        height: 10vh;
-
-                        img {
-                            width: 10vh;
-                            height: 10vh;
-                            object-fit: cover;
-                            @include borderR(50%);
-                        }
-                    }
-
-                    .selected {
-                        width: 4vh;
-                        height: 4vh;
-                        padding: 10px;
-
-                        >img {
-                            cursor: pointer;
-                        }
-                    }
+                .send.mailed {
+                    background: $bgGray;
+                    color: $textBlack;
+                    cursor: auto;
                 }
             }
 
+            li+li {
+                margin-top: 10px;
+            }
         }
-
-
 
     }
 }
