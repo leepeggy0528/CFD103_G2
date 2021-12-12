@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagather首頁</title>
+    <link rel="stylesheet" href="css/index.css">
+    <script src="js/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    @@include('./layout/header.html')
+    <article>
+        <section class="join_us">
+            <div class="container">
+                <ul class="step">
+                    <h3>交友揪團五步驟</h3>
+                    <li><span>1</span>註冊帳號加入會員</li> 
+                    <li><span>2</span>完成個人資料填寫</li> 
+                    <li><span>3</span>每日登入領取金幣</li> 
+                    <li><span>4</span>追蹤感興趣朋友</li> 
+                    <li><span>5</span>參與/舉辦揪團 </li> 
+                </ul> 
+                <div class="sign_up">
+                    <p>最好玩的聚會體驗盡在</p>
+                    <p>Instagahter</p>
+                    <a href="signup.html"><button class="btnYellow">立即加入</button></a>
+                </div>
+            </div>   
+        </section>
+        <section class="feature">
+            <div class="container">
+                <ul class="item row">
+                    <li class="col-6 col-xl-3 col-xl-3">
+                        <div class="pic"><img src="images/leo/member.png" alt=""></div>
+                        <p>優質真實會員</p>
+                    </li>
+                    <li class="col-6 col-xl-3">
+                        <div class="pic"><img src="images/leo/party.png" alt=""></div>
+                        <p>精彩主題聚會</p>
+                    </li>
+                    <li class="col-6 col-xl-3">
+                        <div class="pic"><img src="images/leo/discussion.png" alt=""></div>
+                        <p>討論各式主題</p>
+                    </li>
+                    <li class="col-6 col-xl-3">
+                        <div class="pic"><img src="images/leo/card.png" alt=""></div>
+                        <p>客製專屬卡片</p>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        <section class="start_party">
+            <div class="container">
+                <a href="group.html" class="to_join">
+                    <div class="board">
+                        <p>揪團趣</p>
+                    </div>
+                    <div class="more">
+                        <p>查看更多</p>
+                    </div>
+                </a>
+                <ul class="card_group">
+                    <li class="card">
+                        <div class="iSave">
+                            <img id="saveActivity" src="./images/icon/unsave.png" title="收藏活動" alt="">
+                        </div>
+                    
+                        <div class="pic">
+                            <a href="groupDetail.html">
+                                <img src="https://picsum.photos/400/300/?random=1">
+                            </a>
+                        </div>
+                        <div class="party_text">
+                            <div class="main">
+                                <h3> <a href="groupDetail.html">印度料理&水菸印度料理&水菸</a></h3>
+                                <p>你好嗎餐酒館</p>
+                                <time>12-08(五) 19:00</time>
+                            </div>
+                            <div class="sub">
+                                <div class="author">
+                                    <div class="pic smCircle">
+                                        <img class="circle" src="https://picsum.photos/50/50/?random=1">
+                                    </div>
+                                    <span>林小妹</span>
+                                </div>
+                                <div class="hot">
+                                    <div class="pic">
+                                        <img src="./images/icon/fire.png">
+                                    </div>
+                                    <span>12345</span>
+                                </div>
+                            </div>
+                            <div class="see_more">
+                                <a href="groupDetail.html">
+                                    <button class="btnYellow">詳細資訊</button>
+                                </a>
+                                <button class="btnBlue">立即報名</button>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="card">
+                        <div class="iSave">
+                            <img id="saveActivity" src="./images/icon/unsave.png" title="收藏活動" alt="">
+                        </div>
+                    
+                        <div class="pic">
+                            <a href="groupDetail.html">
+                                <img src="https://picsum.photos/400/300/?random=1">
+                            </a>
+                        </div>
+                        <div class="party_text">
+                            <div class="main">
+                                <h3> <a href="groupDetail.html">印度料理&水菸印度料理&水菸</a></h3>
+                                <p>你好嗎餐酒館</p>
+                                <time>12-08(五) 19:00</time>
+                            </div>
+                            <div class="sub">
+                                <div class="author">
+                                    <div class="pic smCircle">
+                                        <img class="circle" src="https://picsum.photos/50/50/?random=1">
+                                    </div>
+                                    <span>林小妹</span>
+                                </div>
+                                <div class="hot">
+                                    <div class="pic">
+                                        <img src="./images/icon/fire.png">
+                                    </div>
+                                    <span>12345</span>
+                                </div>
+                            </div>
+                            <div class="see_more">
+                                <a href="groupDetail.html">
+                                    <button class="btnYellow">詳細資訊</button>
+                                </a>
+                                <button class="btnBlue">立即報名</button>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="card">
+                        <div class="iSave">
+                            <img id="saveActivity" src="./images/icon/unsave.png" title="收藏活動" alt="">
+                        </div>
+                    
+                        <div class="pic">
+                            <a href="groupDetail.html">
+                                <img src="https://picsum.photos/400/300/?random=1">
+                            </a>
+                        </div>
+                        <div class="party_text">
+                            <div class="main">
+                                <h3> <a href="groupDetail.html">印度料理&水菸印度料理&水菸</a></h3>
+                                <p>你好嗎餐酒館</p>
+                                <time>12-08(五) 19:00</time>
+                            </div>
+                            <div class="sub">
+                                <div class="author">
+                                    <div class="pic smCircle">
+                                        <img class="circle" src="https://picsum.photos/50/50/?random=1">
+                                    </div>
+                                    <span>林小妹</span>
+                                </div>
+                                <div class="hot">
+                                    <div class="pic">
+                                        <img src="./images/icon/fire.png">
+                                    </div>
+                                    <span>12345</span>
+                                </div>
+                            </div>
+                            <div class="see_more">
+                                <a href="groupDetail.html">
+                                    <button class="btnYellow">詳細資訊</button>
+                                </a>
+                                <button class="btnBlue">立即報名</button>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="card">
+                        <div class="iSave">
+                            <img id="saveActivity" src="./images/icon/unsave.png" title="收藏活動" alt="">
+                        </div>
+                    
+                        <div class="pic">
+                            <a href="groupDetail.html">
+                                <img src="https://picsum.photos/400/300/?random=1">
+                            </a>
+                        </div>
+                        <div class="party_text">
+                            <div class="main">
+                                <h3> <a href="groupDetail.html">印度料理&水菸印度料理&水菸</a></h3>
+                                <p>你好嗎餐酒館</p>
+                                <time>12-08(五) 19:00</time>
+                            </div>
+                            <div class="sub">
+                                <div class="author">
+                                    <div class="pic smCircle">
+                                        <img class="circle" src="https://picsum.photos/50/50/?random=1">
+                                    </div>
+                                    <span>林小妹</span>
+                                </div>
+                                <div class="hot">
+                                    <div class="pic">
+                                        <img src="./images/icon/fire.png">
+                                    </div>
+                                    <span>12345</span>
+                                </div>
+                            </div>
+                            <div class="see_more">
+                                <a href="groupDetail.html">
+                                    <button class="btnYellow">詳細資訊</button>
+                                </a>
+                                <button class="btnBlue">立即報名</button>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="card">
+                        <div class="iSave">
+                            <img id="saveActivity" src="./images/icon/unsave.png" title="收藏活動" alt="">
+                        </div>
+                    
+                        <div class="pic">
+                            <a href="groupDetail.html">
+                                <img src="https://picsum.photos/400/300/?random=1">
+                            </a>
+                        </div>
+                        <div class="party_text">
+                            <div class="main">
+                                <h3> <a href="groupDetail.html">印度料理&水菸印度料理&水菸</a></h3>
+                                <p>你好嗎餐酒館</p>
+                                <time>12-08(五) 19:00</time>
+                            </div>
+                            <div class="sub">
+                                <div class="author">
+                                    <div class="pic smCircle">
+                                        <img class="circle" src="https://picsum.photos/50/50/?random=1">
+                                    </div>
+                                    <span>林小妹</span>
+                                </div>
+                                <div class="hot">
+                                    <div class="pic">
+                                        <img src="./images/icon/fire.png">
+                                    </div>
+                                    <span>12345</span>
+                                </div>
+                            </div>
+                            <div class="see_more">
+                                <a href="groupDetail.html">
+                                    <button class="btnYellow">詳細資訊</button>
+                                </a>
+                                <button class="btnBlue">立即報名</button>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="card">
+                        <div class="iSave">
+                            <img id="saveActivity" src="./images/icon/unsave.png" title="收藏活動" alt="">
+                        </div>
+                    
+                        <div class="pic">
+                            <a href="groupDetail.html">
+                                <img src="https://picsum.photos/400/300/?random=1">
+                            </a>
+                        </div>
+                        <div class="party_text">
+                            <div class="main">
+                                <h3> <a href="groupDetail.html">印度料理&水菸印度料理&水菸</a></h3>
+                                <p>你好嗎餐酒館</p>
+                                <time>12-08(五) 19:00</time>
+                            </div>
+                            <div class="sub">
+                                <div class="author">
+                                    <div class="pic smCircle">
+                                        <img class="circle" src="https://picsum.photos/50/50/?random=1">
+                                    </div>
+                                    <span>林小妹</span>
+                                </div>
+                                <div class="hot">
+                                    <div class="pic">
+                                        <img src="./images/icon/fire.png">
+                                    </div>
+                                    <span>12345</span>
+                                </div>
+                            </div>
+                            <div class="see_more">
+                                <a href="groupDetail.html">
+                                    <button class="btnYellow">詳細資訊</button>
+                                </a>
+                                <button class="btnBlue">立即報名</button>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+    <section class="comment_board">
+        <div class="container">
+            <a href="discussion.html" class="to_discussion">
+                <div class="board">
+                    <p>討論趣</p>
+                </div>
+                <div class="more">
+                    <p>查看更多</p>
+                </div>
+            </a>
+            <ul class="comment_group">
+                <li class="comment">    
+                    <ul class="comment_A">
+                        <li class="picture"> 
+                            <a href="">
+                                <div class="party_pic">
+                                    <img src="images/leo/a.jpg" alt="">
+                                </div>
+                            </a>
+                            <a href="">
+                                <div class="author">
+                                    <div class="pic">
+                                        <img src="images/leo/person_A.jfif">
+                                    </div>
+                                    <span class="userName">林小妹</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="content"> 
+                            <a href="">
+                                <h2>一起看電影</h2>
+                                <div class="txt">
+                                    少女門口頻道居住轉載多多會不會，環境等級興趣，擁有不久人家，公司事項來了發揮終於中有評論空調直播主神話聽到最為所需推動，身材手冊破解出口家長電器聯繫方式調整參加一把出發，有效願意熱情學校住宅解放時間，在我淡淡基本上防治金幣天使說法決策能量你是，交通地理百。
+                                </div>
+                             </a>
+                            <p class="tags">
+                                <a href="#">#tag</a>
+                                <a href="#">#tag</a>
+                            </p>
+                        </li>
+                    </ul>
+                    <div class="comment_B">  
+                        <ul>
+                            <li class="index">
+                                <p>99</p>
+                                <div class="pic">
+                                    <img src="images/leo/chat.png" alt="">   
+                                </div>
+                            </li>
+                            <li class="index">
+                                <p>23</p>
+                                <div class="pic">
+                                    <img src="images/leo/like.png" alt="">  
+                                </div>
+                            </li>
+                            <li class="index">
+                                <p>30</p>
+                                <div class="pic">
+                                    <img src="images/leo/fire.png" alt="">   
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="post_date">2021年11月10日</div> 
+                    </div>
+                </li>  
+                <li class="comment">    
+                    <ul class="comment_A">
+                        <li class="picture"> 
+                            <a href="">
+                                <div class="party_pic">
+                                    <img src="images/leo/a.jpg" alt="">
+                                </div>
+                            </a>
+                            <a href="">
+                                <div class="author">
+                                    <div class="pic">
+                                        <img src="images/leo/person_A.jfif">
+                                    </div>
+                                    <span class="userName">林小妹</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="content"> 
+                            <a href="">
+                                <h2>一起看電影</h2>
+                                <div class="txt">
+                                    少女門口頻道居住轉載多多會不會，環境等級興趣，擁有不久人家，公司事項來了發揮終於中有評論空調直播主神話聽到最為所需推動，身材手冊破解出口家長電器聯繫方式調整參加一把出發，有效願意熱情學校住宅解放時間，在我淡淡基本上防治金幣天使說法決策能量你是，交通地理百。
+                                </div>
+                             </a>
+                            <p class="tags">
+                                <a href="#">#tag</a>
+                                <a href="#">#tag</a>
+                            </p>
+                        </li>
+                    </ul>
+                    <div class="comment_B">  
+                        <ul>
+                            <li class="index">
+                                <p>99</p>
+                                <div class="pic">
+                                    <img src="images/leo/chat.png" alt="">   
+                                </div>
+                            </li>
+                            <li class="index">
+                                <p>23</p>
+                                <div class="pic">
+                                    <img src="images/leo/like.png" alt="">  
+                                </div>
+                            </li>
+                            <li class="index">
+                                <p>30</p>
+                                <div class="pic">
+                                    <img src="images/leo/fire.png" alt="">   
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="post_date">2021年11月10日</div> 
+                    </div>
+                </li>   
+                <li class="comment">    
+                    <ul class="comment_A">
+                        <li class="picture"> 
+                            <a href="">
+                                <div class="party_pic">
+                                    <img src="images/leo/a.jpg" alt="">
+                                </div>
+                            </a>
+                            <a href="">
+                                <div class="author">
+                                    <div class="pic">
+                                        <img src="images/leo/person_A.jfif">
+                                    </div>
+                                    <span class="userName">林小妹</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="content"> 
+                            <a href="">
+                                <h2>一起看電影</h2>
+                                <div class="txt">
+                                    少女門口頻道居住轉載多多會不會，環境等級興趣，擁有不久人家，公司事項來了發揮終於中有評論空調直播主神話聽到最為所需推動，身材手冊破解出口家長電器聯繫方式調整參加一把出發，有效願意熱情學校住宅解放時間，在我淡淡基本上防治金幣天使說法決策能量你是，交通地理百。
+                                </div>
+                             </a>
+                            <p class="tags">
+                                <a href="#">#tag</a>
+                                <a href="#">#tag</a>
+                            </p>
+                        </li>
+                    </ul>
+                    <div class="comment_B">  
+                        <ul>
+                            <li class="index">
+                                <p>99</p>
+                                <div class="pic">
+                                    <img src="images/leo/chat.png" alt="">   
+                                </div>
+                            </li>
+                            <li class="index">
+                                <p>23</p>
+                                <div class="pic">
+                                    <img src="images/leo/like.png" alt="">  
+                                </div>
+                            </li>
+                            <li class="index">
+                                <p>30</p>
+                                <div class="pic">
+                                    <img src="images/leo/fire.png" alt="">   
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="post_date">2021年11月10日</div> 
+                    </div>
+                </li>                         
+            </ul>
+        </div>
+    </section>
+    <section class="hot_leader">
+        <div class="container">
+            <ul class="top_leader">
+                <li>
+                    <a href="profileOut.html">
+                        <div class="pic">
+                            <img src="images/leo/person_A.jfif" alt="">
+                            <p class="name">張晉華</p>
+                        </div>
+                        <div class="type">
+                            <div class="type_pic"><img src="images/leo/food.png" alt=""></div>
+                            <p>美食</p>
+                        </div>
+                    </a>   
+                </li>
+                <li>
+                    <a href="profileOut.html">
+                        <div class="pic">
+                            <img src="images/leo/person_B.jfif" alt="">
+                            <p class="name">張弈柏</p>
+                        </div>
+                        <div class="type">
+                            <div class="type_pic"><img src="images/leo/learn.png" alt=""></div>
+                            <p>學習</p>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="profileOut.html">
+                        <div class="pic">
+                            <img src="images/leo/person_C.jfif" alt="">
+                            <p class="name">呂軒豪</p>
+                        </div>
+                         <div class="type">
+                            <div class="type_pic"><img src="images/leo/brain.png" alt=""></div>
+                            <p>燒腦</p>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="profileOut.html">
+                        <div class="pic">
+                            <img src="images/leo/person_D.jfif" alt="">
+                            <p class="name">林柏呈</p>
+                        </div>
+                         <div class="type">
+                            <div class="type_pic"><img src="images/leo/relax.png" alt=""></div>
+                            <p>休閒</p>
+                        </div> 
+                    </a>
+                </li>
+                <li>
+                    <a href="hotleader_page.html">
+                        <h3>8大主題</h3>
+                        <h3>最HOT團主</h3>
+                    </a>
+                </li>
+                <li>
+                    <a href="profileOut.html">
+                        <div class="pic">
+                            <img src="images/leo/person_E.jfif" alt="">
+                            <p class="name">傅家鈺</p>
+                        </div>
+                         <div class="type">
+                            <div class="type_pic"><img src="images/leo/nightmarket.png" alt=""></div>
+                            <p>夜市</p>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="profileOut.html">
+                        <div class="pic">
+                            <img src="images/leo/person_F.jfif" alt="">
+                            <p class="name">李雅雯</p>
+                        </div>
+                         <div class="type">
+                            <div class="type_pic"><img src="images/leo/shopping.png" alt=""></div>
+                            <p>購物</p>
+                        </div>
+                    </a>      
+                </li>
+                <li>
+                    <a href="profileOut.html">
+                        <div class="pic">
+                            <img src="images/leo/person_G.jfif" alt="">
+                            <p class="name">莊喻湘</p>
+                        </div>
+                         <div class="type">
+                            <div class="type_pic"><img src="images/leo/travel.png" alt=""></div>
+                            <p>旅行</p>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="profileOut.html">
+                        <div class="pic">
+                            <img src="images/leo/person_H.jfif" alt="">
+                            <p class="name">李靜玟</p>
+                        </div>
+                         <div class="type">
+                            <div class="type_pic"><img src="images/leo/sport.png" alt=""></div>
+                            <p>運動</p>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </section>
+    <section class="contact_us">
+        <div class="container">
+            <form action="">
+                <h1>聯絡我們</h1>
+                <div class="input-data">
+                    <input type="text" id="name" required>
+                    <label for="name">姓名</label>
+                </div>
+                <div class="input-data">
+                    <input type="text" id="phone" required>
+                    <label for="phone">電話</label>
+                </div>
+                <div class="input-data">
+                    <input type="text" id="email" required>
+                    <label for="email">E-mail</label> 
+                </div>
+                <div class="input-data-txt">
+                    <textarea required></textarea>
+                    <label>訊息內容</label> 
+                </div>
+                <button type="button" class="btnYellow">送出</button>
+            </form>
+        </div>
+    </section>
+</article>
+@@include('./layout/footer.html')
+
+</body>
+</html>
