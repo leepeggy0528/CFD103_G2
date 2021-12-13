@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>建立揪團</title>
     <link rel="stylesheet" href="css/holdparty_page.css">
-
+    <link rel="stylesheet">
 </head>
 <body>
     @@include('./layout/header.html')
@@ -20,7 +20,7 @@
                             <img src="images/leo/image.png" alt="">
                         </li> -->
                         <li>
-                            <img src="images/leo/image.png" alt="">
+                            <img src="images/leo/a.jpg" alt="">
                         </li>
                     </ul>
                 </div> 
@@ -72,15 +72,15 @@
                     <!-- 4 -->
                     <li>
                         <label for="">聚會類型</label>
-                        <select name="" id="" required>
-                            <option value="美食">美食</option>
-                            <option value="學習">學習</option>
-                            <option value="燒腦">燒腦</option>
-                            <option value="休閒">休閒</option>
-                            <option value="夜市">夜市</option>
-                            <option value="購物">購物</option>
-                            <option value="旅行">旅行</option>
-                            <option value="運動">運動</option>
+                        <select name="" id="testjquery" required>
+                            <option value="美食" class="testjqeury">美食</option>
+                            <option value="學習" class="testjqeury">學習</option>
+                            <option value="燒腦" class="testjqeury">燒腦</option>
+                            <option value="休閒" class="testjqeury">休閒</option>
+                            <option value="夜市" class="testjqeury">夜市</option>
+                            <option value="購物" class="testjqeury">購物</option>
+                            <option value="旅行" class="testjqeury">旅行</option>
+                            <option value="運動" class="testjqeury">運動</option>
                         </select>
                     </li>
                     <!-- 5 -->
@@ -106,77 +106,45 @@
                 <div class="detail">
                     <p class="party_day">DAY<span id="change_day">1</span></p>
                     <ul class="place_group place_group_show">
-                        <li class="place">
-                            <p class="input_time">20:00</p>
-                            <h2>你好嗎餐酒館</h2>
-                             <span id="place_delect" class="place_delect">X</span>
-                        </li>
-                        <li class="place">
-                            <p class="input_time">20:00</p>
-                            <h2>你好嗎餐酒館</h2>
-                             <span id="place_delect" class="place_delect">X</span>
-                        </li>
-                        <li class="place">
-                            <p class="input_time">20:00</p>
-                            <h2>你好嗎餐酒館</h2>
-                             <span id="place_delect" class="place_delect">X</span>
-                        </li>
-                        <li class="place">
-                            <p class="input_time">20:00</p>
-                            <h2>你好嗎餐酒館</h2>
-                             <span id="place_delect" class="place_delect">X</span>
-                        </li>
-                        <li class="place">
-                            <p class="input_time">20:00</p>
-                            <h2>你好嗎餐酒館</h2>
-                             <span id="place_delect" class="place_delect">X</span>
-                        </li>
-                        <li class="place">
-                            <p class="input_time">20:00</p>
-                            <h2>你好嗎餐酒館</h2>
-                             <span id="place_delect" class="place_delect">X</span>
-                        </li>
-                        <li id="add_place" class="add_place">+</li>
-                        <li id="delect_place" class="delect_place">移除</li>
+                        <!-- <li class="place">
+                            <p class="input_time">SAMPLE</p>
+                            <h2>SAMPLE</h2>
+                             <span class="delect_place">X</span>
+                        </li> -->
+                        
+                        <li class="add_place"><p>+</p></li>
+                        <li class="delect_places">刪除</li>
                     </ul>
-                    <ul class="place_group">
-                        <li class="place">
-                            <p class="input_time">20:00</p>
-                            <h2>你好嗎餐酒館</h2>
-                             <span id="place_delect" class="place_delect">X</span>
-                        </li>
-                        <li class="place">
-                            <p class="input_time">20:00</p>
-                            <h2>你好嗎餐酒館</h2>
-                             <span id="place_delect" class="place_delect">X</span>
-                        </li>
-                        <li class="place">
-                            <p class="input_time">20:00</p>
-                            <h2>你好嗎餐酒館</h2>
-                             <span id="place_delect" class="place_delect">X</span>
-                        </li>
-                        <li id="add_place" class="add_place">+</li>
-                    </ul>
-                    <ul class="day_list">
-                        <li class="day_list_active">
+
+
+
+
+
+                    <ul class="day_lists" id="day_lists">
+                        <!-- <li class="day_list" style="display:none"><p>SAMPLE</p></li> -->
+                        <li class="day_list">
                             <p>Day1</p>
                         </li>
-                        <!-- 當add_day 點案 在day_list內add_day前新增 【<li>Day2</li>】  -->
-                        <li>
+                        <li class="day_list day_list_active">
                             <p>Day2</p>
                         </li>
-                        <!-- /////// -->
-                        <li id="add_day">+</li>
+                        <!-- 當add_day 點案 在day_list內add_day前新增 【<li>Day2</li>】  -->                
+                        <li class="add_day"><p>+</p></li>
                     </ul>
+
+
+
+
+
                 </div>
 
                 <h3>活動描述</h3>
                 <div class="write">
-                    <textarea name="" id=""></textarea>
+                    <textarea></textarea>
                     <p class="limit_words"><span class="limit_words_count">0</span>/200</p>
                 </div>
                 <button type="button" class="btnBlue">
-                    <p>立即建團</p>
+                    立即建團
                     <div class="pic">
                         <img src="images/leo/coin.png" alt="">
                     </div>
@@ -184,12 +152,71 @@
             </form>           
         </section>
     </article>
-    @@include('./layout/footer.html')
-    <script>
-        
-    </script>
 
     
+    <div class="external-modal">
+        <p>
+            <span>時間:</span>
+            <input id="model-start-time-input" value="" type="time" required>
+            <span>~</span> 
+            <input id="model-end-time-input" value="" type="time">
+        </p>
+        <p>
+            <span>景點:</span>
+            <input type="text" id="model-place-input" maxlength="10">
+            <input type="text">
+        </p>
+        <p>
+            <button id="model-cancel-btn" class="btnWhite">取消</button>
+            <button id="model-submit-btn" class="btnYellow">確定</button>
+        </p>
+    </div>
+    @@include('./layout/footer.html')
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/holdparty_page.js"></script>
+    
+    <!-- <script>
+    $(function () {	
+
+        $('body').on('click','.delect_place',function(){
+            $(this).parents('.place').remove()    
+        });
+
+        // 案+ 出現MODEL
+        $('body').on('click','#add_place',function(){
+            $('.external-modal').css('display','block')
+            $('.external-modal input').val('')
+        });
+
+        //按下確定新增行程
+        $('body').on('click','#model-submit-btn',function(){
+            let newTime = $('#model-start-time-input').val()
+
+            let newPlace = $('#model-place-input').val()
+
+            let tempblock = `<li class="place"><p class="input_time">${newTime}</p><h2>${newPlace}</h2><span class="delect_place">X</span></li>`
+
+            $('#add_place').before(tempblock)
+
+            //MODEL 消失
+            $('.external-modal').css('display','none')
+        });
+
+        //按下取消【不】新增行程
+        $('body').on('click','#model-cancel-btn',function(){
+            //MODEL 消失
+            $('.external-modal').css('display','none')
+        });
+
+
+        $('body').on('click','.day_list_active',function(){
+            // 初始化
+            $('.day_list_active').removeClass('active')
+            $(this).addClass('active')
+        });
+    });
+    </script> -->
+
 </body>
 </html>
 

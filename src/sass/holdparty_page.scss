@@ -1,10 +1,5 @@
-@import 'base/var';
-@import 'base/reset';
-@import 'mixin/mixin';
-@import 'module/btn';
+@import 'style';
 
-@import 'layout/header.scss';
-@import 'layout/footer.scss';
 textarea{
     resize: none;
 }
@@ -15,10 +10,6 @@ input{
 textarea{
     outline: none;
 }
-
-// article{
-//     margin-top: 100px;
-// }
 .main_plan{
     .container{
         max-width: 1200px;
@@ -175,6 +166,17 @@ textarea{
                 height: 450px;
                 overflow-y:auto;
                 display: none;
+                &::-webkit-scrollbar {
+                    width: 8px;
+                }
+                &::-webkit-scrollbar-track {
+                    background-color: $bgGray;
+                    @include borderR(10px);
+                }
+                &::-webkit-scrollbar-thumb {
+                    background-color: $mainBlue;
+                    @include borderR(10px);
+                }
                 .place{
                     display: flex;
                     align-items: center;
@@ -183,7 +185,7 @@ textarea{
                     cursor: pointer;
                     &:hover{
                         text-decoration: none;
-                        .place_delect{
+                        .delect_place{
                             display: block;
                             flex: 0 0 20px;
                             height: 20px;
@@ -192,16 +194,16 @@ textarea{
                             border-radius: 30%;
                             color: $mainBlue;
                             background-color: rgb(243, 155, 149);
-                            // cursor: pointer;
+                            cursor: pointer;
                         }
                     }
-                    .place_delect{
+                    .delect_place{
                         display: none;
-                        
                     }
                     p{
                         flex: 0 0 80px;
                         height: 80px;
+                        padding: 0;
                         border-radius: 50%;
                         color: $white;
                         font-size: $font-3;
@@ -212,8 +214,10 @@ textarea{
                     h2{
                         flex: 0 1 300px;
                         font-size: $font-3;
+                        height: 50px;
                         line-height: 50px;
                         margin-left: 5px;
+                        padding: 0;
                         position: relative;
                         color: $mainBlue;
                         &::after{
@@ -223,24 +227,37 @@ textarea{
                             background-color: $shawdowGray;
                             position: absolute;
                             @include borderR();
-                            top: 0px;
+                            top: 0;
                             left: -30px;
                             z-index: -1;
                         }
                     }
                 }
                 .add_place{
-                    width: 25px;
-                    height: 25px;
-                    line-height: 25px;
-                    text-align: center;
+                    width: 30px;
+                    height: 30px;
                     border-radius: 50%;
-                    color: $white;
                     background-color: $mainBlue;
                     margin: auto;
                     cursor: pointer;
+                    p{
+                        height: 30px;
+                        line-height: 30px;
+                        padding: 0;
+                        text-align: center;
+                        color: $white;
+                        transition: transform .5s ease-in-out;
+                    }
+                    &:hover{
+                        text-decoration: none;
+                        p{
+                            transform: scale(1.5) 
+                            rotate(360deg);
+
+                        }
+                    }
                 }
-                .delect_place{
+                .delect_places{
                     width: 80px;
                     height: 30px;
                     line-height: 30px;
@@ -248,14 +265,16 @@ textarea{
                     border-radius: 25px;
                     color: $white;
                     background-color: $tagGray;
-                    margin-left: auto;
                     cursor: pointer;
+                    position: absolute;
+                    bottom: -10px;
+                    right: 10px;
                 }
             }
             .place_group_show{
                 display: block;
             }
-            .day_list{
+            .day_lists{
                 color: $mainBlue;
                 width: 50px;
                 text-align: center;
@@ -263,27 +282,40 @@ textarea{
                 right: -50px;
                 top: 10px;
                 li{
-                    font-size: $font-1;
                     height: 50px;
-                    line-height: 50px;
                     background-color: $bgGray;
                     border-top-right-radius: 10px;
                     border-bottom-right-radius: 10px;
+                    overflow: hidden;
                     cursor: pointer;
-                    transition: font-size .5s ease-in-out;
+                    p{
+                        font-size: $font-1;
+                        height: 50px;
+                        line-height: 50px;
+                        padding: 0;
+                        text-align: center;
+                        transition: transform .5s ease-in-out;
+                    }
                     &:hover{
                         text-decoration: none;
                         background-color: $shawdowGray;
-                        font-size: 120%;
+                        p{
+                            transform: scale(1.5);
+                        }
                     }
                 }
                 .add_day{
-                    background-color: $bgGray;
-                    cursor: pointer;
+                    &:hover{
+                        p{
+                            transform: scale(2) rotate(360deg);
+                        }
+                    }
                 }
                 .day_list_active{
                     background-color: $shawdowGray;
-                    font-size: 120%;
+                    p{
+                        transform: scale(1.5);
+                    }
                 }
             }
         }
@@ -323,4 +355,54 @@ textarea{
     }
     
 }
+
+
+
+
+//external-modal
+.external-modal{
+    max-width: 500px;
+    padding: $padding*5;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    @include borderR();
+    background-color: $mainBlue;
+    display: none;
+    p{
+        width: 100%;
+        padding: 0;
+        font-size: 0;
+        span{
+            font-size: $font-4;
+            color: $white;
+            display: inline-block;
+            height: 40px;
+            line-height: 40px;
+        }
+        input{
+            height: 40px;
+            // margin: $margin;
+            border: none;
+            text-indent: 5px;
+        }
+        &:nth-of-type(2){
+            input{
+                width: 100%;
+            }
+        }
+        &:nth-child(3){
+            text-align: center;
+            margin-top: $margin*2;
+            button{
+                margin: auto 10px;
+                border: none;
+            }
+        }
+    }
+}
+
+
+    
 

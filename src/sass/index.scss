@@ -1,0 +1,735 @@
+@import 'style';
+@import 'base/grid';
+a{
+    display: block;
+    text-decoration: none;
+    color: $mainBlue;
+}
+textarea{
+    resize: none;
+}
+input:focus, textarea:focus, select:focus{
+    outline: none;
+}
+//加入我們(join_us)
+.join_us{  
+    background: linear-gradient(135deg,$mainBlue 50%,$mainYellow 50%);
+    .container{
+        min-height: calc(100vh - 75px);
+        font-size: $font-6;
+        letter-spacing: $letterSpacing;
+        box-sizing: border-box;
+        padding: $padding;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        .step{ 
+            h3{
+                font-size: $font-6;
+                font-weight: 600;
+                color: $mainBlue;
+            }
+            >li{
+                margin-top: $margin;
+                color: $subYellow;
+                span{
+                    display: inline-block;
+                    width: 50px;
+                    height: 50px;
+                    @include borderR(50%);
+                    line-height: 50px;
+                    text-align: center;
+                    text-indent: $letterSpacing;
+                    background-color: #B5CED7;
+                    margin-right: $margin;
+                }
+                &:hover{
+                    text-decoration: none;
+                }
+            }   
+        }
+        .sign_up{
+            margin-left: auto;
+            width: 280px;
+            p{
+                font-size: $font-5;
+                color: $mainBlue;
+                margin-bottom: 10px;
+                text-align: center;
+            }
+            a{
+                .btnYellow{
+                    display: block;
+                    margin: auto;
+                    font-size: $font-5;
+                }
+            }
+        }   
+    }
+}
+//特色(feature)
+.feature{
+    background-color: $linkBlue;
+   .container{
+       padding: 50px 0;
+       .item{
+            li{
+                .pic{
+                   width: 150px;
+                   height: 150px;
+                   margin: auto;
+                   display: flex;
+                   justify-content: center;
+                   align-items: center;
+                   background-color: $mainYellow;
+                   @include borderR(50%);
+                   img{
+                       width: 60%;
+                       vertical-align: top;
+                    }
+                }
+               p{
+                   font-size: $font-5 ;
+                   color: $subYellow;
+                    letter-spacing: 5px;
+                    text-indent: 5px;
+                    text-align: center;
+                }
+                &:hover{
+                text-decoration: none;
+                }
+            }
+        }
+    }
+}
+//揪團(start_party)
+.start_party{
+   padding: 100px $padding;
+   .container{
+       display: flex;
+       flex-wrap: wrap;
+       align-items: center;
+       position: relative;
+       .to_join{
+           flex: 1 1 300px;
+           display: flex;
+           flex-wrap: wrap;
+           .board{
+                flex: 1 1 280px;
+                font-size: $font-5;
+                margin-right: 20px;
+                height: 250px;
+                display: flex;
+                justify-content: center;  
+                align-items: center;      
+                flex-wrap: wrap;
+                color: $white;
+                background-color: $linkBlue;
+                @include borderR();
+                position: relative;
+                transition: all 1s ease-in-out;
+                &::after{
+                    content: '';
+                    width: 100%;
+                    height: 100%;
+                    @include borderR();
+                    background-color: $subYellow;
+                    position: absolute;
+                    top: -20px;
+                    left: 20px;
+                    z-index: -1;
+                    transition: all 0.6s ease-in-out;
+                }
+                p{
+                    font-size: $font-6;
+                    color: $white;
+                }
+            }
+            .more{
+                position: absolute;
+                right: 6px;
+                bottom: -50px;
+                p{
+                    color: $linkBlue;
+                    font-size: $font-4;
+                }
+            }
+             &:hover{
+                .board{
+                    color: $linkBlue;
+                    background-color: $subYellow;
+                    &::after{
+                        background-color: $linkBlue;
+                    }
+                    p{
+                        color: $linkBlue;
+                    }
+                }
+            }
+        }  
+       .card_group{
+            flex: 1 1 900px;
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: $margin*10;
+            .card {
+                @include card();
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                box-sizing: border-box;
+                flex: 1 1 280px;
+                margin: 10px;
+                transition: all 1s ease;
+                overflow: hidden;
+                &:hover {
+                    @include shadow(20px);
+                    .party_text {
+                        .see_more {
+                            top: 0;
+                        }
+                    }
+                }
+            
+            
+                .iSave {
+                    width: 25px;
+                    position: absolute;
+                    right: 0px;
+                    margin: 10px;
+                }
+            
+                >.pic {
+                    img {
+                        @include picBorderR();
+                    }
+                }
+                .party_text {
+                    flex-grow: 1;
+                    display: flex;
+                    flex-direction: column;
+                    position: relative;
+                    .main {
+                        flex-grow: 1;
+                        display: flex;
+                        flex-direction: column;
+                
+                        h3 {
+                            color: $mainBlue;
+                            flex-grow: 1;
+                
+                        }
+                
+                        >p {
+                            margin-top: -5px;
+                            padding: 0 $padding 5px $padding;
+                            flex-grow: 0;
+                
+                        }
+                
+                        time {
+                            margin-bottom: 5px;
+                            padding: 0 $padding 5px $padding;
+                            flex-grow: 0;
+                
+                        }
+                    }
+                    .sub {
+                        display: flex;
+                        justify-content: space-between;
+                        flex-grow: 0;
+                        margin: $margin;
+                        font-size: $font-1;
+                
+                        .author {
+                            display: flex;
+                            align-items: center;
+                
+                            .pic {
+                                margin-right: 5px;
+                            }
+                        }
+                
+                        .hot {
+                            display: flex;
+                            align-items: center;
+                
+                
+                            .pic {
+                                width: 15px;
+                                margin-right: 5px;
+                            }
+                        }
+                
+                    }
+                    .see_more {
+                        width: 100%;
+                        height: 100%;
+                        border-bottom-right-radius: 10px;
+                        border-bottom-left-radius: 10px;
+                        background-color: #c0ab8488;
+                        position: absolute;
+                        top: 100%;
+                        left: 0;
+                        transition: all .5s  ease;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
+                        button {
+                            width: 150px;
+                            border:none;
+                            cursor: pointer;
+                        }
+                    }
+                }
+            }
+           li{
+               &:hover{
+                   text-decoration: none;
+                }
+                
+            }
+        }
+    }
+}
+//討論(comment_board)
+.comment_board{
+    padding: $padding*10 $padding;
+    .container{
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row-reverse;
+        align-items: center;
+        position: relative;
+        .to_discussion{
+            flex: 1 1 300px;
+            display: flex;
+            flex-wrap: wrap;
+            .board{
+                 flex: 1 1 280px;
+                 font-size: $font-5;
+                 margin-right: 20px;
+                 height: 250px;
+                 display: flex;
+                 justify-content: center;  
+                 align-items: center;      
+                 flex-wrap: wrap;
+                 color: $white;
+                 background-color: $linkBlue;
+                 @include borderR();
+                 position: relative;
+                 transition: all 1s ease-in-out;
+                 &::after{
+                     content: '';
+                     width: 100%;
+                     height: 100%;
+                     @include borderR();
+                     background-color: $subYellow;
+                     position: absolute;
+                     top: -20px;
+                     left: 20px;
+                     z-index: -1;
+                     transition: all 0.6s ease-in-out;
+                 }
+                 p{
+                     font-size: $font-6;
+                     color: $white;
+                 }
+             }
+             .more{
+                 position: absolute;
+                 left: 6px;
+                 bottom: -50px;
+                 p{
+                     color: $linkBlue;
+                     font-size: $font-4;
+                 }
+             }
+              &:hover{
+                 .board{
+                     color: $linkBlue;
+                     background-color: $subYellow;
+                     &::after{
+                         background-color: $linkBlue;
+                     }
+                     p{
+                         color: $linkBlue;
+                     }
+                 }
+             }
+         }  
+        .comment_group{
+            flex: 1 1 900px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            margin-top: $margin*10;
+            li{
+                &:hover{
+                    text-decoration: none;
+                }
+            }
+            .comment{
+                display: flex;
+                flex-wrap: wrap;
+                width: 100%;
+                margin: $margin;
+                padding: $padding;
+                @include borderR();
+                @include shadow();
+                transition: all 1s ease;
+                &:hover{
+                    @include shadow(20px);
+                }
+                h2{
+                    margin-bottom: 10px;
+                }
+                .comment_A{
+                    flex: 1 1 600px;
+                    display: flex;
+                    flex-wrap: wrap;
+                    .picture{
+                        flex: 1 1 300px;
+                        .party_pic{
+                            width: 100%;
+                            @include borderR();
+                            overflow: hidden;
+                            img{
+                                width: 100%;
+                                vertical-align: top;
+                            }
+                        }
+                        .author{
+                            width: 100%;
+                            display: flex;
+                            align-items: center;
+                            margin: $margin 0;
+                            .pic{
+                                width: $smCircle;
+                                height: $smCircle;
+                                @include borderR(50%);
+                                overflow: hidden;
+                                margin-right: $margin;
+                                img{
+                                    width: 100%;
+                                    height: 100%;
+                                    object-fit: cover;
+                                }
+                            }
+                        }
+                    }
+                    .content{
+                        flex: 1 1 300px;
+                        h2{
+                            padding: 0;
+                        }
+                        box-sizing: border-box;
+                        padding: 10px;
+                        .txt{
+                            width: 100%;
+                            line-height: 30px;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            display: -webkit-box;
+                            -webkit-line-clamp: 5; //第幾行隱藏
+                            /*!autoprefixer:off*/
+                            -webkit-box-orient: vertical;
+                            /*autoprefixer:on*/
+                        }
+                        .tags{
+                            padding: 0;
+                            a{
+                                display: inline-block;
+                            }
+                        }
+                    }
+                }
+                .comment_B{
+                    flex: 1 1 200px;
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: space-between;
+                    &>ul{
+                        flex: 1 0 200px;
+                        display: flex;
+                        .index{
+                            width: 100%;
+                            height: 80px;
+                            margin: $margin*.5;
+                            background-color: $bgYellow;
+                            @include borderR();
+                            @include shadow();
+                            p{
+                                text-align: center;
+                            }
+                            .pic{
+                                width: 30px;
+                                height: 30px;
+                                margin: auto;
+                                img{
+                                    width: 100%;
+                                    height: 100%;
+                                    object-fit: cover;
+                                }
+                            }
+                        }
+                    }
+                    .post_date{
+                        flex: 1 1 200px;
+                        margin-left: auto;
+                        margin-top: $margin*2;
+                        align-self: flex-end;
+                        text-align: end;
+                    }
+                }
+            }
+        }
+    }
+}
+
+//團主(hot_leader)
+.hot_leader{
+    padding: $padding*10 $padding;
+    .container{
+        .top_leader{
+            display: flex;
+            flex-wrap: wrap;
+            li{
+                flex: 1 0 0;
+                margin: $margin $margin*3;
+                &:hover{
+                    text-decoration: none;
+                }
+                &:not(:nth-of-type(5)){
+                .pic{
+                    width: 250px;
+                    height: 250px;
+                    margin: auto;
+                    @include borderR(50%);
+                    overflow: hidden;
+                    position: relative;
+                    &:after{
+                        content: "";
+                        width: 100%;
+                        height: 100%;
+                        @include borderR(50%);
+                        background-color: rgba(122, 150, 173, 0.658);
+                        position: absolute;
+                        top: 0;
+                        left: -100%;
+                        transition: all .3s ease-in-out;
+                        }
+                        img{
+                            width: 100%;
+                            vertical-align: top;
+                            transition: all .5s ease-in-out;
+                        }
+                    }
+                    .name{
+                        width: 100%;
+                        font-size: $font-6;
+                        color: $white;
+                        text-align: center;
+                        padding: 0;
+                        position: absolute;
+                        top: 50%;
+                        opacity: 0;
+                        transition: all .2s ease-in-out;
+                    }
+                }
+                &:nth-of-type(5){
+                    flex: 0 0 250px;
+                    height: 250px;
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: center;
+                    align-content: center;
+                    border: 2px solid $mainBlue;
+                    h3{
+                        width: 100%;
+                        font-size: $font-6;
+                        text-align: center;
+                        letter-spacing: $letterSpacing;
+                        text-indent: $letterSpacing;
+                        margin-bottom: $margin;
+                        padding: 0;
+                    }
+                }
+                &:not(:nth-of-type(5)){
+                    &:hover{
+                        .pic{
+                            &::after{
+                                left: 0;
+                            }
+                            img{
+                                transform: scale(1.3);
+                            }
+                            p{
+                                opacity: 1;
+                                z-index: 1;
+                            }
+                        }
+                    }
+                }
+                .type{
+                    display: flex;
+                    justify-content: center;
+                    margin: $margin auto 0;
+                    .type_pic{
+                        width: 40px;
+                        height: 40px;
+                        img{
+                            width: 100%;
+                            height: 100%;
+                        }
+                    }
+                    p{
+                        font-size: $font-5;
+                        line-height: 40px;
+                        height: 40px;
+                        padding: 0;
+                        margin-left: 10px;
+                    }
+                }
+            }
+            // -----------------------------------
+            @media screen and (max-width: 1024px){
+                li{
+                    &:nth-of-type(5){
+                        order: -1;
+                        flex: 1 1 100%;
+                        margin-bottom: $margin*2;
+                    }
+                    &:not(:nth-of-type(5)){
+                        margin: $margin $margin*5;
+                    }
+                }
+            }
+            @media screen and (max-width : 400px){
+                li{
+                    &:nth-of-type(5){
+                        order: -1;
+                        flex: 1 1 100%;
+                        margin-bottom: $margin*2;
+                    }
+                    &:not(:nth-of-type(5)){
+                        margin: $margin;
+                    }
+                }
+            }
+            // -----------------------------------
+        }
+    }
+    
+}
+// -----------------------聯絡我們(contact_us)
+.contact_us{
+    padding-bottom: 100px;
+    background-image: url(../images/leo/a.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    position: relative;
+    padding-top: 100px;
+    .container{
+        max-width: 1200px;
+        margin: auto;
+        form{
+            max-width: 450px;
+            @include borderR();
+            margin: auto;
+            background-color: #025b78da;
+            padding: 50px;
+            text-align: center;
+            h1{
+                font-size: $h1;
+                color: $subYellow;
+                letter-spacing: 10px;
+                text-indent: 10px;
+                margin-bottom: 20px;
+            }       
+            .input-data{
+                width: 100%;
+                height: 50px;
+                position: relative;
+                margin-top: 30px;
+                input{
+                    width: 100%;
+                    height: 100%;
+                    padding-top: 10px;
+                    @include borderR();
+                    font-family: 'Courier New', Courier, monospace;
+                    letter-spacing: $letterSpacing;
+                    border: none;
+                    text-indent: 5px;
+                    font-size: $font-2;
+                    &:focus ~ label{
+                      transform:  translateY(-18px); 
+                      font-size: $p;
+                      color: $mainBlue; 
+                    }
+                    &:valid ~ label{
+                        transform:  translateY(-18px); 
+                        font-size: $p; 
+                        color: $mainBlue; 
+                    }
+                }
+                label{
+                    position: absolute;
+                    bottom: 10px;
+                    left: 5px;
+                    color: $pageBlue;
+                    pointer-events: none;
+                    font-size: $font-4;
+                    transition: all .3s ease;
+                }
+            }
+            .input-data-txt{
+                width: 100%;
+                position: relative;
+                margin-top: 30px;
+                textarea{
+                    font-family: 'Courier New', Courier, monospace;
+                    font-size: $font-2;
+                    text-indent: 5px;
+                    letter-spacing: $letterSpacing;
+                    @include borderR();
+                    border: none;
+                    width: 100%;
+                    height: 150px;
+                    padding-top: 25px;
+                    &:focus ~ label{
+                        transform:  translateY(-10px); 
+                        font-size: $p;
+                        color: $mainBlue; 
+                    }
+                    &:valid ~ label{
+                        transform:  translateY(-10px); 
+                        font-size: $p; 
+                        color: $mainBlue; 
+                    } 
+                }
+                label{
+                    position: absolute;
+                    top: 15px;
+                    left: 5px;
+                    color: $pageBlue;
+                    pointer-events: none;
+                    font-size: $font-4;
+                    transition: all .3s ease;
+                }
+            }
+            button{
+                width: 200px;
+                border: none;
+                font-size: $font-3;
+                margin-top: 20px;
+            }
+        }
+    }
+}
+
+
