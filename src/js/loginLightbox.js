@@ -41,7 +41,7 @@ function backToStep1(){
 function init() {
     // 操作登入頁面
     close = document.getElementById("closeLogin");
-    open = document.getElementById("LoginButton");
+    open = document.getElementById("LoginBTN");
     // 操作註冊頁面
     signUp = document.getElementById("signUpNow");
     returnLogin= document.getElementById("returnLogin");
