@@ -120,13 +120,11 @@
 
 
 
+
                     <ul class="day_lists" id="day_lists">
                         <!-- <li class="day_list" style="display:none"><p>SAMPLE</p></li> -->
-                        <li class="day_list">
-                            <p>Day1</p>
-                        </li>
                         <li class="day_list day_list_active">
-                            <p>Day2</p>
+                            <p>Day1</p>
                         </li>
                         <!-- 當add_day 點案 在day_list內add_day前新增 【<li>Day2</li>】  -->                
                         <li class="add_day"><p>+</p></li>
@@ -140,8 +138,8 @@
 
                 <h3>活動描述</h3>
                 <div class="write">
-                    <textarea></textarea>
-                    <p class="limit_words"><span class="limit_words_count">0</span>/200</p>
+                    <textarea id='party_discribe' maxlength="200"></textarea>
+                    <p class="limit_words"><span id="limit_words_count">0</span>/200</p>
                 </div>
                 <button type="button" class="btnBlue">
                     立即建團
