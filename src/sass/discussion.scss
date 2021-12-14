@@ -22,23 +22,25 @@ li{list-style: none;}
  }
  .search-item{
     display: block;
-    max-width: 1200px;
+    max-width: 1080px;
     margin: auto;
     position: relative;
 }
 .search-article{
+    margin: auto;
     width: 100%;
     display: block;
     background-color: #fff9d6;
     height: 50px;
     font-size: $h2;
     border: none;
+    border-radius: 10px;
 }
  .search-item .search-icon{
 position: absolute;
-right: 0;
-top: 0;
-bottom: 0;
+right: 15px;
+top: 15px;
+bottom: 0px;
 margin: auto;
 }
 
@@ -49,6 +51,10 @@ margin: auto;
     border-radius: 50%;
 }
 
+::placeholder{
+    padding: 5px;
+}
+
 
 
 .tager-box{
@@ -56,75 +62,82 @@ margin: auto;
     
 }
 .container-box{
+    max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
+    
 }
 
 .insta-item{
-    max-width: 1200px;
+    width: 100%;
     display: flex;
-    justify-content: space-evenly;
-    margin: auto;
+    justify-content: center;
+    
+}
+
+
+.insta-item-main-i{
+    max-width: 800px;
+    background-color: #F3F3F3;
+    display: flex;
+    position: relative;
+    border-radius: 10px;
+    @include shadow();
+    margin: 10px 0px;
+    margin-left: 10px;
 }
 
 .btnBlue{
     text-align: center;
 }
 
-.insta-item-main-i{
-    max-width: 800px;
-    border: 1px solid #6B879D;
-    background-color: #F3F3F3;
+
+.box-i{
     display: flex;
-    flex-wrap: wrap;
-    margin-top: 50px;
-    justify-content: center;
-    padding: 10px;
-    position: relative;
 }
-
-.insta-item-v{
-    position: absolute;
-    right: 0px;
-    top: 0px;
-}
-.v{
-    border: none;
-}
-
-.insta-item-main-picture{
-    max-width: 500px;
-}
-
 
 .pic img{
-    border-radius: 10%;
+    border-radius: 10px;
     width: 100%;
 }
 
-.insta-item-main-me{
-    display: flex;
-    margin-top: 20px;
-}
-
-.insta-item-main-me p{
-    margin-top: auto;
-    margin-bottom: auto;
-}
-
 .me{
-    width: 50px;
-    
+    display: flex;
 }
 
 .me img{
-    border-radius:50%;
+    width: 50px;
+    border-radius: 90%;
 }
-.insta-item-main-text{
-    max-width: 500px;
-    margin-top: auto;
-    margin-bottom: auto;
+
+.left-i{
+    max-width: 400px;
+    margin:  10px;
+}
+.center-i{
+max-width: 400px;
+margin:  10px;
+}
+
+
+.box-i-2{
+    margin: auto;
+    position: relative;
+}
+
+.right-i{
+    display: flex;
+}
+
+.comment-item{
     margin: 10px;
+}
+
+.date-time{
+    position: absolute;
+    right: 0px;
+    top: 120px;
+   
 }
 
 .seemore{
@@ -133,75 +146,155 @@ margin: auto;
 }
 
 
-.comment-item{
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-
-}
-
-.comment-time{
-    display: flex;
-    justify-content: flex-end;
-    margin: 10px 0px;
-}
-.item{
-    width: 30px;
-    vertical-align: bottom;
-}
-
-
 .insta-item-sub{
-    width: 250px;
-    margin-top: 50px;
+    max-width: 280px;
+    margin: 0px 10px;
 }
 
 .tag-box{
-    width: 250px;
-    text-align: center;
-    padding: 10px;
-    border: 1px solid #6B879D;
-    background-color:$bgYellow;
+    background-color: #fff9d6;
+    border-radius: 10px;
+}
 
+.tag-box h2{
+    text-align: center;
 }
 
 .tag{
     display: flex;
+    justify-content: center;
 }
 
-p,
-label {
-    font: 1rem 'Fira Sans', sans-serif;
+.tag input{
+    margin-top: auto;
+    margin-bottom: auto;
 }
 
-input {
-    margin: .4rem;
+.login-form{
+    width: 100%;
 }
 
+.layer{
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.377);
+    
+}
+.login-wrapper{
+  display: none;
+}
 
-.link {
+.section-all{
+  display: flex;
+  position: relative;
+
+}
+
+.section{
+   margin: 10px;
+   color: #F3F3F3;
+   padding: 10px;
+}
+.group-title{
+    display: flex;
+    align-items: center;
+    margin: 10px 0px;
+}
+.cute-text{
+    border: none;
+    background-color: #fff9d6;
+    height: 30px;
+}
+
+.group-tag{
+    margin: 10px 0px;
+}
+
+.group-text{
+    display: flex;
+    margin: 10px 0px;
+
+}
+
+textarea{
+    resize: none;
+    background-color: #fff9d6;
+}
+.group-text-i{
+    width: 230px;
+    height: 500px;
+    
+    
+}
+
+.fix-btn{
+    display: none;
+}
+
+.link{
     display: flex;
     justify-content: center;
-    margin-top: 50px;
 }
 
 .link a{
     margin: 10px;
-    border: 1px solid #6B879D;
+    border:1px solid #6B879D;
     border-radius: 100px;
-    padding: 10px 20px;
-}
-.link a:hover{
-    background-color: #6B879D;
-    color:#F3F3F3;
+    padding: 10px;
+
 }
 
-.fix-btn{
-   display: none;
+.btn-box{
+    display: flex;
+    justify-content: center;
 }
+
+.plus-box button{
+    width: 50px;
+    height: 50px;
+}
+
+.plus-box{
+    position: absolute;
+    bottom:200px;
+    right: 110px;
+}
+
+
+
 
 @media only screen and (max-width: 1024px){
 
+    .search-item{
+        display: block;
+        max-width: 1080px;
+        margin: auto;
+        position: relative;
+    }
+    .search-article{
+        margin: auto;
+        width: 100%;
+        display: block;
+        background-color: #fff9d6;
+        height: 50px;
+        font-size: $h2;
+        border: none;
+        border-radius: 10px;
+    }
+     .search-item .search-icon{
+        position: absolute;
+        right: 15px;
+        top: 20px;
+        bottom: 0px;
+        margin: auto;
+    }
+    
+    .search-item .search-icon{
+        background-color: #fff9d6;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+    }
 
 
 
@@ -212,10 +305,11 @@ input {
     display: flex;
     justify-content: center;
     width: calc(100vw - 10%);
-    height: 100px;
+    height: 150px;
     background-color: #fff9d6;
     border: 1px solid #6B879D;
     display: block;
+    @include borderR();
 }
 
 .tager-box h2{
@@ -243,7 +337,7 @@ input {
    text-align: center;
 }
 .insta-item-main-i{
-    max-width: 800px;
+    max-width: 900px;
     border: 1px solid #6B879D;
     background-color: #F3F3F3;
     display: flex;
@@ -251,13 +345,19 @@ input {
     margin-top: 50px;
     justify-content: center;
     margin: 30px;
+    
 }
 
-
-
-.insta-item-main-picture img{
-    width: 100%;
+.box-i{
+    flex-direction: column;
 }
+
+.box-i-2{
+    flex-direction: column;
+   
+
+}
+
 
 .insta-item-main-me{
     display: flex;
@@ -276,10 +376,16 @@ input {
     opacity: 0.7;
 }
 
+.date-time{
+    display: none;
+}
 .link a{
+    margin: 10px;
     border: none;
     border-radius: 100px;
     padding: 0px;
+
 }
+
 
 }

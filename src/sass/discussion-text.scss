@@ -7,7 +7,13 @@ a{text-decoration: none;
       color: #025A78;
       margin: 10px;
   }
-  
+
+  .item{
+    margin: 10px;
+  }
+  .item img{
+    border-radius: 10px;
+  }
     .insta-item{
       margin: auto;
       max-width: 1200px;
@@ -15,8 +21,9 @@ a{text-decoration: none;
     }
   
     .insta-item-i{
-  
       background-color: #FFF9D6;
+      border-radius: 10px;
+      margin-top: 10px;
     }
   
     .insta-item-me{
@@ -68,6 +75,7 @@ a{text-decoration: none;
       margin-right: auto;
       margin-top: 10px;
       background-color: #F3F3F3;
+      border-radius: 10px;
       
     }
   
@@ -82,18 +90,28 @@ a{text-decoration: none;
       
     }
   
-    .insta-item-text-i{
-      width: 95%;
+    .message{
+      width: 98%;
       margin-top: 50px;
       height: 100px;
       resize: none;
       background-color: #FFF9D6;
-      
+      border-radius: 10px;
+      padding: 10px;
+    }
+
+    .wordsNumber{
+      display: flex;
+      justify-content: flex-end;
+    }
+    ::placeholder{
+      padding: 5px;
     }
   
     .insta-item-submit{
       display: flex;
       justify-content: center;
+      margin: 10px;
     }
   
   
@@ -103,5 +121,38 @@ a{text-decoration: none;
     background-color: #FFF9D6;
     width: 100px;
       border: none;
+    }
+
+    ::placeholder{
+      padding: 5px;
+    }
+    
+    .insta-item-text-i{
+     width: 100%;
+     background-color: #FFF9D6;
+     resize: none;
+     height: 100px;
+     border-radius: 10px;
+     margin-top: 10px;
+    }
+    @media only screen and (max-width: 1024px){
+
+      .search-item{
+        padding: 10px;
+      }
+      .insta-item{
+        padding: 10px;
+      }
+      .message{
+        width: 95%;
+        margin-top: 50px;
+        height: 100px;
+        resize: none;
+        background-color: #FFF9D6;
+        border-radius: 10px;
+        padding: 10px;
+      }
+
+
     }
   
