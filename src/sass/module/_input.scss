@@ -3,7 +3,6 @@
   width: $formwidth;
   height: 650px;
   background-color: $mainBlue;
-  opacity: .8;
   position: fixed;
   top: 0;
   bottom: 0;
@@ -12,8 +11,27 @@
   margin: auto;
   z-index: 1;
   @include borderR;
+  overflow-y:scroll;
 }
+.login-wrapper::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  background-color: #025A78;
 
+
+}
+.login-wrapper::-webkit-scrollbar {
+  width: 5px;
+  border-radius: 10px;
+  background-color: #025A78;
+
+
+}
+.login-wrapper::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+  background-color: #FFF3A9;
+}
 //表單input欄位置中用
 .login-form {
   width: $forminputwidth;
@@ -32,8 +50,7 @@ form h1 {
   margin: 45px 0;
 
 }
-
-.input {
+.input{
   color: $pageBlue;
   font-size: $font-1;
   padding: 25px 10px 10px;
@@ -42,27 +59,10 @@ form h1 {
   border: none;
   @include borderR;
 }
-
-.input:focus,
-textarea:focus {
+.input:focus{
   outline: none;
 }
-
-.input:focus~.shrink,
-.input:valid~.shrink,
-textarea:focus~.shrink,
-textarea:valid~.shrink {
-  top: 5px;
-  font-size: $font-1;
-  color: $pageBlue;
-}
-
-.input:focus~.bar:before,
-textarea:focus~.bar:before {
-  width: $forminputwidth;
-}
-
-.shrink {
+.biography-label, .shrink{
   color: $pageBlue;
   font-size: $font-2;
   font-weight: normal;
@@ -72,3 +72,27 @@ textarea:focus~.bar:before {
   top: 20px;
   transition: 300ms ease all;
 }
+
+.input:focus~.shrink,
+.input:valid~.shrink,
+ #bio:valid~.biography-label,
+ #bio:focus~.biography-label
+{
+  top: 5px;
+  font-size: $font-1;
+  color: $pageBlue;
+}
+@media (max-width: 960px) {
+  .login-wrapper{
+    width:100%;
+    height: 100%;
+  }
+  .login-form {
+    width: 80%;
+  } 
+  .input{
+    width: 100%;
+    padding:20px 5px;
+  }
+}
+

@@ -7,7 +7,15 @@ a{text-decoration: none;
       color: #025A78;
       margin: 10px;
   }
-  
+
+ 
+
+  .item{
+    margin: 10px;
+  }
+  .item img{
+    border-radius: 10px;
+  }
     .insta-item{
       margin: auto;
       max-width: 1200px;
@@ -15,19 +23,22 @@ a{text-decoration: none;
     }
   
     .insta-item-i{
-  
       background-color: #FFF9D6;
+      border-radius: 10px;
+      margin-top: 10px;
+      position: relative;
+      padding-bottom: 10px;
     }
   
     .insta-item-me{
       display: flex;
-      border-radius: 10%;
+      margin: 10px;
+
     }
   
     .insta-item-me img{
       width:50px;
-      border-radius: 10%;
-      padding: 10px;
+      border-radius: 90%;
     }
   
     .me{
@@ -42,9 +53,10 @@ a{text-decoration: none;
       margin: 10px;
     }
   
-   .warn{
-     display: flex;
-     justify-content: flex-end;
+   .warn-box{
+    position: absolute;
+    bottom: 0;
+    right: 0;
      
    }
   
@@ -56,6 +68,8 @@ a{text-decoration: none;
     .container{
       max-width: 1200px;
       margin: auto;
+      position: relative;
+      z-index: 0;
     }
    
     .ul{
@@ -68,6 +82,7 @@ a{text-decoration: none;
       margin-right: auto;
       margin-top: 10px;
       background-color: #F3F3F3;
+      border-radius: 10px;
       
     }
   
@@ -82,18 +97,28 @@ a{text-decoration: none;
       
     }
   
-    .insta-item-text-i{
-      width: 95%;
+    .message{
+      width: 98%;
       margin-top: 50px;
       height: 100px;
       resize: none;
       background-color: #FFF9D6;
-      
+      border-radius: 10px;
+      padding: 10px;
+    }
+
+    .wordsNumber{
+      display: flex;
+      justify-content: flex-end;
+    }
+    ::placeholder{
+      padding: 5px;
     }
   
     .insta-item-submit{
       display: flex;
       justify-content: center;
+      margin: 10px;
     }
   
   
@@ -104,4 +129,86 @@ a{text-decoration: none;
     width: 100px;
       border: none;
     }
+
+    ::placeholder{
+      padding: 5px;
+    }
+    
+    .insta-item-text-i{
+     width: 100%;
+     background-color: #FFF9D6;
+     resize: none;
+     height: 100px;
+     border-radius: 10px;
+     margin-top: 10px;
+    }
+
+    textarea{
+      resize: none;
+      background-color: #F3F3F3;
+      border-radius: 10px;
+    }
+
+    .screen{
+      width: 100%;
+      height: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background-color:rgba(0, 0, 0, 0.794);
+      display: none;
+  }
+
+  .screen-wrapper{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 2;
+    transform: translate(-50%,-50%);
+    background-color: #fff;
+    border-radius: 10px;
+  }
+
+  .screen-form{
+    margin: 20px;
+ 
+  }
+
+  .screen-form h2{
+    text-align: center;
+    background-color: none
+    ;
+  }
+
+  .Num{
+    display: flex;
+    justify-content: flex-end;
+    margin: 10px;
+  }
+  
+    @media only screen and (max-width: 1024px){
+
+      .search-item{
+        padding: 10px;
+      }
+      .insta-item{
+        padding: 10px;
+      }
+      .message{
+        width: 95%;
+        margin-top: 50px;
+        height: 100px;
+        resize: none;
+        background-color: #FFF9D6;
+        border-radius: 10px;
+        padding: 10px;
+      }
+
+      .comment-item{
+        position: relative;
+      }
+      
+    }
+
+
   

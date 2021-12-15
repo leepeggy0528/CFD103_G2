@@ -55,6 +55,9 @@
   
   
        <div class="insta-item">
+
+
+
           <div class="insta-item-i">
             
               <div class="insta-item-me">
@@ -71,19 +74,19 @@
               </div>
   
               <div class="comment-item">
-                <i class="fas fa-comment-alt"></i>
+                <i class="fas fa-comment-alt" style="color: #025A78;"></i>
                 <p>12</p>
   
-                <i class="fas fa-thumbs-up"></i>
+                <i class="fas fa-thumbs-up" style="color: #025A78;"></i>
                 <p>123</p>
   
-                <i class="fas fa-fire"></i>
+                <i class="fas fa-fire" style="color: #025A78;"></i>
                 <p>123</p>
-            </div>
+              </div>
   
-            <div class="warn">
-              <button class="warn-btn">檢舉</button>
-            </div>
+              <div class="warn-box">
+                <input type="submit" class="warn-btn" value="檢舉"></button>
+              </div>
             
   
           </div>
@@ -153,8 +156,7 @@
                 </li>   
        </div>
   
-       <form action="">
-        <label for=""></label>
+      
   
         <div class="insta-item-text">
         <textarea class="insta-item-text-i" placeholder="在此輸入內容..." maxlength="60"></textarea>
@@ -168,6 +170,53 @@
         
       </form>
       </div>
-    @@include('./layout/footer.html')
+
+      <div class="screen">
+        <div class="screen-wrapper">
+          <div class="screen-form">
+          <h2>檢舉</h2>
+          <textarea class="group-text-i" maxlength="60" cols="40" rows="15" placeholder="請描述原因"></textarea>
+          </div>
+
+          <div class="Num">
+          <span class="wordsNum">0/60</span>
+          </div>
+
+          <div class="insta-item-submit">
+            <input type="submit" value="送出" class="sub">
+          </div>
+
+        </div>
+      </div>
+
+      <script src="js/jquery-3.6.0.min.js"></script>
+      <script>
+      $('body').on('click','.warn-btn',function(){
+        $('.screen').css('display','block')
+      });
+
+      $('body').on('click','.sub',function(){
+        $('.screen').css('display','none')
+      });
+
+      let textMax = 60;		
+      $('.wordsNum').html(`${textMax}/60`);
+      $('.group-text-i',).keyup(function(){
+        let textLength = $(this).val().length;
+        $('.wordsNum').html(`${textMax-textLength}/60`);
+      });  
+
+      let textMaxs = 60;		
+      $('.wordsNum').html(`${textMaxs}/60`);
+      $('.insta-item-text-i',).keyup(function(){
+        let textLengths = $(this).val().length;
+        $('.wordsNum').html(`${textMaxs-textLengths}/60`);
+      });  
+   
+      </script>
+   
+
+
+   @@include('./layout/footer.html')
 </body>
 </html>
