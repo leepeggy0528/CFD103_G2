@@ -164,7 +164,7 @@
         </div>
   
         <div class="insta-item-submit">
-          <input type="submit" value="送出" class="sub">
+          <button class="btnYellower" type="submit">送出</button>
         </div>
   
         
@@ -183,7 +183,11 @@
           </div>
 
           <div class="insta-item-submit">
-            <input type="submit" value="送出" class="sub">
+            <button class="btnYellow" type="submit">送出</button>
+          </div>
+
+          <div class="leave-btn">
+            <button class="leave">X</button>
           </div>
 
         </div>
@@ -191,15 +195,34 @@
 
       <script src="js/jquery-3.6.0.min.js"></script>
       <script>
+      
       $('body').on('click','.warn-btn',function(){
         $('.screen').css('display','block')
       });
 
-      $('body').on('click','.sub',function(){
+      $('body').on('click','.leave',function(){
         $('.screen').css('display','none')
       });
 
-      let textMax = 60;		
+      $('body').on('click','.btnYellow',function(){
+        $('.screen').css('display','none')
+      });
+
+      var btnYellow = document.getElementsByClassName("btnYellow")[0];
+      btnYellow.onclick = function () {
+      alert("確定送出嗎?");
+      location.href = "./discussion-2.html";
+      };
+
+
+      var btnYellower = document.querySelector(".btnYellower");
+      btnYellower.onclick = function () {
+      alert("確定送出嗎?");
+      
+      };
+
+    
+      let textMax = 60;	
       $('.wordsNum').html(`${textMax}/60`);
       $('.group-text-i',).keyup(function(){
         let textLength = $(this).val().length;

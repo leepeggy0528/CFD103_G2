@@ -122,13 +122,17 @@ a{text-decoration: none;
     }
   
   
-    .sub{
-    padding: 10px 20px;
+   .btnYellower{
     border-radius: 100px;
-    background-color: #FFF9D6;
-    width: 100px;
-      border: none;
-    }
+    padding: 10px 20px;
+    font-size: 14px;
+    margin: 10px;
+    display: inline-block;
+    cursor: pointer;
+    background-color: #FFF3A9;
+    color: #777777;
+    border: none;
+   }
 
     ::placeholder{
       padding: 5px;
@@ -185,6 +189,20 @@ a{text-decoration: none;
     justify-content: flex-end;
     margin: 10px;
   }
+
+  .leave-btn{
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.leave{
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #F3F3F3;
+    border: none;
+    color: #025A78;
+}
   
     @media only screen and (max-width: 1024px){
 

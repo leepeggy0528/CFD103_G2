@@ -27,10 +27,11 @@
               
     </form>    
     
-    <div class="insta-tager-box">
+    <div class="insta-sm-box">
+
         <div class="tager-box">
             <h2>熱門標籤</h2>
-                    <div class="tagers">
+                <div class="tagers">
                         <span class=""><a href="">#美食</a></span>
                         <span class=""><a href="">#燒腦</a></span>
                         <span class=""><a href="">#休閒</a></span>
@@ -39,7 +40,55 @@
                         <span class=""><a href="">#旅行</a></span>
                         <span class=""><a href="">#運動</a></span>
                         <span class=""><a href="">#學習</a></span>
-                    </div>
+                </div>
+        </div>
+
+
+        <div class="sort-box">
+            <h2>類別</h2>
+
+            <div class="s-tag">
+                <input type="radio" name="type" checked>
+                <p>美食</p>
+
+                <input type="radio" name="type" checked>
+                <p>燒腦</p>
+         
+                <input type="radio" name="type" checked>
+                <p>休閒</p>
+
+                <input type="radio" name="type" checked>
+                <p>夜市</p>
+ 
+                <input type="radio" name="type" checked>
+                <p>購物</p>
+
+                <input type="radio" name="type" checked>
+                <p>旅行</p>
+           
+                <input type="radio" name="type" checked>
+                <p>運動</p>
+
+                <input type="radio" name="type" checked>
+                <p>學習</p>
+            </div>
+        </div>
+
+        <div class="datetime-box">
+            <h2>排列順序依照</h2>   
+            <div class="datetime-tag">
+                <input type="radio" name="type" checked>
+                <p>上傳時間</p>
+
+                <input type="radio" name="type" checked>
+                <p>留言數</p>
+         
+                <input type="radio" name="type" checked>
+                <p>讚數</p>
+
+                <input type="radio" name="type" checked>
+                <p>熱度</p>
+            </div>
         </div>
     </div>
 
@@ -922,6 +971,10 @@
             <div class="btn-box">
                 <button class="btnYellow" type="submit">送出</button>
             </div>
+
+            <div class="leave-btn">
+                <button class="leave">X</button>
+            </div>
                
             
         </form>
@@ -938,6 +991,12 @@
    
     });
 
+    var btnYellow = document.querySelector(".btnYellow");
+      btnYellow.onclick = function () {
+      alert("確定送出嗎?");
+      
+      };
+      
     $("input[type=file]").on("change", function () {
     function getObjectURL(file) {
     if (window.URL != undefined) {
