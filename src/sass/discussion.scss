@@ -4,12 +4,16 @@
 a{text-decoration: none;}
 li{list-style: none;}
 
- .title{
+ .talk{
     text-align: center;
     color: $mainBlue;
  }
 
  .title-item{
+     color: $mainBlue;
+ }
+
+ .title{
      color: $mainBlue;
  }
  .search-item{
