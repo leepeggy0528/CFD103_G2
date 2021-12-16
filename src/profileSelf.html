@@ -5,199 +5,221 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/profile-self.css">
-    <!-- <link rel="stylesheet" href="./css/login.css"> -->
-    <script src="https://kit.fontawesome.com/1418fb8a04.js" crossorigin="anonymous"></script>
-    
+    <script src="js/jquery-3.6.0.min.js"></script>
     
 </head>
 <body>
+    @@include('./layout/login.html')
     @@include('./layout/header.html')
-   <div class="self-wrapper">
-       <div class="check-info">
-           <div class="profile-card">
-               <div class="edit-wrapper">
-                   <button class="edit">
-                       <i class="fas fa-edit"></i>
+    <div class="self-wrapper">
+        <div class="check-info">
+            <div class="profile-card">
+                <div class="edit-wrapper">
+                    <button class="edit">
+                        <i class="fas fa-edit"></i>
                     </button>
                 </div>
-               <div class="self-pic">
-                   <img src="./images/photo/young-man-making-funny-faces-showing-tongue-fool-around-standing-white-t-shirt-against-yellow-background-copy-space_1258-73513.jpg" alt="">
+                <div class="self-pic">
+                    <img src="./images/user/young-man-making-funny-faces-showing-tongue-fool-around-standing-white-t-shirt-against-yellow-background-copy-space_1258-73513.jpg" alt="">
                 </div>
-               <p class="name">王曉明</p>
-               <div class="purse">
+                <p class="name">王曉明</p>
+                <div class="purse">
                    <div class="diamond">
                        <img src="./images/icon/diamond1.png" alt="">
                        <span>500</span>
+                    </div>
+                    <div class="coin">
+                        <img src="./images/icon/coin1.png" alt="">
+                        <span>1500</span>
                    </div>
-                   <div class="coin">
-                       <img src="./images/icon/coin1.png" alt="">
-                       <span>1500</span>
-                   </div>
-               </div>
-               <div class="check-self"><button class="btnWhite no-border">查看個人頁面</button></div>
-           </div>
+                </div>
+                <div class="check-self"><button class="btnWhite no-border">查看個人頁面</button></div>
+            </div>
            <ul class="main-tabs">
-               <li class="tabs"><a class="tabs-for-a active" href="#init-group">發起的揪團</a></li>
-               <li class="tabs"><a class="tabs-for-a" href="#parti-group">參加的活動</a></li>
-               <li class="tabs"><a class="tabs-for-a" href="#my-fav">收藏活動</a></li>
-               <li class="tabs"><a class="tabs-for-a" href="#my-article">我的發文</a></li>
-               <li class="tabs"><a class="tabs-for-a" href="#listOfFriend">好友列表</a></li>
-           </ul>
-           <select class="selectMenuForCell"> 
-            <option selected="selected"><a class="tabs-for-a active" href="#init-group">發起的揪團</a></option> 
-            <option><a class="tabs-for-a" href="#parti-group">參加的活動</a></option> 
-            <option><a class="tabs-for-a" href="#my-fav">收藏活動</a></option> 
-            <option><a class="tabs-for-a" href="#my-article">我的發文</a></option> 
-            <option><a class="tabs-for-a" href="#listOfFriend">好友列表</a></option> 
-          </select>
-       </div>
-       <div class="Info-wrapper">
-           <!-- 發起的揪團 -->
-                <div id="init-group" class="self-info fade open">
-              <h2><span>發</span>起的揪團</h2>
-           <ul class="second-tabs">
-               <li class="all"><button>全部</button></li>
-               <li class="inviting"><button>揪團中</button></li>
-               <li class="ended"><button>已結束</button></li>
-           </ul>
-           <div class="activity">
-               <div class="activity-pic"><img src="./images/photo/young-man-making-funny-faces-showing-tongue-fool-around-standing-white-t-shirt-against-yellow-background-copy-space_1258-73513.jpg" alt=""></div>
-               <div class="activity-info">
-                   <h4>傍晚走走散步去</h4>
-                   <p>11:30(2) / 17:00</p>
-                   <p>竹圍漁港</p>
-               </div>
-               <div class="activity-btn">
-                   <a class="btnWhite">活動頁面</a>
-                   <a class="btnYellow">報名列表</a>
-               </div>
-           </div>
-                 </div>
-           <!-- 參加的揪團 -->
-                <div id="parti-group" class="self-info fade">
+               <li class="tabs"><a class="tabs-for-a active" href="#self-infoone">發起的揪團</a></li>
+               <li class="tabs"><a class="tabs-for-a" href="#self-infotwo">參加的活動</a></li>
+               <li class="tabs"><a class="tabs-for-a" href="#self-infothree">收藏活動</a></li>
+               <li class="tabs"><a class="tabs-for-a" href="#self-infofour">我的發文</a></li>
+               <li class="tabs"><a class="tabs-for-a" href="#self-infofive">好友列表</a></li>
+            </ul>
+            <select id="myselection" class="selectMenuForCell">
+                <option selected="selected" value="one"><a class="tabs-for-a active" >發起的揪團</a></option>
+                <option value="two"><a class="tabs-for-a">參加的活動</a></option>
+                <option value="three"><a class="tabs-for-a" >收藏活動</a></option>
+                <option value="four"><a class="tabs-for-a" >我的發文</a></option>
+                <option value="five"><a class="tabs-for-a" >好友列表</a></option> 
+            </select>
+        </div>
+        <div class="Info-wrapper">
+            <!-- 發起的揪團 -->
+            <div id="self-infoone" class="self-info fade open">
+                <div class="section-title">
+                    <h2><span>發</span>起的揪團</h2>
+                    <ul class="second-tabs">
+                        <li class="all"><button class="showButton">全部</button></li>
+                            <li class="inviting"><button class="showButton">揪團中</button></li>
+                            <li class="ended"><button class="showButton">已結束</button></li>
+                        </ul>
+                    </div>
+                    <p>揪團中</p>
+                    <div class="activity">
+                        <div class="activity-part-one">
+                            <div class="activity-pic"><img src="./images/user/young-man-making-funny-faces-showing-tongue-fool-around-standing-white-t-shirt-against-yellow-background-copy-space_1258-73513.jpg" alt=""></div>
+                            <div class="activity-info">
+                                <h4>傍晚走走散步去</h4>
+                                <p>11:30(2) / 17:00</p>
+                                <p>竹圍漁港</p>
+                            </div>
+                        </div>
+                        <div class="activity-btn activity-like">
+                            <a href="#" class="btnWhite">活動頁面</a>
+                            <a href="#" class="btnYellow">立即報名</a>
+                        </div>
+                    </div>
+                    <p>已結束</p>
+                </div>
+        <!-- 參加的揪團 -->
+                <div id="self-infotwo" class="self-info fade">
                     <h2><span>參</span>加的活動</h2>
                     <ul class="second-tabs">
-                      <li class="all"><button>全部</button></li>
-                      <li class="inviting"><button>揪團中</button></li>
-                      <li class="ended"><button>已結束</button></li>
+                        <li class="all"><button>全部</button></li>
+                        <li class="inviting"><button>揪團中</button></li>
+                        <li class="ended"><button>已結束</button></li>
                     </ul>
                     <p>揪團中</p>
                     <div class="activity">
-                        <div class="activity-pic"><img src="./images/photo/young-man-making-funny-faces-showing-tongue-fool-around-standing-white-t-shirt-against-yellow-background-copy-space_1258-73513.jpg" alt=""></div>
-                        <div class="activity-info">
-                            <h4>傍晚走走散步去</h4>
-                            <p>11:30(2) / 17:00</p>
-                            <p>竹圍漁港</p>
+                        <div class="activity-part-one">
+                            <div class="activity-pic"><img src="./images/user/young-man-making-funny-faces-showing-tongue-fool-around-standing-white-t-shirt-against-yellow-background-copy-space_1258-73513.jpg" alt=""></div>
+                            <div class="activity-info">
+                                <h4>傍晚走走散步去</h4>
+                                <p>11:30(2) / 17:00</p>
+                                <p>竹圍漁港</p>
+                            </div>
                         </div>
-                        <div class="activity-btn">
-                            <button class="btnWhite">取消報名</button>
-                            <a class="btnYellow">活動頁面</a>
+                        <div class="activity-btn activity-like">
+                            <a href="#" class="btnWhite">活動頁面</a>
+                            <a href="#" class="btnYellow">立即報名</a>
                         </div>
                     </div>
                     <p>已結束</p>
                     <div class="activity">
-                        <div class="activity-pic"><img src="./images/photo/young-man-making-funny-faces-showing-tongue-fool-around-standing-white-t-shirt-against-yellow-background-copy-space_1258-73513.jpg" alt=""></div>
-                        <div class="activity-info">
-                            <h4>傍晚走走散步去</h4>
-                            <p>11:30(2) / 17:00</p>
-                            <p>竹圍漁港</p>
+                        <div class="activity-part-one">
+                            <div class="activity-pic"><img src="./images/user/young-man-making-funny-faces-showing-tongue-fool-around-standing-white-t-shirt-against-yellow-background-copy-space_1258-73513.jpg" alt=""></div>
+                            <div class="activity-info">
+                                <h4>傍晚走走散步去</h4>
+                                <p>11:30(2) / 17:00</p>
+                                <p>竹圍漁港</p>
+                            </div>
                         </div>
-                        <div class="activity-btn">
-                            <a class="btnWhite">活動頁面</a>
-                            <button class="btnYellow">評價活動</button>
+                        <div class="activity-btn activity-like">
+                            <a href="#" class="btnWhite">活動頁面</a>
+                            <a href="#" class="btnYellow">立即報名</a>
                         </div>
                     </div>
                </div>
-           <!-- 收藏活動 -->
-               <div id="my-fav"class="self-info fade">
-                <h2><span>收</span>藏活動</h2>
+               <!-- 收藏活動 -->
+               <div id="self-infothree"class="self-info fade">
+                   <h2><span>收</span>藏活動</h2>
                 <ul class="second-tabs">
-                      <li class="all"><button>全部</button></li>
-                      <li class="inviting"><button>揪團中</button></li>
-                      <li class="ended"><button>已結束</button></li>
+                    <li class="all"><button class="showButton">全部</button></li>
+                    <li class="inviting"><button class="showButton">揪團中</button></li>
+                    <li class="ended"><button class="showButton">已結束</button></li>
                 </ul>
+                <p>揪團中</p>
                 <div class="activity">
-                      <div class="activity-pic"><img src="./images/photo/young-man-making-funny-faces-showing-tongue-fool-around-standing-white-t-shirt-against-yellow-background-copy-space_1258-73513.jpg" alt=""></div>
-                      <div class="activity-info">
-                          <h4>傍晚走走散步去</h4>
-                          <p>11:30(2) / 17:00</p>
-                          <p>竹圍漁港</p>
-                      </div>
-                      <div class="activity-btn">
-                          <a href="#" class="btnWhite">活動頁面</a>
-                          <a href="#" class="btnYellow">報名列表</a>
-                          <a href="#" class="btnBlue">立即報名</a>
-                      </div>
-                  </div>    
-                  <div class="activity">
-                      <div class="activity-pic"><img src="./images/photo/young-man-making-funny-faces-showing-tongue-fool-around-standing-white-t-shirt-against-yellow-background-copy-space_1258-73513.jpg" alt=""></div>
-                      <div class="activity-info">
-                          <h4>傍晚走走散步去</h4>
-                          <p>11:30(2) / 17:00</p>
-                          <p>竹圍漁港</p>
-                      </div>
-                      <div class="activity-btn activity-like">
-                          <a href="#" class="btnWhite">活動頁面</a>
-                          <a href="#" class="btnYellow">報名列表</a>
-                          <a href="#" class="btnBlue">立即報名</a>
-                      </div>
-                  </div>
-              </div> 
-           <!-- 我的發文 -->
-                <div id="my-article" class="self-info fade">
-                <h2><span>我</span>的發文</h2>
-                <p class="article-time">2021年11月</p>
-                <div class="activity">
-                        <div class="activity-pic"><img src="./images/photo/young-man-making-funny-faces-showing-tongue-fool-around-standing-white-t-shirt-against-yellow-background-copy-space_1258-73513.jpg" alt=""></div>
+                    <div class="activity-part-one">
+                        <div class="activity-pic"><img src="./images/user/young-man-making-funny-faces-showing-tongue-fool-around-standing-white-t-shirt-against-yellow-background-copy-space_1258-73513.jpg" alt=""></div>
                         <div class="activity-info">
                             <h4>傍晚走走散步去</h4>
                             <p>11:30(2) / 17:00</p>
                             <p>竹圍漁港</p>
                         </div>
-                        <div class="activity-btn">
-                            <a class="btnWhite">活動頁面</a>
-                            <a class="btnYellow">報名列表</a>
-                        </div>
+                    </div>
+                    <div class="activity-btn activity-like">
+                        <a href="#" class="btnWhite">活動頁面</a>
+                        <a href="#" class="btnYellow">立即報名</a>
+                    </div>
                 </div>
-                <p>2021年10月</p>
-                <div class="activity">
-                        <div class="activity-pic"><img src="./images/photo/young-man-making-funny-faces-showing-tongue-fool-around-standing-white-t-shirt-against-yellow-background-copy-space_1258-73513.jpg" alt=""></div>
-                        <div class="activity-info">
-                            <h4>傍晚走走散步去</h4>
-                            <p>11:30(2) / 17:00</p>
-                            <p>竹圍漁港</p>
+                <p>已結束</p> 
+                  <div class="activity">
+                      <div class="activity-part-one">
+                          <div class="activity-pic"><img src="./images/user/young-man-making-funny-faces-showing-tongue-fool-around-standing-white-t-shirt-against-yellow-background-copy-space_1258-73513.jpg" alt=""></div>
+                          <div class="activity-info">
+                              <h4>傍晚走走散步去</h4>
+                              <p>11:30(2) / 17:00</p>
+                              <p>竹圍漁港</p>
+                            </div>
                         </div>
-                        <div class="activity-btn">
-                            <a class="btnWhite">活動頁面</a>
-                            <a class="btnYellow">報名列表</a>
+                        <div class="activity-btn activity-like">
+                            <a href="#" class="btnWhite">活動頁面</a>
+                            <a href="#" class="btnYellow">立即報名</a>
                         </div>
                     </div>
                 </div> 
+                <!-- 我的發文 -->
+                <div id="self-infofour" class="self-info fade">
+                <h2><span>我</span>的發文</h2>
+                <p class="article-time">2021年11月</p>
+                <div class="activity">
+                    <div class="activity-part-one">
+                        <div class="activity-pic"><img src="./images/user/young-man-making-funny-faces-showing-tongue-fool-around-standing-white-t-shirt-against-yellow-background-copy-space_1258-73513.jpg" alt=""></div>
+                        <div class="activity-info">
+                            <h4>傍晚走走散步去</h4>
+                            <p>11:30(2) / 17:00</p>
+                            <p>竹圍漁港</p>
+                        </div>
+                    </div>
+                    <div class="activity-btn activity-like">
+                        <a href="#" class="btnWhite">活動頁面</a>
+                        <a href="#" class="btnYellow">立即報名</a>
+                    </div>
+                </div>
+                <p>2021年10月</p>
+                <div class="activity">
+                    <div class="activity-part-one">
+                        <div class="activity-pic"><img src="./images/user/young-man-making-funny-faces-showing-tongue-fool-around-standing-white-t-shirt-against-yellow-background-copy-space_1258-73513.jpg" alt=""></div>
+                        <div class="activity-info">
+                            <h4>傍晚走走散步去</h4>
+                            <p>11:30(2) / 17:00</p>
+                            <p>竹圍漁港</p>
+                        </div>
+                    </div>
+                    <div class="activity-btn activity-like">
+                        <a href="#" class="btnWhite">活動頁面</a>
+                        <a href="#" class="btnYellow">立即報名</a>
+                    </div>
+                </div>
+            </div>
            <!-- 好友列表 -->
-              <div id="listOfFriend" class="self-info fade">
-                  <div class="friend-bar">
-                      <h2 class="friend-title"><span>好</span>友列表</h2>
-                      <span class="setting"><i class="fas fa-cog"></i></span>
+           <div id="self-infofive" class="self-info fade">
+               <div class="friend-bar">
+                   <h2 class="friend-title"><span>好</span>友列表</h2>
+                   <span class="setting"><i class="fas fa-cog"></i></span>
                       <div class="search-friend">
-                        <input type="text">
-                        <button class="search-btn">
-                            <i class="fas fa-search"></i>
-                        </button>
-                      </div>
-                  </div>
-                  <div class="friend-card-list article-time">
-                        <div class="profile-card girl-card">
+                          <input type="text">
+                          <button class="search-btn showButton">
+                              <i class="fas fa-search" ></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div id="app" class="friend-card-list article-time">
+                        <div class="show-card girl-card">
                             <div class="edit-wrapper">
-                                <button class="edit">
+                                <button class="edit showButton">
                                     <i class="fas fa-ellipsis-v"></i>
                                 </button>
+                                <div class="friend-del-black">
+                                    <button class="del-friend">刪除好友</button>
+                                    <button class="blackList-friend">加入黑名單</button>
+                                </div>
                             </div>
                             <div class="self-pic">
-                                <img src="./images/photo/young-man-making-funny-faces-showing-tongue-fool-around-standing-white-t-shirt-against-yellow-background-copy-space_1258-73513.jpg" alt="">
+                                <img src="./images/user/young-man-making-funny-faces-showing-tongue-fool-around-standing-white-t-shirt-against-yellow-background-copy-space_1258-73513.jpg" alt="">
                             </div>
-                            <p class="name">胡珊迪</p>
+                            <p class="name">胡山迪</p>
                             <div class="interact">
                                 <a class="edit edit-friend"><i class="far fa-user-circle"></i>
                                 </a>
@@ -208,56 +230,75 @@
                                 </a>
                             </div>
                         </div>
-                        <div class="profile-card boy-card">
+                        <div class="show-card girl-card">
                             <div class="edit-wrapper">
-                                <button class="edit">
+                                <button class="edit showButton">
                                     <i class="fas fa-ellipsis-v"></i>
                                 </button>
+                                <div class="friend-del-black">
+                                    <button class="del-friend">刪除好友</button>
+                                    <button class="blackList-friend">加入黑名單</button>
+                                </div>
                             </div>
                             <div class="self-pic">
-                                <img src="./images/photo/young-man-making-funny-faces-showing-tongue-fool-around-standing-white-t-shirt-against-yellow-background-copy-space_1258-73513.jpg" alt="">
+                                <img src="./images/user/young-man-making-funny-faces-showing-tongue-fool-around-standing-white-t-shirt-against-yellow-background-copy-space_1258-73513.jpg" alt="">
                             </div>
-                            <p class="name">林安迪</p>
+                            <p class="name">胡山迪</p>
                             <div class="interact">
                                 <a class="edit edit-friend"><i class="far fa-user-circle"></i>
                                 </a>
                                 <a class="edit edit-friend"><i class="far fa-comment-dots"></i>
                                 </i>
-                                </a>
-                                <a class="edit edit-friend"><i class="far fa-envelope"></i></i>
-                                </a>
-                            </div>
+                            </a>
+                            <a class="edit edit-friend"><i class="far fa-envelope"></i></i>
+                            </a>
                         </div>
-                        <div class="profile-card boy-card">
+                        </div>
+                        <div class="show-card girl-card">
                             <div class="edit-wrapper">
-                                <button class="edit">
+                                <button class="edit showButton">
                                     <i class="fas fa-ellipsis-v"></i>
                                 </button>
+                                <div class="friend-del-black">
+                                    <button class="del-friend">刪除好友</button>
+                                    <button class="blackList-friend">加入黑名單</button>
+                                </div>
                             </div>
                             <div class="self-pic">
-                                <img src="./images/photo/young-man-making-funny-faces-showing-tongue-fool-around-standing-white-t-shirt-against-yellow-background-copy-space_1258-73513.jpg" alt="">
+                                <img src="./images/user/young-man-making-funny-faces-showing-tongue-fool-around-standing-white-t-shirt-against-yellow-background-copy-space_1258-73513.jpg" alt="">
                             </div>
-                            <p class="name">陳傑瑞</p>
+                            <p class="name">胡山迪</p>
                             <div class="interact">
                                 <a class="edit edit-friend"><i class="far fa-user-circle"></i>
                                 </a>
                                 <a class="edit edit-friend"><i class="far fa-comment-dots"></i>
                                 </i>
-                                </a>
-                                <a class="edit edit-friend"><i class="far fa-envelope"></i></i>
-                                </a>
-                            </div>
+                            </a>
+                            <a class="edit edit-friend"><i class="far fa-envelope"></i></i>
+                            </a>
                         </div>
-                  </div>
-              </div>
+                        </div>
+                    </div>
+                </div>
         </div>
-        <script src="js/changeTabsForSelf.js"></script>
     </div>
-</div>
 @@include('./layout/footer.html')
-    
-    
-    
+<script src="js/changeTabsForSelf.js"></script>
+<script src='./js/loginLightbox.js'></script>
+<script src="js/dropdown.js"></script>
 
+
+    
+    
+<script>
+    // new Vue({
+    //     el:'#app', 
+    //     //從誰開始使用VUE，VUE2開始不能使用body
+    //     data:{//變數放這裡
+    //        friends:['胡珊迪',"林安迪","磨地磨"],
+    //     },
+    // });
+
+</script>
 </body>
 </html>

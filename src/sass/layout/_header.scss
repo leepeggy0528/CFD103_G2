@@ -116,9 +116,88 @@
       border: none;
       
  }
- 
+ //登入過後
+#afterLogin{
+  display: flex;
+  align-items: center;
+  border-radius: 100px;
+  padding: 5px;
+  background-color: #fff;
+  border: none;
+  cursor: pointer;
+}
+.loginmempic{
+  width: 30px;
+  height: 30px;
+  margin-right: 5px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.loginmempic img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+ }
+ .usernameLogin{
+   font-size: 18px;
+   color:#025A78;
+   font-weight: bold;
+   padding-right:12px;
+  }
+  .fa-sort-down{
+    font-size: 18px;
+    color: #E6D88A;
+  }
+  .memMenu{
+    position: relative;
+  }
+  .smallMemInfo{
+   background-color: #fff;
+   position: absolute;
+   top: 45px;
+   right: 0;
+   padding: 20px 10px 0 10px;
+   font-size: 18px;
+   border-radius: 10px;
+   display: none;
+   z-index: 100;
+   box-shadow: 0 0 5px #f0ecec;
+  }
+  .purseForHeader{
+   display: flex;
+   width: 115px;
+   align-items: center;
+   margin-left: 10px;
+   font-size: 13px;
+ }
+ .diamond img,.coin img{
+   width: 20px;
+ }
+ .diamond span,.coin span{
+   line-height: 20px;
+ }
+ .coin{
+   margin-left: 10px;
+ }
+ .memLink{
+  display: flex;
+ }
+ .memLink img{
+   width: 40px;
+ }
+ .memLink span{
+   line-height: 2.6em;
+ }
+ .memfile{
+   margin-top: 10px;
+ }
+ .openInfo{
+   display: block;
+ }
  @media only screen and (max-width: 767px){
- 
+  #afterLogin{
+    display: none;
+  }
  
  button{
      display: none;
