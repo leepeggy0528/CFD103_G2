@@ -1,10 +1,11 @@
 @import 'style';
+// @import 'login';
 @import 'base/grid';
-a{
-    display: block;
-    text-decoration: none;
-    color: $mainBlue;
-}
+// a{
+//     display: block;
+//     text-decoration: none;
+//     color: $mainBlue;
+// }
 textarea{
     resize: none;
 }
@@ -13,7 +14,7 @@ input:focus, textarea:focus, select:focus{
 }
 //加入我們(join_us)
 .join_us{  
-    background: linear-gradient(135deg,$mainBlue 50%,$mainYellow 50%);
+    // background: linear-gradient(135deg,$mainBlue 50%,$mainYellow 50%);
     .container{
         min-height: calc(100vh - 75px);
         font-size: $font-6;
@@ -28,11 +29,16 @@ input:focus, textarea:focus, select:focus{
             h3{
                 font-size: $font-6;
                 font-weight: 600;
-                color: $mainBlue;
+                color: $white;
+                position: relative;
+                opacity: 0;
             }
             >li{
                 margin-top: $margin;
                 color: $subYellow;
+                position: relative;
+                opacity: 0;
+                top: 30px;
                 span{
                     display: inline-block;
                     width: 50px;
@@ -106,17 +112,23 @@ input:focus, textarea:focus, select:focus{
 //揪團(start_party)
 .start_party{
    padding: 100px $padding;
+//    background: linear-gradient(135deg,$mainBlue 50%,$mainYellow 50%);
+   position: relative;
+    z-index: 0;
    .container{
        display: flex;
        flex-wrap: wrap;
        align-items: center;
        position: relative;
        .to_join{
-           flex: 1 1 300px;
+           flex: 1 1 250px;
            display: flex;
            flex-wrap: wrap;
+           @media screen and (min-width:1199px){
+                flex: 0 1 250px;
+            }
            .board{
-                flex: 1 1 280px;
+                flex: 1 1 250px;
                 font-size: $font-5;
                 margin-right: 20px;
                 height: 250px;
@@ -172,6 +184,7 @@ input:focus, textarea:focus, select:focus{
             flex: 1 1 900px;
             display: flex;
             flex-wrap: wrap;
+            justify-content: space-around;
             margin-top: $margin*10;
             .card {
                 @include card();
@@ -180,9 +193,13 @@ input:focus, textarea:focus, select:focus{
                 flex-direction: column;
                 box-sizing: border-box;
                 flex: 1 1 280px;
-                margin: 10px;
+                margin: 20px 10px;
                 transition: all 1s ease;
+                background-color: $bgGray;
                 overflow: hidden;
+                @media screen and (min-width:1199px){
+                    flex: 0 1 280px;
+                }
                 &:hover {
                     @include shadow(20px);
                     .party_text {
@@ -225,7 +242,7 @@ input:focus, textarea:focus, select:focus{
                             margin-top: -5px;
                             padding: 0 $padding 5px $padding;
                             flex-grow: 0;
-                
+                            font-size: $font-4;
                         }
                 
                         time {
@@ -297,18 +314,25 @@ input:focus, textarea:focus, select:focus{
 //討論(comment_board)
 .comment_board{
     padding: $padding*10 $padding;
+    // background: linear-gradient(-135deg,$mainYellow 50%,$mainBlue 50%);
+    position: relative;
+    z-index: 0;
     .container{
         display: flex;
         flex-wrap: wrap;
         flex-direction: row-reverse;
+        justify-content: space-between;
         align-items: center;
         position: relative;
         .to_discussion{
-            flex: 1 1 300px;
+            flex: 1 1 250px;
             display: flex;
             flex-wrap: wrap;
+            @media screen and (min-width:1199px){
+                flex: 0 1 250px;
+            }
             .board{
-                 flex: 1 1 280px;
+                 flex: 1 1 250px;
                  font-size: $font-5;
                  margin-right: 20px;
                  height: 250px;
@@ -361,11 +385,14 @@ input:focus, textarea:focus, select:focus{
              }
          }  
         .comment_group{
-            flex: 1 1 900px;
+            flex: 1 1 920px;
             display: flex;
             flex-wrap: wrap;
             align-items: center;
             margin-top: $margin*10;
+            @media screen and (min-width:1199px){
+                flex: 0 1 920px;
+            }
             li{
                 &:hover{
                     text-decoration: none;
@@ -374,11 +401,13 @@ input:focus, textarea:focus, select:focus{
             .comment{
                 display: flex;
                 flex-wrap: wrap;
-                width: 100%;
-                margin: $margin;
+                flex: 1 1 780px;
+                font-size: $font-3;
+                margin: $margin*2 $margin;
                 padding: $padding;
                 @include borderR();
                 @include shadow();
+                background-color: #f3f3f3;
                 transition: all 1s ease;
                 &:hover{
                     @include shadow(20px);
@@ -387,7 +416,7 @@ input:focus, textarea:focus, select:focus{
                     margin-bottom: 10px;
                 }
                 .comment_A{
-                    flex: 1 1 600px;
+                    flex: 1 1 500px;
                     display: flex;
                     flex-wrap: wrap;
                     .picture{
@@ -407,8 +436,8 @@ input:focus, textarea:focus, select:focus{
                             align-items: center;
                             margin: $margin 0;
                             .pic{
-                                width: $smCircle;
-                                height: $smCircle;
+                                width: 50px;
+                                height: 50px;
                                 @include borderR(50%);
                                 overflow: hidden;
                                 margin-right: $margin;
@@ -421,18 +450,19 @@ input:focus, textarea:focus, select:focus{
                         }
                     }
                     .content{
-                        flex: 1 1 300px;
+                        flex: 1 1 200px;
+                        box-sizing: border-box;
+                        padding: 10px;
                         h2{
                             padding: 0;
                         }
-                        box-sizing: border-box;
-                        padding: 10px;
                         .txt{
                             width: 100%;
                             line-height: 30px;
                             overflow: hidden;
                             text-overflow: ellipsis;
                             display: -webkit-box;
+                            // text-align: justify;
                             -webkit-line-clamp: 5; //第幾行隱藏
                             /*!autoprefixer:off*/
                             -webkit-box-orient: vertical;
@@ -447,26 +477,36 @@ input:focus, textarea:focus, select:focus{
                     }
                 }
                 .comment_B{
-                    flex: 1 1 200px;
+                    flex: 0 0 180px;
                     display: flex;
                     flex-wrap: wrap;
                     justify-content: space-between;
+                    @media screen and(max-width:764px) {
+                        flex: 1 0 180px;
+                        &>ul{
+                            flex: 1 0 180px;
+                            justify-content: flex-start;
+                        }
+                    }
                     &>ul{
-                        flex: 1 0 200px;
+                        flex: 0 0 180px;
                         display: flex;
+                        justify-content: center;
+                        align-items: center;
                         .index{
-                            width: 100%;
-                            height: 80px;
+                            flex: 0 1 50px;
+                            height: 60px;
                             margin: $margin*.5;
-                            background-color: $bgYellow;
+                            background-color: $white;
                             @include borderR();
-                            @include shadow();
+                            // @include shadow();
                             p{
                                 text-align: center;
+                                padding: 5px 0 0;
                             }
                             .pic{
-                                width: 30px;
-                                height: 30px;
+                                width: 25px;
+                                height: 25px;
                                 margin: auto;
                                 img{
                                     width: 100%;
@@ -477,7 +517,7 @@ input:focus, textarea:focus, select:focus{
                         }
                     }
                     .post_date{
-                        flex: 1 1 200px;
+                        flex: 1 1 130px;
                         margin-left: auto;
                         margin-top: $margin*2;
                         align-self: flex-end;
@@ -492,6 +532,7 @@ input:focus, textarea:focus, select:focus{
 //團主(hot_leader)
 .hot_leader{
     padding: $padding*10 $padding;
+    // background: linear-gradient(135deg,$mainBlue 50%,$mainYellow 50%);
     .container{
         .top_leader{
             display: flex;
@@ -549,6 +590,7 @@ input:focus, textarea:focus, select:focus{
                     border: 2px solid $mainBlue;
                     h3{
                         width: 100%;
+                        color: $mainBlue;
                         font-size: $font-6;
                         text-align: center;
                         letter-spacing: $letterSpacing;
@@ -634,6 +676,7 @@ input:focus, textarea:focus, select:focus{
     background-attachment: fixed;
     position: relative;
     padding-top: 100px;
+    margin-bottom: -50px;
     .container{
         max-width: 1200px;
         margin: auto;

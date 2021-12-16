@@ -6,7 +6,7 @@ $(function () {
     });
     // 案+ 出現MODEL
     $('body').on('click','.add_place',function(){
-        $('.external-modal').css('display','block')
+        $('.modal-background').css('display','block')
         $('.external-modal input').val('')
     });
 
@@ -21,13 +21,13 @@ $(function () {
        $('.place_group_show .add_place').before(placeTemplate)
 
        //MODEL 消失
-       $('.external-modal').css('display','none')
+       $('.modal-background').css('display','none')
     });
     
     //按下取消【不】新增行程
     $('body').on('click','#model-cancel-btn',function(){
        //MODEL 消失
-       $('.external-modal').css('display','none')
+       $('.modal-background').css('display','none')
     });
 
    //day_list 點案頁籤 DAY1,DAY2...
