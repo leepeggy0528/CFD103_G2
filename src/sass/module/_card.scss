@@ -4,13 +4,22 @@
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
-    width: 280px;
+    width: calc(23.333334%);
     margin: 20px 10px;
     transition: all 1s ease;
+    overflow: hidden;
 
     &:hover {
         @include shadow(20px);
 
+        // 新增處---------------------------
+        .party_text {
+            .see_more {
+                top: 0;
+            }
+        }
+
+        // --------------------------------
     }
 
 
@@ -27,58 +36,93 @@
         }
     }
 
-    .main {
+    //新增處 -------------------------------------------------
+    .party_text {
         flex-grow: 1;
         display: flex;
         flex-direction: column;
+        position: relative;
 
-        h3 {
-            color: $mainBlue;
+        //------------------------------------------------------- 
+        .main {
             flex-grow: 1;
-
-        }
-
-        >p {
-            margin-top: -5px;
-            padding: 0 $padding 5px $padding;
-            flex-grow: 0;
-
-        }
-
-        time {
-            margin-bottom: 5px;
-            padding: 0 $padding 5px $padding;
-            flex-grow: 0;
-
-        }
-    }
-
-    .sub {
-        display: flex;
-        justify-content: space-between;
-        flex-grow: 0;
-        margin: $margin;
-        font-size: $font-1;
-
-        .author {
             display: flex;
-            align-items: center;
+            flex-direction: column;
 
-            .pic {
-                margin-right: 5px;
+            h3 {
+                color: $mainBlue;
+                flex-grow: 1;
+
+            }
+
+            >p {
+                margin-top: -5px;
+                padding: 0 $padding 5px $padding;
+                flex-grow: 0;
+
+            }
+
+            time {
+                margin-bottom: 5px;
+                padding: 0 $padding 5px $padding;
+                flex-grow: 0;
+
             }
         }
 
-        .hot {
+        .sub {
             display: flex;
+            justify-content: space-between;
+            flex-grow: 0;
+            margin: $margin;
+            font-size: $font-1;
+
+            .author {
+                display: flex;
+                align-items: center;
+
+                .pic {
+                    margin-right: 5px;
+                }
+            }
+
+            .hot {
+                display: flex;
+                align-items: center;
+
+
+                .pic {
+                    width: 15px;
+                    margin-right: 5px;
+                }
+            }
+
+        }
+
+        // 新增處-------------------------------------------
+        .see_more {
+            width: 100%;
+            height: 100%;
+            border-bottom-right-radius: 10px;
+            border-bottom-left-radius: 10px;
+            background-color: #c0ab8488;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            transition: all .5s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
             align-items: center;
 
-
-            .pic {
-                width: 15px;
-                margin-right: 5px;
+            button {
+                width: 150px;
+                border: none;
+                cursor: pointer;
             }
         }
 
+        // ------------------------------------------------
     }
 }
+

@@ -13,7 +13,7 @@
 <body>
     @@include('./layout/header.html')
     <div class='sort'>
-        <a>熱門聚會</a>
+        <a class="sortFocus">熱門聚會</a>
         <a>最新聚會</a>
     </div>
     <div class="container">
@@ -23,52 +23,116 @@
         </div>
         <!--======篩選器======-->
         <section class="filter">
+            <div class="filter-wrapper">
+                <div class="filter-header">
+                    <div>主題</div>
+                    <div>地區</div>
 
-            <table>
-                <tr>
-                    <td>主題</td>
-                    <td>全部</td>
-                    <td>美食</td>
-                    <td>夜市</td>
-                    <td>運動</td>
-                    <td>休閒</td>
-                    <td>燒腦</td>
-                    <td>旅行</td>
-                    <td>購物</td>
-                </tr>
-                <tr>
-                    <td>地區</td>
-                    <td>全部</td>
-                    <td>宜蘭縣</td>
-                    <td>基隆市</td>
-                    <td>台北市</td>
-                    <td>新北市</td>
-                    <td>桃園市</td>
-                    <td>新竹市</td>
-                    <td>新竹縣</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>苗栗縣</td>
-                    <td>台中市</td>
-                    <td>彰化縣</td>
-                    <td>南投縣</td>
-                    <td>雲林縣</td>
-                    <td>嘉義縣</td>
-                    <td>台南市</td>
-                    <td>高雄市</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>屏東縣</td>
-                    <td>花蓮縣</td>
-                    <td>台東縣</td>
-                    <td>澎湖縣</td>
-                    <td>金門縣</td>
-                    <td>馬祖縣</td>
-                </tr>
-            </table>
+                </div>
+                <div class="filter-main">
+                    <ul class="theme">
+                        <!-- <li>主題</li> -->
+                        <li class="filterFocus">全部</li>
+                        <li>美食</li>
+                        <li>夜市</li>
+                        <li>運動</li>
+                        <li>學習</li>
+                        <li>休閒</li>
+                        <li>燒腦</li>
+                        <li>旅行</li>
+                        <li>購物</li>
+                    </ul>
+                    <ul class="location">
+                        <!-- <li>地區</li> -->
+                        <li class="filterFocus">全部</li>
+                        <li>宜蘭縣</li>
+                        <li>基隆市</li>
+                        <li>台北市</li>
+                        <li>新北市</li>
+                        <li>桃園市</li>
+                        <li>新竹市</li>
+                        <li>新竹縣</li>
+                        <li>苗栗縣</li>
+                        <li>台中市</li>
+                        <li>彰化縣</li>
+                        <li>南投縣</li>
+                        <li>雲林縣</li>
+                        <li>嘉義縣</li>
+                        <li>台南市</li>
+                        <li>高雄市</li>
+                        <li>屏東縣</li>
+                        <li>花蓮縣</li>
+                        <li>台東縣</li>
+                        <li>澎湖縣</li>
+                        <li>金門縣</li>
+                        <li>馬祖縣</li>
+                    </ul>
+                </div>
+            </div>
         </section>
+        <!-- 下拉式選單 -->
+        <section class="filter-select">
+
+            <div class="selectWrap">
+                <label class="labelTheme">主題
+                    <select name="theme" id="selectTheme">
+                        <option value="全部">全部</option>
+                        <option value="美食">美食</option>
+                        <option value="夜市">夜市</option>
+                        <option value="運動">運動</option>
+                        <option value="學習">學習</option>
+                        <option value="休閒">休閒</option>
+                        <option value="燒腦">燒腦</option>
+                        <option value="旅行">旅行</option>
+                        <option value="購物">購物</option>
+                    </select>
+                </label>
+            </div>
+
+            <div class="selectWrap">
+                <label class="labelArea">地區
+                    <select name="theme" id="selectArea">
+                        <option value="全部">全部</option>
+                        <option value="北部">北部</option>
+                        <option value="中部">中部</option>
+                        <option value="南部">南部</option>
+                        <option value="離島">離島</option>
+
+                    </select>
+
+
+                    <label class="labelLoc">縣市
+                        <select name="theme" id="selectLoc">
+                            <option>選擇縣市</option>
+                            <option value="台北市" class="north">台北市</option>
+                            <option value="新北市" class="north">新北市</option>
+                            <option value="桃園市" class="north">桃園市</option>
+                            <option value="新竹市" class="north">新竹市</option>
+                            <option value="新竹縣" class="north">新竹縣</option>
+                            <option value="宜蘭縣" class="north">宜蘭縣</option>
+                            <option value="基隆市" class="north">基隆市</option>
+                            <option value="苗栗縣" class="central">苗栗縣</option>
+                            <option value="台中市" class="central">台中市</option>
+                            <option value="彰化縣" class="central">彰化縣</option>
+                            <option value="南投縣" class="central">南投縣</option>
+                            <option value="雲林縣" class="central">雲林縣</option>
+                            <option value="嘉義縣" class="south">嘉義縣</option>
+                            <option value="台南市" class="south">台南市</option>
+                            <option value="高雄市" class="south">高雄市</option>
+                            <option value="屏東縣" class="south">屏東縣</option>
+                            <option value="花蓮縣" class="south">花蓮縣</option>
+                            <option value="台東縣" class="south">台東縣</option>
+                            <option value="澎湖縣" class="outlying">澎湖縣</option>
+                            <option value="金門縣" class="outlying">金門縣</option>
+                            <option value="馬祖縣" class="outlying">馬祖縣</option>
+                        </select>
+                    </label>
+
+            </div>
+        </section>
+
+
+
         <!--======活動======-->
         <section class="pageGroup">
             <div class="card">
@@ -81,56 +145,35 @@
                         <img src="https://picsum.photos/400/300/?random=1">
                     </a>
                 </div>
-                <div class="main">
-                    <h3> <a href="groupDetail.html">印度料理&水菸印度料理&水菸</a></h3>
-                    <p>你好嗎餐酒館</p>
-                    <time>12-08(五) 19:00</time>
-                </div>
-                <div class="sub">
-                    <div class="author">
-                        <div class="pic smCircle">
-                            <img class="circle" src="https://picsum.photos/50/50/?random=1">
-                        </div>
-                        <span>林小妹</span>
+                <!-- 在外面多用一層 party_text 包 -->
+                <div class="party_text">
+                    <div class="main">
+                        <h3> <a href="groupDetail.html">印度料理&水菸印度料理&水印度料理&水菸印度料理&水</a></h3>
+                        <p>你好嗎餐酒館</p>
+                        <time>12-08(五) 19:00</time>
                     </div>
-                    <div class="hot">
-                        <div class="pic">
-                            <img src="./images/icon/fire.png">
+                    <div class="sub">
+                        <div class="author">
+                            <div class="pic smCircle">
+                                <img class="circle" src="https://picsum.photos/50/50/?random=1">
+                            </div>
+                            <span>林小妹</span>
                         </div>
-                        <span>12345</span>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="card">
-                <div class="iSave">
-                    <img id="saveActivity" src="./images/icon/unsave.png" title="收藏活動" alt="">
-                </div>
-
-                <div class="pic">
-                    <a href="groupDetail.html">
-                        <img src="https://picsum.photos/400/300/?random=1">
-                    </a>
-                </div>
-                <div class="main">
-                    <h3> <a href="groupDetail.html">印度料理&水菸印度料理&水菸</a></h3>
-                    <p>你好嗎餐酒館</p>
-                    <time>12-08(五) 19:00</time>
-                </div>
-                <div class="sub">
-                    <div class="author">
-                        <div class="pic smCircle">
-                            <img class="circle" src="https://picsum.photos/50/50/?random=1">
+                        <div class="hot">
+                            <div class="pic">
+                                <img src="./images/icon/fire.png">
+                            </div>
+                            <span>12345</span>
                         </div>
-                        <span>林小妹</span>
                     </div>
-                    <div class="hot">
-                        <div class="pic">
-                            <img src="./images/icon/fire.png">
-                        </div>
-                        <span>12345</span>
+                    <!-- 新增 see_more  -->
+                    <div class="see_more">
+                        <a href="groupDetail.html">
+                            <button class="btnYellow">詳細資訊</button>
+                        </a>
+                        <button class="btnBlue">立即報名</button>
                     </div>
+                    <!--  -->
                 </div>
             </div>
             <div class="card">
@@ -143,24 +186,35 @@
                         <img src="https://picsum.photos/400/300/?random=1">
                     </a>
                 </div>
-                <div class="main">
-                    <h3> <a href="groupDetail.html">印度料理&水菸印度料理&水菸</a></h3>
-                    <p>你好嗎餐酒館</p>
-                    <time>12-08(五) 19:00</time>
-                </div>
-                <div class="sub">
-                    <div class="author">
-                        <div class="pic smCircle">
-                            <img class="circle" src="https://picsum.photos/50/50/?random=1">
-                        </div>
-                        <span>林小妹</span>
+                <!-- 在外面多用一層 party_text 包 -->
+                <div class="party_text">
+                    <div class="main">
+                        <h3> <a href="groupDetail.html">印度料理&水菸印度料理&水菸印度料理&水菸印度料理&水菸印度</a></h3>
+                        <p>你好嗎餐酒館</p>
+                        <time>12-08(五) 19:00</time>
                     </div>
-                    <div class="hot">
-                        <div class="pic">
-                            <img src="./images/icon/fire.png">
+                    <div class="sub">
+                        <div class="author">
+                            <div class="pic smCircle">
+                                <img class="circle" src="https://picsum.photos/50/50/?random=1">
+                            </div>
+                            <span>林小妹</span>
                         </div>
-                        <span>12345</span>
+                        <div class="hot">
+                            <div class="pic">
+                                <img src="./images/icon/fire.png">
+                            </div>
+                            <span>12345</span>
+                        </div>
                     </div>
+                    <!-- 新增 see_more  -->
+                    <div class="see_more">
+                        <a href="groupDetail.html">
+                            <button class="btnYellow">詳細資訊</button>
+                        </a>
+                        <button class="btnBlue">立即報名</button>
+                    </div>
+                    <!--  -->
                 </div>
             </div>
             <div class="card">
@@ -173,24 +227,35 @@
                         <img src="https://picsum.photos/400/300/?random=1">
                     </a>
                 </div>
-                <div class="main">
-                    <h3> <a href="groupDetail.html">印度料理&水菸印度料理&水菸</a></h3>
-                    <p>你好嗎餐酒館</p>
-                    <time>12-08(五) 19:00</time>
-                </div>
-                <div class="sub">
-                    <div class="author">
-                        <div class="pic smCircle">
-                            <img class="circle" src="https://picsum.photos/50/50/?random=1">
-                        </div>
-                        <span>林小妹</span>
+                <!-- 在外面多用一層 party_text 包 -->
+                <div class="party_text">
+                    <div class="main">
+                        <h3> <a href="groupDetail.html">印度料理&水菸印度料理&水菸菸</a></h3>
+                        <p>你好嗎餐酒館</p>
+                        <time>12-08(五) 19:00</time>
                     </div>
-                    <div class="hot">
-                        <div class="pic">
-                            <img src="./images/icon/fire.png">
+                    <div class="sub">
+                        <div class="author">
+                            <div class="pic smCircle">
+                                <img class="circle" src="https://picsum.photos/50/50/?random=1">
+                            </div>
+                            <span>林小妹</span>
                         </div>
-                        <span>12345</span>
+                        <div class="hot">
+                            <div class="pic">
+                                <img src="./images/icon/fire.png">
+                            </div>
+                            <span>12345</span>
+                        </div>
                     </div>
+                    <!-- 新增 see_more  -->
+                    <div class="see_more">
+                        <a href="groupDetail.html">
+                            <button class="btnYellow">詳細資訊</button>
+                        </a>
+                        <button class="btnBlue">立即報名</button>
+                    </div>
+                    <!--  -->
                 </div>
             </div>
             <div class="card">
@@ -203,24 +268,35 @@
                         <img src="https://picsum.photos/400/300/?random=1">
                     </a>
                 </div>
-                <div class="main">
-                    <h3> <a href="groupDetail.html">印度料理&水菸印度料理&水菸</a></h3>
-                    <p>你好嗎餐酒館</p>
-                    <time>12-08(五) 19:00</time>
-                </div>
-                <div class="sub">
-                    <div class="author">
-                        <div class="pic smCircle">
-                            <img class="circle" src="https://picsum.photos/50/50/?random=1">
-                        </div>
-                        <span>林小妹</span>
+                <!-- 在外面多用一層 party_text 包 -->
+                <div class="party_text">
+                    <div class="main">
+                        <h3> <a href="groupDetail.html">印度料理&水菸印度料理&水菸</a></h3>
+                        <p>你好嗎餐酒館</p>
+                        <time>12-08(五) 19:00</time>
                     </div>
-                    <div class="hot">
-                        <div class="pic">
-                            <img src="./images/icon/fire.png">
+                    <div class="sub">
+                        <div class="author">
+                            <div class="pic smCircle">
+                                <img class="circle" src="https://picsum.photos/50/50/?random=1">
+                            </div>
+                            <span>林小妹</span>
                         </div>
-                        <span>12345</span>
+                        <div class="hot">
+                            <div class="pic">
+                                <img src="./images/icon/fire.png">
+                            </div>
+                            <span>12345</span>
+                        </div>
                     </div>
+                    <!-- 新增 see_more  -->
+                    <div class="see_more">
+                        <a href="groupDetail.html">
+                            <button class="btnYellow">詳細資訊</button>
+                        </a>
+                        <button class="btnBlue">立即報名</button>
+                    </div>
+                    <!--  -->
                 </div>
             </div>
             <div class="card">
@@ -233,37 +309,48 @@
                         <img src="https://picsum.photos/400/300/?random=1">
                     </a>
                 </div>
-                <div class="main">
-                    <h3> <a href="groupDetail.html">印度料理&水菸印度料理&水菸</a></h3>
-                    <p>你好嗎餐酒館</p>
-                    <time>12-08(五) 19:00</time>
-                </div>
-                <div class="sub">
-                    <div class="author">
-                        <div class="pic smCircle">
-                            <img class="circle" src="https://picsum.photos/50/50/?random=1">
-                        </div>
-                        <span>林小妹</span>
+                <!-- 在外面多用一層 party_text 包 -->
+                <div class="party_text">
+                    <div class="main">
+                        <h3> <a href="groupDetail.html">印度料理&水菸印度料理&水菸</a></h3>
+                        <p>你好嗎餐酒館</p>
+                        <time>12-08(五) 19:00</time>
                     </div>
-                    <div class="hot">
-                        <div class="pic">
-                            <img src="./images/icon/fire.png">
+                    <div class="sub">
+                        <div class="author">
+                            <div class="pic smCircle">
+                                <img class="circle" src="https://picsum.photos/50/50/?random=1">
+                            </div>
+                            <span>林小妹</span>
                         </div>
-                        <span>12345</span>
+                        <div class="hot">
+                            <div class="pic">
+                                <img src="./images/icon/fire.png">
+                            </div>
+                            <span>12345</span>
+                        </div>
                     </div>
+                    <!-- 新增 see_more  -->
+                    <div class="see_more">
+                        <a href="groupDetail.html">
+                            <button class="btnYellow">詳細資訊</button>
+                        </a>
+                        <button class="btnBlue">立即報名</button>
+                    </div>
+                    <!--  -->
                 </div>
             </div>
 
         </section>
         <!-- 分頁數字 -->
         <section class="page">
-            <button>上一頁</button>
-            <button>1</button>
-            <button>2</button>
-            <button>3</button>
+            <button class="prev">上一頁</button>
+            <button class="pageNo">1</button>
+            <button class="pageNo">2</button>
+            <button class="pageNo">3</button>
             <span>...</span>
-            <button>10</button>
-            <button>下一頁</button>
+            <button class="pageNo">10</button>
+            <button class="next">下一頁</button>
         </section>
     </div>
     @@include('./layout/footer.html')
