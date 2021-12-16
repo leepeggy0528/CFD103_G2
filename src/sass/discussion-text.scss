@@ -203,6 +203,49 @@ a{text-decoration: none;
     border: none;
     color: #025A78;
 }
+.slider {
+  margin: 10px;
+
+  .owl-carousel {
+      position: relative;
+
+      .owl-nav {
+
+          .owl-prev,
+          .owl-next {
+              position: absolute;
+              display: flex;
+              top: 50%;
+              margin: 0;
+              transform: translateY(-50%);
+
+              >span {
+                  display: inline-block;
+                  font-size: 80px;
+                  color: white;
+                  padding-bottom: 10px;
+              }
+          }
+
+          .owl-prev {
+              left: 0;
+          }
+
+          .owl-next {
+              right: 0;
+          }
+      }
+
+      .owl-dots {
+          position: absolute;
+          bottom: 0;
+          left: 50%;
+          transform: translateX(-50%);
+          z-index: 100;
+      }
+  }
+}
+
   
     @media only screen and (max-width: 1024px){
 
@@ -227,6 +270,7 @@ a{text-decoration: none;
       }
       
     }
+
 
 
   
