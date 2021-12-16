@@ -1,23 +1,19 @@
 @import './style';
 
-h1{
-    font-size: 36px;
-    margin: 10px;
-}
 
-h2{
-    font-size: 26px;
-    margin: 10px;
-}
 a{text-decoration: none;}
 li{list-style: none;}
 
- .title{
+ .talk{
     text-align: center;
     color: $mainBlue;
  }
 
  .title-item{
+     color: $mainBlue;
+ }
+
+ .title{
      color: $mainBlue;
  }
  .search-item{
@@ -103,6 +99,7 @@ margin: auto;
 
 .me{
     display: flex;
+    margin-top: 20px;
 }
 
 .me img{
@@ -154,7 +151,7 @@ margin:  10px;
 .date-time{
     display: flex;
     justify-content: flex-end;
-    margin-top: 60px;
+    margin-top: 50px;
 }
 
 .seemore{
@@ -171,7 +168,9 @@ margin:  10px;
 .tag-box{
     background-color: #fff9d6;
     border-radius: 10px;
+    margin: 10px 0px;
 }
+
 
 .tag-box .tag{
 display: flex;
