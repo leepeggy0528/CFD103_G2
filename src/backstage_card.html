@@ -6,14 +6,275 @@
    <meta name="description" content="">
 
    <link rel="icon" href="">
+   <script src="./js/jquery-3.6.0.min.js"></script>
    @@include('./layout/backstage_meta.html',{
        "title" : "管理員管理"
-   })
+   }) 
 </head>
 <body>
     @@include('./layout/backstage_header.html')
 <main>
     @@include('./layout/backstage_nav.html')
+    <section class="container pt-5" id="card">
+        <h2>卡片樣式</h2>
+        <div class="pull-right">
+            <div class="btn-group">
+                <button type="button" class="btn btn-success btn-filter" data-target="up">上架</button>
+                <button type="button" class="btn btn-danger btn-filter" data-target="down">下架
+                </button>
+                <button type="button" class="btn btn-default btn-filter" data-target="all">全部</button>
+            </div>
+        </div>
+        <table class="table table-bordered table-definition mb-5">
+            <thead class="table-warning ">
+                <tr>
+                    <th>卡片編號</th>
+                    <th>卡片樣式</th>
+                    <th>卡片名稱</th>
+                    <th>卡片狀態</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr data-status="down">
+                    <td>67001</td>
+                    <td><div class="card"><img src="./images/card/colorful-line.jpg" alt="彩虹邊框"></div></td>
+                    <td>彩虹邊框</td>
+                    <td>
+                        <label class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input">
+                            <span class="custom-control-indicator"></span>
+                        </label>
+                    </td>
+                    <td>
+                        <ul class="action-list">
+                            <li><a href="#" data-tip="edit"><i class="fa fa-edit"></i></a></li>
+                            <li><a href="#" data-tip="delete"><i class="fa fa-trash"></i></a></li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr data-status="up">
+                    <td>67002</td>
+                    <td><div class="card"><img src="./images/card/cute.jpg" alt="七彩條紋"></div></td>
+                    <td>七彩條紋</td>
+                    <td><label class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" checked>
+                        <span class="custom-control-indicator"></span>
+                    </label></td>
+                    <td>
+                        <ul class="action-list">
+                            <li><a href="#" data-tip="edit"><i class="fa fa-edit"></i></a></li>
+                            <li><a href="#" data-tip="delete"><i class="fa fa-trash"></i></a></li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr data-status="down">
+                    <td>67001</td>
+                    <td><div class="card"><img src="./images/card/colorful-line.jpg" alt="彩虹邊框"></div></td>
+                    <td>彩虹邊框</td>
+                    <td><label class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input">
+                        <span class="custom-control-indicator"></span>
+                    </label></td>
+                    <td>
+                        <ul class="action-list">
+                            <li><a href="#" data-tip="edit"><i class="fa fa-edit"></i></a></li>
+                            <li><a href="#" data-tip="delete"><i class="fa fa-trash"></i></a></li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr data-status="down">
+                    <td>67001</td>
+                    <td><div class="card"><img src="./images/card/colorful-line.jpg" alt="彩虹邊框"></div></td>
+                    <td>彩虹邊框</td>
+                    <td><label class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input">
+                        <span class="custom-control-indicator"></span>
+                    </label></td>
+                    <td>
+                        <ul class="action-list">
+                            <li><a href="#" data-tip="edit"><i class="fa fa-edit"></i></a></li>
+                            <li><a href="#" data-tip="delete"><i class="fa fa-trash"></i></a></li>
+                        </ul>
+                    </td>
+                </tr>
+               <tr data-status="up">
+                    <td>67003</td>
+                    <td><div class="card"><img src="./images/card/dot.jpg" alt="滿版點點"></div></td>
+                    <td>滿版點點</td>
+                    <td><label class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" checked>
+                        <span class="custom-control-indicator"></span>
+                    </label></td>
+                    <td>
+                        <ul class="action-list">
+                            <li><a href="#" data-tip="edit"><i class="fa fa-edit"></i></a></li>
+                            <li><a href="#" data-tip="delete"><i class="fa fa-trash"></i></a></li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th colspan="12">
+                        <input type="button" class="btnYellow btn btn-l" value="新增樣式">
+                        <input type="submit" class="btnYellow btn " value="確認修改">
+                        <input type="reset" class="btnWhite btn" value="取消修改">
+                    </th>
+                </tr>
+            </tfoot>
+        </table>
+        <div class="pages">
+            <nav aria-label="...">
+                <ul class="pagination justify-content-end mt-3 mr-3">
+                    <li>
+                        <button class="pageBtn"  disabled>Previous</button>
+                    </li>
+                    <li>
+                        <button class="noBtn">1</button>
+                    </li>
+                    <li>
+                        <button class="noBtn">2</button>
+                    </li>
+                    <li>
+                        <button class="noBtn">3</button>
+                    </li>
+                    <li>
+                        <button class="pageBtn">Next</button>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </section>
+    <section class="container pt-5" id="stick">
+        <h2>卡片樣式</h2>
+        <div class="pull-right">
+            <div class="btn-group">
+                <button type="button" class="btn btn-success btn-filter" data-target="up">上架</button>
+                <button type="button" class="btn btn-danger btn-filter" data-target="down">下架
+                </button>
+                <button type="button" class="btn btn-default btn-filter" data-target="all">全部</button>
+            </div>
+        </div>
+        <table class="table table-bordered table-definition mb-5">
+            <thead class="table-warning ">
+                <tr>
+                    <th>卡片編號</th>
+                    <th>卡片樣式</th>
+                    <th>卡片名稱</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>67001</td>
+                    <td><div class="card"><img src="./images/card/colorful-line.jpg" alt="彩虹邊框"></div></td>
+                    <td>彩虹邊框</td>
+                    <td>
+                        <label class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input">
+                            <span class="custom-control-indicator"></span>
+                        </label>
+                    </td>
+                    <td>
+                        <ul class="action-list">
+                            <li><a href="#" data-tip="edit"><i class="fa fa-edit"></i></a></li>
+                            <li><a href="#" data-tip="delete"><i class="fa fa-trash"></i></a></li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>67002</td>
+                    <td><div class="card"><img src="./images/card/cute.jpg" alt="七彩條紋"></div></td>
+                    <td>七彩條紋</td>
+                    <td><label class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" checked>
+                        <span class="custom-control-indicator"></span>
+                    </label></td>
+                    <td>
+                        <ul class="action-list">
+                            <li><a href="#" data-tip="edit"><i class="fa fa-edit"></i></a></li>
+                            <li><a href="#" data-tip="delete"><i class="fa fa-trash"></i></a></li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>67001</td>
+                    <td><div class="card"><img src="./images/card/colorful-line.jpg" alt="彩虹邊框"></div></td>
+                    <td>彩虹邊框</td>
+                    <td><label class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input">
+                        <span class="custom-control-indicator"></span>
+                    </label></td>
+                    <td>
+                        <ul class="action-list">
+                            <li><a href="#" data-tip="edit"><i class="fa fa-edit"></i></a></li>
+                            <li><a href="#" data-tip="delete"><i class="fa fa-trash"></i></a></li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>67001</td>
+                    <td><div class="card"><img src="./images/card/colorful-line.jpg" alt="彩虹邊框"></div></td>
+                    <td>彩虹邊框</td>
+                    <td><label class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input">
+                        <span class="custom-control-indicator"></span>
+                    </label></td>
+                    <td>
+                        <ul class="action-list">
+                            <li><a href="#" data-tip="edit"><i class="fa fa-edit"></i></a></li>
+                            <li><a href="#" data-tip="delete"><i class="fa fa-trash"></i></a></li>
+                        </ul>
+                    </td>
+                </tr>
+               <tr>
+                    <td>67003</td>
+                    <td><div class="card"><img src="./images/card/dot.jpg" alt="滿版點點"></div></td>
+                    <td>滿版點點</td>
+                    <td><label class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" checked>
+                        <span class="custom-control-indicator"></span>
+                    </label></td>
+                    <td>
+                        <ul class="action-list">
+                            <li><a href="#" data-tip="edit"><i class="fa fa-edit"></i></a></li>
+                            <li><a href="#" data-tip="delete"><i class="fa fa-trash"></i></a></li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th colspan="12">
+                        <input type="button" class="btnYellow btn btn-l" value="新增樣式">
+                        <input type="submit" class="btnYellow btn " value="確認修改">
+                        <input type="reset" class="btnWhite btn" value="取消修改">
+                    </th>
+                </tr>
+            </tfoot>
+        </table>
+        <div class="pages">
+            <nav aria-label="...">
+                <ul class="pagination justify-content-end mt-3 mr-3">
+                    <li>
+                        <button class="pageBtn"  disabled>Previous</button>
+                    </li>
+                    <li>
+                        <button class="noBtn">1</button>
+                    </li>
+                    <li>
+                        <button class="noBtn">2</button>
+                    </li>
+                    <li>
+                        <button class="noBtn">3</button>
+                    </li>
+                    <li>
+                        <button class="pageBtn">Next</button>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </section>
 </main>
+<script src="./js/backstage.js"></script>
 </body>
 </html>

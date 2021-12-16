@@ -17,9 +17,18 @@ main{
     border: none;
     font-size: 20px;
     color: #2e2e2e;
-}
-.table td {
-    vertical-align: middle;
+    td {
+      vertical-align: middle;
+      .card{
+        width: 200px;
+        img{
+          width: 100%;
+        }
+      }
+  }
+  .reason{
+    width: 300px;
+  }
 }
 .table-warning{
   background-color: #fffbba;
@@ -28,6 +37,7 @@ main{
     border: none;
 }
 
+//member
 .custom-checkbox {
   min-height: 1rem;
   padding-left: 0;
@@ -83,9 +93,29 @@ main{
     margin: 10px;
     /* display: inline-block; */
 }
+.btn-l{
+  float: left;
+}
+//page
 .pagination li {
-  margin: auto 5px;
+  margin: auto 5px 1rem;
 }
 .noBtn{
   width: 36px;
+}
+
+//admin
+.action-list{
+  display: flex;
+  justify-content: space-evenly;
+}
+.pull-right {
+  float: right;
+  .btn-group {
+    margin: 15px 0 30px;
+    .btn {
+      transition: background-color .3s ease;
+      margin: auto 0;
+    }
+  }
 }
