@@ -1,15 +1,9 @@
-@import '../sass/base/var';
-@import '../sass/mixin/mixin';
+@import './base/var';
+@import './mixin/mixin';
+
 .out-wrapper{
     width: $layoutwidth;
     @include center();
-}
-.out-info{
-    width: 70%;
-    height: 300px;
-    display: flex;
-    margin: 50px auto;
-    background-color: $bgYellow;
 }
 .profile-pic{
     width: 150px;
@@ -29,26 +23,9 @@
 .info{
     display: flex;
 }
-.friend-control{
-    margin-left: auto;
-    padding: 230px 20px 0 0;
-}
-.friend-control button{
-    background-color: $bgGray;
-    color: $mainBlue;
-    border: none;
-    padding: 15px;
-    cursor: pointer;
-    font-size: $font-2;
-}
-.friend-control button:nth-child(2){
-    background-color:$mainBlue;
-    color:$white;
-    margin-left: 10px;
-}
 .more-info{
   display: flex;
-  width: 70%;
+  width: 65%;
   margin: 20px auto;
   justify-content: space-between;
 }
@@ -56,161 +33,143 @@
   display: none;
   &.open{
       display: block;
-  }
-  &.fade{
-      -webkit-animation: opac 0.8s;
-      animation: opac 0.8s;
+      width: 60%;
+      margin: auto;
   }
 }
 .tab-for-out{
   display: flex;
   width: 25%;
   text-align: center;
-    margin:  20px auto;
-    justify-content: center;
-    align-items: center;
-    font-size: $font-4;
-    border: none;
-    background-color: transparent;
-    color: $mainBlue;
-    font-size: $h2;
-    font-weight: bold;
+  margin:  20px auto;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  background-color: transparent;
+  color: $mainBlue;
+  font-size: $h2;
+  font-weight: bold;
 }
 .aboutMe.active{
   color: #D2B81C;
 }
 .main-background{
-    background-color: $bgGray;
-    margin:auto;
-    padding: 20px 0 100px;
+  width: 80%;
+  background-color: $bgGray;
+  margin:auto;
+  padding: 20px 0 100px;
+  margin-bottom: 50px;
+  @include borderR();
 }
 .activity-nums{
-    display: flex;
-    justify-content: center;
-    padding: 30px 0;
+  display: flex;
+  justify-content: center;
+  padding: 30px 0;
 }
 .statistics p{
-    padding: 5px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 0 40px;
-    font-size: $h2;
-    color: #000;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 40px;
+  font-size: $h2;
+  color: #000;
 }
 .hobby-tags{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 .hobby-tags>p{
-   background-color: $white;
-   margin: 0 10px;
-   font-size: $font-3;
-   font-weight: bold;
-   @include borderR;
+  background-color: $white;
+  margin: 0 10px;
+  font-size: $font-3;
+  font-weight: bold;
+  @include borderR;
 }
 .introduction{
-    width:60%;
-    margin: 30px auto;
-    font-size: $font-3;
-    line-height: 2em;
+  width:60%;
+  margin: 50px auto;
+  font-size: $font-3;
+  line-height: 2em;
 }
-.change-forms{
-  width: 60%;
+.change-rates{
   margin: auto;
 }
 .my-groups>p{
-    color: $mainBlue;
-    font-size: $font-5;
-    font-weight: bold;
+  color: $mainBlue;
+  font-size: $font-5;
+  font-weight: bold;
 }
 .ongoing{
-    display: flex;
-    background-color: $bgGray;
-    margin: 10px 0px 30px 10px;
-    @include borderR;
+  display: flex;
+  background-color: $bgGray;
+  margin: 10px 0px 30px 10px;
+  @include borderR;
 }
 .activity-pic{
-    width: 30%;
+  width: 30%;
 }
 .activity-pic>img{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 10px 0 0 10px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px 0 0 10px;
 }
 .deadline{
-    color: red;
+  color: red;
 }
 .finished{
-    width: 30%;
-    padding-top: 90px;
-    color: $mainBlue;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-image: url(../../dist/images/photo/paint.png);
-    margin-left: auto;
-    position: relative;
+  width: 30%;
+  color: $mainBlue;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: url(../../dist/images/photo/paint.png);
+  margin-left: auto;
+  position: relative;
+}
+.paint-back{
+  position: relative;
 }
 .finished-text{
-    width: 130px;
-    font-size: $h1;
-    transform: rotate(-25deg);
-    position: absolute;
-    top: 80px;
-    left: 80px;
-    right: 0;
-    bottom: 0px;
-    margin: auto;
-    font-weight: bold;
+  width: 130px;
+  font-size: $h1;
+  transform: rotate(-25deg);
+  position: absolute;
+  top: 40%;
+  left: 30%;
+  margin: auto;
+  font-weight: bold;
 }
 // 評價
-.rating-container * {
-    box-sizing: border-box;
-    transition: all 0.3s;
-    -webkit-transition: all 0.3s;
-    color: #1d1f20;
-    font-family: "Roboto", sans-serif;
+.change-rates{
+  display: none;
+  &.open{
+      display: block;
   }
-  .display-none {
-    display: none;
-  }
-  .sidebar-tabs-menu-1 .tab {
-    position: relative;
-    float: left;
-    margin-bottom: -300%;
-    width: 70%;
-    left:15%
-  }
-  .sidebar-tabs-menu-1 .tab .title {
-    cursor: pointer;
-    position: absolute;
-    padding: 18px 10px;
-    color: #025A78;
-    background-color: #BAB08C;
-    border-bottom: 3px solid #FFF3A9;
-    width: 50%;
-    z-index: 1;
-    text-align: center;
-  }
-  .sidebar-tabs-menu-1 .tab .title.not-first {
-    right: 0;
-  }
-  .sidebar-tabs-menu-1 input[type="radio"]:checked ~ .title {
-    background-color: #FFF3A9;
-    color: #025A78;
-  }
-  .sidebar-tabs-menu-1 input[type="radio"]:checked ~ .reveal .lay-frame div {
-    transform: translateX(0px);
-    -webkit-transform: translateX(0px);
-    opacity: 1;
-    z-index: 1;
+}
+.RatingSection{
+  display: flex;
+  justify-content: space-evenly;
+  background-color: #FFF3A9;
+  padding: 12px;
+  border-radius: 10px 10px 0 0 ;
+}
+.Ratings{
+  font-size: $h3;
+  background-color: #FFF3A9;
+  width: 50%;
+}
+.Ratings.active{
+  font-weight: bold;
+  text-decoration: underline;
+  text-underline-offset: 5px;
 }
 .opening-rating{
-    display: flex;
-    justify-content: space-around;
-    background-color: #FFF3A9;
+  display: flex;
+  justify-content: space-around;
+  background-color: #FFF3A9;
+  border-radius: 0 0 10px 10px;
 }
 .des-numbers{
     width: 100px;
@@ -243,55 +202,223 @@
     padding: 2px 130px;
     background-color: #fff;
 }
-  .sidebar-tabs-menu-1 input[type="radio"]:checked ~ .reveal .text-frame div {
-    transform: translateX(0px);
-    -webkit-transform: translateX(0px);
-    opacity: 1;
-    z-index: 1;
+
+.comment-background{
+  background-color: #F3F3F3;
+  display: flex;
+  margin: auto;
+  margin: 30px 0;
+}
+.comment-pics{
+  width: 80px;
+  height: 80px;
+  margin: 20px;  
+}
+.comment-pics>img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    @include borderR(50%);
+}
+.comment-per-info{
+    width: 80%;
+    padding: 30px 30px 30px 0;
+    line-height: 2em;
+    flex-grow: 1;
+}
+  .new-ratings-title{
+    margin-top:20px;
   }
-  .sidebar-tabs-menu-1 .reveal {
-    margin: 58px 0 0 0;
-    overflow: hidden;
+  .MyInfo{
+    max-width:1200px;
+    display: flex;
+    align-items:center;
+    margin:50px auto;
+    justify-content: center;
   }
-  .sidebar-tabs-menu-1 .reveal .lay-frame {
-    position: relative;
-    overflow: hidden;
-    margin-top: 30px;
-    margin-bottom: 20px;
+  .nameAndInfo {
+    margin: 50px auto;
+    font-family: monospace;
+    text-align:center;
   }
-  .sidebar-tabs-menu-1 .reveal .lay-frame div {
-    opacity: 0;
-    z-index: 0;
-    transform: translateX(200%);
-    -webkit-transform: translateX(200%);
+  .location{
+    line-height:2em;
   }
-  .sidebar-tabs-menu-1 .reveal .text-frame div {
-    opacity: 0;
-    z-index: 0;
-    transform: translateX(-300%);
-    -webkit-transform: translateX(-300%);
+  .ContentInfo {
+    width: 30%;
+    color: white;
+    background-color: #025A78;
+    padding: 14px;
+    border-radius: 10px 0 0 10px;
   }
-  .comment-background{
-    background-color: #F3F3F3;
+  .placeImage {
+    width: 35%;
+    background: 
+    linear-gradient(-57deg, #FFF3A9 63%, #025A78 42%);
+    color: white;
+    padding: 38px 42px 43px 42px;
+    border-radius: 0 10px 10px 0;
+  }
+  .image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 50%;
+    border: 3px solid  #FFF3A9;
+  }
+  .image {
+      height: 58%;
+      width: 58%;
+      border-radius: 50%;
+      margin-top: 8%;
+      margin-right: 5px;
+  }
+  .color-secondary, a {
+    color: #F0DA50;
+    text-decoration: none;
+  }
+  .contact-link {
+    padding: 10px;
+    background: #F3F3F3;
+    border-radius: 5px;
+    font-family: monospace;
+    font-weight: 700;
+    font-size: 18px;
+    color: #000000;
+    margin: 5px;
+    
+  }
+.friend-control{
+  padding-top:30px;
+  margin:auto;
+  text-align:center;
+}
+.joining-title{
+  font-weight: bold;
+  font-size: $font-4;
+}
+.star-icon{
+  display: none;
+}
+@media (max-width: 960px) {
+  .out-wrapper{
+    width: 100%;
+  }
+  .MyInfo{
+    width: 100%;
+    flex-direction: column;
+    background: linear-gradient(
+      8deg
+      , #FFF3A9 0%, #025A78 53%);
+    margin:0 auto;
+  }
+  #About-Me{
+    margin: 0;
+    width: 100%;
+  }
+  .main-background{
+    width: 100%;
+    border-radius: 0;
+  }
+  .nameAndInfo{
+    margin:0 auto;
+  }
+  .ContentInfo {
+    width: 100%;
+    padding: 35px 0 0 0;
+  }
+  .placeImage {
+    width: 100%;
+    background: linear-gradient(
+      22deg
+      , #FFF3A9 59%, #025A78 5%);
+    color: white;
+    padding: 40px 0 43px 0;
+  }
+  .image {
+    margin-top: 0;
+    margin-left:20%;
+  }
+  .tab-for-out{
+    width: 100%;
+    margin:  20px auto;
+    font-size: $font-4;
+  }
+  .more-info{
+    width: 100%;
+  }
+  .change-forms{
+    width: 80%;
+  }
+  .hobby-tags > p {
+    margin: $margin;
+  }
+  .statistics p {
+    margin: 0 20px;
+  }
+  .joining-title{
+    text-align: center;
+    font-size: 18px;
+  }
+  .ongoing{
+    flex-direction: column;
+    margin: 30px auto;
+  }
+  .activity-pic{
+    width: 100%;
+  }
+  .activity-pic> img{
+    border-radius: 10px 10px 0 0;
+  }
+  .finished-text{
+    font-size: 28px;
+    top: 25%;
+    left: 1%;
+  }
+  .second-bar{
+    display: none;
+  }
+  .opening-rating{
+    flex-direction: column;
+  }
+  .bars{
     width: 80%;
     display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
     margin: auto;
-    margin-top: 30px;
+    padding: 0;
+  }
+  .des-numbers{
+    margin: $margin auto;
+    padding: 0;
+  }
+  .star-icon{
+    display: inline-block;
+  }
+  .new-ratings-title{
+    width: 100%;
+  }
+  .comment-background{
+    margin: 30px auto;
+    @include borderR
   }
   .comment-pics{
-    width: 80px;
+    width: 100px;
     height: 80px;
-    margin: 20px;  
+    margin: 20px;
+  }    
+  .change-forms.open{
+    width: 90%;
   }
-  .comment-pics>img{
-     width: 100%;
-     height: 100%;
-     object-fit: cover; 
-     @include borderR(50%);
+  .activity-info{
+    padding:5px;
   }
-  .comment-per-info{
-      width: 80%;
-      padding: 30px 30px 30px 0;
-      line-height: 2em;
-      flex-grow: 1;
+  .change-rates{
+    width: 100%;
   }
+  .friend-control{
+    width: 100%;
+    padding-top: 0;
+  }
+}
+  

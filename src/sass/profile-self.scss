@@ -1,5 +1,12 @@
 @import './base/var';
 @import './mixin/mixin';
+.whiteBackground{
+    background-color: $lightboxcolor;
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    display: none;
+}
 .self-wrapper{
     width: $layoutwidth;
     display: flex;
@@ -10,23 +17,30 @@
 }
 .check-info{
     width: 25%;
-    border-right:2px solid $bgGray;
+    padding-bottom: 50px;
 }
 .self-wrapper{
     width: 70%;
 }
 .profile-card{
-    width: 210px;
     @include center(20px);
     background: linear-gradient(149.44deg, #FFEB6F 0%, rgba(255, 247, 203, 0.49) 98.11%);
     @include borderR();
-    padding-bottom: 20px;
+    padding-bottom: 50px;
+}
+.show-card{
+    width: 30%;
+    @include center(20px);
+    background: linear-gradient(149.44deg, #FFEB6F 0%, rgba(255, 247, 203, 0.49) 98.11%);
+    @include borderR();
+    margin: 20px 10px;
 }
 .edit-wrapper{
     width: 50px;
     text-align: end;
     margin-left: auto;
     padding: 10px 10px 0 0;
+    position: relative;
 }
 .edit{
     font-size: $font-3;
@@ -85,6 +99,7 @@
    text-align: center;
 }
 .tabs>a{
+    width: 200px;
     display: inline-block;
     font-size: $font-2;
     padding:30px 0;
@@ -118,25 +133,31 @@
 .self-info h2 span{
     font-size: $h1;
 }
+.self-info>p{
+    font-size: $font-3;
+    font-weight: bold;
+}
+.section-title{
+    box-shadow: 0.3em 0.3em 5px rgb(240, 236, 236);
+    @include borderR();
+}
 .second-tabs{
     display: flex;
     margin-bottom: 50px;
-    padding:30px $padding;
+    padding:30px;
     border-bottom: 2px solid $bgGray;
     border-right: 2px solid $bgGray;
-    box-shadow: 5px 5px 5px $shawdowGray;
 }
 .second-tabs li{
     margin-right: 30px;
     border-radius: 20px;
     height: 10px;
-
 }
 .second-tabs button{
     color: $pageBlue;
     background-color:transparent;
     border: none;
-
+    font-size: $font-3;
 }
 .second-tabs .all{
    background-color: $mainYellow;
@@ -173,7 +194,7 @@
     border: none;
 }
 .activity-btn{
-    width: 30%;
+    width: 20%;
     margin-left: auto;
     padding-top: 80px;
     text-align: end;
@@ -183,13 +204,16 @@
 }
 .friend-card-list{
     display: flex;
+    flex-wrap: wrap;
 }
 .girl-card{
     background: linear-gradient(149.44deg, #F3B5BA 0%, rgba(233, 199, 216, 0.24) 98.11%);
+    padding-bottom: 0;
 }
 .boy-card{
     background: 
     linear-gradient(149.44deg, #B4CEEF 0%, rgba(247, 251, 255, 0.49) 98.11%);
+    padding-bottom: 0;
 }
 .setting{
     font-size: $h3;
@@ -247,21 +271,69 @@
   font-size: $h2;
   margin: 10px;
 }
-.selectMenuForCell{
+.selectMenuForCell {
     display: none;
 }
-@media (max-width: 960px) {
-    .main-tabs     { 
+.second-tabs-for-phone{
+    display: none;
+}
+.activity-part-one{
+    display: flex;
+}
+.friend-del-black{
+    display: none;
+}
+.openControl{
+    display: block;
+    width: 100px;
+    background-color: $white;
+    position: absolute;
+    right:5px;
+    padding: 5px $padding;
+    @include borderR();
+}
+.del-friend,.blackList-friend{
+    display:block;
+    padding: 5px;
+    border: none;
+    background-color: $white;
+    cursor: pointer;
+    width: 95px;
+}
+.del-friend:hover{
+    background-color: $bgYellow;
+}
+.blackList-friend:hover{
+    background-color: $bgYellow;
+}
+@media (max-width: 767px){
+    .self-wrapper{
+        width: 100%;
+    }
+    .check-info{
+        width: 100%;
+        padding: 0;
+    }
+    .Info-wrapper{
+        width:100%;
+    }
+    .main-tabs{ 
         display: none; 
     }
+    .self-info{
+        margin: 0;
+    }
     .selectMenuForCell { 
-        display: inline-block;
+        display: block;
         background-color: $bgYellow;
         border: none;
         font-size: $font-5;
         color: $mainBlue;
         font-weight: bold;
         text-align: center;
+        width: 100%;
+        padding: 10px;
+        outline: none;
      }
     .profile-card{
         display: none;
@@ -269,7 +341,50 @@
     .self-wrapper{
         flex-direction: column;
     }
+    .section-title{
+        box-shadow: none;
+        border: none;
+    }
+    .second-tabs-for-phone{
+        display: block;
+    }
+    .second-tabs{
+        border: none;
+        padding:0;
+        margin: 20px auto;
+        width: 55%;
+    }
+    .second-tabs li{
+      margin: 10px;
+    }
+    .showButton{
+        display: inline-block;
+    }
     .self-info h2{
         display: none;
     }
+    .activity{
+        flex-direction: column;
+    }
+    .activity-btn{
+        width: 100%;
+        padding-top: 0;
+    }
+    .friend-bar{
+        flex-direction: row-reverse;
+        justify-content: center;
+        width: 88%;
+        margin-top: 30px;
+    }
+    .search-friend input{
+        width: 200px;
+    }
+    .friend-card-list{
+        display: block;
+    }
+    .show-card{
+        width: 60%;
+        margin: auto;
+    }
+    
 }
