@@ -99,7 +99,6 @@ $(function () {
         for(let a=1;a<howManyDays;a++){
             $(`.day_list:nth-of-type(${a})`).html(`<p>Day${a}</p>`)
         }
-        
     });
 
 
@@ -109,8 +108,35 @@ $(function () {
     $('#party_discribe').keyup(function(){
         let textLength = $(this).val().length;
         $('#limit_words_count').html(`${textMax-textLength}`);
-    });    
+    }); 
 });
+
+
+
+
+
+document.querySelector('#browse').onchange = function() {
+    var preview = document.querySelector('#preview');
+    [].forEach.call(this.files, function(file) {
+      if (/image\/.*/.test(file.type)) {   // use any image format the browser can read
+        var img = new Image;
+        img.onload = remURL;               // to remove Object-URL after use
+        // img.style.height = "100px";        // use style, "width" defaults to "auto"
+        img.src = (URL || webkitURL).createObjectURL(file);
+        var li=document.createElement("li");
+         // add image to preview container
+         preview.appendChild(li).appendChild(img); 
+      }
+    });
+    
+    function remURL() {(URL || webkitURL).revokeObjectURL(this.src)}
+  };
+
+
+
+
+
+
 
 
 
