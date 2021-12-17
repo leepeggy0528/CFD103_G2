@@ -6,51 +6,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./css/grid.css">
-    <link rel="stylesheet" href="./css/discussion-text.css">
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/discussion-text.css">
     <script src="https://kit.fontawesome.com/657f3993c9.js" ></script>
-    <link rel="stylesheet" href="./css/owl.carousel.min.css">
+    <link rel="stylesheet" href="./css/owl.carousel.min.css" >
     <link rel="stylesheet" href="./css/owl.theme.default.css">
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-    <script src="./js/owl.carousel.js"></script>
     <script src="https://kit.fontawesome.com/657f3993c9.js" crossorigin="anonymous"></script>
+
 </head>
 <body>
+    @@include('./layout/login.html')
     @@include('./layout/header.html')
     <div class="title"><h1>陽明山玩一天都不夠!</h1></div>
 
+
     <div class="container">
-      <div class="owl-carousel owl-theme">
-        <div class="item"><img src="./images/discussion/pic-item.jpg" alt=""></div>
-        <div class="item"><img src="./images/discussion/pic-item-3.jpg" alt=""></div>
-        <div class="item"><img src="./images/discussion/pic-item-2.jpg" alt=""></div>
-        <div class="item"><img src="./images/discussion/pic-item.jpg" alt=""></div>
-        <div class="item"><img src="./images/discussion/pic-item-3.jpg" alt=""></div>
-        <div class="item"><img src="./images/discussion/pic-item-2.jpg" alt=""></div>
+      <div class="slider">
+          <div class="owl-carousel owl-theme">
+              <div class="item">
+                  <img src="./images/discussion/pic-item.jpg">
+              </div>
+              <div class="item">
+                  <img src="./images/discussion/pic-item-3.jpg">
+              </div>
+              <div class="item">
+                  <img src="./images/discussion/pic-item-2.jpg">
+              </div>
+          </div>
       </div>
-    </div>
+  </div>
   
-  
-    <script>
-      $(document).ready(function(){
-      $(".owl-carousel").owlCarousel();
-      });
-      $('.owl-carousel').owlCarousel({
-      loop:true,
-      nav:true,
-      responsive:{
-          0:{
-              items:1
-          },
-          600:{
-              items:2
-          },
-          1000:{
-              items:3
-          }
-      }
-  })
-    </script>
+    
   
   
   
@@ -91,7 +78,7 @@
   
           </div>
   
-          <div class="container">
+          <div class="containers">
             <ul class="row">
                 <li class="col-12 col-md-6 ">
                     <div class="insta-item-commend">
@@ -193,7 +180,7 @@
         </div>
       </div>
 
-      <script src="js/jquery-3.6.0.min.js"></script>
+      <script src="./js/jquery-3.6.0.min.js"></script>
       <script>
       
       $('body').on('click','.warn-btn',function(){
@@ -208,11 +195,7 @@
         $('.screen').css('display','none')
       });
 
-      var btnYellow = document.getElementsByClassName("btnYellow")[0];
-      btnYellow.onclick = function () {
-      alert("確定送出嗎?");
-      location.href = "./discussion-2.html";
-      };
+
 
 
       var btnYellower = document.querySelector(".btnYellower");
@@ -239,7 +222,48 @@
       </script>
    
 
-
+    <script src="./js/loginLightbox.js"></script>
    @@include('./layout/footer.html')
+   <script src="./js/owl.carousel.min.js"></script>
+   <script>
+        $(document).ready(function () {
+            $(".owl-carousel").owlCarousel();
+        });
+    
+        var owl = $('.owl-carousel');
+        $('.owl-carousel').owlCarousel({
+            loop: true,
+            margin: 10,
+            nav: true,
+    
+            autoplay: true,
+            autoplayTimeout: 3000,
+            autoplayHoverPause: true,
+            responsive: {
+                0: {
+                    items: 1
+                },
+                600: {
+                    items: 1
+                },
+                1024: {
+                    items: 1,
+                    stagePadding: 250,
+                }
+            }
+        });
+        $('.play').on('click', function () {
+            owl.trigger('play.owl.autoplay', [5000])
+        });
+        $('.stop').on('click', function () {
+            owl.trigger('stop.owl.autoplay')
+        });
+        var btnYellow = document.querySelector(".insta-item-submit .btnYellow");
+      btnYellow.onclick = function () {
+      alert("確定送出嗎?");
+      location.href = "./discussion-2.html";
+      };
+        </script>
+        
 </body>
 </html>

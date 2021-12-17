@@ -7,12 +7,12 @@
     <title>Document</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
     <script src="https://kit.fontawesome.com/1418fb8a04.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="../dist/css/style.css">
-    <link rel="stylesheet" href="../dist/css/login.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/login.css">
 </head>
 <body> 
 <div class="login-wrapper">
-    <form class="login-form">
+    <form class="login-form" >
       <h1 class="join">編輯會員資料</h1> 
       <div class="drag-area">
         <button class="icon"><i class="fas fa-cloud-upload-alt"></i></button>
@@ -103,15 +103,19 @@
             </label>
         </div>
         <!-- 自我介紹 -->
-        <div class="biography">
-            <textarea name="bio" id="bio" cols="32" rows="5"></textarea>
+        <div class="group biography">
+            <textarea class="input" id="bio" cols="10" rows="5"></textarea>
             <label class="biography-label">個人介紹</label>
         </div>
+        <div class="btn-box">
+            <button class="btnBoredBlue" id="lastStep" type="button">
+                上一步
+            </button>   
+            <button id="finished" class="btnYellow " type="submit">
+                完成註冊
+            </button>
+        </div>
     </form>
-    <div class="btn-box">
-        <button class="btnBoredBlue" type="button">上一步</button>   
-        <button class="btnYellow" type="submit">完成註冊</button>
-    </div>
 </div>
 
 <script src="./js/image.js"></script>

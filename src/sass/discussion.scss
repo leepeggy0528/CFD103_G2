@@ -285,6 +285,12 @@ justify-content: center;
     display: none;
   
 }
+
+
+.btn-boxY{
+    display: flex;
+    justify-content: center;
+}
 .screen-wrapper{
   position: absolute;
   top: 50%;
@@ -373,9 +379,9 @@ textarea{
 
 }
 
-.btn-box{
-   margin-left: auto;
-   margin-right: auto;
+.btn-boxA{
+  display: flex;
+  justify-content: center;
 }
 
 .plus-box button{
@@ -395,9 +401,9 @@ textarea{
     color: #fff;
 }
 
-.btnYellow{
-    margin-left: auto;
-    margin-right: auto;
+.btn-boxA{
+    display: flex;
+    justify-content: center;
 }
 
 .tager{

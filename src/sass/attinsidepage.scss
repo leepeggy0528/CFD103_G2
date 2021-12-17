@@ -51,6 +51,7 @@ h2{
 
 .container > p{
     line-height: 30px;
+    margin-top: 30px;
 }
 
 .name{
@@ -84,25 +85,139 @@ h2{
     border: none;
     cursor: pointer
 }
+
+.cart{
+    background-color: #F3F3F3;
+    width: 330px;
+    height: 540px;
+    border-top-left-radius:56%;
+    border-bottom-left-radius:72%;
+    border-top-right-radius:15%;
+    border-bottom-right-radius:15%;
+    padding-top: 60px;
+    position: fixed;
+    right: -270px;
+    top: 75px;
+    transition: all 1s ;
+}
+
+.cart.cart-open{
+    right: 0;
+}
+
+.cart-list{
+    background-color: #F3F3F3;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    width: 230px;
+    height:435px;
+    margin-left: 90px;
+
+}
+
+.item{
+    display: flex;
+    margin-bottom: 10px;
+    width: 200px;
+    
+}
+
+.item img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+
+.item p {
+    margin: auto;
+}
+
+.sure{
+    width: 115px;
+    padding-top: 30px;
+    margin-left: 170px;
+}
+
+.confirm-button{
+    padding: 10px;
+    width: 115px;
+    border-radius:18px;
+    color:#383838;
+    background-color:#FFF3A9;
+    border: none;
+    cursor: pointer
+}
+
+.move-out-button{
+    position: absolute;
+    top: 45%;
+    left: -10%;
+    padding: 15px;
+    width: 70 px;
+    border-radius:50%;
+    color:#383838;
+    background-color:#FFF3A9;
+    border: none;
+    cursor: pointer;
+    font-size: 33px;
+}
+
+
 @media screen and (max-width:376px){
     
+
+    .big{
+        max-width: 960px;
+        height: 480px;
+        margin: auto;
+        margin-top: 50px;
+    }
+    
+    .big > img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 10px;
+        box-shadow: 0px 4px  4px rgba(0,0,0,0.25);
+    }
+    
+    .small{
+        max-width: 960px;
+        height: 180px;
+        margin: auto;
+        margin-top: 40px;
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    .small > img {
+        width: 23%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 10px;
+        box-shadow: 0px 4px  4px rgba(0,0,0,0.25);
+    
+    }
+
     .container{
-        max-width:370px ;
+        max-width:350px ;
         margin: auto;
         margin-top: 100px;
-        border: 2px solid #FFF3A9;
+        border: 2pxs solid #FFF3A9;
         border-radius: 10px;
         position: relative;
         padding: 20px;
+        margin: 60px 20px 40px 20px;
     }
     
-    .container > p{
+    .containera > p{
         line-height: 30px;
+        font-size: 18px;
     }
     
     .name{
         background-color: #FFF3A9;
-        width: 200px;
+        max-width: 130px;
         height: 40px;
         color:  #025A78;
         display: flex;
@@ -111,6 +226,10 @@ h2{
         position: absolute;
         top: -20px;
         left: -2px;
+    }
+
+    .name > h3{
+        font-size: 22px;
     }
     
     .information{
@@ -130,6 +249,10 @@ h2{
         background-color:#FFF3A9;
         border: none;
         cursor: pointer
+    }
+
+    .cart{
+        display: none;
     }
 
 }

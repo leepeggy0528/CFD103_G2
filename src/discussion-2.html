@@ -10,6 +10,7 @@
     <title>Document</title>
 </head>
 <body>
+    @@include('./layout/login.html')
     @@include('./layout/header.html')
 
     <div class="talk"><h2>討論趣</h2></div>
@@ -968,7 +969,7 @@
                 </div>
             </div>
 
-            <div class="btn-box">
+            <div class="btn-boxY">
                 <button class="btnYellow" type="submit">送出</button>
             </div>
 
@@ -991,10 +992,9 @@
    
     });
 
-    var btnYellow = document.querySelector(".btnYellow");
+    var btnYellow = document.querySelector(".screen-form .btn-boxY .btnYellow");
       btnYellow.onclick = function () {
       alert("確定送出嗎?");
-      
       };
       
     $("input[type=file]").on("change", function () {
@@ -1017,7 +1017,7 @@
    
 </script>
 
-
+<script src="./js/loginLightbox.js"></script>
   @@include('./layout/footer.html')
 </body>
 
