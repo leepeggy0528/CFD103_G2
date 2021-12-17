@@ -1,6 +1,7 @@
 @import 'style';
 // @import 'login';
 
+
 textarea{
     resize: none;
 }
@@ -25,32 +26,62 @@ textarea{
         .img_group{
             flex: 0 1 600px;
             margin: 20px;
-            .pic_show{
+            position: relative;
+            .img_slider{
                 width: 100%;
                 height: 500px;
                 background-color: rgb(189, 189, 189);
-                overflow: hidden;
-                display: flex;
-                li{
-                    flex: 1 0 100%;
+                // overflow: hidden;
+                .pic_show{
+                    width: 100%;
                     height: 100%;
-                    &:hover{
-                        text-decoration: none;
-                    }
-                    img{
-                        width: 100%;
+                    display: flex;
+                    position: relative;
+                    left: -100%;
+                    li{
+                        flex: 1 0 100%;
                         height: 100%;
-                        object-fit: cover;
-                        object-position: center;
-                        vertical-align: top;
+                        &:hover{
+                            text-decoration: none;
+                        }
+                        img{
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                            object-position: center;
+                            vertical-align: top;
+                        }
                     }
                 }
+                
+            }
+            #img_to_left{
+                position: absolute;
+                display: block;
+                width: 20px;
+                height: 30px;
+                left: 0;
+                clip-path: polygon(100% 0%, 75% 50%, 100% 100%, 25% 100%, 0% 50%, 25% 0%);
+                top: 50%;
+                transform: translate(-50%, -50%);
+                background-color: $mainBlue;
+            }
+            #img_to_right{
+                position: absolute;
+                display: block;
+                width: 20px;
+                height: 30px;
+                right: 0;
+                top: 50%;
+                clip-path: polygon(75% 0%, 100% 50%, 75% 100%, 0% 100%, 25% 50%, 0% 0%);
+                transform: translate(50%,-50%);
+                background-color: $mainBlue;
             }
         }
         .upload{
                 flex: 0 0 60px;
                 align-self: center;
-                margin-bottom: $margin*2;
+                margin: 0 $margin $margin*2 $margin;
             label{
                 display: block;
                 width: 100%;
@@ -82,34 +113,29 @@ textarea{
             }
         }
         h3{
+            flex: 1 1 1200px;
             font-size: $font-5;
             @include borderR();
             color: $mainBlue;
-            background-color: $subYellow;
-            flex: 1 1 1200px;
             height: 50px;
             line-height: 50px;
             margin-bottom: $margin*2 ;
             padding: $padding*.5 $padding;
+            background-color: $subYellow;
         }
         .arrange{
-            flex: 0 1 550px;
+            flex: 1 1 560px;
             box-sizing: border-box;
             @include borderR();
             border: 1px solid $bgGray;
-            margin: 0 $margin*2.5 $margin*2;
+            margin: 0 $margin $margin*2;
             padding: $padding;
             li{
-                font-size: 0;
-                height: 50px;
+                display: flex;
                 margin-bottom: $margin*2;
-                &:hover{
-                    text-decoration: none;
-                }
-                
                 label{
                     font-size: $font-3;
-                    width: 20%;
+                    width: 130px;
                     height: 50px;
                     line-height: 50px;
                     margin-right: 10px;
@@ -117,39 +143,45 @@ textarea{
                 .dic{
                     display: inline-block;
                     font-size: $font-3;
-                    height: 30px;
-                    line-height: 30px;
-                    position: relative;
-                    bottom: 5px;
-                }
-                input{
-                    width: 150px;
-                    height: 30px;
-                    border: none;
+                    height: 50px;
+                    line-height: 50px;
                     vertical-align: top;
-                    font-size: $p;
-                    border-bottom: 1px solid $tagGray;
-                    position: relative;
-                    top: 5px;
-                    // background-color: rgb(139, 181, 201);
+                    padding: 0 $padding;
+                }
+                p{
+                    padding: 0;
+                    input{
+                        width: 150px;
+                        height: 50px;
+                        border: none;
+                        font-size: $p;
+                        background-color: $bgGray;
+                        @include borderR();
+                    }
+                }
+                &:nth-child(2){
+                    p{
+                        input{       
+                           margin-bottom: $margin;
+                        }
+                    }
                 }
                 &:nth-child(6){
-                    input{
-                        width: 30%;
-                        // background-color: #faf;
+                    p{
+                        input{       
+                            width: 50px;
+                            text-align: center;
+                        }
                     }
                 } 
-                &:nth-child(3), &:nth-child(4), &:nth-child(5){
-                    label{
-                        display: inline-block;
-                        width: 110px;
-                    }
-                }
                 select{
                     width: 50%;
-                    height: 100%;
-                    vertical-align: top;
+                    height: 50px;
+                    text-align: center;
                     font-size: $font-2;
+                    background-color: $bgGray;
+                    border: none;
+                    @include borderR();
                     &:focus{
                         outline: none;
                     }
@@ -157,17 +189,17 @@ textarea{
             }
         }
         .detail{
-            flex: 0 1 550px;
+            flex: 1 1 560px;
             box-sizing: border-box;    
-            padding: 20px 10px;
-            margin: 0 $margin*2.5 $margin*2;
-            border: 1px solid  $bgGray;
+            border: 1px solid $bgGray;
             @include borderR();
+            margin: 0 $margin $margin*2;
+            padding: $padding;
             position: relative;
             .party_day{
                 font-size: $font-4;
                 color: $mainBlue;
-                width: 45%;
+                width: 80%;
                 position: relative;
                 &::after{
                     content: "";
@@ -357,7 +389,7 @@ textarea{
         }
         .btnBlue{
             display: flex;
-            margin: 20px auto;
+            margin: 50px auto 0;
             padding: 15px 20px;
             border: none;
             font-size: $font-4;
