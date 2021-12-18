@@ -11,6 +11,7 @@
 </head>
 
 <body>
+    @@include('./layout/login.html')
     @@include('./layout/header.html')
     <div class='sort'>
         <a class="sortFocus">熱門聚會</a>
@@ -21,6 +22,33 @@
         <div class="iFilter">
             <img id="filterIcon" src="./images/icon/filter.png" alt="">
         </div>
+
+
+        <form id="checkTheme">
+            <!-- 主題 -->
+            <input type="checkbox" name="theme" id="all" checked>
+            <input type="checkbox" name="theme" id="food">
+            <input type="checkbox" name="theme" id="night_market">
+            <input type="checkbox" name="theme" id="sport">
+            <input type="checkbox" name="theme" id="learning">
+            <input type="checkbox" name="theme" id="casual">
+            <input type="checkbox" name="theme" id="puzzle">
+            <input type="checkbox" name="theme" id="trip">
+            <input type="checkbox" name="theme" id="shopping">
+            <br>
+            <!-- 地區 -->
+            <input type="checkbox" name="loc" id="">
+            <input type="checkbox" name="loc" id="">
+            <input type="checkbox" name="loc" id="">
+            <input type="checkbox" name="loc" id="">
+            <input type="checkbox" name="loc" id="">
+            <input type="checkbox" name="loc" id="">
+            <input type="checkbox" name="loc" id="">
+            <input type="checkbox" name="loc" id="">
+            <input type="checkbox" name="loc" id="">
+            <input type="checkbox" name="loc" id="">
+            <input type="checkbox" name="loc" id="">
+        </form>
         <!--======篩選器======-->
         <section class="filter">
             <div class="filter-wrapper">
@@ -32,40 +60,40 @@
                 <div class="filter-main">
                     <ul class="theme">
                         <!-- <li>主題</li> -->
-                        <li class="filterFocus">全部</li>
-                        <li>美食</li>
-                        <li>夜市</li>
-                        <li>運動</li>
-                        <li>學習</li>
-                        <li>休閒</li>
-                        <li>燒腦</li>
-                        <li>旅行</li>
-                        <li>購物</li>
+                        <li><label for="all" class="filterFocus">全部</label></li>
+                        <li><label for="food">美食</label></li>
+                        <li><label for="night_market">夜市</label></li>
+                        <li><label for="sport">運動</label></li>
+                        <li><label for="learning">學習</label></li>
+                        <li><label for="casual">休閒</label></li>
+                        <li><label for="puzzle">燒腦</label></li>
+                        <li><label for="trip">旅行</label></li>
+                        <li><label for="shopping">購物</label></li>
                     </ul>
                     <ul class="location">
                         <!-- <li>地區</li> -->
                         <li class="filterFocus">全部</li>
-                        <li>宜蘭縣</li>
-                        <li>基隆市</li>
-                        <li>台北市</li>
-                        <li>新北市</li>
-                        <li>桃園市</li>
-                        <li>新竹市</li>
-                        <li>新竹縣</li>
-                        <li>苗栗縣</li>
-                        <li>台中市</li>
-                        <li>彰化縣</li>
-                        <li>南投縣</li>
-                        <li>雲林縣</li>
-                        <li>嘉義縣</li>
-                        <li>台南市</li>
-                        <li>高雄市</li>
-                        <li>屏東縣</li>
-                        <li>花蓮縣</li>
-                        <li>台東縣</li>
-                        <li>澎湖縣</li>
-                        <li>金門縣</li>
-                        <li>馬祖縣</li>
+                        <li><label for="">宜蘭縣</label></li>
+                        <li><label for="">基隆市</label></li>
+                        <li><label for="">台北市</label></li>
+                        <li><label for="">新北市</label></li>
+                        <li><label for="">桃園市</label></li>
+                        <li><label for="">新竹市</label></li>
+                        <li><label for="">新竹縣</label></li>
+                        <li><label for="">苗栗縣</label></li>
+                        <li><label for="">台中市</label></li>
+                        <li><label for="">彰化縣</label></li>
+                        <li><label for="">南投縣</label></li>
+                        <li><label for="">雲林縣</label></li>
+                        <li><label for="">嘉義縣</label></li>
+                        <li><label for="">台南市</label></li>
+                        <li><label for="">高雄市</label></li>
+                        <li><label for="">屏東縣</label></li>
+                        <li><label for="">花蓮縣</label></li>
+                        <li><label for="">台東縣</label></li>
+                        <li><label for="">澎湖縣</label></li>
+                        <li><label for="">金門縣</label></li>
+                        <li><label for="">馬祖縣</label></li>
                     </ul>
                 </div>
             </div>
@@ -354,6 +382,8 @@
         </section>
     </div>
     @@include('./layout/footer.html')
+    <script src="./js/loginLightbox.js"></script>
+
 </body>
 
 </html>
