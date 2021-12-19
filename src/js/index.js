@@ -2,7 +2,7 @@ $(document).ready(function(){
     
     $(window).on('load',function(){
         $('.join_us .step > h3').delay(300).animate({
-            left: '28px',
+            left: '32px',
             opacity: 1,
         },300);
 
@@ -43,8 +43,8 @@ $(document).ready(function(){
                     left: 0,
                 },300);
             }
-
         }
+
         if(windowsTop >= startPartyTop - showHeight){
             for(let i=1;i<=6;i++){
                 $(`.start_party .card_group li:nth-of-type(${i})`).delay(300*i).animate({
@@ -52,11 +52,12 @@ $(document).ready(function(){
                 },300);
             }
         }
+
         if(windowsTop >= commentTop - showHeight){
             for(let i=1;i<=3;i++){
-                $(`.comment_board .comment_group .comment:nth-of-type(${i})`).delay(300*i).animate({
+                $(`.comment_board .comment_group li:nth-of-type(${i})`).delay(600*i).animate({
                     opacity: 1,
-                    left: 0,
+                    right: '0px',
                 },300);
             }
         }

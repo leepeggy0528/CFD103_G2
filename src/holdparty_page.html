@@ -38,7 +38,7 @@
                     <!-- 2 -->
                     <li>
                         <label for="">活動時間</label>
-                        <p><input type="date" required><span class="dic">~</span><input type="date" required></p>
+                        <p><input type="date" required><span class="dic">共</span><input  class="party_totalday" type="number" min="1" max="5" required><span class="dic">天</span></p>
                     </li>
                     <!-- 3 -->
                     <li>
@@ -107,18 +107,27 @@
                     <ul class="place_group place_group_show">
                         <!-- <li class="place">
                             <p class="input_time">SAMPLE</p>
-                            <h2>SAMPLE</h2>
+                            <h2 class="place_view">SAMPLE</h2>
+                            <span class="place_adress" style="display:none"></span>
                              <span class="delect_place">X</span>
                         </li> -->           
                         <li class="add_place"><p>+</p></li>
-                        <li class="delect_places">刪除</li>
+                        <!--<li class="delect_places">刪除</li>-->
                     </ul>
+
+                    <ul class="day_lists" id="day_lists">
+                        <li class="day_list day_list_active">
+                            <p>Day1</p>
+                        </li>              
+                    </ul>
+
+
                     <ul class="day_lists" id="day_lists">
                         <!-- <li class="day_list" style="display:none"><p>SAMPLE</p></li> -->
                         <li class="day_list day_list_active">
                             <p>Day1</p>
                         </li>              
-                        <li class="add_day"><p>+</p></li>
+                        <!--<li class="add_day"><p>+</p></li>-->
                     </ul>
                 </div>
                 <h3>活動描述</h3>
@@ -126,7 +135,7 @@
                     <textarea id='party_discribe' maxlength="200"></textarea>
                     <p class="limit_words"><span id="limit_words_count">0</span>/200</p>
                 </div>
-                <button type="button" class="btnBlue">
+                <button type="button" class="btnBlue" id="hold_party">
                     立即建團
                     <div class="pic">
                         <img src="images/leo/coin.png" alt="">
