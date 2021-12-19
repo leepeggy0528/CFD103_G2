@@ -1,6 +1,7 @@
 let saveActivity;
 let filterBtn;
 let filter;
+let themeLabel, themeCheck;
 
 // sort-nav focus樣式
 function sortFocus(e) {
@@ -21,24 +22,20 @@ function switchFilter() {
 
 //選擇活動focus效果
 function themeFocus(e) {
-    let ul = document.querySelector(".filter-main .theme");
-    let li = e.target;
-    // console.log(ul.children[0].classList.value);
-    if (li.innerText != "全部") {
-        ul.firstElementChild.classList.remove("filterFocus");
-        li.classList.toggle("filterFocus");
-        // while (a = 0) {
-        // for (let j = 0; j < ul.children.length; j++) {
-        //     console.log(ul.children[j].classList.value.includes("filterFocus"));
-        // }
-        // }
+    let label = e.target;
+    if (label.innerText != "全部") {
+        themeLabel[0].classList.remove("filterFocus");
+        label.classList.add("filterFocus");
+        themeCheck[0].checked = false;
 
-    } if (li.innerText == "全部") {
-        for (let i = 0; i < ul.children.length; i++) {
-            ul.children[i].classList.remove("filterFocus");
 
+    } else if (label.innerText == "全部") {
+        for (let i = 0; i < themeLabel.length; i++) {
+            themeLabel[i].classList.remove("filterFocus");
+            themeCheck[i].checked = false;
         }
-        ul.firstElementChild.classList.add("filterFocus");
+        themeLabel[0].classList.add("filterFocus");
+
     }
 
 }
@@ -82,13 +79,20 @@ function init() {
     filterBtn.onclick = switchFilter;
 
     // 選取主題地點focus效果
-    document.querySelector(".filter-main .theme").onclick = themeFocus;
+    themeCheck = document.querySelectorAll("#checkTheme input");
+    console.log(themeCheck);
+    themeLabel = document.querySelectorAll(".filter-main .theme li label");
+
+    for (let i = 0; i < themeLabel.length; i++) {
+        themeLabel[i].onclick = themeFocus;
+    }
+
+
 
     // 下拉式選單
     let selectArea = document.querySelector("#selectArea");
     let optionAll = document.querySelectorAll("#selectLoc>option");
     let optionNorth = document.querySelectorAll("#selectLoc .north");
-    console.log(optionNorth);
     selectArea.onchange = () => {
         // alert(selectArea.value);
         switch (selectArea.value) {
@@ -103,6 +107,8 @@ function init() {
                         optionAll[l].style.display = "none";
                     } else {
                         optionAll[l].style.display = "block";
+                        optionAll[0].style.display = 'block';
+                        optionAll[0].selected = 'true';
                     }
 
                 }
@@ -114,6 +120,8 @@ function init() {
                         optionAll[l].style.display = "none";
                     } else {
                         optionAll[l].style.display = "block";
+                        optionAll[0].style.display = 'block';
+                        optionAll[0].selected = 'true';
                     }
 
                 }
@@ -124,6 +132,8 @@ function init() {
                         optionAll[l].style.display = "none";
                     } else {
                         optionAll[l].style.display = "block";
+                        optionAll[0].style.display = 'block';
+                        optionAll[0].selected = 'true';
                     }
                 }
                 break;
@@ -133,6 +143,8 @@ function init() {
                         optionAll[l].style.display = "none";
                     } else {
                         optionAll[l].style.display = "block";
+                        optionAll[0].style.display = 'block';
+                        optionAll[0].selected = 'true';
                     }
                 }
                 break;
