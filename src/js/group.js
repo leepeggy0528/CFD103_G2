@@ -2,6 +2,7 @@ let saveActivity;
 let filterBtn;
 let filter;
 let themeLabel, themeCheck;
+let locLabel, locCheck;
 
 // sort-nav focus樣式
 function sortFocus(e) {
@@ -20,14 +21,13 @@ function switchFilter() {
     filter.classList.toggle("show-filter");
 }
 
-//選擇活動focus效果
+//選擇活動
 function themeFocus(e) {
     let label = e.target;
     if (label.innerText != "全部") {
+        label.classList.toggle("filterFocus");
         themeLabel[0].classList.remove("filterFocus");
-        label.classList.add("filterFocus");
         themeCheck[0].checked = false;
-
 
     } else if (label.innerText == "全部") {
         for (let i = 0; i < themeLabel.length; i++) {
@@ -35,10 +35,25 @@ function themeFocus(e) {
             themeCheck[i].checked = false;
         }
         themeLabel[0].classList.add("filterFocus");
-
     }
-
 }
+//選擇地點
+function locFocus(e) {
+    let label = e.target;
+    if (label.innerText != "全部") {
+        label.classList.toggle("filterFocus");
+        locLabel[0].classList.remove("filterFocus");
+        locCheck[0].checked = false;
+
+    } else if (label.innerText == "全部") {
+        for (let i = 0; i < locLabel.length; i++) {
+            locLabel[i].classList.remove("filterFocus");
+            locCheck[i].checked = false;
+        }
+        locLabel[0].classList.add("filterFocus");
+    }
+}
+
 // 收藏活動 
 
 function switchSaveActivity(e) {
@@ -78,13 +93,21 @@ function init() {
     filterBtn = document.querySelector('#filterIcon');
     filterBtn.onclick = switchFilter;
 
-    // 選取主題地點focus效果
-    themeCheck = document.querySelectorAll("#checkTheme input");
-    console.log(themeCheck);
+    // 選取主題
+    themeCheck = document.querySelectorAll("#checkFilter .themeDiv input");
     themeLabel = document.querySelectorAll(".filter-main .theme li label");
 
     for (let i = 0; i < themeLabel.length; i++) {
         themeLabel[i].onclick = themeFocus;
+    }
+
+
+    //選取地點
+    locCheck = document.querySelectorAll("#checkFilter .locDiv input");
+    locLabel = document.querySelectorAll(".filter-main .location li label");
+    console.log(locCheck);
+    for (let i = 0; i < locLabel.length; i++) {
+        locLabel[i].onclick = locFocus;
     }
 
 
@@ -94,7 +117,6 @@ function init() {
     let optionAll = document.querySelectorAll("#selectLoc>option");
     let optionNorth = document.querySelectorAll("#selectLoc .north");
     selectArea.onchange = () => {
-        // alert(selectArea.value);
         switch (selectArea.value) {
             case "全部":
                 for (let i = 0; i < optionAll.length; i++) {
@@ -110,7 +132,6 @@ function init() {
                         optionAll[0].style.display = 'block';
                         optionAll[0].selected = 'true';
                     }
-
                 }
 
                 break;
@@ -123,7 +144,6 @@ function init() {
                         optionAll[0].style.display = 'block';
                         optionAll[0].selected = 'true';
                     }
-
                 }
                 break;
             case "南部":
@@ -148,7 +168,6 @@ function init() {
                     }
                 }
                 break;
-
         }
     }
 
