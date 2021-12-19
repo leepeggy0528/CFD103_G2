@@ -14,29 +14,31 @@
         <section class="main_plan">
             <form action="#" class="container">
                 <div class="img_group">
-                    <ul class="pic_show">
-                        <!-- 圖片新增在此瀏覽  用slider 呈現-->
-                        <li>
-                            <img src="images/leo/person_E.jfif" alt="">
-                        </li>
-                    </ul>
-                </div> 
+                    <div class="img_slider">
+                        <ul class="pic_show" id="preview">
+                            <!-- 圖片新增在此瀏覽  用slider 呈現-->
+                            <!-- <li></li> -->
+                        </ul>
+                    </div>
+                    <span id="img_to_left"></span>
+                    <span id="img_to_right"></span>
+                </div>
                 <div class="upload">
                     <!-- 點擊上傳圖片 -->
-                    <input type="file" name="upFile" id="upFile" style="display:none" required>
-                    <label for="upFile">
+                    <input type="file" name="files[]" id="browse" style="display:none" required multiple>
+                    <label for="browse">
                 </div>
                 <h3>行程安排</h3>
                 <ul class="arrange">
                     <!-- 1 -->
                     <li>
                         <label for="">活動名稱</label>
-                        <input type="text" required>
+                        <p><input type="text" required></p>
                     </li>
                     <!-- 2 -->
                     <li>
                         <label for="">活動時間</label>
-                        <input type="date" required><span class="dic">~</span><input type="date" required>
+                        <p><input type="date" required><span class="dic">共</span><input  class="party_totalday" type="number" min="1" max="5" required><span class="dic">天</span></p>
                     </li>
                     <!-- 3 -->
                     <li>
@@ -92,12 +94,12 @@
                     <!-- 6 -->
                     <li>
                         <label for="">人數</label>
-                        <input type="number" required><span class="dic">~</span> <input type="number" required>
+                        <p><input type="number" required><span class="dic">~</span><input type="number" required></p>
                     </li>
                     <!-- 7 -->
                     <li>
                         <label for="">報名截止時間</label>
-                        <input type="time" required>
+                        <p><input type="time" required></p>
                     </li>
                 </ul>
                 <div class="detail">
@@ -105,19 +107,27 @@
                     <ul class="place_group place_group_show">
                         <!-- <li class="place">
                             <p class="input_time">SAMPLE</p>
-                            <h2>SAMPLE</h2>
+                            <h2 class="place_view">SAMPLE</h2>
+                            <span class="place_adress" style="display:none"></span>
                              <span class="delect_place">X</span>
                         </li> -->           
                         <li class="add_place"><p>+</p></li>
-                        <li class="delect_places">刪除</li>
+                        <!--<li class="delect_places">刪除</li>-->
                     </ul>
+
+                    <ul class="day_lists" id="day_lists">
+                        <li class="day_list day_list_active">
+                            <p>Day1</p>
+                        </li>              
+                    </ul>
+
+
                     <ul class="day_lists" id="day_lists">
                         <!-- <li class="day_list" style="display:none"><p>SAMPLE</p></li> -->
                         <li class="day_list day_list_active">
                             <p>Day1</p>
-                        </li>
-                        <!-- 當add_day 點案 在day_list內add_day前新增 【<li>Day2</li>】  -->                
-                        <li class="add_day"><p>+</p></li>
+                        </li>              
+                        <!--<li class="add_day"><p>+</p></li>-->
                     </ul>
                 </div>
                 <h3>活動描述</h3>
@@ -125,7 +135,7 @@
                     <textarea id='party_discribe' maxlength="200"></textarea>
                     <p class="limit_words"><span id="limit_words_count">0</span>/200</p>
                 </div>
-                <button type="button" class="btnBlue">
+                <button type="button" class="btnBlue" id="hold_party">
                     立即建團
                     <div class="pic">
                         <img src="images/leo/coin.png" alt="">
