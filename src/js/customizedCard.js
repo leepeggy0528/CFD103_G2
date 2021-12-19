@@ -1,6 +1,6 @@
 let close, open, sendCardLayer, selectCard, sendBtn, tagParent, pattern, sticker;
-
-
+let stickers, boxes;
+let stickersInBox, trashCan, theBox;
 //打開好友列
 function openSendCard() {
     sendCardLayer = document.getElementById("sendCardLayer");
@@ -46,60 +46,115 @@ function previewCardPattern(e) {
 }
 
 
-//選取貼紙的樣式
-function addStickerBg(e) {
-    e.currentTarget.classList.toggle("stickerFocus");
-    let src = e.target.src;
-    console.log("addSticker src:", src);
-    CreatStickerNode(src);
-}
-
-
-//增加貼紙到預覽畫面上
-function CreatStickerNode(selectStickerSrc) {
-    let StickerParentNode = document.querySelector('.addStickerWrap');
-    let stickerSample = document.querySelector(".sticker-item"); // 找第一個
-    let allSticker = document.querySelectorAll(".sticker-item"); // 找全部
-
-    let newSticker = stickerSample.cloneNode(true);
-    console.log("allSticker.length ", allSticker.length);
-    if (allSticker.length > 1) {
-        console.log("selectStickerSrc:", selectStickerSrc);
-        let i = 0;
-        for (i = allSticker.length - 1; i >= 1; i--) {
-            // i++;
-            console.log("src:", allSticker[i].src);
-            if (allSticker[i].src.indexOf(selectStickerSrc) != -1) {
-                removeSticker(i);
-                break;
-            } else {
-
-                StickerParentNode.appendChild(newSticker);
-                newSticker.src = selectStickerSrc;
-            }
-        }  //6
-    } else {
-        StickerParentNode.appendChild(newSticker);
-        newSticker.src = selectStickerSrc;
-    }
-
-}
-
-
-// 移除已經有在畫面上的sticker
-function removeSticker(i) {
-    let allSticker = document.querySelectorAll(".sticker-item");
-    allSticker[i].remove();
-}
-
-//先找到是否有相同src的img有的話 移除node
-
 //寄出卡片
 function sendCard(e) {
     let sendCardBtn = e.target;
     sendCardBtn.classList.add('mailed');
     sendCardBtn.innerText = "已寄出";
     sendCardBtn.disabled = "disabled";
+}
+
+//=============drag and drop================
+
+//開始拖拉
+function startDrag(e) {
+    let data = `<img class="selectCard" src="
+    ${e.target.src}">`
+    e.dataTransfer.setData('image/png', data);
+
+    // for (let j = 0; j < boxes.length; j++) {
+    //     boxes[j].style.border = "5px dashed red";
+    // }
+    for (let i = 0; i < boxes.length; i++) {
+        if (boxes[i].hasChildNodes() == true) {
+            boxes[i].style.border = "none";
+        } else {
+            boxes[i].style.border = "5px dashed red";
+        }
+
+    }
+}
+
+//結束拖拉
+function endDrag() {
+    for (let j = 0; j < boxes.length; j++) {
+        boxes[j].style.border = 'none';
+    }
+}
+
+//正在拉
+function dragOver(e) {
+    e.preventDefault();
+}
+
+//放圖
+function dropped(e) {
+    e.preventDefault();
+    e.target.innerHTML = e.dataTransfer.getData('image/png');
+    e.dataTransfer.clearData();
+
+    //註冊預覽畫面上貼紙的事件
+    stickersInBox = document.querySelectorAll('.stickerPos .box > img');
+    for (let i = 0; i < stickersInBox.length; i++) {
+        stickersInBox[i].addEventListener('dragstart', trashStartDrag);
+        stickersInBox[i].addEventListener('dragend', trashEndDrag);
+    }
+}
+
+
+//拖拉預覽畫面的貼紙，丟進垃圾桶
+function trashStartDrag(e) {
+    theBox = e.target.parentNode.classList.value;
+    console.log(e.target);
+    e.target.parentNode.style.border = "5px dashed red";
+    e.dataTransfer.setData('theBox/classlist', theBox);
+    trashCan.children[0].src = "./images/icon/trash_can_open.png";
+}
+
+
+function trashDragOver(e) {
+    e.preventDefault();
+    trashCan.children[0].src = "./images/icon/trash_can_open.png";
+}
+function trashEndDrag(e) {
+    e.preventDefault();
+    e.target.parentNode.style.border = "none";
+    trashCan.children[0].src = "./images/icon/trash_can_close.png";
+
+}
+
+function trashDragLeave(e) {
+    trashCan.children[0].src = "./images/icon/trash_can_close.png";
+}
+
+function trashDropped(e) {
+    let a = 'box ';
+    let dot = '.';
+    trashCan.children[0].src = "./images/icon/trash_can_close.png";
+    let stickerBox = document.querySelector(e.dataTransfer.getData('theBox/classlist').replace(a, dot)); //parent
+    stickerBox.style.border = "none";
+    stickerBox.removeChild(stickerBox.children[0]);
+}
+
+function drawCanvas() {
+    let canvas = document.getElementById('canvas');
+    let ctx = canvas.getContext('2d');
+
+    // 取得卡片長 & 寬 
+    let width = document.getElementById('preivewCardPattern').width;
+    let height = document.getElementById('preivewCardPattern').height;
+
+    // 設定canvas長 & 寬
+    canvas.height = height;
+    canvas.width = width;
+    canvas.style.border = '1px solid black';
+
+    //放入卡片
+    let cardImg = new Image();
+    cardImg.src = document.getElementById('preivewCardPattern').src;
+    console.log(cardImg);
+    ctx.drawImage((cardImg), 0, 0, width, height);
+
 }
 
 
@@ -123,14 +178,24 @@ function init() {
         selectCard[i].onclick = previewCardPattern;
     }
 
-
-    // 選取貼紙效果
-    sticker = document.querySelectorAll(".sticker>.pic");
-    for (let k = 0; k < sticker.length; k++) {
-        sticker[k].onclick = addStickerBg;
-        // sticker[k].addEventListener("click", addStickerBg, false);
+    //拖拉圖片
+    stickers = document.querySelectorAll('.sticker .pic img');
+    boxes = document.querySelectorAll('.box');
+    for (let i = 0; i < stickers.length; i++) {
+        stickers[i].addEventListener('dragstart', startDrag);
+        stickers[i].addEventListener('dragend', endDrag);
     }
 
+    for (let j = 0; j < boxes.length; j++) {
+        boxes[j].addEventListener('dragover', dragOver);
+        boxes[j].addEventListener('drop', dropped);
+    }
+
+    //註冊垃圾桶dropover and drop 
+    trashCan = document.getElementById('trashCan');
+    trashCan.addEventListener('dragover', trashDragOver);
+    // trashCan.addEventListener('dragleave', trashDragLeave);
+    trashCan.addEventListener('drop', trashDropped);
 
     // 開啟寄出卡片的light box
     close.onclick = closeSendCard;
@@ -145,6 +210,10 @@ function init() {
         sendBtn[i].onclick = sendCard;
     }
 
+    //canvas
+    document.getElementById('download').onclick = drawCanvas;
 
 }
+
+
 window.addEventListener("load", init, false);

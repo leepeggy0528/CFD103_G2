@@ -12,16 +12,25 @@ h2 {
 .customized-card {
     display: flex;
 
+    //預覽畫面
     .wrap-preview {
         width: 70%;
         margin: 10px;
 
         .card-preview {
             height: 450px;
-            background-color: rgb(235, 235, 235);
+            background-color: $bgYellow;
             display: flex;
             align-items: center;
+            position: relative;
             @include borderR();
+
+            #trashCan {
+                width: 50px;
+                position: absolute;
+                bottom: 25px;
+                right: 25px;
+            }
 
             .pic {
                 width: 70%;
@@ -38,24 +47,106 @@ h2 {
                     top: 50%;
                     left: 50%;
                     transform: translate(-50%, - 50%);
-                    width: 450px;
-                    height: 280px;
+                    width: 400px;
+                    height: 230px;
                     overflow: hidden;
                     box-sizing: border-box;
                     padding: 10px;
-                    line-height: 20px * 1.5;
-                    font-size: 20px;
+                    line-height: 16px * 1.5;
+                    font-size: 16px;
                     text-align: justify;
                     word-break: break-all;
                     // border: 1px solid gray;
                 }
 
-                .sticker-item {
-                    box-shadow: none;
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    width: 15%;
+                //盒子位置
+                .stickerPos {
+                    .box {
+                        width: 60px;
+                        height: 60px;
+                        position: absolute;
+
+                        >img {
+                            box-shadow: none;
+                        }
+                    }
+
+                    .box1 {
+                        top: 10px;
+                        left: 15px;
+                    }
+
+                    .box2 {
+                        top: 10px;
+                        left: 120px;
+                    }
+
+                    .box3 {
+                        top: 10px;
+                        left: 220px;
+                    }
+
+                    .box4 {
+                        top: 10px;
+                        left: 320px;
+                    }
+
+                    .box5 {
+                        top: 10px;
+                        right: 20px;
+                    }
+
+                    .box6 {
+
+                        bottom: 10px;
+                        left: 15px;
+                    }
+
+                    .box7 {
+                        bottom: 10px;
+                        left: 120px;
+                    }
+
+                    .box8 {
+                        bottom: 10px;
+                        left: 220px;
+                    }
+
+                    .box9 {
+                        bottom: 10px;
+                        left: 320px;
+                    }
+
+                    .box10 {
+                        bottom: 10px;
+                        right: 20px;
+                    }
+
+                    .box11 {
+                        bottom: 50%;
+                        left: 15px;
+                        transform: translateY(50%);
+                    }
+
+                    .box12 {
+                        bottom: 50%;
+                        right: 20px;
+                        transform: translateY(50%);
+                    }
+
+
+
+
+                }
+
+                .addStickerWrap {
+                    .sticker-item {
+                        box-shadow: none;
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 15%;
+                    }
                 }
             }
         }
@@ -105,15 +196,17 @@ h2 {
                 text-align: center;
                 background-color: rgb(231, 231, 231);
                 box-shadow: -1px 1px 3px rgba(163, 163, 163, 0.507);
-
                 margin-bottom: 10px;
                 font-size: 16px;
                 border-radius: 10px 0 0 10px;
+                color: $mainBlue;
+
             }
 
             .tag-focus {
                 background-color: $subYellow;
                 box-shadow: -1px 1px 3px rgba(187, 190, 131, 0.527);
+                font-weight: bold;
             }
 
         }
@@ -126,8 +219,8 @@ h2 {
                 height: 450px;
                 width: 100%;
                 overflow-y: scroll;
-                background-color: $subYellow;
-                background-color: blanchedalmond;
+
+                background-color: $bgYellow;
 
                 &::-webkit-scrollbar {
                     width: 8px;
@@ -144,7 +237,7 @@ h2 {
                 @include borderR();
 
                 .pic {
-                    border: 1px dashed gray;
+                    border: 2px dashed $linkBlue;
 
                     img {
                         cursor: pointer;
@@ -157,7 +250,7 @@ h2 {
                 flex-wrap: wrap;
                 align-items: center;
                 box-sizing: border-box;
-                padding: 0 10px;
+                padding: 10px 10px;
 
                 .pic {
                     width: calc(50% - 20px);
@@ -165,17 +258,13 @@ h2 {
                     padding: 10px;
                     margin: 10px;
                     @include borderR();
-
+                    background-color: rgba(255, 255, 255, 0.453);
 
                     &:hover {
-                        background-color: rgba(167, 98, 46, 0.363);
+                        background-color: darken($bgYellow, 10%);
+
                     }
                 }
-
-                .stickerFocus {
-                    background-color: rgba(167, 98, 46, 0.363);
-                }
-
             }
 
 
@@ -193,9 +282,10 @@ h2 {
                     margin: 10px 20px;
                     padding: 20px;
                     @include borderR();
+                    background-color: rgba(255, 255, 255, 0.453);
 
                     &:hover {
-                        background-color: rgba(167, 98, 46, 0.363);
+                        background-color: $subYellow;
                     }
 
                     img {
@@ -204,7 +294,7 @@ h2 {
                 }
 
                 .cardFocus {
-                    background-color: rgba(167, 98, 46, 0.363);
+                    background-color: darken($bgYellow, 10%);
                 }
             }
 
@@ -221,14 +311,18 @@ h2 {
             // padding-bottom: 15px;
             margin: 20px 0;
             font-size: 18px;
+        }
 
+
+
+        #open {
+            margin-top: -10px;
         }
     }
 }
 
 
 //lightbox
-
 .sendCardLayer {
     position: fixed;
     top: 0;
@@ -248,13 +342,10 @@ h2 {
         padding: 20px 20px;
         @include borderR();
 
-
-
-
         .iClose {
             padding: 1vh;
             width: 5vh;
-            background: darken($bgGray, 10%);
+            background: none;
             border-radius: 50%;
             border: none;
             position: absolute;
@@ -351,5 +442,105 @@ h2 {
             }
         }
 
+    }
+}
+
+@media screen and (max-width:1199px) {
+    .customized-card {
+        flex-direction: column;
+
+        .wrap-preview {
+            width: calc(100% - 20px);
+            margin: 0 10px;
+
+            .card-preview {
+                width: 100%;
+                height: auto;
+                padding: 0;
+                margin: 0;
+
+                .pic {
+                    width: 100%;
+                    padding: 10px 10px 50px 10px;
+
+                    .inputText {
+                        width: 100%;
+                        margin: 0;
+                        overflow: hidden;
+                        font-size: 3px;
+                    }
+
+                    .stickerPos {
+                        display: none;
+                    }
+                }
+            }
+
+            .write {
+                display: none;
+            }
+        }
+
+        .wrapper {
+            width: calc(100% - 20px);
+            flex-direction: column;
+
+            .tag-wrapper {
+                flex-direction: row;
+                background-color: chartreuse;
+                width: calc(100% - 20px);
+                margin: 0 10px;
+
+                >span {
+                    border-radius: 0 0 0 0;
+                    margin-bottom: 0;
+                    padding: 10px 5px;
+
+                }
+            }
+
+            .wrap-pattern {
+                width: 100%;
+
+
+                .card-pattern {
+                    width: 100%;
+
+                    box-sizing: border-box;
+                    height: 200px;
+                    overflow-x: hidden;
+
+                    .pic {
+                        margin: 10px auto;
+                        width: 90%;
+                        flex-shrink: 0;
+                    }
+                }
+
+                .sticker {
+                    width: 100%;
+                    height: 200px;
+
+
+
+                    .pic {
+                        flex-shrink: 0;
+                    }
+                }
+
+            }
+        }
+
+        .sendCardLayer {
+            z-index: 1000;
+
+            .sendCard {
+                width: calc(100% - 20px);
+
+                .iClose {
+                    display: block;
+                }
+            }
+        }
     }
 }
