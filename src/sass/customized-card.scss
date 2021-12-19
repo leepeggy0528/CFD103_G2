@@ -19,7 +19,7 @@ h2 {
 
         .card-preview {
             height: 450px;
-            background-color: $bgYellow;
+            background-color: #F3F3F3;
             display: flex;
             align-items: center;
             position: relative;
@@ -204,9 +204,10 @@ h2 {
             }
 
             .tag-focus {
-                background-color: $subYellow;
+                background-color: $linkBlue;
                 box-shadow: -1px 1px 3px rgba(187, 190, 131, 0.527);
                 font-weight: bold;
+                color: white;
             }
 
         }
@@ -220,7 +221,7 @@ h2 {
                 width: 100%;
                 overflow-y: scroll;
 
-                background-color: $bgYellow;
+                background-color: $bgGray;
 
                 &::-webkit-scrollbar {
                     width: 8px;
@@ -231,7 +232,8 @@ h2 {
                 }
 
                 &::-webkit-scrollbar-thumb {
-                    background-color: rgb(243, 248, 201);
+                    background-color: $linkBlue;
+                    border-radius: 10px;
                 }
 
                 @include borderR();
@@ -258,11 +260,10 @@ h2 {
                     padding: 10px;
                     margin: 10px;
                     @include borderR();
-                    background-color: rgba(255, 255, 255, 0.453);
+                    background-color: rgb(255, 255, 255);
 
                     &:hover {
-                        background-color: darken($bgYellow, 10%);
-
+                        background-color: $linkBlue;
                     }
                 }
             }
@@ -282,10 +283,10 @@ h2 {
                     margin: 10px 20px;
                     padding: 20px;
                     @include borderR();
-                    background-color: rgba(255, 255, 255, 0.453);
+                    background-color: rgb(255, 255, 255);
 
                     &:hover {
-                        background-color: $subYellow;
+                        background-color: $linkBlue;
                     }
 
                     img {
@@ -294,7 +295,8 @@ h2 {
                 }
 
                 .cardFocus {
-                    background-color: darken($bgYellow, 10%);
+                    background-color: $linkBlue;
+
                 }
             }
 

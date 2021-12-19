@@ -69,7 +69,7 @@ function startDrag(e) {
         if (boxes[i].hasChildNodes() == true) {
             boxes[i].style.border = "none";
         } else {
-            boxes[i].style.border = "5px dashed red";
+            boxes[i].style.border = "2px dashed red";
         }
 
     }
@@ -106,7 +106,7 @@ function dropped(e) {
 function trashStartDrag(e) {
     theBox = e.target.parentNode.classList.value;
     console.log(e.target);
-    e.target.parentNode.style.border = "5px dashed red";
+    e.target.parentNode.style.border = "2px dashed red";
     e.dataTransfer.setData('theBox/classlist', theBox);
     trashCan.children[0].src = "./images/icon/trash_can_open.png";
 }
