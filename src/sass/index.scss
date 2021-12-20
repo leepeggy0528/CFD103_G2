@@ -13,9 +13,9 @@ input:focus, textarea:focus, select:focus{
     outline: none;
 }
 
-body{
-    background-color: $mainYellow;
-}
+// body{
+//     background-color: $mainYellow;
+// }
 //加入我們(join_us)
 .join_us{  
     // &::after{
@@ -30,17 +30,30 @@ body{
     background:  linear-gradient(-30deg, $mainYellow 50%, $mainBlue 50%);
     position: relative;
     z-index: -1;
-    .pic{
-        max-width: 800px;
-        position: absolute;
-        right: 0;
-        bottom: 0;
-        z-index: 0;
-        img{
-            width: 100%;
-            vertical-align: top;
+    @media screen and (min-width:769px){
+        .pic{
+            max-width: 800px;
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            z-index: 0;
+            img{
+                width: 100%;
+                vertical-align: top;
+            }
         }
     }
+    @media screen and (max-width:768px){
+        .pic{
+           display: none;
+        }
+        .container{
+            .sign_up{
+                margin: auto;
+            }
+        }
+    }
+    
     .container{
         min-height: calc(100vh - 75px);
         font-size: $font-6;
