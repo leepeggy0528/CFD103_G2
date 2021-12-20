@@ -306,6 +306,201 @@
 .blackList-friend:hover{
     background-color: $bgYellow;
 }
+.setting{
+    background-color: transparent;
+    border: none;
+}
+.settingForBlack{
+    position: relative;
+}
+.blackList{
+    width: 100%;
+    border: none;
+    background: transparent;
+    position: absolute;
+    display: none;
+    top: 0;
+}
+//評價團員
+#layerRatingContainer,#layerRatingHost{
+    background-color: rgba(230, 230, 230, 0.801);
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 1000;
+    margin: auto;
+    display: none;
+  }
+.ratingContainer{
+    width: 60vw;
+    height: 80vh;
+    background-color: $white;
+    text-align: center;
+    padding: 20px 0;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 10px;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+.star-widget input{
+    margin: auto;
+    display: none;
+}
+.star-widget label{
+    font-size: 25px;
+    color:#444;
+    padding:50px 5px 0 5px;
+    float: right;
+    transition: all 0.2 ease;
+}
+.star-widget input:not(:checked)~label:hover,
+.star-widget input:not(:checked)~label:hover ~ label{
+    color: #fd4;
+    cursor: pointer;
+}
+.star-widget input:checked~label{
+    color: #fd4;
+}
+.star-widget-wrapper{
+    width: 210px;
+}
+.rating-form{
+    background-color: #fff;
+    border: 1px solid black;
+    width: 65%;
+    border-radius: 10px;
+    margin: auto;
+}
+.ratingHost{
+    font-weight: bold;
+    margin-right: auto;
+    padding: 30px 0 10px 5px;
+    color: black;
+}
+.rating-textarea{
+    height: 50px;
+    width: 85%;
+    overflow: hidden;
+    border-radius: 10px;
+}
+.rating-textarea textarea{
+    height: 100%;
+    width: 100%;
+    outline: none;
+    color:#444;
+    padding: 5px;
+    font-size: 18px;
+    resize:none;
+    border: none;
+    background-color: #fff;
+}
+.countWords{
+    width: 30px;
+    margin-left: auto;
+}
+.rating-btn{
+    width: 100px;
+    margin: 15px auto;
+}
+.rating-btn button{
+    padding: 5px 0;
+    width: 100%;
+    border-radius: 100px;
+    border: none;
+    background-color: #FFF3A9;
+    cursor: pointer;
+}
+.wrapperForClose{
+    width: 10%;
+    margin-left: auto;
+}
+.close-btn{
+    cursor: pointer;
+    padding:7px 10px;
+    border-radius: 50%;
+    border: none;
+    background-color: #025A78;
+    color: #fff;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
+.activityName{
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    color: #787878;
+}
+.titleBackground{
+    background-color: #FFF3A9;
+}
+.titleBackground th{
+    padding: 20px 10px;
+    font-size: 18px;
+}
+.rater{
+    color: #025A78;
+}
+.RatingMemTd{
+    padding-bottom: 20px;
+}
+.ratingMemRow{
+    border-bottom: 1px solid black;
+}
+//團主評價
+.ratingContainerHost{
+    width: 60vw;
+    height: 80vh;
+    background-color: $white;
+    text-align: center;
+    padding: 20px 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    border-radius: 10px;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+.star-widget-host{
+    margin-bottom: 10px;
+}
+.star-widget-host input{
+    display: none;
+}
+.star-widget-host label{
+    font-size: 40px;
+    color:#444;
+    padding:10px;
+    float: right;
+    transition: all 0.2 ease;
+}
+.star-widget-host input:not(:checked)~label:hover,
+.star-widget-host input:not(:checked)~label:hover ~ label{
+    color: #fd4;
+    cursor: pointer;
+}
+.star-widget-host input:checked~label{
+    color: #fd4;
+}
+.rating-textarea-host{
+    height: 200px;
+}
 @media (max-width: 767px){
     .self-wrapper{
         width: 100%;
@@ -386,5 +581,4 @@
         width: 60%;
         margin: auto;
     }
-    
 }
