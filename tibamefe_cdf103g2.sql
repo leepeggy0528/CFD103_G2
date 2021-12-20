@@ -1105,7 +1105,7 @@ ALTER TABLE `sight_pt`
 COMMIT;
 
 -- 新增使用者
-CREATE USER 'tibamefe_since2021`@`localhost' IDENTIFIED BY 'vwRBSB.j&K#E';
+CREATE USER 'tibamefe_since2021'@'localhost' IDENTIFIED BY 'vwRBSB.j&K#E';
 GRANT SELECT, INSERT, UPDATE, DELETE, FILE ON *.* TO `tibamefe_since2021`@`localhost`;
 
 
