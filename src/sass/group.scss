@@ -89,9 +89,14 @@ h3 {
     }
 }
 
+// form表單
+#checkFilter {
+    display: none;
 
+}
 
 /* ========filter======== */
+
 .iFilter {
     margin: 10px;
     text-align: right;
@@ -156,7 +161,7 @@ h3 {
                     box-sizing: border-box;
                     display: inline-block;
                     width: calc(10% - 5px);
-                    padding: 10px 0;
+                    // padding: 10px 0;
                     margin: 5px;
                     text-align: center;
                     @include borderR();
@@ -164,6 +169,13 @@ h3 {
                     &:hover {
                         background-color: $mainYellow;
                         cursor: pointer;
+                    }
+
+                    label {
+                        padding: 10px 0;
+                        display: block;
+                        width: 100%;
+                        @include borderR();
                     }
                 }
 

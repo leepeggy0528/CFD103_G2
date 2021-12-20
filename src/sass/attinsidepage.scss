@@ -38,7 +38,7 @@ h2{
 
 }
 
-.container{
+.containera{
     max-width:920px ;
     margin: auto;
     margin-top: 70px;
@@ -49,9 +49,13 @@ h2{
     padding: 20px;
 }
 
-.container > p{
+.containera > p{
     line-height: 30px;
     margin-top: 30px;
+}
+
+.container{
+    display: none;
 }
 
 .name{
@@ -86,6 +90,7 @@ h2{
     cursor: pointer
 }
 
+
 .cart{
     background-color: #F3F3F3;
     width: 330px;
@@ -112,25 +117,24 @@ h2{
     width: 230px;
     height:435px;
     margin-left: 90px;
-
-}
-
-.item{
-    display: flex;
-    margin-bottom: 10px;
-    width: 200px;
+    .item{
+        display: flex;
+        margin-bottom: 10px;
+        width: 200px;
+        
+    }
     
+    .item img {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+    }
+    
+    .item p {
+        margin: auto;
+    }
 }
 
-.item img {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-}
-
-.item p {
-    margin: auto;
-}
 
 .sure{
     width: 115px;
@@ -165,12 +169,61 @@ h2{
 
 @media screen and (max-width:376px){
     
+    .container{
+        display: block;
+    }
+    .slider {
+        width: 90%;
+        margin: auto;
+    
+        .owl-carousel {
+            position: relative;
+    
+            .owl-nav {
+    
+                .owl-prev,
+                .owl-next {
+                    position: absolute;
+                    display: flex;
+                    top: 50%;
+                    margin: 0;
+                    transform: translateY(-50%);
+    
+                    >span {
+                        display: inline-block;
+                        font-size: 80px;
+                        color: white;
+                        padding-bottom: 10px;
+                    }
+                }
+    
+                .owl-prev {
+                    left: 0;
+                }
+    
+                .owl-next {
+                    right: 0;
+                }
+            }
+    
+            .owl-dots {
+                position: absolute;
+                bottom: -10;
+                left: 50%;
+                transform: translateX(-50%);
+                z-index: 100;
+            }
+        }
+    }
+    
+
 
     .big{
         max-width: 960px;
         height: 480px;
         margin: auto;
         margin-top: 50px;
+        display: none;
     }
     
     .big > img {
@@ -179,6 +232,7 @@ h2{
         object-fit: cover;
         border-radius: 10px;
         box-shadow: 0px 4px  4px rgba(0,0,0,0.25);
+        
     }
     
     .small{
@@ -188,6 +242,7 @@ h2{
         margin-top: 40px;
         display: flex;
         justify-content: space-between;
+        display: none;
     }
     
     .small > img {
@@ -196,10 +251,11 @@ h2{
         object-fit: cover;
         border-radius: 10px;
         box-shadow: 0px 4px  4px rgba(0,0,0,0.25);
+       
     
     }
 
-    .container{
+    .containera{
         max-width:350px ;
         margin: auto;
         margin-top: 100px;
