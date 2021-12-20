@@ -79,6 +79,10 @@
     }
 }
 
+.filter-select{
+    display: none;
+}
+
 h2{
     color: $mainBlue;
     text-align: center;
@@ -240,7 +244,7 @@ h2{
         }
 
         &::-webkit-scrollbar-thumb {
-            background-color: rgb(243, 248, 201);
+            background-color: rgb(209, 209, 202);
 
         }
         .item{
@@ -319,9 +323,65 @@ h2{
 }
 
 @media screen and (max-width:376px) {
+    
+    .filter-container{
+        display: none;
+    }
+    
+    .filter-select {
+        background-color: $bgYellow;
+        padding: 10px;
+        @include borderR();
+        margin-top: 50px;
+
+        .selectWrap {
+            margin: 20px;
+
+            label {
+                color: $mainBlue;
+                font-weight: bold;
+                // width: 50%;
+
+                select {
+                    width: 30%;
+                    font-size: 16px;
+                    background-color: transparent;
+                    color: $linkBlue;
+                    margin: 0 10px;
+                    padding: 5px 15px;
+                    @include borderR();
+                    border: 1px solid $linkBlue;
+
+                    &::-webkit-scrollbar {
+                        width: 5px;
+                    }
+
+                    &::-webkit-scrollbar-track {
+                        background-color: rgb(230, 230, 230);
+                    }
+
+                    &::-webkit-scrollbar-thumb {
+                        background-color: rgb(226, 226, 226);
+                    }
+
+                }
+            }
+        }
+    }
+
+    //下拉式選單
+    .filter-select {
+        display: block;
+    }
+    
+    
+    h2{
+        margin: 30px;
+    }
+    
     .first-card{
         margin: auto;
-        margin-top: 50px;
+        margin-top: 30px;
         max-width: 300px;
         border-radius: 10px;
         border: 1px solid #bebdb7;
@@ -502,5 +562,8 @@ h2{
         }
     }
 
+    .cart{
+        display: none;
+    }
 
 }

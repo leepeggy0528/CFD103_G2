@@ -7,9 +7,12 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1.0">
 	<link rel="stylesheet" href="./css/style.css">
 	<link rel="stylesheet" href="./css/attinsidepage.css">
+	<link rel="stylesheet" href="./css/owl.carousel.min.css">
+    <link rel="stylesheet" href="./css/owl.theme.default.min.css">
+	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 	<script src="./js/jquery-3.6.0.min.js"></script>
 	<script src="./js/cart.js"></script>
-	<script src="./js/image.js"></script>
+	<script src="./js/image.js" async></script>
 	<title>淡水老街</title>
 
 </head>
@@ -22,16 +25,39 @@
 	<h2>幸福時光 Happy time</h2>
 
 	<div class="big">
-		<img id="large" src="./images/img/place001.jpg">
+		<img id="large" src="./images/sight/tamsui02.jpg">
 	</div>
 	<div class="small">
-		<img src="./images/img/place002.jpg" />
-		<img src="./images/img/place003.jpg" />
-		<img src="./images/img/place004.jpg" />
-		<img src="./images/img/place005.jpg" />
+		<img src="./images/sight/tamsui03.jpg" />
+		<img src="./images/sight/tamsui04.jpg" />
+		<img src="./images/sight/tamsui05.jpg" />
+		<img src="./images/sight/tamsui06.jpg" />
 
 	</div>
 
+	<div class="container">
+        <div class="slider">
+            <div class="owl-carousel owl-theme">
+                <div class="item">
+                    <img src="./images/sight/tamsui02.jpg">
+                </div>
+                <div class="item">
+                    <img src="./images/sight/tamsui06.jpg">
+                </div>
+                <div class="item">
+                    <img src="./images/sight/tamsui04.jpg">
+                </div>
+                <div class="item">
+                    <img src="./images/sight/tamsui05.jpg">
+                </div>
+                <div class="item">
+                    <img src="./images/sight/tamsui06.jpg">
+                </div>
+            </div>
+        </div>
+    </div>
+
+	
 	<script>
 		function showLarge(e) {
 			let small = e.target;
@@ -48,7 +74,8 @@
 		window.addEventListener("load", init, false);
 	</script>
 
-	<div class="container">
+
+	<div class="containera">
 		<div class="name">
 			<h3>淡水老街</h3>
 		</div>
@@ -64,6 +91,7 @@
 
 		<div class="joinsite"><input class="button" type="button" value="加入景點" onclick=""></div>
 	</div>
+
 
 	<div class="cart" id="cart">
 		<div class="cart-list">
@@ -98,8 +126,48 @@
 
 	</div>
 
+
 	<script src="./js/loginLightbox.js"></script>
 	@@include('./layout/footer.html')
+	<script src="./js/owl.carousel.min.js"></script>
+
+
+	<script>
+
+		$(document).ready(function () {
+			$(".owl-carousel").owlCarousel();
+		});
+
+		var owl = $('.owl-carousel');
+		$('.owl-carousel').owlCarousel({
+			loop: true,
+			margin: 10,
+			nav: true,
+
+			autoplay: true,
+			autoplayTimeout: 3000,
+			autoplayHoverPause: true,
+			responsive: {
+				0: {
+					items: 1
+				},
+				600: {
+					items: 1
+				},
+				1024: {
+					items: 1,
+					stagePadding: 250,
+				}
+			}
+		});
+		$('.play').on('click', function () {
+			owl.trigger('play.owl.autoplay', [5000])
+		});
+		$('.stop').on('click', function () {
+			owl.trigger('stop.owl.autoplay')
+		});
+
+	</script>
 
 </body>
 
