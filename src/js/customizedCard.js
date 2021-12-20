@@ -1,6 +1,7 @@
 let close, open, sendCardLayer, selectCard, sendBtn, tagParent, pattern, sticker;
 let stickers, boxes;
 let stickersInBox, trashCan, theBox;
+let canvas;
 //打開好友列
 function openSendCard() {
     sendCardLayer = document.getElementById("sendCardLayer");
@@ -111,7 +112,6 @@ function trashStartDrag(e) {
     trashCan.children[0].src = "./images/icon/trash_can_open.png";
 }
 
-
 function trashDragOver(e) {
     e.preventDefault();
     trashCan.children[0].src = "./images/icon/trash_can_open.png";
@@ -136,8 +136,9 @@ function trashDropped(e) {
     stickerBox.removeChild(stickerBox.children[0]);
 }
 
+//畫canvas
 function drawCanvas() {
-    let canvas = document.getElementById('canvas');
+    canvas = document.getElementById('canvas');
     let ctx = canvas.getContext('2d');
 
     // 取得卡片長 & 寬 
@@ -149,13 +150,31 @@ function drawCanvas() {
     canvas.width = width;
     canvas.style.border = '1px solid black';
 
-    //放入卡片
+    // 放入卡片
     let cardImg = new Image();
     cardImg.src = document.getElementById('preivewCardPattern').src;
-    console.log(cardImg);
     ctx.drawImage((cardImg), 0, 0, width, height);
 
+    // 取得貼紙位置
+    let cvsBoxes = document.querySelectorAll('.stickerPos .box');
+    for (let i = 0; i < cvsBoxes.length; i++) {
+
+        if (cvsBoxes[i].hasChildNodes() == true) {
+            let cvsSticker = cvsBoxes[i].children[0];
+            let sitckerImg = new Image();
+            sitckerImg.src = cvsSticker.src;
+            ctx.drawImage((sitckerImg), cvsBoxes[i].offsetLeft, cvsBoxes[i].offsetTop, cvsSticker.width, cvsSticker.height);
+        }
+    }
+
+    // //下載canvas圖檔
+    // downloadCVS()
 }
+
+// function downloadCVS() {
+//     canvas =
+// }
+
 
 
 function init() {
@@ -200,10 +219,8 @@ function init() {
     // 開啟寄出卡片的light box
     close.onclick = closeSendCard;
 
-
     // 關閉寄出卡片的light box
     open.onclick = openSendCard;
-
 
     //寄出卡片light box內的寄送按鈕
     for (let i = 0; i < sendBtn.length; i++) {
@@ -212,7 +229,6 @@ function init() {
 
     //canvas
     document.getElementById('download').onclick = drawCanvas;
-
 }
 
 
