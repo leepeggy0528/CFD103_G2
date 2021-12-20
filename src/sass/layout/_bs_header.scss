@@ -58,6 +58,12 @@
             }
         }
       }
+      .active{
+        background-color: $mainBlue;
+        a{
+          color: $white;
+        }
+      }
       .header {
         font-size: $font-3;
         text-transform: uppercase;
@@ -69,6 +75,7 @@
         }
       }
     }
+    
   }
 
   .navbar{
