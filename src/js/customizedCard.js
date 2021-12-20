@@ -1,6 +1,7 @@
 let close, open, sendCardLayer, selectCard, sendBtn, tagParent, pattern, sticker;
 let stickers, boxes;
 let stickersInBox, trashCan, theBox;
+let canvas;
 //打開好友列
 function openSendCard() {
     sendCardLayer = document.getElementById("sendCardLayer");
@@ -137,7 +138,7 @@ function trashDropped(e) {
 
 //畫canvas
 function drawCanvas() {
-    let canvas = document.getElementById('canvas');
+    canvas = document.getElementById('canvas');
     let ctx = canvas.getContext('2d');
 
     // 取得卡片長 & 寬 
@@ -163,17 +164,17 @@ function drawCanvas() {
             let sitckerImg = new Image();
             sitckerImg.src = cvsSticker.src;
             ctx.drawImage((sitckerImg), cvsBoxes[i].offsetLeft, cvsBoxes[i].offsetTop, cvsSticker.width, cvsSticker.height);
-
-            console.log("sticker top", cvsSticker.offsetTop);
-            console.log("sticker left", cvsSticker.offsetLeft);
-            console.log("cvs.src:", cvsSticker.src);
-            console.log("cvs.width:", cvsSticker.width);
-            console.log("cvs.heigth:", cvsSticker.height);
-            console.log("cvs left:", cvsBoxes[i].offsetLeft);
-            console.log("cvs top:", cvsBoxes[i].offsetTop);
         }
     }
+
+    // //下載canvas圖檔
+    // downloadCVS()
 }
+
+// function downloadCVS() {
+//     canvas =
+// }
+
 
 
 function init() {
