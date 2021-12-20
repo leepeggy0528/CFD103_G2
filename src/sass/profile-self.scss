@@ -306,6 +306,10 @@
 .blackList-friend:hover{
     background-color: $bgYellow;
 }
+.blackList{
+    border: none;
+    background: transparent;
+}
 //評價團員
 #layerRatingContainer,#layerRatingHost{
     background-color: rgba(230, 230, 230, 0.801);
