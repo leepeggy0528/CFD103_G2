@@ -5,6 +5,28 @@
 @import './module/btn';
 main{
     padding-left: 220px;
+    section{
+      h2{
+        font-size: $h2;
+        color: $mainBlue;
+        font-weight: bold;
+        margin-bottom: 10px;
+        position: relative;
+        &::after{
+          content: "";
+          position: absolute;
+          border: #0e8eb9 2px solid;
+          top: 35px;
+          left: 25px;
+          width: 30%;
+        }
+      }
+      &:last-child{
+        h2{
+          margin-bottom: 40px;
+        }
+      }
+    }
 }
 
 
@@ -86,7 +108,7 @@ main{
     box-shadow: none !important; 
   }
 
-  .btn {
+.btn {
     float: right;
     padding: 10px 20px;
     font-size: 14px;
@@ -118,4 +140,137 @@ main{
       margin: auto 0;
     }
   }
+}
+
+#view {
+  background-color: rgba(0, 0, 0, 0.199);
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 1;
+  #fork {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    color: white;
+    cursor: pointer;
+  }
+  .container-c {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 15%;
+    .ui-card {
+      height: 20rem;
+      width: 45rem;
+      position: relative;
+      z-index: 1;
+      transform: scale(0.6) translateY(-2rem);
+      opacity: 0;
+      cursor: pointer;
+      pointer-events: none;
+      transition: 1s;
+      img{
+        width: 100%;
+      }
+    }
+    .ui-card.active {
+      z-index: 3;
+      transform: scale(1) translateY(0) translateX(0);
+      opacity: 1;
+      pointer-events: auto;
+      transition: 1s;
+      left:-400px;
+      }
+      .ui-card.prev,.ui-card.next {
+      z-index: 2;
+      transform: scale(0.8) translateY(-1rem) translateX(0);
+      opacity: 0.6;
+      pointer-events: auto;
+      transition: 1s;
+      left:-400px;
+      }
+  }
+}
+
+
+.input-block {
+	margin-bottom: 20px;
+  label {
+    margin-right: 5px;
+    font-size: 14px;
+    color: #73b9b9;
+  }
+  input {
+    display: block;
+    width: 100%;
+    margin-top: 8px;
+    padding-right: 15px;
+    padding-left: 15px;
+    font-size: 16px;
+    line-height: 40px;
+    color: #3b4465;
+    background: #eef9fe;
+    border: 1px solid #cddbef;
+    @include borderR(5px);
+  }
+  select {
+      height: 40px;
+      width: 80%;
+      padding-left: 10px;
+      color: #3b4465;
+      background: #eef9fe;
+      border: 1px solid #cddbef;
+      @include borderR(5px);
+  }
+}
+
+.tselect{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  input[type="tel"] {
+      width: 80%;
+      margin-left: 10px;
+  }
+  .input-block {
+    &:first-child{
+      width: 50%;
+      margin-right: 20px;
+    }
+    &:nth-child(2){
+      display: flex;
+      align-items: center;
+  }
+    }
+}
+
+#add {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #0000009e;
+  .signup {
+    width: 40%;
+    margin: 50px auto;
+    background: rgb(255, 252, 226);
+    padding: 30px;
+    @include borderR();
+    h2{
+      font-size: $h2;
+      text-align: center;
+      color: $mainBlue;
+      margin-bottom: 10px;
+    }
+    .form_btn {
+      display: flex;
+      justify-content: space-evenly;
+      flex-direction: row-reverse;
+  }
+}
 }
