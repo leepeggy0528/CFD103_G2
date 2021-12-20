@@ -167,10 +167,14 @@ margin: auto;
     display: flex;
 }
 
-.pic img{
-    border-radius: 10px;
-    width: 100%;
+.pic{
+    width: 150px;
 }
+.pic img{
+    object-fit: fill;
+    width: 100%;
+    height: 100%;
+  }
 
 .me{
     display: flex;
