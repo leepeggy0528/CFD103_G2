@@ -2,6 +2,6 @@
 //     $(e.target).closest("div").toggleClass("openControl");
 //    });
 
-$("#afterLogin").click(function (e) {
+$("#afterLogin").click(function () {
     $(".smallMemInfo").toggleClass("openInfo");
    });
