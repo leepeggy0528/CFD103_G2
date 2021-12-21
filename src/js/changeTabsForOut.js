@@ -23,17 +23,17 @@ function currentStatus(t) {
 //加入黑名單
 blackList.onclick=addToBlackList;
 function addToBlackList(){
-  if(blackIcon.innerText=="加入黑名單"){
-    blackIcon.innerText = "已加入黑名單";
+  if(blackIcon.innerText=="加黑名單"){
+    blackIcon.innerText = "解除黑名單";
   }else{
-    blackIcon.innerText = "加入黑名單";
+    blackIcon.innerText = "加黑名單";
   };
 }
 //加入好友
 addFriend.onclick=addToFriendList;
 function addToFriendList(){
   if(FriendIcon.innerText=="加好友"){
-    FriendIcon.innerText = "已加入好友";
+    FriendIcon.innerText = "解除好友";
   }else{
     FriendIcon.innerText = "加好友";
   };

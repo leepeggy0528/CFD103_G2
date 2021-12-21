@@ -59,8 +59,7 @@ function sendCard(e) {
 
 //開始拖拉
 function startDrag(e) {
-    let data = `<img class="selectCard" src="
-    ${e.target.src}">`
+    let data = `<img class="selectCard" src="${e.target.src}">`
     e.dataTransfer.setData('image/png', data);
 
     // for (let j = 0; j < boxes.length; j++) {
@@ -101,7 +100,6 @@ function dropped(e) {
         stickersInBox[i].addEventListener('dragend', trashEndDrag);
     }
 }
-
 
 //拖拉預覽畫面的貼紙，丟進垃圾桶
 function trashStartDrag(e) {
@@ -167,6 +165,14 @@ function drawCanvas() {
         }
     }
 
+    // 取得輸入文字
+    let inputText = document.querySelector('.inputText');
+    let cardImage = document.getElementById('preivewCardPattern')
+    let textTop = cardImage.offsetTop - inputText.offsetTop;
+    let textLeft = cardImage.offsetLeft - inputText.offsetLeft;
+    ctx.fillText(inputText.innerText, 0, 0);
+
+
     // //下載canvas圖檔
     // downloadCVS()
 }
@@ -197,6 +203,16 @@ function init() {
         selectCard[i].onclick = previewCardPattern;
     }
 
+    //註冊Input 
+    let textarea = document.querySelector('.write textarea');
+    console.log(textarea);
+    textarea.oninput = () => {
+        // document.querySelector('.inputText').innerText = textarea.innerText;
+        let inputText = document.querySelector('.inputText');
+        inputText.innerText = textarea.value;
+        console.log(inputText);
+    }
+
     //拖拉圖片
     stickers = document.querySelectorAll('.sticker .pic img');
     boxes = document.querySelectorAll('.box');
@@ -213,8 +229,8 @@ function init() {
     //註冊垃圾桶dropover and drop 
     trashCan = document.getElementById('trashCan');
     trashCan.addEventListener('dragover', trashDragOver);
-    // trashCan.addEventListener('dragleave', trashDragLeave);
     trashCan.addEventListener('drop', trashDropped);
+    trashCan.addEventListener('dragleave', trashDragLeave);
 
     // 開啟寄出卡片的light box
     close.onclick = closeSendCard;
