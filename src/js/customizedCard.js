@@ -167,14 +167,17 @@ function drawCanvas() {
 
     // 取得輸入文字
     let inputText = document.querySelector('.inputText');
-    let cardImage = document.getElementById('preivewCardPattern');
-    console.log(cardImage);
-    let textTop = inputText.offsetTop - cardImage.offsetTop;
-    let textLeft = cardImage.offsetLeft - inputText.offsetLeft;
-    ctx.fillText(inputText.innerText, 10, textTop);
-    console.log(textTop);
-    console.log("input:", inputText.offsetTop);
-    console.log("card:", cardImage.offsetTop);
+    let textPos = inputText.getBoundingClientRect();
+    let cardPos = document.querySelector('.card-preview .pic').getBoundingClientRect();
+    let x = textPos.x - cardPos.x;
+    let y = textPos.y - cardPos.y;
+    // ctx.font = `${inputText.fontSize}`
+    // console.log(inputText.computedStyle.fontSize);
+    ctx.fillText(inputText.innerText, x, y)
+
+    // ctx.fillText(inputText.innerText, textLeft, textTop);
+
+
 
     // //下載canvas圖檔
     // downloadCVS()
