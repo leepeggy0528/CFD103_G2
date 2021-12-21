@@ -135,62 +135,108 @@
         </div>
     </div>
     <div id="add" style="display: none;">
-        <form class="signup" method="post" action="#">
-            <fieldset>
-                <h2>新增景點</h2>
-              <div class="input-block">
-                <label for="name">景點名稱</label>
-                <input name="name" type="text" required>
-              </div>
-              <div class="input-block">
-                <label for="address">地址</label>
-                <input name="address" type="text">
-              </div>
-              <div class="tselect">
+        <form class="signup sight" method="post" action="#">
+            <h2>新增景點</h2>
+            <fieldset class="section active">
                   <div class="input-block">
-                    <label for="type">類別</label>
-                    <select name="type">
-                        <option value="" selected>請選擇類別</option>
-                        <option value="1">旅行</option>
-                        <option value="2">休閒</option>
-                        <option value="3">購物</option>
-                        <option value="4">學習</option>
-                        <option value="5">夜市</option>
-                        <option value="6">燒腦</option>
-                        <option value="7">運動</option>
-                        <option value="8">美食</option>
-                    </select>
+                    <label for="name">景點名稱</label>
+                    <input name="name" type="text" required>
                   </div>
                   <div class="input-block">
-                    <label for="tel">電話</label>
-                    <input name="tel" type="tel">
+                    <label for="address">地址</label>
+                    <input name="address" type="text">
                   </div>
-              </div>
-              <div class="input-block">
-                <label for="web">官網</label>
-                <input name="web" type="url">
-              </div>
-              <div class="input-block">
-                <label for="time">營業時間</label>
-                <input name="time" type="text">
-              </div>
-              <div class="input-block">
-                <label for="intro">景點介紹</label>
-                <input name="intro" type="text" required placeholder="限20字內">
-              </div>
-              <div class="input-block">
-                <label for="desc">景點描述</label>
-                <input name="desc" type="text" required>
-              </div>
+                  <div class="tselect">
+                      <div class="input-block">
+                        <label for="type">類別</label>
+                        <select name="type">
+                            <option value="" selected>請選擇類別</option>
+                            <option value="1">旅行</option>
+                            <option value="2">休閒</option>
+                            <option value="3">購物</option>
+                            <option value="4">學習</option>
+                            <option value="5">夜市</option>
+                            <option value="6">燒腦</option>
+                            <option value="7">運動</option>
+                            <option value="8">美食</option>
+                        </select>
+                      </div>
+                      <div class="input-block">
+                        <label for="tel">電話</label>
+                        <input name="tel" type="tel">
+                      </div>
+                  </div>
+                  <div class="input-block">
+                    <label for="web">官網</label>
+                    <input name="web" type="url">
+                  </div>
+                  <div class="input-block">
+                    <label for="time">營業時間</label>
+                    <input name="time" type="text">
+                  </div>
+                  <div class="form_btn">
+                    <button type="button" class="btnYellow btn next">下一步</button>
+                    <input type="reset" class="btnWhite btn" id="cancel" value="取消">
+                </div>
             </fieldset>
-            <div class="form_btn">
-                <button type="submit" class="btnYellow btn " id="submit">確認</button>
-                <input type="reset" class="btnWhite btn" id="cancel" value="取消">
-            </div>
+            <fieldset class="section">
+                  <div class="input-block">
+                    <label for="intro">景點介紹</label>
+                    <textarea name="intro" type="text" required placeholder="限50字內" rows="2" cols="25" ></textarea>
+                  </div>
+                  <div class="input-block">
+                    <label for="desc">景點描述</label>
+                    <textarea name="desc" type="text" required rows="8" cols="25" placeholder="限50字內"></textarea>
+                  </div>
+                  <div class="form_btn">
+                    <button type="button" class="btnYellow btn next" >下一步</button>
+                    <input type="reset" class="btnWhite btn cancel1" value="取消">
+                </div>
+            </fieldset>
+            <fieldset class="section">
+                <div class="input-block">
+                  <label for="intro">景點介紹</label>
+                  <textarea name="intro" type="text" required placeholder="限50字內" rows="2" cols="25" ></textarea>
+                </div>
+                <div class="input-block">
+                  <label for="desc">景點描述</label>
+                  <textarea name="desc" type="text" required rows="8" cols="25" placeholder="限50字內"></textarea>
+                </div>
+                <div class="form_btn">
+                  <button type="button" class="btnYellow btn " id="submit">確認</button>
+                  <input type="reset" class="btnWhite btn cancel1" value="取消">
+              </div>
+          </fieldset>
           </form>
     </div>
     <script src="./js/backstage_pt.js" async></script>
     <script src="./js/backstage_form.js"></script>
+    <script>
+        $(document).ready(function(){
+        $(".signup .next").click(function(){
+            var button = $(this);
+            var currentSection = button.parents(".section");
+            var currentSectionIndex = currentSection.index();
+            currentSection.removeClass("active").next().addClass("active");
+
+            $(".signup").submit(function(e) {
+            e.preventDefault();
+            });
+
+            if(currentSectionIndex === 3){
+            $(document).find(".signup .section").first().addClass("active");
+            }
+        });
+        $(".cancel1").click(function() {
+            var button = $(this);
+            var currentSection = button.parents(".section");
+            currentSection.removeClass("active");
+            $(document).find(".signup .section").first().addClass("active");
+            document.getElementById('add').style.display='none';
+        });
+        });
+
+    </script>
 
 </main>
 

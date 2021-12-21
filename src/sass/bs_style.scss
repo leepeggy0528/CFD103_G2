@@ -204,18 +204,21 @@ main{
     font-size: 14px;
     color: #73b9b9;
   }
-  input {
+  input,textarea {
     display: block;
     width: 100%;
     margin-top: 8px;
     padding-right: 15px;
     padding-left: 15px;
-    font-size: 16px;
+    font-size: 18px;
     line-height: 40px;
     color: #3b4465;
     background: #eef9fe;
     border: 1px solid #cddbef;
     @include borderR(5px);
+  }
+  textarea {
+    line-height: 30px;
   }
   select {
       height: 40px;
@@ -255,9 +258,10 @@ main{
   width: 100vw;
   height: 100vh;
   background: #0000009e;
+
   .signup {
     width: 40%;
-    margin: 50px auto;
+    margin: 1% auto;
     background: rgb(255, 252, 226);
     padding: 30px;
     @include borderR();
@@ -273,4 +277,24 @@ main{
       flex-direction: row-reverse;
   }
 }
+  .sight{
+      position: relative;
+      height: 95%;
+      .section{
+        opacity: 0;
+        -webkit-transform: scale(1, 0);
+        -ms-transform: scale(1, 0);
+        -o-transform: scale(1, 0);
+        transform: scale(1, 0);
+        position:absolute;
+        width: 90%;
+      }
+      .section.active{
+        opacity: 1;
+        -webkit-transform: scale(1, 1);
+        -ms-transform: scale(1, 1);
+        -o-transform: scale(1, 1);
+        transform: scale(1, 1);
+      }
+  }
 }
