@@ -12,6 +12,9 @@ main{
         font-weight: bold;
         margin-bottom: 10px;
         position: relative;
+        
+      }
+      .style{
         &::after{
           content: "";
           position: absolute;
@@ -22,7 +25,7 @@ main{
         }
       }
       &:last-child{
-        h2{
+        .style{
           margin-bottom: 40px;
         }
       }
@@ -258,6 +261,7 @@ main{
   width: 100vw;
   height: 100vh;
   background: #0000009e;
+  z-index: 1;
 
   .signup {
     width: 40%;
@@ -277,7 +281,7 @@ main{
       flex-direction: row-reverse;
   }
 }
-  .sight{
+.sight{
       position: relative;
       height: 95%;
       .section{
@@ -296,5 +300,19 @@ main{
         -o-transform: scale(1, 1);
         transform: scale(1, 1);
       }
+}
+.scard{
+  fieldset{
+    display: flex;
+    align-items: center;
+    .input-block{
+      select{
+        margin-top: 10px;
+      }
+      &:nth-child(2){
+        margin-left: 20px;
+      }
+    }
   }
+}
 }

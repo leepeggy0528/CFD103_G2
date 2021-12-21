@@ -16,7 +16,7 @@
 <main>
     @@include('./layout/backstage_nav.html')
     <section class="container pt-5" id="card">
-        <h2>卡片樣式</h2>
+        <h2 class="style">卡片樣式</h2>
         <div class="pull-right">
             <div class="btn-group">
                 <button type="button" class="btn btn-success btn-filter" data-target="up">上架</button>
@@ -54,7 +54,7 @@
                 </tr>
                 <tr data-status="up">
                     <td>67002</td>
-                    <td><div class="card"><img src="./images/card/cute.jpg" alt="七彩條紋"></div></td>
+                    <td><div class="card"><img src="./images/card/rainbow.jpg" alt="七彩條紋"></div></td>
                     <td>七彩條紋</td>
                     <td><label class="custom-control custom-checkbox">
                         <input type="checkbox" class="custom-control-input" checked>
@@ -116,7 +116,7 @@
             <tfoot>
                 <tr>
                     <th colspan="12">
-                        <input type="button" class="btnYellow btn btn-l" value="新增樣式">
+                        <input type="button" class="btnYellow btn btn-l" id="new" value="新增樣式">
                         <input type="submit" class="btnYellow btn " value="確認修改">
                         <input type="reset" class="btnWhite btn" value="取消修改">
                     </th>
@@ -144,9 +144,35 @@
                 </ul>
             </nav>
         </div>
+        <div id="add" style="display: none;">
+            <form class="signup scard" method="post" action="#" enctype="multipart/form-data">
+                <h2>新增樣式</h2>
+                <fieldset>
+                  <div class="input-block">
+                    <label for="cd-name">卡片名稱</label>
+                    <input name="cd-name" type="text" required>
+                  </div>
+                  <div class="input-block">
+                    <label for="type">類別</label>
+                    <select name="type">
+                        <option value="0">上架</option>
+                        <option value="1">下架</option>
+                    </select>
+                  </div>
+                </fieldset>
+                <div class="input-block">
+                  <label for="upfile">照片</label>
+                  <input type="file" name="upFile[]" multiple id="upFile"><br>
+                </div>
+                <div class="form_btn">
+                    <button type="submit" class="btnYellow btn " id="submit">確認</button>
+                    <input type="reset" class="btnWhite btn" id="cancel" value="取消">
+                </div>
+              </form>
+        </div>
     </section>
     <section class="container pt-5" id="stick">
-        <h2>貼紙樣式</h2>
+        <h2 class="style">貼紙樣式</h2>
 
         <table class="table table-bordered table-definition mb-5">
             <thead class="table-warning ">
@@ -171,7 +197,7 @@
                 </tr>
                 <tr>
                     <td>115001</td>
-                    <td><div class="card"><img src="./images/card/cute.jpg" alt="七彩條紋"></div></td>
+                    <td><div class="card"><img src="./images/card/rainbow.jpg" alt="七彩條紋"></div></td>
                     <td>七彩條紋</td>
                     <td>
                         <ul class="action-list">
@@ -246,5 +272,7 @@
     </section>
 </main>
 <script src="./js/backstage.js"></script>
+<script src="./js/backstage_form.js">
+</script>
 </body>
 </html>

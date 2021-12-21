@@ -96,6 +96,10 @@ exports.ug = ugjs
 //php
 function php(){
     return src('src/php/*.php')
+    .pipe(fileinclude({
+        prefix: '@@',
+        basepath: '@file'
+    }))
     .pipe(dest('dist/php'));
 }
 
