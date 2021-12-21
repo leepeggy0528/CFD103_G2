@@ -11,8 +11,8 @@ SET time_zone = "+00:00";
 --
 -- 資料庫: `tibamefe_cdf103g2`
 --
-CREATE DATABASE IF NOT EXISTS `tibamefe_cdf103g2` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `tibamefe_cdf103g2`;
+CREATE DATABASE IF NOT EXISTS `tibamefe_cfd103g2` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `tibamefe_cfd103g2`;
 
 -- --------------------------------------------------------
 
@@ -1105,7 +1105,7 @@ ALTER TABLE `sight_pt`
 COMMIT;
 
 -- 新增使用者
-CREATE USER 'tibamefe_since2021'@'localhost' IDENTIFIED BY 'vwRBSB.j&K#E';
+CREATE USER 'tibamefe_since2021'@'localhost' IDENTIFIED BY 'vwRBSb.j&K#E';
 GRANT SELECT, INSERT, UPDATE, DELETE, FILE ON *.* TO `tibamefe_since2021`@`localhost`;
 
 
