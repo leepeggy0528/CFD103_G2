@@ -167,7 +167,8 @@ function drawCanvas() {
 
     // 取得輸入文字
     let inputText = document.querySelector('.inputText');
-    let cardImage = document.getElementById('preivewCardPattern')
+    let cardImage = document.getElementById('preivewCardPattern');
+    console.log(cardImage);
     let textTop = inputText.offsetTop - cardImage.offsetTop;
     let textLeft = cardImage.offsetLeft - inputText.offsetLeft;
     ctx.fillText(inputText.innerText, 10, textTop);
