@@ -93,6 +93,7 @@ function ugjs() {
 
 exports.ug = ugjs
 
+//php
 function php(){
     return src('src/php/*.php')
     .pipe(dest('dist/php'));
@@ -105,6 +106,7 @@ function watchsass() {
     watch(['./src/sass/*.scss', './src/sass/**/*.scss'], sassstyle); // ** 第二層路徑
     watch(['src/*.html', 'src/layout/*.html'], includeHTML); // ** 第二層路徑
     watch('src/js/*.js', ugjs); // ** 第二層路徑
+    watch('src/php/*.php', php); // ** 第二層路徑
 }
 
 exports.w = watchsass;
