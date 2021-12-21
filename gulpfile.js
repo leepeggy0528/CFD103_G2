@@ -150,4 +150,4 @@ function clear() {
 exports.clearall = clear;
 
 //上線打包
-exports.packages = series(clear, parallel(includeHTML, sassstyle, ugjs), imgmin, php);
+exports.packages = series(clear, parallel(includeHTML, sassstyle, ugjs,php), imgmin ,moveimg);
