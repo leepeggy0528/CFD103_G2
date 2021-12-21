@@ -2,9 +2,11 @@
 try{
   require_once("./connectAccount.php");
 
-  //查照片
+    //查照片
     $sql = "select  gp.gpt_pt from igroup g JOIN gro_pt gp ON  g.gro_id = gp.gro_id  where g.gro_id = 9487001;"; 
     $groupPics = $pdo->query($sql);
+
+    //
 
 }catch(PDOException $e){
     echo $e->getMessage();
@@ -20,35 +22,35 @@ try{
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/owl.carousel.min.css">
-    <link rel="stylesheet" href="./css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="./css/groupDetail.css">
+    <link rel="stylesheet" href="../css/owl.carousel.min.css">
+    <link rel="stylesheet" href="../css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="../css/groupDetail.css">
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-    <script src="./js/owl.carousel.min.js" async></script>
+    <script src="../js/owl.carousel.min.js" async></script>
 
 
     <title>印度料理&水煙</title>
 </head>
 
 <body>
-    @@include('./layout/login.html')
-    @@include('./layout/header.html')
+    @@include('../layout/login.html')
+    @@include('../layout/header.html')
     <div class="container">
         <div class="slider">
             <div class="owl-carousel owl-theme">
                 <?php
                 while($picRows = $groupPics->fetch(PDO::FETCH_ASSOC)){
-                    
-                }
                 ?>
     
                 <div class="item">
-                    <img src="<?=$picRows['gpt_pt']?>">
+                    <img src="../images/group/<?=$picRows['gpt_pt']?>">
                 </div>
+
+                <?php }?>
             </div>
         </div>
     </div>
-    <script src="js/groupDetail.js" async></script>
+    <script src="../js/groupDetail.js" async></script>
 
     <!-- content -->
     <div class="container main">
@@ -90,19 +92,19 @@ try{
             <hr>
             <section class="sub-info">
                 <div class="block">
-                    <img src="./images/icon/loc.png" alt="">
+                    <img src="../images/icon/loc.png" alt="">
                     <span>台北</span>
                 </div>
                 <div class="block">
-                    <img src="./images/icon/tag.png" alt="">
+                    <img src="../images/icon/tag.png" alt="">
                     <span>美食</span>
                 </div>
                 <div class="block">
-                    <img src="./images/icon/group.png" alt="">
+                    <img src="../images/icon/group.png" alt="">
                     <span>4人成團</span>
                 </div>
                 <div class="block">
-                    <img src="./images/icon/money.png" alt="">
+                    <img src="../images/icon/money.png" alt="">
                     <span>各付各的</span>
                 </div>
             </section>
@@ -141,13 +143,13 @@ try{
                     <div class="header">
                         <h3>印度料理&水煙</h3>
                         <button id="info-toggle">
-                            <img src="./images/icon/down.png" alt="收起資訊">
+                            <img src="../images/icon/down.png" alt="收起資訊">
                         </button>
                     </div>
                     <div class="main-info">
                         <div class="info-item">
                             <div class="pic">
-                                <img src="./images/icon/loc.png">
+                                <img src="../images/icon/loc.png">
                             </div>
                             <p>
                                 你好嗎餐酒館
@@ -157,7 +159,7 @@ try{
 
                         <div class="info-item">
                             <div class="pic">
-                                <img src="./images/icon/date.png">
+                                <img src="../images/icon/date.png">
                             </div>
                             <p>
                                 11/22 20:00 星期五
@@ -208,7 +210,7 @@ try{
                             </div>
                             <div class="hot">
                                 <div class="pic">
-                                    <img src="./images/icon/fire.png">
+                                    <img src="../images/icon/fire.png">
                                 </div>
                                 <span>12345</span>
                             </div>
@@ -249,7 +251,7 @@ try{
                             </div>
                             <div class="hot">
                                 <div class="pic">
-                                    <img src="./images/icon/fire.png">
+                                    <img src="../images/icon/fire.png">
                                 </div>
                                 <span>12345</span>
                             </div>
@@ -290,7 +292,7 @@ try{
                             </div>
                             <div class="hot">
                                 <div class="pic">
-                                    <img src="./images/icon/fire.png">
+                                    <img src="../images/icon/fire.png">
                                 </div>
                                 <span>12345</span>
                             </div>
@@ -331,7 +333,7 @@ try{
                             </div>
                             <div class="hot">
                                 <div class="pic">
-                                    <img src="./images/icon/fire.png">
+                                    <img src="../images/icon/fire.png">
                                 </div>
                                 <span>12345</span>
                             </div>
@@ -378,7 +380,7 @@ try{
                             </div>
                             <div class="hot">
                                 <div class="pic">
-                                    <img src="./images/icon/fire.png">
+                                    <img src="../images/icon/fire.png">
                                 </div>
                                 <span>12345</span>
                             </div>
@@ -419,7 +421,7 @@ try{
                             </div>
                             <div class="hot">
                                 <div class="pic">
-                                    <img src="./images/icon/fire.png">
+                                    <img src="../images/icon/fire.png">
                                 </div>
                                 <span>12345</span>
                             </div>
