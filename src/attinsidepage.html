@@ -24,10 +24,10 @@
 
 	<h2>幸福時光 Happy time</h2>
 
-	<div class="big">
+	<div class="big-pic-container">
 		<img id="large" src="./images/sight/tamsui02.jpg">
 	</div>
-	<div class="small">
+	<div class="small-pic-container">
 		<img src="./images/sight/tamsui03.jpg" />
 		<img src="./images/sight/tamsui04.jpg" />
 		<img src="./images/sight/tamsui05.jpg" />
@@ -61,11 +61,11 @@
 	<script>
 		function showLarge(e) {
 			let small = e.target;
-			document.getElementById("large").src = small.src.replace("small", "big").replace("SP_", "");
+			document.getElementById("large").src = small.src.replace("small-pic-container", "big-pic-container").replace("SP_", "");
 		}
 
 		function init() {
-			let smalls = document.querySelectorAll(".small img");
+			let smalls = document.querySelectorAll(".small-pic-container img");
 			for (let i = 0; i < smalls.length; i++) {
 				smalls[i].onclick = showLarge;
 			}
