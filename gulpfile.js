@@ -93,6 +93,13 @@ function ugjs() {
 
 exports.ug = ugjs
 
+function php(){
+    return src('src/php/*.php')
+    .pipe(dest('dist/php'));
+}
+
+exports.php = php
+
 //監看
 function watchsass() {
     watch(['./src/sass/*.scss', './src/sass/**/*.scss'], sassstyle); // ** 第二層路徑
@@ -137,4 +144,4 @@ function clear() {
 exports.clearall = clear;
 
 //上線打包
-exports.packages = series(clear, parallel(includeHTML, sassstyle, ugjs), imgmin);
+exports.packages = series(clear, parallel(includeHTML, sassstyle, ugjs), imgmin, php);

@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/profile-self.css">
+    <link rel="stylesheet" href="./css/discussion.css">
     <script src="js/jquery-3.6.0.min.js"></script>
     
 </head>
@@ -76,19 +77,110 @@
                         </div>
                         <div class="activity-btn activity-like">
                             <a href="#" class="btnWhite">活動頁面</a>
-                            <a href="#" class="btnYellow">立即報名</a>
+                            <a href="#" class="btnYellow">報名列表</a>
                         </div>
                     </div>
                     <p>已結束</p>
-                </div>
-        <!-- 參加的揪團 -->
-                <div id="self-infotwo" class="self-info fade">
+                    <div class="activity">
+                        <div class="activity-part-one">
+                            <div class="activity-pic"><img src="./images/user/young-man-making-funny-faces-showing-tongue-fool-around-standing-white-t-shirt-against-yellow-background-copy-space_1258-73513.jpg" alt=""></div>
+                            <div class="activity-info">
+                                <h4>傍晚走走散步去</h4>
+                                <p>11:30(2) / 17:00</p>
+                                <p>竹圍漁港</p>
+                            </div>
+                        </div>
+                        <div class="activity-btn activity-like">
+                            <button class="btnWhite"id="ratingParts">評價團員</button>
+                            <a href="#" class="btnYellow" >活動頁面</a>
+                        </div>
+                    </div>
+                    <div id="layerRatingContainer">
+                        <div class="ratingContainer">
+                            <p class="activityName">報名列表 - 傍晚走走散步去</p>
+                            <div class="wrapperForClose">
+                                <button class="close-btn" id="closeRating">X</button>
+                            </div>
+                            <p class="ratingHost">評價團員</p>
+                            
+                            <table>
+                                <thead class="titleBackground">
+                                    <tr>
+                                        <th>編號</th>
+                                        <th>團員</th>
+                                        <th>評分</th>
+                                        <th>評論</th>
+                                    </tr>
+                                </thead>
+                                <tr class="ratingMemRow">
+                                    <td>1</td>
+                                    <td class="rater">安迪哥</td>
+                                    <td class="star-widget-wrapper">
+                                        <div class="star-widget">
+                                            <input type="radio" name="rate" id="rate-5" value=5>
+                                            <label for="rate-5" class="fas fa-star"></label>
+                                            <input type="radio" name="rate" id="rate-4" value=4>
+                                            <label for="rate-4" class="fas fa-star"></label>
+                                            <input type="radio" name="rate" id="rate-3" value=3>
+                                            <label for="rate-3" class="fas fa-star"></label>
+                                            <input type="radio" name="rate" id="rate-2" value=2>
+                                            <label for="rate-2" class="fas fa-star"></label>
+                                            <input type="radio" name="rate" id="rate-1" value=1>
+                                            <label for="rate-1" class="fas fa-star"></label>
+                                        </div>
+                                    </td>
+                                    <td class="RatingMemTd">
+                                        <form action="#" class="rating-form">
+                                            <div class="rating-textarea">
+                                                <textarea cols="30" rows="10" onKeyUp="cal_words()"></textarea>
+                                            </div>
+                                            <p class="countWords"><span id="count">0</span>/40</p>
+                                        </form>
+                                    </td>
+                                </tr>
+                                <tr class="ratingMemRow">
+                                    <td>2</td>
+                                    <td class="rater">郝惠婠</td>
+                                    <td class="star-widget-wrapper">
+                                        <div class="star-widget">
+                                            <input type="radio" name="rate-1" id="rate-1-5" value=5>
+                                            <label for="rate-1-5" class="fas fa-star"></label>
+                                            <input type="radio" name="rate-1" id="rate-1-4" value=4>
+                                            <label for="rate-1-4" class="fas fa-star"></label>
+                                            <input type="radio" name="rate-1" id="rate-1-3" value=3>
+                                            <label for="rate-1-3" class="fas fa-star"></label>
+                                            <input type="radio" name="rate-1" id="rate-1-2" value=2>
+                                            <label for="rate-1-2" class="fas fa-star"></label>
+                                            <input type="radio" name="rate-1" id="rate-1-1" value=1>
+                                            <label for="rate-1-1" class="fas fa-star"></label>
+                                        </div>
+                                    </td>
+                                    <td class="RatingMemTd">
+                                        <form action="#" class="rating-form">
+                                            <div class="rating-textarea">
+                                                <textarea id="giveFeedBack" cols="30" rows="10" onKeyUp="cal_words()" placeholder="評價此團主"></textarea>
+                                            </div>
+                                            <p class="countWords"><span id="count">0</span>/40</p>
+                                        </form>
+                                    </td>
+                                </tr>
+                            </table>
+                            <div class="rating-btn">
+                                <button type="submit">送出</button>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            <!-- 參加的揪團 -->
+            <div id="self-infotwo" class="self-info fade">
+                <div class="section-title">
                     <h2><span>參</span>加的活動</h2>
                     <ul class="second-tabs">
                         <li class="all"><button>全部</button></li>
                         <li class="inviting"><button>揪團中</button></li>
                         <li class="ended"><button>已結束</button></li>
                     </ul>
+                </div>    
                     <p>揪團中</p>
                     <div class="activity">
                         <div class="activity-part-one">
@@ -100,7 +192,7 @@
                             </div>
                         </div>
                         <div class="activity-btn activity-like">
-                            <a href="#" class="btnWhite">取消報名</a>
+                            <button class="btnWhite">取消報名</button>
                             <a href="#" class="btnYellow">活動頁面</a>
                         </div>
                     </div>
@@ -115,19 +207,51 @@
                             </div>
                         </div>
                         <div class="activity-btn activity-like">
-                            <a href="#" class="btnWhite">評價活動</a>
+                            <button class="btnWhite" id="rateHost">評價活動</button>
                             <a href="#" class="btnYellow">活動頁面</a>
                         </div>
+                        <div id="layerRatingHost">
+                            <div class="ratingContainerHost">
+                                <p class="activityName">報名列表 - 傍晚走走散步去</p>
+                                <div class="wrapperForClose">
+                                    <button class="close-btn" id="close-host">X</button>
+                                </div>
+                                <p class="ratingHost">評價團主</p>
+                                <div class="star-widget-host">
+                                    <input type="radio" name="rate" id="rate-2-5" value=5>
+                                    <label for="rate-2-5" class="fas fa-star"></label>
+                                    <input type="radio" name="rate" id="rate-2-4" value=4>
+                                    <label for="rate-2-4" class="fas fa-star"></label>
+                                    <input type="radio" name="rate" id="rate-2-3" value=3>
+                                    <label for="rate-2-3" class="fas fa-star"></label>
+                                    <input type="radio" name="rate" id="rate-2-2" value=2>
+                                    <label for="rate-2-2" class="fas fa-star"></label>
+                                    <input type="radio" name="rate" id="rate-2-1" value=1>
+                                    <label for="rate-2-1" class="fas fa-star"></label>
+                                </div>
+                                    <form action="#" class="rating-form">
+                                        <div class="rating-textarea rating-textarea-host">
+                                            <textarea name="" id="" cols="30" rows="10" placeholder="評價此團主"></textarea>
+                                        </div>
+                                        <p class="countWords">0/40</p>
+                                    </form>
+                                    <div class="rating-btn">
+                                        <button type="submit">送出</button>
+                                    </div>
+                            </div>
+                        </div>
                     </div>
-               </div>
-               <!-- 收藏活動 -->
-               <div id="self-infothree"class="self-info fade">
-                   <h2><span>收</span>藏活動</h2>
-                <ul class="second-tabs">
-                    <li class="all"><button class="showButton">全部</button></li>
-                    <li class="inviting"><button class="showButton">揪團中</button></li>
-                    <li class="ended"><button class="showButton">已結束</button></li>
-                </ul>
+            </div>
+            <!-- 收藏活動 -->
+            <div id="self-infothree"class="self-info fade">
+                <div class="section-title">
+                    <h2><span>收</span>藏活動</h2>
+                    <ul class="second-tabs">
+                        <li class="all"><button class="showButton">全部</button></li>
+                        <li class="inviting"><button class="showButton">揪團中</button></li>
+                        <li class="ended"><button class="showButton">已結束</button></li>
+                    </ul>
+                </div>
                 <p>揪團中</p>
                 <div class="activity">
                     <div class="activity-part-one">
@@ -155,49 +279,133 @@
                         </div>
                         <div class="activity-btn activity-like">
                             <a href="#" class="btnWhite">活動頁面</a>
-                            <a href="#" class="btnYellow">立即報名</a>
                         </div>
                     </div>
-                </div> 
-                <!-- 我的發文 -->
-                <div id="self-infofour" class="self-info fade">
+            </div> 
+             <!-- 我的發文 -->
+            <div id="self-infofour" class="self-info fade">
                 <h2><span>我</span>的發文</h2>
-                <p class="article-time">2021年11月</p>
-                <div class="activity">
-                    <div class="activity-part-one">
-                        <div class="activity-pic"><img src="./images/user/young-man-making-funny-faces-showing-tongue-fool-around-standing-white-t-shirt-against-yellow-background-copy-space_1258-73513.jpg" alt=""></div>
-                        <div class="activity-info">
-                            <h4>傍晚走走散步去</h4>
-                            <p>11:30(2) / 17:00</p>
-                            <p>竹圍漁港</p>
+                <p class="article-time">2021年12月</p>
+                <div class="insta-item-main-i">
+
+                    <div class="box-i">
+                        <div class="left-i">
+    
+                            <div class="pic">
+                            <img src="./images/discussion/picture1.jpg"
+                            alt="">
+                            </div>
+    
+                            <div class="me">
+                            <img src="./images/discussion/women.jpg" alt="">
+                            <p>王曉明</p>
+                            </div>
+                        </div>
+    
+                        <div class="center-i">
+                            <span class="title"><h2>陽明山玩一天都不夠!</h2></span>
+    
+                            <p>吃喝玩樂樣樣都有，離市區又近的國家公園。四季皆宜的踏青好去處，賞櫻花、梅花、賞楓…</p>
+    
+                            <div class="seemore">
+                            <a href="discussion-text.html">看更多</a>
+                            </div>
+    
+                            <div class="tag">
+                            <p>#旅遊</p>
+                            </div>
                         </div>
                     </div>
-                    <div class="activity-btn activity-like">
-                        <a href="#" class="btnWhite">活動頁面</a>
-                        <a href="#" class="btnYellow">立即報名</a>
-                    </div>
+                        <div class="box-i-2">
+                            <ul class="right-i">
+                                <li class="comment-item">
+                                    <i class="fas fa-comment-alt" style="color: #025A78;"></i>
+                                    <p>12</p>
+                                </li>
+    
+                                <li class="comment-item">
+                                    <i class="fas fa-thumbs-up" style="color: #025A78;"></i>
+                                    <p>123</p>
+                                </li>
+    
+                                <li class="comment-item">
+                                    <i class="fas fa-fire" style="color: #025A78;"></i>
+                                    <p>123</p>
+                                </li>
+                            </ul>
+                            
+                            <div class="date-time">
+                            <p>2021年12月1日</p>
+                            </div>  
+                        </div>      
                 </div>
-                <p>2021年10月</p>
-                <div class="activity">
-                    <div class="activity-part-one">
-                        <div class="activity-pic"><img src="./images/user/young-man-making-funny-faces-showing-tongue-fool-around-standing-white-t-shirt-against-yellow-background-copy-space_1258-73513.jpg" alt=""></div>
-                        <div class="activity-info">
-                            <h4>傍晚走走散步去</h4>
-                            <p>11:30(2) / 17:00</p>
-                            <p>竹圍漁港</p>
+                <p>2021年11月</p>
+                <div class="insta-item-main-i">
+
+                    <div class="box-i">
+                        <div class="left-i">
+    
+                            <div class="pic">
+                            <img src="./images/discussion/picture1.jpg"
+                            alt="">
+                            </div>
+    
+                            <div class="me">
+                            <img src="./images/discussion/women.jpg" alt="">
+                            <p>王曉明</p>
+                            </div>
+                        </div>
+    
+                        <div class="center-i">
+                            <span class="title"><h2>陽明山玩一天都不夠!</h2></span>
+    
+                            <p>吃喝玩樂樣樣都有，離市區又近的國家公園。四季皆宜的踏青好去處，賞櫻花、梅花、賞楓…</p>
+    
+                            <div class="seemore">
+                            <a href="discussion-text.html">看更多</a>
+                            </div>
+    
+                            <div class="tag">
+                            <p>#旅遊</p>
+                            </div>
                         </div>
                     </div>
-                    <div class="activity-btn activity-like">
-                        <a href="#" class="btnWhite">活動頁面</a>
-                        <a href="#" class="btnYellow">立即報名</a>
-                    </div>
+                        <div class="box-i-2">
+                            <ul class="right-i">
+                                <li class="comment-item">
+                                    <i class="fas fa-comment-alt" style="color: #025A78;"></i>
+                                    <p>12</p>
+                                </li>
+    
+                                <li class="comment-item">
+                                    <i class="fas fa-thumbs-up" style="color: #025A78;"></i>
+                                    <p>123</p>
+                                </li>
+    
+                                <li class="comment-item">
+                                    <i class="fas fa-fire" style="color: #025A78;"></i>
+                                    <p>123</p>
+                                </li>
+                            </ul>
+                            
+                            <div class="date-time">
+                            <p>2021年11月1日</p>
+                            </div>  
+                        </div>      
                 </div>
             </div>
            <!-- 好友列表 -->
            <div id="self-infofive" class="self-info fade">
                <div class="friend-bar">
                    <h2 class="friend-title"><span>好</span>友列表</h2>
-                   <span class="setting"><i class="fas fa-cog"></i></span>
+                   <div class="settingForBlack">
+                       <button class="setting"><i class="fas fa-cog"></i></button>
+                       <div class="blackList">
+                         <button class="blackMemList">
+                             黑名單列表
+                          </button>
+                       </div>
+                   </div>
                       <div class="search-friend">
                           <input type="text">
                           <button class="search-btn showButton">
@@ -279,13 +487,14 @@
                         </div>
                         </div>
                     </div>
-                </div>
+           </div>
         </div>
     </div>
 @@include('./layout/footer.html')
 <script src="js/changeTabsForSelf.js"></script>
 <script src='./js/loginLightbox.js'></script>
 <script src="js/dropdown.js"></script>
+<script src="js/friendtoggle.js"></script>
 
 
     
