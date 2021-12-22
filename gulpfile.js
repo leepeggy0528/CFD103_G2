@@ -93,18 +93,34 @@ function ugjs() {
 
 exports.ug = ugjs
 
+//php
 function php(){
     return src('src/php/*.php')
+    .pipe(fileinclude({
+        prefix: '@@',
+        basepath: '@file'
+    }))
     .pipe(dest('dist/php'));
 }
 
 exports.php = php
 
+function movephp() {
+    return src('src/php/main/*.php')
+    .pipe(fileinclude({
+        prefix: '@@',
+        basepath: '@file'
+    }))
+    .pipe(dest('dist'));
+}
+exports.mphp = movephp;
 //監看
 function watchsass() {
     watch(['./src/sass/*.scss', './src/sass/**/*.scss'], sassstyle); // ** 第二層路徑
     watch(['src/*.html', 'src/layout/*.html'], includeHTML); // ** 第二層路徑
     watch('src/js/*.js', ugjs); // ** 第二層路徑
+    watch('src/php/*.php', php); // ** 第二層路徑
+    watch('src/php/main/*.php', movephp); // ** 第二層路徑
 }
 
 exports.w = watchsass;
@@ -144,4 +160,4 @@ function clear() {
 exports.clearall = clear;
 
 //上線打包
-exports.packages = series(clear, parallel(includeHTML, sassstyle, ugjs), imgmin, php);
+exports.packages = series(clear, parallel(includeHTML, sassstyle, ugjs, php , movephp), imgmin ,moveimg);

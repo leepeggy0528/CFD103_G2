@@ -7,14 +7,14 @@
 
    <link rel="icon" href="">
    <script src="./js/jquery-3.6.0.min.js"></script>
-   @@include('./layout/backstage_meta.html',{
+   @@include('../../layout/backstage_meta.html',{
        "title" : "管理員管理"
    }) 
 </head>
 <body>
-    @@include('./layout/backstage_header.html')
+    @@include('../../layout/backstage_header.html')
 <main>
-    @@include('./layout/backstage_nav.html')
+    @@include('../../layout/backstage_nav.html')
     <section class="container pt-5">
         <div class="pull-right">
             <div class="btn-group">

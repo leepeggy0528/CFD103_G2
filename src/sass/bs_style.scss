@@ -12,6 +12,9 @@ main{
         font-weight: bold;
         margin-bottom: 10px;
         position: relative;
+        
+      }
+      .style{
         &::after{
           content: "";
           position: absolute;
@@ -22,7 +25,7 @@ main{
         }
       }
       &:last-child{
-        h2{
+        .style{
           margin-bottom: 40px;
         }
       }
@@ -217,6 +220,21 @@ main{
     border: 1px solid #cddbef;
     @include borderR(5px);
   }
+  input[type=file]{
+    &::file-selector-button {
+      border: borderR(5px);
+      margin-top: 5px;
+      margin-bottom: 5px;
+      padding: .2em .4em;
+      border-radius: .2em;
+      background-color: #a29bfe;
+      transition: 1s;
+      &:hover {
+        background-color: #81ecec;
+        border: 2px solid #00cec9;
+      }
+    }
+  }
   textarea {
     line-height: 30px;
   }
@@ -228,6 +246,12 @@ main{
       background: #eef9fe;
       border: 1px solid #cddbef;
       @include borderR(5px);
+  }
+  .pt{
+    width: 100%;
+    img{
+      width: 100%;
+    }
   }
 }
 
@@ -258,6 +282,7 @@ main{
   width: 100vw;
   height: 100vh;
   background: #0000009e;
+  z-index: 1;
 
   .signup {
     width: 40%;
@@ -277,7 +302,7 @@ main{
       flex-direction: row-reverse;
   }
 }
-  .sight{
+.sight{
       position: relative;
       height: 95%;
       .section{
@@ -296,5 +321,19 @@ main{
         -o-transform: scale(1, 1);
         transform: scale(1, 1);
       }
+}
+.scard{
+  fieldset{
+    display: flex;
+    align-items: center;
+    .input-block{
+      select{
+        margin-top: 10px;
+      }
+      &:nth-child(2){
+        margin-left: 20px;
+      }
+    }
   }
+}
 }
