@@ -161,8 +161,11 @@
                   </div>
                 </fieldset>
                 <div class="input-block">
-                  <label for="upfile">照片</label>
-                  <input type="file" name="upFile[]" multiple id="upFile"><br>
+                    <label for="upfile">照片</label>
+                    <input type="file" name="upFile" id="upFile"><br>
+                    <div class="pt">
+                        <img src="#" id="preview" hidden>
+                    </div>
                 </div>
                 <div class="form_btn">
                     <button type="submit" class="btnYellow btn " id="submit">確認</button>
@@ -273,6 +276,23 @@
 </main>
 <script src="./js/backstage.js"></script>
 <script src="./js/backstage_form.js">
+</script>
+<script>
+    window.addEventListener("load", function(){
+        document.getElementById("upFile").onchange = function(e){
+                let file = e.target.files[0];
+                let reader = new FileReader();
+                reader.onload = function(){
+                    document.getElementById("preview").hidden=false;
+                    document.getElementById("preview").src = reader.result;
+                }
+                reader.readAsDataURL(file);
+        }
+        document.getElementById("cancel").onclick=function () {
+            document.getElementById('add').style.display='none';
+            document.getElementById("preview").hidden=true;
+        }
+    })
 </script>
 </body>
 </html>
