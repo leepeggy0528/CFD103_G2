@@ -36,10 +36,10 @@ $('.stop').on('click', function () {
 let saveActivity;
 function switchSaveActivity(e) {
     if (e.target.title == "收藏活動") {
-        e.target.src = "./images/icon/save.png";
+        e.target.src = "../images/icon/save.png";
         e.target.title = "取消收藏";
     } else {
-        e.target.src = "./images/icon/unsave.png";
+        e.target.src = "../images/icon/unsave.png";
         e.target.title = "收藏活動";
     }
 }

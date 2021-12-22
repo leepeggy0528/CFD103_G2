@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/customized-card.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.3/html2canvas.min.js"></script>
+    <script type="text/javascript" src="https://cdn.emailjs.com/sdk/2.3.2/email.min.js" async></script>
     <!-- <script src="./js/customizedCard.js"></script> -->
     <title>客製卡片</title>
 </head>
@@ -19,7 +21,7 @@
             <!-- 預覽卡片 -->
             <div class="wrap-preview">
                 <div class="card-preview">
-                    <div class="pic">
+                    <div id="capture" class="pic">
                         <img id="preivewCardPattern" src="./images/card/colorful-line.jpg" alt="">
                         <div class="inputText">
 
@@ -107,7 +109,7 @@
                     <div class="header">
                         <h3>以Email寄出卡片</h3>
                         <div class="pic">
-                            <img src="./images/card/colorful-line.jpg">
+                            <!-- <img src="./images/card/colorful-line.jpg"> -->
                         </div>
                     </div>
 
@@ -157,9 +159,6 @@
         </section>
     </div>
     <!-- ============canvas=========== -->
-    <canvas id="canvas">
-
-    </canvas>
     @@include('./layout/footer.html')
     <script src="./js/customizedCard.js"></script>
     <script src="./js/loginLightbox.js"></script>

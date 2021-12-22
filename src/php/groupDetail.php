@@ -1,20 +1,40 @@
 <?php
 try{
-  require_once("./connectAccount.php");
+  require_once("./php/connectAccount.php");
 
     //查照片
-    $sql = "select  gp.gpt_pt from igroup g JOIN gro_pt gp ON  g.gro_id = gp.gro_id  where g.gro_id = 9487001;"; 
-    $groupPics = $pdo->query($sql);
+    $sqlPic = "select  gp.gpt_pt from igroup g JOIN gro_pt gp ON  g.gro_id = gp.gro_id  where g.gro_id = 9487001;"; 
+    $groupPics = $pdo->query($sqlPic);
 
-    //
+    //取得標題、內文、開始日期、開始時間、結束、地點
+    $sql_mainInfo='select  g.gro_name, g.gro_explan, g.gro_endadd, s.sche_name, s.sche_adress, s.sche_date, s.sche_starttime
+    from igroup g JOIN schedule s on g.gro_id = s.gro_id
+    where g.gro_id = 9487001;';
+    $mainInfo = $pdo->query($sql_mainInfo);
+    $mainInfoRow = $mainInfo->fetch(PDO::FETCH_ASSOC);
+    
+    // 類別、縣市、費用類型、x人成團
+    $sql_subInfo = 'select gro_type, gro_loc, gro_paytype, gro_infnumber from igroup where gro_id = 9487001;';
+    $subInfo = $pdo->query($sql_subInfo);
+    $subInfoRow = $subInfo->fetch(PDO::FETCH_ASSOC);
+
+    //行程資訊:行程名稱 / 開始日期/ 開始時間 / 結束時間 
+    $sql_sche="select sche_name, sche_starttime, sche_endtime, sche_date
+    from schedule where gro_id = 9487001;";
+    $sche = $pdo->query($sql_sche);
+    
+    //留言: 留言人 / 內容/ 留言時間
+    $sql_msg = 'select m.mem_pt, m.mem_name, gm.gmes_context
+    from gro_mes gm  join igroup g on g.gro_id = gm.gro_id
+                     join member m on gm.mem_id = m.mem_id
+                     where g.gro_id = 9487006;';
+    $msg = $pdo->query($sql_msg);
+
 
 }catch(PDOException $e){
     echo $e->getMessage();
 }
 ?>
-
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -42,9 +62,9 @@ try{
                 while($picRows = $groupPics->fetch(PDO::FETCH_ASSOC)){
                 ?>
     
-                <div class="item">
-                    <img src="../images/group/<?=$picRows['gpt_pt']?>">
-                </div>
+                
+                    <img src="../images/group/<?=$picRows['gpt_pt'];?>">
+               
 
                 <?php }?>
             </div>
@@ -57,14 +77,11 @@ try{
         <article>
             <div class="desc">
                 <div class="title">
-                    <h2>印度料理&水煙</h2>
+                    <h2><?=$mainInfoRow['gro_name'];?></h2>
                 </div>
                 <div class="content">
                     <p>
-                        我和閨蜜想一起吃個晚餐<br>
-                        喝點小酒+抽水煙<br>
-                        <br>
-                        有沒有人剛好有空可以參加
+                        <?=$mainInfoRow['gro_explan'];?>
                     </p>
                 </div>
             </div>
@@ -72,40 +89,54 @@ try{
                 <div class="title">
                     <h2>行程資訊</h2>
                 </div>
+
+                <?php
+                  while($scheRows = $sche->fetch(PDO::FETCH_ASSOC)){
+                ?>
                 <ul class="timeline">
                     <li class="day">Day 1</li>
                     <li class=" item">
                         <div class="node">
-                            <span>20:00</span>
+                            <span><?=$scheRows['sche_starttime'];?></span>
                         </div>
-                        <p>你好嗎餐酒館</p>
+                        <p><?=$scheRows['sche_name'];?></p>
                     </li>
 
-                    <li class="item">
-                        <div class="node">
-                            <span>22:30</span>
-                        </div>
-                        <p>回家</p>
-                    </li>
                 </ul>
+                <?php }?>
             </div>
             <hr>
             <section class="sub-info">
                 <div class="block">
                     <img src="../images/icon/loc.png" alt="">
-                    <span>台北</span>
+                    <span><?=$subInfoRow['gro_loc']?></span>
                 </div>
                 <div class="block">
                     <img src="../images/icon/tag.png" alt="">
-                    <span>美食</span>
+                    <span><?=$subInfoRow['gro_type']?></span>
                 </div>
                 <div class="block">
                     <img src="../images/icon/group.png" alt="">
-                    <span>4人成團</span>
+                    <span><?=($subInfoRow['gro_infnumber']+1),"人成團"?></span>
                 </div>
                 <div class="block">
                     <img src="../images/icon/money.png" alt="">
-                    <span>各付各的</span>
+                    <span>
+                        <?php
+                        switch($subInfoRow['gro_paytype']){
+                            case 0:
+                                echo "免費";
+                                break;
+                            case 1:
+                                echo "各付各的";
+                                break;
+                            case 2:
+                                echo "平均分攤";
+                                break;
+                        }
+                            
+                        ?>
+                    </span>
                 </div>
             </section>
             <hr>
@@ -113,20 +144,25 @@ try{
             <section class="comment">
                 <h2>留言區</h2>
                 <ul class="wrap">
+                <?php
+                  while($msgRows = $msg->fetch(PDO::FETCH_ASSOC)){
+                ?>
                     <li class="wrap-item">
                         <div class="user">
                             <div class="pic smCircle">
-                                <img class="circle" src="https://picsum.photos/50/50/?random=1">
+                                <img class="circle" src="../images/user/<?=$msgRows['mem_pt'];?>">
                             </div>
-                            <span id="userName">劉炎鵟</span>
+                            <span id="userName"><?=$msgRows['mem_name'];?></span>
                         </div>
-                        <p>這地方好吃嗎</p>
+                        <p><?=$msgRows['gmes_context'];?></p>
                     </li>
-
+                <?php
+                 }
+                ?>
                 </ul>
 
                 <div class="leave-comment">
-                    <form action="">
+                    <form>
                         <textarea placeholder="請輸入留言" name="" id="" cols="30" rows="3"></textarea>
                         <div class="btn-pos">
                             <button class=" btnBlue">送出</button>
@@ -141,7 +177,7 @@ try{
             <div class="info">
                 <div class="info-wrap">
                     <div class="header">
-                        <h3>印度料理&水煙</h3>
+                        <h3><?=$mainInfoRow['gro_name']?></h3>
                         <button id="info-toggle">
                             <img src="../images/icon/down.png" alt="收起資訊">
                         </button>
@@ -152,8 +188,8 @@ try{
                                 <img src="../images/icon/loc.png">
                             </div>
                             <p>
-                                你好嗎餐酒館
-                                <small>台北市松山區南京東路三段303巷8弄11號</small>
+                            <?=$mainInfoRow['sche_name'];?>
+                                <small><?=$mainInfoRow['sche_adress'];?></small>
                             </p>
                         </div>
 
@@ -162,7 +198,7 @@ try{
                                 <img src="../images/icon/date.png">
                             </div>
                             <p>
-                                11/22 20:00 星期五
+                                <?=$mainInfoRow['sche_date']."&nbsp;".$mainInfoRow['sche_starttime'];?>
                                 <small>(最後審核11/22 20:00 星期五)</small>
                             </p>
                         </div>
@@ -171,7 +207,7 @@ try{
                 <!-- <p class="registered">0位已報名</p> -->
                 <div class='sign-up'>
                     <div class="pic">
-                        <img id="saveActivity" src="./images/icon/unsave.png" title="收藏活動" alt="">
+                        <img id="saveActivity" src="../images/icon/unsave.png" title="收藏活動" alt="">
                     </div>
                     <button class='btnBlue'>報名</button>
                 </div>
@@ -186,7 +222,7 @@ try{
             <div class="similar">
                 <div class="card">
                     <div class="iSave">
-                        <img id="saveActivity" src="./images/icon/unsave.png" title="收藏活動" alt="">
+                        <img id="saveActivity" src="../images/icon/unsave.png" title="收藏活動" alt="">
                     </div>
 
                     <div class="pic">
@@ -227,7 +263,7 @@ try{
                 </div>
                 <div class="card">
                     <div class="iSave">
-                        <img id="saveActivity" src="./images/icon/unsave.png" title="收藏活動" alt="">
+                        <img id="saveActivity" src="../images/icon/unsave.png" title="收藏活動" alt="">
                     </div>
 
                     <div class="pic">
@@ -268,7 +304,7 @@ try{
                 </div>
                 <div class="card">
                     <div class="iSave">
-                        <img id="saveActivity" src="./images/icon/unsave.png" title="收藏活動" alt="">
+                        <img id="saveActivity" src="../images/icon/unsave.png" title="收藏活動" alt="">
                     </div>
 
                     <div class="pic">
@@ -309,7 +345,7 @@ try{
                 </div>
                 <div class="card">
                     <div class="iSave">
-                        <img id="saveActivity" src="./images/icon/unsave.png" title="收藏活動" alt="">
+                        <img id="saveActivity" src="../images/icon/unsave.png" title="收藏活動" alt="">
                     </div>
 
                     <div class="pic">
@@ -356,7 +392,7 @@ try{
             <div class="same-loc">
                 <div class="card">
                     <div class="iSave">
-                        <img id="saveActivity" src="./images/icon/unsave.png" title="收藏活動" alt="">
+                        <img id="saveActivity" src="../images/icon/unsave.png" title="收藏活動" alt="">
                     </div>
 
                     <div class="pic">
@@ -397,7 +433,7 @@ try{
                 </div>
                 <div class="card">
                     <div class="iSave">
-                        <img id="saveActivity" src="./images/icon/unsave.png" title="收藏活動" alt="">
+                        <img id="saveActivity" src="../images/icon/unsave.png" title="收藏活動" alt="">
                     </div>
 
                     <div class="pic">
@@ -440,7 +476,7 @@ try{
         </section>
     </div>
 
-    @@include('./layout/footer.html')
+    @@include('../layout/footer.html')
     <script src="./js/loginLightbox.js"></script>
 </body>
 

@@ -1,11 +1,14 @@
 let close, open, sendCardLayer, selectCard, sendBtn, tagParent, pattern, sticker;
 let stickers, boxes;
 let stickersInBox, trashCan, theBox;
-let canvas;
+let creatCanvas;
+
 //打開好友列
 function openSendCard() {
+    lbCanvas();
     sendCardLayer = document.getElementById("sendCardLayer");
     sendCardLayer.style.display = "block";
+
 }
 
 //關閉好友列
@@ -53,6 +56,12 @@ function sendCard(e) {
     sendCardBtn.classList.add('mailed');
     sendCardBtn.innerText = "已寄出";
     sendCardBtn.disabled = "disabled";
+
+    emailjs.send("service_tx9sz8h", "template_pp1hchd", {
+        from_name: "Instagather 聚會交友網站",
+        to_name: "Elaline",
+        reply_to: "asd123404@yahoo.com.tw",
+    });
 }
 
 //=============drag and drop================
@@ -114,6 +123,7 @@ function trashDragOver(e) {
     e.preventDefault();
     trashCan.children[0].src = "./images/icon/trash_can_open.png";
 }
+
 function trashEndDrag(e) {
     e.preventDefault();
     e.target.parentNode.style.border = "none";
@@ -134,59 +144,44 @@ function trashDropped(e) {
     stickerBox.removeChild(stickerBox.children[0]);
 }
 
+
 //畫canvas
 function drawCanvas() {
-    canvas = document.getElementById('canvas');
-    let ctx = canvas.getContext('2d');
+    creatCanvas = document.querySelector('#capture');
+    html2canvas(document.querySelector("#capture")).then(canvas => {
+        // document.body.appendChild(canvas);
+        let canvasTag = document.querySelectorAll('body > canvas');
+        console.log(canvasTag.length);
+        if (canvasTag.length == 1) {
+            canvasTag[0].remove();
+            document.body.appendChild(canvas);
+        } else {
+            document.body.appendChild(canvas);
 
-    // 取得卡片長 & 寬 
-    let width = document.getElementById('preivewCardPattern').width;
-    let height = document.getElementById('preivewCardPattern').height;
-
-    // 設定canvas長 & 寬
-    canvas.height = height;
-    canvas.width = width;
-    canvas.style.border = '1px solid black';
-
-    // 放入卡片
-    let cardImg = new Image();
-    cardImg.src = document.getElementById('preivewCardPattern').src;
-    ctx.drawImage((cardImg), 0, 0, width, height);
-
-    // 取得貼紙位置
-    let cvsBoxes = document.querySelectorAll('.stickerPos .box');
-    for (let i = 0; i < cvsBoxes.length; i++) {
-
-        if (cvsBoxes[i].hasChildNodes() == true) {
-            let cvsSticker = cvsBoxes[i].children[0];
-            let sitckerImg = new Image();
-            sitckerImg.src = cvsSticker.src;
-            ctx.drawImage((sitckerImg), cvsBoxes[i].offsetLeft, cvsBoxes[i].offsetTop, cvsSticker.width, cvsSticker.height);
         }
-    }
-
-    // 取得輸入文字
-    let inputText = document.querySelector('.inputText');
-    let textPos = inputText.getBoundingClientRect();
-    let cardPos = document.querySelector('.card-preview .pic').getBoundingClientRect();
-    let x = textPos.x - cardPos.x;
-    let y = textPos.y - cardPos.y;
-    // ctx.font = `${inputText.fontSize}`
-    // console.log(inputText.computedStyle.fontSize);
-    ctx.fillText(inputText.innerText, x, y)
-
-    // ctx.fillText(inputText.innerText, textLeft, textTop);
-
-
-
-    // //下載canvas圖檔
-    // downloadCVS()
+    });
 }
 
-// function downloadCVS() {
-//     canvas =
-// }
+//lightbox canvas預覽畫面
+function lbCanvas() {
+    creatCanvas = document.querySelector('#capture');
+    html2canvas(document.querySelector("#capture")).then(canvas => {
+        let lbCanvasTag = document.querySelectorAll('.sendCard .header .pic canvas');
 
+        if (lbCanvasTag.length == 1) {
+            lbCanvasTag[0].remove();
+            document.querySelector('.sendCard .header .pic').appendChild(canvas);
+            console.log(lbCanvasTag);
+            lbCanvasTag[0].removeAttribute('style');  //問號問號????????
+
+        } else {
+            document.querySelector('.sendCard .header .pic').appendChild(canvas);
+            lbCanvasTag[0].removeAttribute('style');  //問號問號????????
+        }
+    });
+}
+
+//canvas設定大小
 
 
 function init() {
@@ -213,7 +208,6 @@ function init() {
     let textarea = document.querySelector('.write textarea');
     console.log(textarea);
     textarea.oninput = () => {
-        // document.querySelector('.inputText').innerText = textarea.innerText;
         let inputText = document.querySelector('.inputText');
         inputText.innerText = textarea.value;
         console.log(inputText);
@@ -239,15 +233,17 @@ function init() {
     trashCan.addEventListener('dragleave', trashDragLeave);
 
     // 開啟寄出卡片的light box
-    close.onclick = closeSendCard;
+    open.onclick = openSendCard;
 
     // 關閉寄出卡片的light box
-    open.onclick = openSendCard;
+    close.onclick = closeSendCard;
 
     //寄出卡片light box內的寄送按鈕
     for (let i = 0; i < sendBtn.length; i++) {
         sendBtn[i].onclick = sendCard;
     }
+
+
 
     //canvas
     document.getElementById('download').onclick = drawCanvas;
