@@ -1,3 +1,20 @@
+<?php
+try{
+  require_once("./php/connectAccount.php");
+
+    //取得好友
+    $sqlFD = "select mem_name, mem_pt, mem_mail
+    from member where mem_id in (select f.friend_id
+                                from  member m JOIN friend f on m.mem_id = f.mem_id
+                                where m.mem_id = 9455001);"; 
+    $friends = $pdo->query($sqlFD);
+
+
+}catch(PDOException $e){
+    echo $e->getMessage();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,14 +24,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/customized-card.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.3/html2canvas.min.js"></script>
-    <script type="text/javascript" src="https://cdn.emailjs.com/sdk/2.3.2/email.min.js" async></script>
-    <!-- <script src="./js/customizedCard.js"></script> -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+    <script src="./js/customizedCard.js"></script>
+    
+    <script type="text/javascript">
+        (function () {
+            emailjs.init("user_IMcEsViZ8QX2YF42g5Xqu");
+        })();
+    </script>
     <title>客製卡片</title>
 </head>
 
 <body>
-    @@include('./layout/login.html')
-    @@include('./layout/header.html')
+    @@include('../../layout/login.html')
+    @@include('../../layout/header.html')
     <div class="container">
         <h2>客製卡片</h2>
         <section class="customized-card">
@@ -115,52 +139,29 @@
 
                     <input type="text" class="friend-search" placeholder="搜尋好友">
                     <ul class="friend-list">
+                        <?php 
+                        while($friendRows = $friends->fetch(PDO::FETCH_ASSOC)){
+                        ?>
                         <li>
                             <div class="user">
-                                <img class="headshot" src="./images/user/m01.jpg" alt="">
-                                <span>陳珊迪</span>
+                                <img class="headshot" src="./images/user/<?=$friendRows['mem_pt'];?>" alt="">
+                                <span><?=$friendRows['mem_name'];?></span>
                             </div>
                             <button class="send btnYellow">寄送</button>
 
                         </li>
-                        <li>
-                            <div class="user">
-                                <div class="pic">
-                                    <img class="headshot" src="./images/user/m02.jpg" alt="">
-                                </div>
-                                <span>陳傑瑞</span>
-                            </div>
-                            <button class="send btnYellow">寄送</button>
-                        </li>
-                        <li>
-                            <div class="user">
-                                <div class="pic">
-                                    <img class="headshot" src="./images/user/m03.jpg" alt="">
-                                </div>
-
-                                <span>林安迪</span>
-                            </div>
-                            <button class="send btnYellow">寄送</button>
-
-                        </li>
-
-                        <li>
-                            <div class="user">
-                                <img class="headshot" src="./images/user/m04.jpg" alt="">
-
-                                <span>陳傑瑞</span>
-                            </div>
-                            <button class="send btnYellow">寄送</button>
-                        </li>
-                    </ul>
+                        <?php 
+                          }
+                        ?>
+                       
 
                 </section>
             </div>
         </section>
     </div>
     <!-- ============canvas=========== -->
-    @@include('./layout/footer.html')
-    <script src="./js/customizedCard.js"></script>
+    @@include('../../layout/footer.html')
+    <!-- <script src="./js/customizedCard.js"></script> -->
     <script src="./js/loginLightbox.js"></script>
 
 </body>
