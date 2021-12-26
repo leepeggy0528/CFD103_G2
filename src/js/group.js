@@ -7,7 +7,6 @@ let locLabel, locCheck;
 // sort-nav focus樣式
 function sortFocus(e) {
     let checkStyle = document.querySelectorAll(".sort > a")
-    console.log(checkStyle);
     for (let i = 0; i < checkStyle.length; i++) {
         checkStyle[i].classList.remove("sortFocus");
     }
@@ -29,6 +28,7 @@ function themeFocus(e) {
         themeLabel[0].classList.remove("filterFocus");
         themeCheck[0].checked = false;
 
+
     } else if (label.innerText == "全部") {
         for (let i = 0; i < themeLabel.length; i++) {
             themeLabel[i].classList.remove("filterFocus");
@@ -45,6 +45,18 @@ function locFocus(e) {
         locLabel[0].classList.remove("filterFocus");
         locCheck[0].checked = false;
 
+        let xhr = new XMLHttpRequest();
+        xhr.onload = function () {
+            if (xhr.status == 200) {
+
+            } else {
+                alert(xhr.status);
+            }
+        }
+        xhr.open("Post", "./php/filter.php", true);
+        xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+        // let data_info;
+
     } else if (label.innerText == "全部") {
         for (let i = 0; i < locLabel.length; i++) {
             locLabel[i].classList.remove("filterFocus");
@@ -55,14 +67,47 @@ function locFocus(e) {
 }
 
 // 收藏活動 
-
 function switchSaveActivity(e) {
-    if (e.target.title == "收藏活動") {
-        e.target.src = "./images/icon/save.png";
-        e.target.title = "取消收藏";
-    } else {
-        e.target.src = "./images/icon/unsave.png";
-        e.target.title = "收藏活動";
+
+    e.stopPropagation();
+    let groupId = e.currentTarget.children[1].children[0].href.split("?")[1];
+    if (e.target.id == 'saveActivity') {
+        if (e.target.title == "收藏活動") {
+            e.target.src = "./images/icon/save.png";
+            e.target.title = "取消收藏";
+            let xhr = new XMLHttpRequest();
+            xhr.onload = function () {
+                if (xhr.status == 200) {
+
+                } else {
+                    alert(xhr.status);
+                }
+            }
+            xhr.open("Post", "./php/saveGroup.php", true);
+            xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+            let data_info = groupId + '&mem_id=9455001';
+
+            console.log('data_info:', data_info);
+            xhr.send(data_info);
+
+        } else {
+            e.target.src = "./images/icon/unsave.png";
+            e.target.title = "收藏活動";
+            let xhr = new XMLHttpRequest();
+            xhr.onload = function () {
+                if (xhr.status == 200) {
+
+                } else {
+                    alert(xhr.status);
+                }
+            }
+            xhr.open("Post", "./php/unSaveGroup.php", true);
+            xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+            let data_info = groupId + '&mem_id=9455001';
+
+            console.log('data_info:', data_info);
+            xhr.send(data_info);
+        }
     }
 }
 
@@ -105,12 +150,9 @@ function init() {
     //選取地點
     locCheck = document.querySelectorAll("#checkFilter .locDiv input");
     locLabel = document.querySelectorAll(".filter-main .location li label");
-    console.log(locCheck);
     for (let i = 0; i < locLabel.length; i++) {
         locLabel[i].onclick = locFocus;
     }
-
-
 
     // 下拉式選單
     let selectArea = document.querySelector("#selectArea");
@@ -173,7 +215,7 @@ function init() {
 
 
     // 收藏
-    saveActivity = document.querySelectorAll('#saveActivity');
+    saveActivity = document.querySelectorAll('.pageGroup .card');
     for (let i = 0; i < saveActivity.length; i++) {
         saveActivity[i].onclick = switchSaveActivity;
     }

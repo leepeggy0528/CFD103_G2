@@ -2,6 +2,8 @@ let close, open, sendCardLayer, selectCard, sendBtn, tagParent, pattern, sticker
 let stickers, boxes;
 let stickersInBox, trashCan, theBox;
 let creatCanvas;
+let canvasTag;
+
 
 //打開好友列
 function openSendCard() {
@@ -50,19 +52,34 @@ function previewCardPattern(e) {
 }
 
 
-//寄出卡片
+//寄出卡片button樣式
 function sendCard(e) {
     let sendCardBtn = e.target;
     sendCardBtn.classList.add('mailed');
     sendCardBtn.innerText = "已寄出";
     sendCardBtn.disabled = "disabled";
+    sendMail();
 
-    emailjs.send("service_tx9sz8h", "template_pp1hchd", {
-        from_name: "Instagather 聚會交友網站",
-        to_name: "Elaline",
-        reply_to: "asd123404@yahoo.com.tw",
-    });
 }
+
+
+// emailjs 寄出卡片
+function sendMail() {
+    var temParams = {
+        from_name: 'Instagather 聚會交友網站',
+        to_name: 'Elaine',
+        mailer: 'Jerry Lin',
+        to_email: 'daedae0621@gmail.com',
+        reply_to: 'asd123404@yahoo.com.tw',
+
+    };
+
+    emailjs.send('service_instagather', 'template_pp1hchd', temParams)
+        .then(function (res) {
+            console.log("success", res.status);
+        })
+}
+
 
 //=============drag and drop================
 
@@ -150,14 +167,17 @@ function drawCanvas() {
     creatCanvas = document.querySelector('#capture');
     html2canvas(document.querySelector("#capture")).then(canvas => {
         // document.body.appendChild(canvas);
-        let canvasTag = document.querySelectorAll('body > canvas');
+        canvasTag = document.querySelectorAll('body > canvas');
         console.log(canvasTag.length);
         if (canvasTag.length == 1) {
             canvasTag[0].remove();
             document.body.appendChild(canvas);
+            canvasTag = document.querySelectorAll('body > canvas');
+            canvasTag[0].style.display = 'none';
         } else {
             document.body.appendChild(canvas);
-
+            canvasTag = document.querySelectorAll('body > canvas');
+            canvasTag[0].style.display = 'none';
         }
     });
 }
@@ -171,12 +191,11 @@ function lbCanvas() {
         if (lbCanvasTag.length == 1) {
             lbCanvasTag[0].remove();
             document.querySelector('.sendCard .header .pic').appendChild(canvas);
-            console.log(lbCanvasTag);
-            lbCanvasTag[0].removeAttribute('style');  //問號問號????????
+            // lbCanvasTag[0].removeAttribute('style');  //問號問號????????
 
         } else {
             document.querySelector('.sendCard .header .pic').appendChild(canvas);
-            lbCanvasTag[0].removeAttribute('style');  //問號問號????????
+            // lbCanvasTag[0].removeAttribute('style');  //問號問號????????
         }
     });
 }
