@@ -48,15 +48,15 @@ try{
         <form id="checkFilter">
             <!-- 主題 -->
             <div class="themeDiv">
-                <input type="checkbox" name="theme[]" id="all" checked>
-                <input type="checkbox" name="theme[]" id="food">
-                <input type="checkbox" name="theme[]" id="night_market">
-                <input type="checkbox" name="theme[]" id="sport">
-                <input type="checkbox" name="theme[]" id="learning">
-                <input type="checkbox" name="theme[]" id="casual">
-                <input type="checkbox" name="theme[]" id="puzzle">
-                <input type="checkbox" name="theme[]" id="trip">
-                <input type="checkbox" name="theme[]" id="shopping">
+                <input type="checkbox" name="theme[]" value="全部" id="all" checked>
+                <input type="checkbox" name="theme[]" value="美食" id="food">
+                <input type="checkbox" name="theme[]" value="夜市" id="night_market">
+                <input type="checkbox" name="theme[]" value="運動" id="sport">
+                <input type="checkbox" name="theme[]" value="學習" id="learning">
+                <input type="checkbox" name="theme[]" value="休閒" id="casual">
+                <input type="checkbox" name="theme[]" value="燒腦" id="puzzle">
+                <input type="checkbox" name="theme[]" value="旅行" id="trip">
+                <input type="checkbox" name="theme[]" value="購物" id="shopping">
             </div>
             <!-- 地區 -->
             <div class="locDiv">
@@ -238,10 +238,10 @@ try{
                     </div>
                     <!-- 新增 see_more  -->
                     <div class="see_more">
-                    <a href="groupDetail.php?gro_id=<?=$allGroupRows['gro_id']?>">
+                        <a href="groupDetail.php?gro_id=<?=$allGroupRows['gro_id']?>">
                             <button class="btnYellow">詳細資訊</button>
                         </a>
-                        <button class="btnBlue">立即報名</button>
+                        <button class="btnBlue signUp">立即報名</button>
                     </div>
                     <!--  -->
                 </div>

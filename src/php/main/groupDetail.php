@@ -208,7 +208,7 @@ try{
                     <form>
                         <textarea placeholder="請輸入留言" name="" id="" cols="30" rows="3"></textarea>
                         <div class="btn-pos">
-                            <button type="button" id="sendComment"class="btnBlue">送出</button>
+                            <button type="button" id="sendComment" class="btnBlue">送出</button>
                         </div>
                     </form>
                 </div>
