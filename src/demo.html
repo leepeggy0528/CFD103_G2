@@ -21,54 +21,11 @@
                 </a>
             </div>
             <div class="back">
-                <a href="#" id="admin">
+                <a href="./backstage_login.html" id="admin">
                     <div class="gooey backfont"></div>
                 </a>
             </div>
         </section>
-    </main>
-    <div class="login-wrapper" style="display: none;"> <!-- style="display: none;" -->
-        <div class="login-form">
-            <h1>管理員登入</h1>
-            <form><!--  action="backstage_login.php" method="post" -->
-              <div class="group">
-                  <label class="shrink" for="id" >帳號</label>
-                <input class="input" type="text" required="required" id="id">
-              </div>
-              <div class="group">
-                  <label class="shrink" for="pswd">密碼</label>
-                <input class="input" type="password" required="required" id="pswd">
-              </div>
-                <div class="btn-box">
-                  <button id="cancel" class="btnBoredBlue cancel-btn" type="button">取消</button>
-                    <button class="btnYellow loggin-btn" id="submit" type="submit">登入</button>
-                </div>
-            </form>
-        </div>
-      </div>
-      <script>
-          function backLogin() {
-              document.getElementsByClassName('login-wrapper')[0].style.display="";
-              document.getElementsByTagName('main')[0].style.display="none";
-          }
-          function cancel() {
-              document.getElementsByClassName('login-wrapper')[0].style.display="none";
-              document.getElementsByTagName('main')[0].style.display="";
-          }
-          function login() {
-              let id = document.getElementById('id').value;
-              let pswd = document.getElementById('pswd').value;
-              if (id=='111'&& pswd=='abc12345') {
-                  location.href='backstage_admin.html';
-              }else{
-                  alert("帳密錯誤");
-              }
-          }
-          window.addEventListener('load',function () {
-              document.getElementById('admin').onclick = backLogin;
-              document.getElementById('cancel').onclick = cancel;
-              document.getElementById('submit').onclick = login;
-          },false)
-      </script>
+    </main>         
 </body>
 </html>
