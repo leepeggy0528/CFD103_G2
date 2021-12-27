@@ -1,3 +1,7 @@
+<?php
+  setcookie("admin_name","");
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,8 +38,8 @@
       let xhr = new XMLHttpRequest();
       xhr.onload = function(){
         admin = JSON.parse(xhr.responseText);
-        if(admin.admin_id){
-          location.href="./backstage_admin.php"
+        if(admin.admin_id){          
+          location.href="./backstage_admin.php";
         }else{
           alert("帳密錯誤");
         }

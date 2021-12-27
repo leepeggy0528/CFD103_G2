@@ -17,7 +17,7 @@ function getAdminInfo(){ //取回登入者資訊
     getAdminInfo();
 
     $id('loginOut').onclick = function () {
-        location.href="./backstage_login.html";
+        location.href="./backstage_login1.php";
     };
 
   }; //window.onload
