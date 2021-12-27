@@ -45,17 +45,6 @@ function locFocus(e) {
         locLabel[0].classList.remove("filterFocus");
         locCheck[0].checked = false;
 
-        let xhr = new XMLHttpRequest();
-        xhr.onload = function () {
-            if (xhr.status == 200) {
-
-            } else {
-                alert(xhr.status);
-            }
-        }
-        xhr.open("Post", "./php/filter.php", true);
-        xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
-        // let data_info;
 
     } else if (label.innerText == "全部") {
         for (let i = 0; i < locLabel.length; i++) {
@@ -78,6 +67,7 @@ function switchSaveActivity(e) {
             let xhr = new XMLHttpRequest();
             xhr.onload = function () {
                 if (xhr.status == 200) {
+
 
                 } else {
                     alert(xhr.status);
@@ -144,6 +134,42 @@ function init() {
 
     for (let i = 0; i < themeLabel.length; i++) {
         themeLabel[i].onclick = themeFocus;
+    }
+
+    let theme = document.getElementsByName('theme[]');
+    let themeArr = new Array;
+    for (let i = 0; i < theme.length; i++) {
+        theme[i].onchange = function () {
+            alert(theme[i].value);
+
+            if (theme[i].checked == true) {
+                themeArr.push("'" + theme[i].value + "'");
+                if (theme[i].value == '全部') {
+
+                    themeArr = ["全部"];
+                }
+            } else {
+                themeArr.shift(theme[i]);
+            }
+
+            let themes = themeArr.toString();
+            let xhr = new XMLHttpRequest();
+            xhr.onload = function () {
+                if (xhr.status == 200) {
+
+                } else {
+                    alert(xhr.status);
+                }
+            }
+            xhr.open("Post", "./php/filter.php", true);
+            xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+            let data = 'themes=' + themes;
+
+            console.log('data_info:', data);
+            xhr.send(data);
+
+        }
+
     }
 
 
@@ -230,6 +256,23 @@ function init() {
     for (let i = 0; i < card.length; i++) {
         card[i].title = groupTitle[i].innerText;
     }
+
+    //參加活動 //==============================================
+    let signUpBtn = document.querySelectorAll('.see_more .signUp');
+    for (let i = 0; i < signUpBtn.length; i++) {
+        signUpBtn[i].onclick = function () {
+            let gro_id = signUpBtn[i].previousElementSibling.href.split("?")[1];
+            console.log(gro_id);
+            let xhr = new XMLHttpRequest();
+            xhr.open("Post", "./php/signUpGP.php", true);
+            xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+            let data_info = gro_id;
+
+            console.log('data_info:', data_info);
+            xhr.send(data_info);
+        }
+    }
+
 
     // 去除多餘字元
     sliceTitle();

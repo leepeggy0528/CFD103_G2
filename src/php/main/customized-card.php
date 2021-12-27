@@ -9,6 +9,14 @@ try{
                                 where m.mem_id = 9455001);"; 
     $friends = $pdo->query($sqlFD);
 
+    //貼紙 
+    $sql_sticker="select * from stamp_style;";
+    $stickers = $pdo->query($sql_sticker);
+
+    //卡片
+    $sql_card="select * from card_style;";
+    $cards = $pdo->query($sql_card);	
+    // $cardRows = $cards->fetchAll(PDO::FETCH_ASSOC);
 
 }catch(PDOException $e){
     echo $e->getMessage();
@@ -82,37 +90,37 @@ try{
                 </div>
                 <div class="wrap-pattern">
                     <div class="card-pattern">
-                        <div class="pic cardFocus">
+                        <!-- <div class="pic cardFocus">
                             <img class="selectCard" src="./images/card/colorful-line.jpg" alt="">
-                        </div>
+                        </div> -->
+                        <?php
+                            while($cardRows = $cards->fetch(PDO::FETCH_ASSOC)){
+                                if($cardRows['cstyle_status']==0){
+                        ?>
                         <div class="pic">
-                            <img class="selectCard" src="./images/card/rainbow.jpg" alt="">
+                            <img class="selectCard" src="./images/card/<?=$cardRows['cstyle_pt']?>" alt="">
                         </div>
-                        <div class="pic">
-                            <img class="selectCard" src="./images/card/leaf.jpg" alt="">
-                        </div>
+
+                        <?php
+                        }
+                        }
+                        ?>
+
+                    
                     </div>
 
-                    <div class="sticker hidden">
-                        <div class="pic">
-                            <img src="./images/sticker/dog.png" alt="">
-                        </div>
-                        <div class="pic">
-                            <img src="./images/sticker/ufo.png" alt="">
-                        </div>
+               
 
+                    <div class="sticker hidden">
+                    <?php
+                        while($stickerRows = $stickers->fetch(PDO::FETCH_ASSOC)){
+                    ?>
                         <div class="pic">
-                            <img src="./images/sticker/plant.png" alt="">
+                            <img src="./images/sticker/<?=$stickerRows['sstyle_pt']?>" alt="">
                         </div>
-                        <div class="pic">
-                            <img src="./images/sticker/can.png" alt="">
-                        </div>
-                        <div class="pic">
-                            <img src="./images/sticker/thunder.png" alt="">
-                        </div>
-                        <div class="pic">
-                            <img src="./images/sticker/heart_2.png" alt="">
-                        </div>
+                    <?php
+                    }
+                    ?>
                     </div>
 
                     <!-- 按鈕 -->

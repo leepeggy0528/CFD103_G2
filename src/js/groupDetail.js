@@ -29,7 +29,7 @@ $('.play').on('click', function () {
     owl.trigger('play.owl.autoplay', [5000])
 });
 $('.stop').on('click', function () {
-    owl.trigger('stop.owl.autoplay')
+    owl.trigger('stop.owl.autoplay')s
 });
 
 
@@ -67,6 +67,7 @@ function switchSaveActivity(e) {
     }
 
     function init() {
+        console.log('test');
         let screenW = window.screen.width;
         //收藏
         saveActivity = document.querySelectorAll('#saveActivity');
