@@ -127,59 +127,62 @@ function sliceTitle() {
 function showGroup(json) {
     let group = document.querySelector('.pageGroup');
     let card = document.querySelector('.pageGroup .card');
-    console.log(group);
     let cardInfo = JSON.parse(json);
-    console.log(cardInfo);
     let html = "";
-    group.innerHTML = "";
-    console.log("innerHTML:", group.innerHTML);
+    group.innerHTML = ""; //清空所有活動 
     for (let i in cardInfo) {
-        html += html;
-        html = ` <div id="card" class="card">
-        <div class="iSave">
-            <img id="saveActivity" src="./images/icon/unsave.png" title="收藏活動" alt="">
-        </div>
-
-        <div class="pic">
-            <a href="groupDetail.php?gro_id=${cardInfo[i].gro_id}">
-                <img src="./images/group/${cardInfo[i].gpt_pt}">
-            </a>
-        </div>
-        <!-- 在外面多用一層 party_text 包 -->
-        <div class="party_text">
-            <div class="main">
-                <h3> <a href="groupDetail.html">${cardInfo[i].gro_name}</a></h3>
-                <p>${cardInfo[i].sche_name}</p>
-                <time>${cardInfo[i].sche_date} ${cardInfo[i].sche_starttime}</time>
+        if (cardInfo[i].gro_show == 1) {
+            html += ` <div id="card" class="card">
+            <div class="iSave">
+                <img id="saveActivity" src="./images/icon/unsave.png" title="收藏活動" alt="">
             </div>
-            <div class="sub">
-                <div class="author">
-                    <div class="pic smCircle">
-                        <img class="circle" src="./images/user/${cardInfo[i].mem_pt}">
-                    </div>
-                    <span>${cardInfo[i].mem_name}</span>
-                </div>
-                <div class="hot">
-                    <div class="pic">
-                        <img src="./images/icon/fire.png">
-                    </div>
-                    <span>12345</span>
-                </div>
-            </div>
-            <!-- 新增 see_more  -->
-            <div class="see_more">
+    
+            <div class="pic">
                 <a href="groupDetail.php?gro_id=${cardInfo[i].gro_id}">
-                    <button class="btnYellow">詳細資訊</button>
+                    <img src="./images/group/${cardInfo[i].gpt_pt}">
                 </a>
-                <button class="btnBlue signUp">立即報名</button>
             </div>
-            <!--  -->
+            <!-- 在外面多用一層 party_text 包 -->
+            <div class="party_text">
+                <div class="main">
+                    <h3> <a href="groupDetail.html">${cardInfo[i].gro_name}</a></h3>
+                    <p>${cardInfo[i].sche_name}</p>
+                    <time>${cardInfo[i].sche_date} ${cardInfo[i].sche_starttime}</time>
+                </div>
+                <div class="sub">
+                    <div class="author">
+                        <div class="pic smCircle">
+                            <img class="circle" src="./images/user/${cardInfo[i].mem_pt}">
+                        </div>
+                        <span>${cardInfo[i].mem_name}</span>
+                    </div>
+                    <div class="hot">
+                        <div class="pic">
+                            <img src="./images/icon/fire.png">
+                        </div>
+                        <span>12345</span>
+                    </div>
+                </div>
+                <!-- 新增 see_more  -->
+                <div class="see_more">
+                    <a href="groupDetail.php?gro_id=${cardInfo[i].gro_id}">
+                        <button class="btnYellow">詳細資訊</button>
+                    </a>
+                    <button class="btnBlue signUp">立即報名</button>
+                </div>
+                <!--  -->
+            </div>
         </div>
-    </div>
-        `;
+            `;
+        }
+
     }
-    console.log(html);
     group.innerHTML = html;
+    setTimeout(function () {
+        // console.log("!!!!!!!!!!!!");
+        init();
+    }, 1000);
+    // init();
 }
 
 function init() {
@@ -199,16 +202,15 @@ function init() {
     let themeArr = new Array;
     for (let i = 0; i < theme.length; i++) {
         theme[i].onchange = function () {
-            alert(theme[i].value);
-
             if (theme[i].checked == true) {
                 themeArr.push("'" + theme[i].value + "'");
                 if (theme[i].value == '全部') {
 
-                    themeArr = ["全部"];
+                    themeArr = ["'美食'", "'夜市'", "'運動'", "'學習'", "'休閒'", "'燒腦'", "'旅行'", "'購物'"];
                 }
             } else {
-                themeArr.shift(theme[i]);
+                let index = themeArr.indexOf(`'${theme[i].value}'`);
+                themeArr.splice(index, 1);
             }
 
             let themes = themeArr.toString();
@@ -231,7 +233,6 @@ function init() {
         }
 
     }
-
 
     //選取地點
     locCheck = document.querySelectorAll("#checkFilter .locDiv input");
@@ -299,9 +300,10 @@ function init() {
         }
     }
 
-
     // 收藏
     saveActivity = document.querySelectorAll('.pageGroup .card');
+    console.log("========");
+    console.log(saveActivity);
     for (let i = 0; i < saveActivity.length; i++) {
         saveActivity[i].onclick = switchSaveActivity;
     }
