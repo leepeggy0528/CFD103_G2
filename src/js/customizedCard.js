@@ -179,7 +179,13 @@ function drawCanvas() {
             canvasTag = document.querySelectorAll('body > canvas');
             canvasTag[0].style.display = 'none';
         }
+
+        let data = canvas.toDataURL();
+        let anchor = document.querySelector('#testCardLink');
+        anchor.href = data;
+        anchor.click();
     });
+
 }
 
 //lightbox canvas預覽畫面

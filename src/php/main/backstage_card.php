@@ -100,7 +100,7 @@ try{
                 <tr>
                     <th colspan="12">
                         <input type="button" class="btnYellow btn btn-l" id="new" value="新增樣式">
-                        <input type="submit" class="btnYellow btn " value="確認修改">
+                        <input type="button" class="btnYellow btn " value="確認修改">
                         <input type="reset" class="btnWhite btn" value="取消修改">
                     </th>
                 </tr>
@@ -127,9 +127,10 @@ try{
                 </ul>
             </nav>
         </div>
+        <!-- add card lightnbox -->
         <div id="add" style="display: none;">
             <form class="signup scard" method="post" action="#" enctype="multipart/form-data">
-                <h2>新增樣式</h2>
+                <h2>新增卡片</h2>
                 <fieldset>
                   <div class="input-block">
                     <label for="cd-name">卡片名稱</label>
@@ -144,8 +145,8 @@ try{
                   </div>
                 </fieldset>
                 <div class="input-block">
-                    <label for="upfile">照片</label>
-                    <input type="file" name="upFile" id="upFile"><br>
+                    <label for="upCard">照片</label>
+                    <input type="file" name="upFile" id="upCard"><br>
                     <div class="scroll">
                         <div class="pt">
                             <img src="#" id="preview" hidden>
@@ -153,7 +154,7 @@ try{
                     </div>
                 </div>
                 <div class="form_btn">
-                    <button type="submit" class="btnYellow btn " id="submit">確認</button>
+                    <button type="button" class="btnYellow btn " id="addCardBtn">確認</button>
                     <input type="reset" class="btnWhite btn" id="cancel" value="取消">
                 </div>
               </form>
@@ -174,15 +175,15 @@ try{
                 <?php
                 while($stickerRows = $stickers->fetch(PDO::FETCH_ASSOC)){
                 ?>
-                <tr>
+                <tr class="cardRow">
                     <td><?=$stickerRows['sstyle_no']?></td>
                     <td><div class="card"><img src="./images/sticker/<?=$stickerRows['sstyle_pt']?>" alt="<?=$stickerRows['sstyle_name']?>"></div></td>
                     <td><?=$stickerRows['sstyle_name']?></td>
 
                     <td>
                         <ul class="action-list">
-                            <li><a href="#" data-tip="edit"><i class="fa fa-edit"></i></a></li>
-                            <li><a href="#" data-tip="delete"><i class="fa fa-trash"></i></a></li>
+                            <li><i class="fa fa-edit"></i></li>
+                            <li><i class="fa fa-trash"></i></li>
                         </ul>
                     </td>
                 </tr>
@@ -219,31 +220,26 @@ try{
                 </ul>
             </nav>
         </div>
+        <!-- add sticker lightbox -->
         <div id="sadd" style="display: none;">
-            <form class="signup scard stick" method="post" action="#" enctype="multipart/form-data">
-                <h2>新增樣式</h2>
+            <form class="signup scard stick" method="post" id='stickerForm' enctype="multipart/form-data">
+                <h2>新增貼紙</h2>
                 <fieldset>
                   <div class="input-block">
-                    <label for="cd-name">卡片名稱</label>
-                    <input name="cd-name" type="text" required>
+                    <label for="stickerName">貼紙名稱</label>
+                    <input name="stickerName" id="stickerName" type="text" required>
                   </div>
-                  <div class="input-block">
-                    <label for="type">類別</label>
-                    <select name="type">
-                        <option value="0">上架</option>
-                        <option value="1">下架</option>
-                    </select>
-                  </div>
+             
                 </fieldset>
                 <div class="input-block">
-                    <label for="upfile">照片</label>
-                    <input type="file" name="upFile1" id="upFile1"><br>
+                    <label for="upSticker">照片</label>
+                    <input type="file" name="upFile1" id="upSticker"><br>
                     <div class="pt">
                         <img src="#" id="preview1" hidden>
                     </div>
                 </div>
                 <div class="form_btn">
-                    <button type="submit" class="btnYellow btn " id="submit1">確認</button>
+                    <button type="button" class="btnYellow btn " id="addStickerBtn">確認</button>
                     <input type="reset" class="btnWhite btn" id="cancel1" value="取消">
                 </div>
               </form>
