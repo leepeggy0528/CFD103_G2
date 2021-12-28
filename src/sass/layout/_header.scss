@@ -12,7 +12,7 @@
  header{
    display: flex;
    background-color: #FFF3A9;
- justify-content: space-around;
+   justify-content: space-around;
  }
 
  nav{
@@ -117,14 +117,17 @@
       
  }
  //登入過後
-#afterLogin{
-  display: flex;
+.afterLogin{
+  display: none;
   align-items: center;
   border-radius: 100px;
   padding: 5px;
   background-color: #fff;
   border: none;
   cursor: pointer;
+}
+.showMem{
+  display: flex;
 }
 .loginmempic{
   width: 30px;
@@ -150,6 +153,7 @@
   }
   .memMenu{
     position: relative;
+    margin-left: 5px;
   }
   .smallMemInfo{
    background-color: #fff;
@@ -187,6 +191,13 @@
  }
  .memLink span{
    line-height: 2.6em;
+ }
+ #LogoutButton{
+   border: none;
+   background-color: transparent;
+   color: $mainBlue;
+   font-size: $font-3;
+   cursor: pointer;
  }
  .memfile{
    margin-top: 10px;
