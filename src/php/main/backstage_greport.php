@@ -1,3 +1,16 @@
+<?php
+     try {
+         require_once('./php/connectAccount.php');
+         //require_once('../connectAccount.php');
+        $sql = "select * from gro_report gr join igroup ig on gr.gro_id = ig.gro_id";
+        $greport= $pdo -> query($sql);
+        $greportRow = $greport -> fetchAll(PDO::FETCH_BOTH) ;
+    } catch (Exception $e) {
+        echo "錯誤行號 : ", $e->getLine(), "<br>";
+        echo "錯誤原因 : ", $e->getMessage(), "<br>";
+        //echo "系統暫時不能正常運行，請稍後再試<br>";	
+    }
+?>
 <!DOCTYPE html>
 <html lang="zh-hant-tw">
 <head>
@@ -8,7 +21,7 @@
    <link rel="icon" href="">
    <script src="./js/jquery-3.6.0.min.js"></script>
    @@include('../../layout/backstage_meta.html',{
-       "title" : "管理員管理"
+       "title" : "活動檢舉管理"
    }) 
 </head>
 <body>
@@ -29,73 +42,65 @@
             <thead class="table-warning ">
                 <tr>
                     <th>檢舉編號</th>
-                    <th>貼文標題</th>
+                    <th>開團名稱</th>
                     <th>檢舉理由</th>
                     <th>檢舉時間</th>
                     <th>處理狀態</th>
                 </tr>
             </thead>
             <tbody>
+                <?php
+                    foreach($greportRow as $key => $grdatas){
+                        if ($grdatas["greport_status"]==0) {
+                ?>
                 <tr data-status="no_cope_with">
-                    <td>9483001</td>
-                    <td>八里左岸</td>
-                    <td class="reason">我看著貼文不爽我看著貼文不爽我看著貼文不爽我看著貼文不爽我看著貼文不爽我看著貼文不爽我看著貼文不爽我看著貼文不爽</td>
-                    <td>2021/12/5 10:00</td>
+                    <td><?=$grdatas["greport_no"]?></td>
+                    <td><?=$grdatas["gro_name"]?></td>
+                    <td class="reason"><?=$grdatas["greport_reason"]?></td>
+                    <td><?=$grdatas["greport_time"]?></td>
                     <td>未處理</td>
                     <td>
                         <ul class="action-list">
-                            <li><a href="#" data-tip="edit"><i class="fa fa-edit"></i></a></li>
+                            <li><a href="#" data-tip="edit" class="edit"><i class="fa fa-edit"></i></a></li>
                         </ul>
                     </td>
                 </tr>
-                <tr data-status="no_cope_with">
-                    <td>9483001</td>
-                    <td>八里左岸</td>
-                    <td class="reason">我看著貼文不爽</td>
-                    <td>2021/12/5 10:00</td>
-                    <td>未處理</td>
-                    <td>
-                        <ul class="action-list">
-                            <li><a href="#" data-tip="edit"><i class="fa fa-edit"></i></a></li>
-                        </ul>
-                    </td>
-                </tr>
+                <?php
+                        }
+                        if ($grdatas["greport_status"]==1) {
+                ?>
                 <tr data-status="success">
-                    <td>9483002</td>
-                    <td>LOVE</td>
-                    <td class="reason">色情</td>
-                    <td>2021/12/13 8:00</td>
+                    <td><?=$grdatas["greport_no"]?></td>
+                    <td><?=$grdatas["gro_name"]?></td>
+                    <td class="reason"><?=$grdatas["greport_reason"]?></td>
+                    <td><?=$grdatas["greport_time"]?></td>
                     <td>通過</td>
                     <td>
                         <ul class="action-list">
-                            <li><a href="#" data-tip="edit"><i class="fa fa-edit"></i></a></li>
+                            <li><a href="#" data-tip="edit" class="edit"><i class="fa fa-edit"></i></a></li>
                         </ul>
                     </td>
                 </tr>
-                <tr data-status="no_cope_with">
-                    <td>9483001</td>
-                    <td>八里左岸</td>
-                    <td class="reason">我看著貼文不爽</td>
-                    <td>2021/12/5 10:00</td>
-                    <td>未處理</td>
-                    <td>
-                        <ul class="action-list">
-                            <li><a href="#" data-tip="edit"><i class="fa fa-edit"></i></a></li>
-                        </ul>
-                    </td>
-                </tr>
+                <?php   
+                        }
+                        if ($grdatas["greport_status"]==2) {
+                ?>
                 <tr data-status="unsuccess">
-                    <td>9483001</td>
-                    <td>八里左岸</td>
-                    <td class="reason">我看著貼文不爽</td>
-                    <td>2021/12/5 10:00</td>
+                <td><?=$grdatas["greport_no"]?></td>
+                    <td><?=$grdatas["gro_name"]?></td>
+                    <td class="reason"><?=$grdatas["greport_reason"]?></td>
+                    <td><?=$grdatas["greport_time"]?></td>
                     <td>不通過</td>
                     <td>
                         <ul class="action-list">
-                            <li><a href="#" data-tip="edit"><i class="fa fa-edit"></i></a></li>
+                            <li><a href="#" data-tip="edit" class="edit"><i class="fa fa-edit"></i></a></li>
                         </ul>
                     </td>
                 </tr>
+                <?php   
+                        }
+                    }
+                ?>
             </tbody>
         </table>
         <div class="pages">
@@ -120,7 +125,47 @@
             </nav>
         </div>
     </section>
+    <div id="edit_form" style="display: none;">
+        <form class="signup report" method="post" action="#">
+            <h2>審核貼文檢舉</h2>
+            <fieldset class="section active">
+                  <div class="input-block">
+                    <label for="title">編號</label>
+                    <p id="title">lalala</p>
+                  </div>
+                  <div class="input-block">
+                    <label for="context">活動名稱</label>
+                    <div class="link">
+                        <p id="context">吃喝玩樂樣樣都有，離市區又近的國家公園。四季皆宜的踏青好去處，賞櫻花、梅花、賞楓…四季都有花朵綻放，也可看火山地質結構，草原景緻、湖泊、生態池，還是農場採海芋、繡球花，吃放山雞、野菜、地瓜湯都有。</p>
+                        <a href="#" id="link" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                  </div>
+                  <div class="input-block">
+                    <label for="reason">檢舉原因</label>
+                    <p id="reason">	我看著貼文不爽</p>
+                  </div>
+                  <div class="input-block">
+                    <label for="ans">是否通過</label>
+                    <div class="ans">
+                        <input type="radio" id="yes" value="1" name="ans">
+                        <label for="yes">
+                            是
+                        </label>
+                        <input type="radio" id="no" value="2" name="ans">
+                        <label for="no">
+                            否
+                        </label>
+                    </div>
+                  </div>
+                <div class="form_btn">
+                  <button type="button" class="btnYellow btn " id="submit">確 認</button>
+                  <input type="reset" class="btnWhite btn" 
+                  id="cancel" value="取消">
+              </div>
+          </fieldset>
+          </form>
+    </div>
 </main>
 <script src="./js/backstage.js"></script>
+<script src="./js/backstage_form_greport.js"></script>
 </body>
-</html>
