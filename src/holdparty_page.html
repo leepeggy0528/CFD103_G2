@@ -12,38 +12,34 @@
     @@include('./layout/header.html')
     <article>
         <section class="main_plan">
-            <form action="#" class="container">
-                <div class="img_group">
-                    <div class="img_slider">
-                        <ul class="pic_show" id="preview">
-                            <!-- 圖片新增在此瀏覽  用slider 呈現-->
-                            <!-- <li></li> -->
-                        </ul>
-                    </div>
-                    <span id="img_to_left"></span>
-                    <span id="img_to_right"></span>
-                </div>
+            <form class="container">
+                <h3>圖片上傳</h3>
+                <div class="show_image"></div>
                 <div class="upload">
-                    <!-- 點擊上傳圖片 -->
-                    <input type="file" name="files[]" id="browse" style="display:none" required multiple>
-                    <label for="browse">
+                    <input type="file" name="upFile[]" id="upload_img" style="display: none;" multiple>
+                    <label for="upload_img">
+                    <input type="hidden" class="image_path" value=''>
                 </div>
+                <p class="delete_image_container">
+                    <a href="javascript:void(0)" class="delete_image">刪除</a>
+                </p>
                 <h3>行程安排</h3>
                 <ul class="arrange">
                     <!-- 1 -->
                     <li>
                         <label for="">活動名稱</label>
-                        <p><input type="text" required></p>
+                        <p><input type="text" name='gro_name' id="gro_name"></p>
                     </li>
                     <!-- 2 -->
                     <li>
                         <label for="">活動時間</label>
-                        <p><input type="date" required><span class="dic">共</span><input  class="party_totalday" type="number" min="1" max="5" required><span class="dic">天</span></p>
+                        <p><input type="date" name="gro_startd" id="gro_startd"><span class="dic">共</span><input type="number" name="party_totalday" class="party_totalday" id="party_totalday" min="1" max="5"><span class="dic">天</span></p>
                     </li>
+                    <!-- gro_endd 活動結束 -->
                     <!-- 3 -->
                     <li>
                         <label for="">主要活動縣市</label> 
-                        <select name="" id="" required>
+                        <select name="gro_loc" id="gro_loc">
                             <option value="宜蘭縣">宜蘭縣</option>
                             <option value="基隆市">基隆市</option>
                             <option value="新北市">新北市</option>
@@ -71,56 +67,53 @@
                     <!-- 4 -->
                     <li>
                         <label for="">聚會類型</label>
-                        <select name="" id="testjquery" required>
-                            <option value="美食" class="testjqeury">美食</option>
-                            <option value="學習" class="testjqeury">學習</option>
-                            <option value="燒腦" class="testjqeury">燒腦</option>
-                            <option value="休閒" class="testjqeury">休閒</option>
-                            <option value="夜市" class="testjqeury">夜市</option>
-                            <option value="購物" class="testjqeury">購物</option>
-                            <option value="旅行" class="testjqeury">旅行</option>
-                            <option value="運動" class="testjqeury">運動</option>
+                        <select name="gro_type" id="gro_type">
+                            <option value="美食">美食</option>
+                            <option value="學習">學習</option>
+                            <option value="燒腦">燒腦</option>
+                            <option value="休閒">休閒</option>
+                            <option value="夜市">夜市</option>
+                            <option value="購物">購物</option>
+                            <option value="旅行">旅行</option>
+                            <option value="運動">運動</option>
                         </select>
                     </li>
                     <!-- 5 -->
                     <li>
                         <label for="">活動費用</label>
-                        <select name="" id="" required>
+                        <select name="gro_paytype" id="gro_paytype">
                             <option value="0">免費</option>
                             <option value="1">各付各</option>
                             <option value="2">平均分</option>
                         </select>
+                        <!-- gro_paytype != 0 show-->
+                        <p id="pay_show" style="display: none;"><input type="number" name="gro_pay" id="gro_pay" min="0" value="0">元</p>
                     </li>
                     <!-- 6 -->
                     <li>
                         <label for="">人數</label>
-                        <p><input type="number" required><span class="dic">~</span><input type="number" required></p>
+                        <p><input type="number" name="gro_infnumber" id="gro_infnumber" min="1"><span class="dic">~</span><input type="number" name="gro_subnumber" id="gro_subnumber" min="1"></p>
                     </li>
                     <!-- 7 -->
                     <li>
                         <label for="">報名截止時間</label>
-                        <p><input type="time" required></p>
+                        <p><input type="date" name="gro_endadd" id="gro_endadd"></p>
                     </li>
                 </ul>
+                <input type="hidden" name="schedule" id="schedule">
                 <div class="detail">
                     <p class="party_day">DAY<span id="change_day">1</span></p>
                     <ul class="place_group place_group_show">
                         <!-- <li class="place">
                             <p class="input_time">SAMPLE</p>
+                            <span class="input_time_end" style="display:none"></span>
                             <h2 class="place_view">SAMPLE</h2>
-                            <span class="place_adress" style="display:none"></span>
-                             <span class="delect_place">X</span>
-                        </li> -->           
+                            <span class="place_address" style="display:none"></span>
+                            <span class="delect_place">X</span>
+                        </li> -->
                         <li class="add_place"><p>+</p></li>
                         <!--<li class="delect_places">刪除</li>-->
                     </ul>
-
-                    <ul class="day_lists" id="day_lists">
-                        <li class="day_list day_list_active">
-                            <p>Day1</p>
-                        </li>              
-                    </ul>
-
 
                     <ul class="day_lists" id="day_lists">
                         <!-- <li class="day_list" style="display:none"><p>SAMPLE</p></li> -->
@@ -132,7 +125,7 @@
                 </div>
                 <h3>活動描述</h3>
                 <div class="write">
-                    <textarea id='party_discribe' maxlength="200"></textarea>
+                    <textarea id='party_explan' name="party_explan" maxlength="200"></textarea>
                     <p class="limit_words"><span id="limit_words_count">0</span>/200</p>
                 </div>
                 <button type="button" class="btnBlue" id="hold_party">
@@ -149,14 +142,14 @@
         <div class="external-modal">
             <p>
                 <span>時間:</span>
-                <input id="model-start-time-input" value="" type="time" required>
+                <input id="model-start-time-input" value="" type="time">
                 <span>~</span> 
                 <input id="model-end-time-input" value="" type="time">
             </p>
             <p>
                 <span>景點:</span>
                 <input type="text" id="model-place-input" maxlength="10" placeholder="輸入景點名稱">
-                <input type="text" placeholder="輸入景點地址">
+                <input type="text" id="model-address-input" placeholder="輸入景點地址">
             </p>
             <p>
                 <button id="model-cancel-btn" class="btnWhite">取消</button>

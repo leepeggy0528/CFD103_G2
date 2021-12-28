@@ -42,11 +42,7 @@
   
   
        <div class="insta-item">
-
-
-
           <div class="insta-item-i">
-            
               <div class="insta-item-me">
               <img src="./images/discussion/women.jpg" alt="">
               <p class="me">黃筱雯</p>
@@ -141,21 +137,19 @@
                       <p class="commend">天啊!我也好想去，感覺好好玩!看完這篇文章都開始興奮了呢</p>
                   </div>
                 </li>   
+              </ul>
        </div>
   
+            <div class="insta-item-text">
+            <textarea class="insta-item-text-i" placeholder="在此輸入內容..." maxlength="60"></textarea>
+            <span class="wordsNum">0/60</span>
+            </div>
       
-  
-        <div class="insta-item-text">
-        <textarea class="insta-item-text-i" placeholder="在此輸入內容..." maxlength="60"></textarea>
-        <span class="wordsNum">0/60</span>
-        </div>
-  
-        <div class="insta-item-submit">
-          <button class="btnYellower" type="submit">送出</button>
-        </div>
-  
-        
-      </form>
+            <div class="insta-item-submit">
+              <button class="btnBlue" type="submit">送出</button>
+            </div>
+
+            
       </div>
 
       <div class="screen">
@@ -198,7 +192,7 @@
 
 
 
-      var btnYellower = document.querySelector(".btnYellower");
+      var btnYellower = document.querySelector(".btnBlue");
       btnYellower.onclick = function () {
       alert("確定送出嗎?");
       
@@ -219,9 +213,11 @@
         $('.wordsNum').html(`${textMaxs-textLengths}/60`);
       });  
    
-      </script>
-   
+      var text = document.getElementsByClassName('insta-item-text-i').value;
+      
 
+      </script>
+  
     <script src="./js/loginLightbox.js"></script>
    @@include('./layout/footer.html')
    <script src="./js/owl.carousel.min.js"></script>
