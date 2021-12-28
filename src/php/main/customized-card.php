@@ -126,6 +126,7 @@ try{
                     <!-- 按鈕 -->
 
                     <button id="download" class="btnYellow btn">下載卡片</button>
+                    <a id="testCardLink" download="sample.png" href=""></a>
                     <button id="open" class="btnBlue btn">寄出卡片</button>
                     <!-- <input name="hidden_data" id='hidden_data' type="hidden" /> -->
                 </div>
