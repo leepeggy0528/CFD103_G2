@@ -1,5 +1,6 @@
 @import '../sass/base/var';
 @import '../sass/mixin/mixin';
+@import './module/btn';
 * {
   margin: 0px;
   padding: 0px;
@@ -92,14 +93,10 @@ main{
   }
 }
 
-.login-wrapper {
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0,0,0,0.5);
   .login-form {
     margin: 13% auto;
     width: 30%;
-    height: 45%;
+    height: 70%;
     border-radius: 18px;
     background-color: #025A78;
     text-align: center;
@@ -109,9 +106,9 @@ main{
       padding: 20px;
     }
     form{
-      margin-top: 10px;
+      margin-top: 47px;
       .group {
-        margin-bottom: 20px;
+        margin-bottom: 55px;
         input {
           overflow: visible;
           border-radius: 5px;
@@ -119,12 +116,14 @@ main{
           padding: 5px;
           /* padding-left: 10px; */
           font-size: 20px;
-          width: 40%;
+          width: 47%;
       }
+      }
+      button{
+
       }
     }
   }
-}
 
 
 
