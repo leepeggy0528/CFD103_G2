@@ -133,21 +133,23 @@ try{
                     <h2>行程資訊</h2>
                 </div>
 
+              
+                <ul class="timeline">
+                    <li class="day">Day 1</li>
                 <?php
                   while($scheRows = $sche->fetch(PDO::FETCH_ASSOC)){
                 ?>
-                <ul class="timeline">
-                    <li class="day">Day 1</li>
                     <li class=" item">
                         <div class="node">
                             <span><?=$scheRows['sche_starttime'];?></span>
                         </div>
                         <p><?=$scheRows['sche_name'];?></p>
                     </li>
+                 <?php }?>
+            </div>
 
                 </ul>
-                <?php }?>
-            </div>
+            
             <hr>
             <section class="sub-info">
                 <div class="block">
