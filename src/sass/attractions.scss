@@ -93,6 +93,7 @@ h2{
     margin: auto;
     margin-top: 30px;
     max-width: 1200px;
+    position: relative;
     @include card();
     .card-click{
         display: flex;
@@ -126,16 +127,12 @@ h2{
                 margin-top: 40px;
                 padding: 0;  
             }
-            
-
         }    
     }
     #joinsite-btn{
-        // position: absolute;
-        // right: 20px;
-        // bottom: 20px;
-        // width: 95px;
-       
+        position: absolute;
+        right: 20px;
+        bottom: 20px;
         .addbutton{
             padding: 5px;
             width: 95px;
@@ -155,7 +152,6 @@ h2{
     margin: auto;
     margin-top: 50px;
     justify-content: space-between;
-    margin-bottom: 50px;
     flex-wrap: wrap;
     .card{
         border-radius: 10px;
@@ -199,21 +195,25 @@ h2{
                     flex-grow: 1;
                     padding: 0;
                 }
-                #joinsite-btn{
-                    width: 95px;
-                    margin-left: auto;
-                    margin-top: 0;
-                    .addbutton{
-                        padding: 5px;
-                        width: 95px;
-                        border-radius:18px;
-                        color:#ffffff;
-                        background-color:#025A78;
-                        border: none;
-                        text-align: center;
-                        cursor: pointer;
-                    }
-                }
+                
+            }
+        }
+        #joinsite-btn{
+            width: 95px;
+            margin-left: auto;
+            margin-top: 0;
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+            .addbutton{
+                padding: 5px;
+                width: 95px;
+                border-radius:18px;
+                color:#ffffff;
+                background-color:#025A78;
+                border: none;
+                text-align: center;
+                cursor: pointer;
             }
         }
     }
@@ -415,6 +415,7 @@ h2{
                 padding: 0px;
                 overflow: hidden;
                 // display: block;
+                height: 200px;
                 h3{
                     padding: 0 10px;
                 }
@@ -432,13 +433,9 @@ h2{
             }    
         }
         #joinsite-btn{
-            display:block;
-            margin-top: 30px;
-            margin-bottom: 10px;
-           
-
+            margin-left: 65%;
+            
             .addbutton{
-                margin-left: 65%;
                 padding: 5px;
                 width: 95px;
                 border-radius:18px;
@@ -447,6 +444,7 @@ h2{
                 border: none;
                 text-align: center;
                 cursor: pointer;
+               
             }
         }
     }
@@ -498,11 +496,22 @@ h2{
                         flex-grow: 1;
                         padding: 0 10px;
                     }
-                    #joinsite-btn{
-                        margin-left: 65%;
-                        padding: 10px 0;
-                        
-                    }
+                   
+                }
+            }
+            #joinsite-btn{
+                margin-left: 65%;
+                
+                .addbutton{
+                    padding: 5px;
+                    width: 95px;
+                    border-radius:18px;
+                    color:#ffffff;
+                    background-color:#025A78;
+                    border: none;
+                    text-align: center;
+                    cursor: pointer;
+                   
                 }
             }
         }

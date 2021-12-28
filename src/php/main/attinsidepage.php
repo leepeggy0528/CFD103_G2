@@ -63,7 +63,27 @@
 	?>
 	</div>
 	
-	
+	<!-- <div class="container">
+        <div class="slider">
+            <div class="owl-carousel owl-theme">
+                <div class="item">
+                    <img src="./images/sight/tamsui02.jpg">
+                </div>
+                <div class="item">
+                    <img src="./images/sight/tamsui06.jpg">
+                </div>
+                <div class="item">
+                    <img src="./images/sight/tamsui04.jpg">
+                </div>
+                <div class="item">
+                    <img src="./images/sight/tamsui05.jpg">
+                </div>
+                <div class="item">
+                    <img src="./images/sight/tamsui06.jpg">
+                </div>
+            </div>
+        </div>
+    </div> -->
 	
 	<script>
 		function showLarge(e) {
@@ -102,7 +122,7 @@
 
 	<div class="cart" id="cart">
 		<div class="cart-list">
-			<div class="item">
+			<!-- <div class="item">
 				<img src="./images/img/place01.jpg" alt="">
 				<p>台北101</p>
 			</div>
@@ -125,7 +145,7 @@
 			<div class="item">
 				<img src="./images/img/place06.jpg" alt="">
 				<p>一中商圈</p>
-			</div>
+			</div> -->
 		</div>
 		<div class="sure"><input class="confirm-button" type="button" value="確定" onclick=""></div>
 
