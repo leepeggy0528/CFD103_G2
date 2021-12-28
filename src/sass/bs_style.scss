@@ -156,11 +156,11 @@ main{
   #fork {
     position: absolute;
     top: 15px;
-    right: 15px;
+    right: 3%;
     color: white;
     cursor: pointer;
   }
-  .container-c {
+  #container-c {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -221,17 +221,18 @@ main{
     @include borderR(5px);
   }
   input[type=file]{
+    font-size: $h4;
     &::file-selector-button {
       border: borderR(5px);
+      border: none;
       margin-top: 5px;
       margin-bottom: 5px;
       padding: .2em .4em;
       border-radius: .2em;
-      background-color: #a29bfe;
-      transition: 1s;
+      background-color: #8c89bd;
+      transition: 0.5s;
       &:hover {
-        background-color: #81ecec;
-        border: 2px solid #00cec9;
+        background-color: #c3f7f7;
       }
     }
   }
@@ -285,80 +286,189 @@ main{
   z-index: 1;
 
   .signup {
-    width: 40%;
-    margin: 1% auto;
-    background: rgb(255, 252, 226);
-    padding: 30px;
-    @include borderR();
-    h2{
-      font-size: $h2;
-      text-align: center;
-      color: $mainBlue;
-      margin-bottom: 10px;
+      width: 40%;
+      margin: 1% auto;
+      background: rgb(255, 252, 226);
+      padding: 30px;
+      @include borderR();
+      h2{
+        font-size: $h2;
+        text-align: center;
+        color: $mainBlue;
+        margin-bottom: 10px;
+      }
+      .form_btn {
+        display: flex;
+        justify-content: space-evenly;
+        flex-direction: row-reverse;
     }
-    .form_btn {
+  }
+  .sight{
+        position: relative;
+        height: 95%;
+        .section{
+          opacity: 0;
+          -webkit-transform: scale(1, 0);
+          -ms-transform: scale(1, 0);
+          -o-transform: scale(1, 0);
+          transform: scale(1, 0);
+          position:absolute;
+          width: 90%;
+        }
+        .section.active{
+          opacity: 1;
+          -webkit-transform: scale(1, 1);
+          -ms-transform: scale(1, 1);
+          -o-transform: scale(1, 1);
+          transform: scale(1, 1);
+        }
+        fieldset{
+          .input-block{
+            margin-bottom: 20px;
+            &:nth-child(2){
+              textarea{
+                margin-top: 8px;
+                margin-bottom: 0px;
+                height: 270px;
+              }
+            }
+          }
+          &:last-child{
+            .scroll {
+              display: flex;
+              flex-wrap: wrap;
+              justify-content: space-between;
+              width: 100%;
+              height: 65vh;
+              margin-top: 5px;
+              overflow-y: scroll;
+              .input-block{
+                width: 49%;
+                position: relative;
+                i{
+                  position: absolute;
+                  top: 45px;
+                  right: 4px;
+                  &:hover{
+                    cursor: pointer;
+                    color: rgb(255, 67, 67);
+                  }
+                }
+              }
+              &::-webkit-scrollbar {
+                  width: 5px;
+              }
+            
+              &::-webkit-scrollbar-track {
+                  background-color: rgb(209, 209, 209);
+              }
+            
+              &::-webkit-scrollbar-thumb {
+                  background-color: rgb(235, 235, 235);
+              }
+            }
+          }
+        }
+        
+  }
+  .scard{
+    fieldset{
       display: flex;
-      justify-content: space-evenly;
-      flex-direction: row-reverse;
-  }
-}
-.sight{
-      position: relative;
-      height: 95%;
-      .section{
-        opacity: 0;
-        -webkit-transform: scale(1, 0);
-        -ms-transform: scale(1, 0);
-        -o-transform: scale(1, 0);
-        transform: scale(1, 0);
-        position:absolute;
-        width: 90%;
+      align-items: center;
+      .input-block{
+        select{
+          margin-top: 10px;
+        }
+        &:nth-child(2){
+          margin-left: 20px;
+        }
       }
-      .section.active{
-        opacity: 1;
-        -webkit-transform: scale(1, 1);
-        -ms-transform: scale(1, 1);
-        -o-transform: scale(1, 1);
-        transform: scale(1, 1);
+    }
+    .scroll {
+      display: block;
+      width: 100%;
+      height: 35vh;
+      margin-top: 5px;
+      overflow-y: scroll;
+    
+      &::-webkit-scrollbar {
+          width: 5px;
       }
-}
-.scard{
-  fieldset{
-    display: flex;
-    align-items: center;
-    .input-block{
-      select{
-        margin-top: 10px;
+    
+      &::-webkit-scrollbar-track {
+          background-color: rgb(209, 209, 209);
       }
-      &:nth-child(2){
-        margin-left: 20px;
+    
+      &::-webkit-scrollbar-thumb {
+          background-color: rgb(235, 235, 235);
       }
     }
   }
-  .scroll {
-    display: block;
-    width: 100%;
-    height: 35vh;
-    margin-top: 5px;
-    overflow-y: scroll;
-  
-    &::-webkit-scrollbar {
-        width: 5px;
-    }
-  
-    &::-webkit-scrollbar-track {
-        background-color: rgb(209, 209, 209);
-    }
-  
-    &::-webkit-scrollbar-thumb {
-        background-color: rgb(235, 235, 235);
+  .stick{
+    .pt{
+      width: 40%;
     }
   }
-}
-.stick{
-  .pt{
-    width: 40%;
+  .report{
+    fieldset{
+      .input-block{
+        .link{
+          display: flex;
+          align-items: center;
+          a{
+            margin-left: 9px;
+          }
+        }
+        p {
+          font-size: 18px;
+          margin-top: 10px;
+          padding-left: 15px;
+          line-height: 1.6;
+        }
+        &:nth-child(4){
+          display: flex;
+          align-items: center;
+          .ans{
+            display: flex;
+            flex-grow: 1;
+            align-items: center;
+            margin-left: 20px;
+            label{
+              width: 25%;
+              margin-right: 0;
+              &:nth-child(2){
+                border-right: 1px #919191 solid;
+                border-radius: 5px 0 0 5px;
+              }
+              &:nth-child(4){
+                border-radius: 0px 5px 5px 0;
+              }
+            }
+          }
+        }
+        input[type="radio"] + label{
+          width: 25%;
+          text-align: center;
+          border-radius: 3px;
+          padding: 1em;
+          line-height: 1;
+          background-color: #f8f8f8;
+          color: black;
+          cursor: pointer;
+          
+        }
+        input[type="radio"]:checked+ label{
+            background-color: #e86573d6;
+            color: #fff;
+            border: none;
+        }
+        input[type="radio" i]{
+          appearance: none;
+          display: none;
+        }
+      } 
+    }
+   
   }
-}
 }
 
