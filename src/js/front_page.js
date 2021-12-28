@@ -82,4 +82,18 @@ $(document).ready(function(){
         
         }
     });
+
+
+
+
+    $('.saveActivity').on('click',function(){
+        let iSave = $(this)
+        if (iSave.attr('title') == '收藏活動') {
+            iSave.attr('src','./images/icon/save.png')
+            iSave.attr('title','取消收藏');
+        } else{
+            iSave.attr('src','./images/icon/unsave.png')
+            iSave.attr('title','收藏活動');
+        }
+    })
 });

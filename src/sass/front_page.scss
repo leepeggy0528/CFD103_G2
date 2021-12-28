@@ -260,6 +260,7 @@ input:focus, textarea:focus, select:focus{
                     position: absolute;
                     right: 0px;
                     margin: 10px;
+                    cursor: pointer;
                 }
             
                 >.pic {
@@ -330,7 +331,7 @@ input:focus, textarea:focus, select:focus{
                         height: 100%;
                         border-bottom-right-radius: 10px;
                         border-bottom-left-radius: 10px;
-                        background-color: #c0ab8488;
+                        background-color: #e0dbbb;
                         position: absolute;
                         top: 100%;
                         left: 0;
@@ -563,6 +564,7 @@ input:focus, textarea:focus, select:focus{
                     .post_date{
                         flex: 1 1 130px;
                         margin-left: auto;
+                        color: $textBlack;
                         margin-top: $margin*2;
                         align-self: flex-end;
                         text-align: end;
