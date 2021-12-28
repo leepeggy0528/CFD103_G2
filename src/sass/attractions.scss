@@ -98,6 +98,7 @@ h2{
         display: flex;
         .pic{
             width: 54%;
+            height: 310px;
             box-shadow: 0px 4px  4px rgba(0,0,0,0.25);
             border-radius: 10px 0px 0px 10px;
             img{
@@ -125,22 +126,26 @@ h2{
                 margin-top: 40px;
                 padding: 0;  
             }
-            .joinsite-btn{
-                width: 95px;
-                margin-left: auto;
-                margin-top: 130px;
-                .button{
-                    padding: 5px;
-                    width: 95px;
-                    border-radius:18px;
-                    color:#ffffff;
-                    background-color:#025A78;
-                    border: none;
-                    text-align: center;
-                    cursor: pointer;
-                }
-            }
+            
+
         }    
+    }
+    #joinsite-btn{
+        // position: absolute;
+        // right: 20px;
+        // bottom: 20px;
+        // width: 95px;
+       
+        .addbutton{
+            padding: 5px;
+            width: 95px;
+            border-radius:18px;
+            color:#ffffff;
+            background-color:#025A78;
+            border: none;
+            text-align: center;
+            cursor: pointer;
+        }
     }
 }
 
@@ -151,6 +156,7 @@ h2{
     margin-top: 50px;
     justify-content: space-between;
     margin-bottom: 50px;
+    flex-wrap: wrap;
     .card{
         border-radius: 10px;
         width: 23%;
@@ -158,6 +164,7 @@ h2{
         flex-direction: column;
         @include card();
         margin: 0;
+        margin-bottom: 85px;
         a{
             .pic{
                 width: 100%;
@@ -192,11 +199,11 @@ h2{
                     flex-grow: 1;
                     padding: 0;
                 }
-                .joinsite-btn{
+                #joinsite-btn{
                     width: 95px;
                     margin-left: auto;
                     margin-top: 0;
-                    .button{
+                    .addbutton{
                         padding: 5px;
                         width: 95px;
                         border-radius:18px;
@@ -407,7 +414,7 @@ h2{
                 margin-top: 20px;
                 padding: 0px;
                 overflow: hidden;
-                position: relative;
+                // display: block;
                 h3{
                     padding: 0 10px;
                 }
@@ -420,21 +427,27 @@ h2{
                     margin-top: 10px;
                     padding: 0 10px;
                 }
-                .joinsite-btn{
-                    margin-left: 65%;
-                    padding: 10px 0;
-                    margin-top: 0;
-                    .button{
-                        padding: 5px;
-                        width: 95px;
-                        border-radius:18px;
-                        color:#383838;
-                        background-color:$subYellow;
-                        border: none;
-                        cursor: pointer
-                    }
-                }
+                
+
             }    
+        }
+        #joinsite-btn{
+            display:block;
+            margin-top: 30px;
+            margin-bottom: 10px;
+           
+
+            .addbutton{
+                margin-left: 65%;
+                padding: 5px;
+                width: 95px;
+                border-radius:18px;
+                color:#ffffff;
+                background-color:#025A78;
+                border: none;
+                text-align: center;
+                cursor: pointer;
+            }
         }
     }
 
@@ -485,7 +498,7 @@ h2{
                         flex-grow: 1;
                         padding: 0 10px;
                     }
-                    .joinsite-btn{
+                    #joinsite-btn{
                         margin-left: 65%;
                         padding: 10px 0;
                         
