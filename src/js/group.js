@@ -134,6 +134,7 @@ function showGroup(json) {
     group.innerHTML = "";
     console.log("innerHTML:", group.innerHTML);
     for (let i in cardInfo) {
+        html += html;
         html = ` <div id="card" class="card">
         <div class="iSave">
             <img id="saveActivity" src="./images/icon/unsave.png" title="收藏活動" alt="">
@@ -176,8 +177,6 @@ function showGroup(json) {
         </div>
     </div>
         `;
-        html += html;
-
     }
     console.log(html);
     group.innerHTML = html;
