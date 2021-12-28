@@ -1,8 +1,5 @@
 $(function () {	
 
-
-
-
     setInterval(function(){
         
     },2000);
@@ -16,7 +13,7 @@ $(function () {
             },2000).animate({
                 top:  '0px',
             },2000);
-        },2000);
+        },1000);
 
         setInterval(function(){
             $('.top3_leader ul li:nth-of-type(2)').animate({
@@ -24,7 +21,7 @@ $(function () {
             },2000).animate({
                 top:  '0px',
             },2000);
-        },3000);
+        },2000);
 
         setInterval(function(){
             $('.top3_leader ul li:nth-of-type(3)').animate({
@@ -32,7 +29,7 @@ $(function () {
             },2000).animate({
                 top:  '0px',
             },2000);
-        },4000);
+        },3000);
     });
    
 });
