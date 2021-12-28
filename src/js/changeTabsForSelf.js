@@ -29,6 +29,9 @@ let showHost;
 let count;
 let input;
 let ratingHost;
+let blackshow;
+let showBlack;
+let blackNone;
 
 
 function closeRating() {
@@ -47,12 +50,15 @@ function rateHost(){
 	showHost=document.getElementById("layerRatingHost");
 	showHost.style.display = "block";
 }
-//計算字數
-function cal_words(){
-	var length = document.getElementById("giveFeedBack").value.length;
-	document.getElementById("count").innerText = length;
-	console.log(length);
-	}
+
+function showBlackList(){
+	showBlack=document.getElementById("layerBlackContainer");
+	showBlack.style.display = "block";
+}
+function closeBlackList(){
+	showBlack.style.display = "none";
+}
+
 function init() {
 	Off=document.getElementById("closeRating");
 	HostOff=document.getElementById("close-host");
@@ -60,10 +66,14 @@ function init() {
 	count = document.getElementById('count');
 	ratingHost=document.getElementById("rateHost")
 	input = document.querySelectorAll('.giveFeedBack');
+	blackshow= document.getElementById("myBlackList");
+	blackNone= document.getElementById("closeBlack")
 	
 	Off.onclick = closeRating;
     HostOff.onclick = closeHost;
     startRating.onclick = ratingParts;
 	ratingHost.onclick=rateHost;
+	blackshow.onclick=showBlackList;
+	blackNone.onclick=closeBlackList;
 }
 window.addEventListener("load", init, false);

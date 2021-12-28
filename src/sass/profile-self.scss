@@ -187,17 +187,14 @@
     width: 100%;
     @include borderR();
 }
-.btnWhite{
-    border: none;
-}
-.btnYellow{
-    border: none;
-}
 .activity-btn{
-    width: 21%;
+    width: 25%;
     margin-left: auto;
     padding-top: 80px;
     text-align: end;
+}
+.btnYellow{
+    text-align: center;
 }
 .friend-list h2{
     display: inline-block;
@@ -300,7 +297,7 @@
     cursor: pointer;
     width: 95px;
 }
-.del-friend:hover{
+.del-friend,.blackMemList:hover{
     background-color: $bgYellow;
 }
 .blackList-friend:hover{
@@ -314,15 +311,28 @@
     position: relative;
 }
 .blackList{
-    width: 100%;
+    width: 100px;
+    height:50px;
+    padding: 10px;
     border: none;
-    background: transparent;
+    background-color: $white;
     position: absolute;
+    z-index: 100;
     display: none;
-    top: 0;
+    top: 30px;
+    @include borderR();
+    @include shadow(5px);
+}
+.blackList button{
+    background-color: transparent;
+    border: none;
+    font-size: 18px;
+}
+.openBlackList{
+    display: block;
 }
 //評價團員
-#layerRatingContainer,#layerRatingHost{
+#layerRatingContainer,#layerRatingHost,#layerBlackContainer{
     background-color: rgba(230, 230, 230, 0.801);
     height: 100vh;
     width: 100vw;
@@ -336,13 +346,12 @@
     display: none;
   }
 .ratingContainer{
-    width: 60vw;
-    height: 80vh;
-    background-color: $white;
+    width: 70vw;
+    background-color: $mainBlue;
     text-align: center;
     padding: 20px 0;
     display: flex;
-    justify-content: center;
+    // justify-content: center;
     flex-direction: column;
     border-radius: 10px;
     position: fixed;
@@ -351,6 +360,45 @@
     left: 0;
     right: 0;
     margin: auto;
+    z-index: 100;
+    overflow-y: scroll;
+}
+  .ratingContainer::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    background-color: #025A78;
+  
+  
+  }
+  .ratingContainer::-webkit-scrollbar {
+    width: 5px;
+    border-radius: 10px;
+    background-color: #025A78;
+  
+  
+  }
+  .ratingContainer::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+    background-color: #FFF3A9;
+  }
+.blackContainer{
+    width: 60vw;
+    height: 80vh;
+    background-color: #025A78;
+    text-align: center;
+    padding: 40px 0;
+    display: flex;
+    /* justify-content: center; */
+    flex-direction: column;
+    border-radius: 10px;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    z-index: 100;
 }
 .star-widget input{
     margin: auto;
@@ -385,7 +433,7 @@
     font-weight: bold;
     margin-right: auto;
     padding: 30px 0 10px 5px;
-    color: black;
+    color: $white;
 }
 .rating-textarea{
     height: 50px;
@@ -426,11 +474,10 @@
 }
 .close-btn{
     cursor: pointer;
-    padding:7px 10px;
+    padding: 7px 10px;
     border-radius: 50%;
     border: none;
-    background-color: #025A78;
-    color: #fff;
+    color: #025A78;
     position: absolute;
     top: 5px;
     right: 5px;
@@ -439,7 +486,7 @@
     position: absolute;
     top: 5px;
     left: 5px;
-    color: #787878;
+    color: $white;
 }
 .titleBackground{
     background-color: #FFF3A9;
@@ -449,7 +496,7 @@
     font-size: 18px;
 }
 .rater{
-    color: #025A78;
+    color: $white;
 }
 .RatingMemTd{
     padding-bottom: 20px;
@@ -457,11 +504,20 @@
 .ratingMemRow{
     border-bottom: 1px solid black;
 }
+.activity-page{
+    width: 90px;
+    display: block;
+    text-align: end;
+    margin-left: auto;
+    padding: 10px 20px;
+    text-decoration: underline;
+
+}
 //團主評價
 .ratingContainerHost{
     width: 60vw;
     height: 80vh;
-    background-color: $white;
+    background-color: $mainBlue;
     text-align: center;
     padding: 20px 30px;
     display: flex;
@@ -476,6 +532,7 @@
     left: 0;
     right: 0;
     margin: auto;
+    overflow-y: scroll;
 }
 .star-widget-host{
     margin-bottom: 10px;

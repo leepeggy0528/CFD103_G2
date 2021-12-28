@@ -1,3 +1,28 @@
+<?php 
+    try {
+        //引入連線工作的檔案
+        require_once("./php/connectAccount.php");
+        //require_once("../connectAccount.php");
+        
+        //執行sql指令並取得pdoStatement
+        $sql = "select * from sight s join sight_pt spt on s.sig_no=spt.sig_no
+        where spt.spt_pt like('%01%');";
+        $products = $pdo->query($sql); 
+        $r = rand(3333001,3333010);
+        $sqlf = "select * from sight s join sight_pt spt on s.sig_no=spt.sig_no where s.sig_no=? and spt.spt_pt like('%01%')";
+        $productsf = $pdo->prepare($sqlf);
+        $productsf -> bindValue(1,$r);
+        $productsf -> execute();
+        $prodRowf = $productsf->fetch(PDO::FETCH_ASSOC);
+        //取回所有的資料, 放在2維陣列中
+    } catch (Exception $e) {
+        echo "錯誤行號 : ", $e->getLine(), "<br>";
+        echo "錯誤原因 : ", $e->getMessage(), "<br>";
+        //echo "系統暫時不能正常運行，請稍後再試<br>";	
+    }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,13 +32,12 @@
     <link rel="stylesheet" href="./css/attractions.css">
     <link rel="stylesheet" href="./js/group.js">
     <script src="./js/cart.js"></script>
-    <script src="./js/shoppingcar.js"></script>
     <title>旅行趣</title>
 </head>
 <body>
     
-    @@include('./layout/login.html')
-    @@include('./layout/header.html')
+    @@include('../../layout/login.html')
+    @@include('../../layout/header.html')
 
     <div class="filter-container">
         
@@ -130,7 +154,7 @@
 
     <h2>旅行趣</h2>
 
-    
+    <!-- 
         <div class="first-card">
             <a class="card-click" href="http://localhost:3000/attinsidepage.html">
                 <div class="pic">
@@ -143,179 +167,234 @@
                         <span>#熱門打卡</span>
                     </div>
                     <p>歷史悠久且由於位於淡水港邊，發展出多樣飲食風貌，更因不少古董店及民藝品店進駐，也營造出民俗色彩與懷舊風味。</p>
-                    
+                    <div class="joinsite-btn">
+                        <input class="button" type="button" value="加入景點" onclick="">
+                    </div>    
                 </div>
             </a>
-            <span id="joinsite-btn">
-                <input class="addbutton" type="button" value="加入景點">
-            </span>    
-        </div>
-        
+        </div> 
+    -->
+    <div class="first-card">
+        <a class="card-click" href="./attinsidepage.php?sig_no=<?=$prodRowf['sig_no']?>">
+            <div class="pic">
+                <img src="./images/sight/<?=$prodRowf["spt_pt"]?>">
+            </div>
+            <div class="first-card-content">
+                
+                <h3><?=$prodRowf["sig_name"]?></h3>
+                <div class="hashtag">
+                    <span>#<?=$prodRowf["sig_type"]?></span>
+                </div>
+                <p> <?=$prodRowf["sig_intro"]?></p>
+                <div class="joinsite-btn">
+                    <input class="button" type="button" value="加入景點" onclick="">
+                </div>    
+            </div>
+        </a>
+    </div>
+    <div class="card-container">
+        <?php 
+            
+            while($prodRow = $products->fetch(PDO::FETCH_ASSOC)){
+                if($prodRow["sig_no"]==$r){
+                    continue;
+            }else{
+        ?>
+            <div class="card">
+                <a href="./attinsidepage.php?sig_no=<?=$prodRow['sig_no']?>">
+                    <div class="pic">
+                        <img src="./images/sight/<?=$prodRow["spt_pt"]?>">
+                    </div>
+                    <div class="content">
+
+                        <h3><?=$prodRow["sig_name"]?></h3>
+                        <div class="hashtag">
+                            <span>#<?=$prodRow["sig_type"]?></span>
+                        </div>
+                        <p>
+                        <?=$prodRow["sig_intro"]?>
+                        </p>
+                        
+                        <div class="joinsite-btn"><input class="button" type="button" value="加入景點" onclick=""></div>
+                        
+                    </div>
+                </a>
+            </div>
+        <?php
+                }  
+            }
+        ?>	
+    </div>
+
     
-<div class="card-container">
-    
+        <!-- 
+            <div class="card-container">
+
                 <div class="card">
-                    <a href="#">
+                    <a href="http://localhost:3000/attinsidepage.html">
                         <div class="pic">
                             <img src="./images/sight/houtong01.jpg">
                         </div>
                         <div class="content">
-    
+
                             <h3>猴硐貓村</h3>
                             <div class="hashtag">
                                 <span>#熱門打卡</span>
                             </div>
                             <p>猴硐貓村，一個可以療癒身心，可以清淨心靈的城市後花園。
                             </p>
-                            <!-- <span id="joinsite-btn"><input class="addbutton" type="button" value="加入景點" onclick=""></span> -->
-    
+                            
+                            <div class="joinsite-btn"><input class="button" type="button" value="加入景點" onclick=""></div>
+                            
                         </div>
                     </a>
-                    <span id="joinsite-btn"><input class="addbutton" type="button" value="加入景點" onclick=""></span>
                 </div>
+
                 <div class="card">
                     <a href="http://localhost:3000/attinsidepage.html">
                         <div class="pic">
                             <img src="./images/sight/greencorridor01.jpg">
                         </div>
                         <div class="content">
-    
+
                             <h3>綠色走廊</h3>
                             <div class="hashtag">
                                 <span>#熱門打卡</span>
                             </div>
                             <p>觀海步道可以牽著單車欣賞落日及海景。</p>
-                            <span id="joinsite-btn"><input class="addbutton" type="button" value="加入景點" onclick=""></span>
-    
+                            <div class="joinsite-btn"><input class="button" type="button" value="加入景點" onclick=""></div>
+                            
                         </div>
                     </a>
                 </div>
-    
+
                 <div class="card">
                     <a href="http://localhost:3000/attinsidepage.html">
                         <div class="pic">
                             <img src="./images/sight/Neiwan01.jpg">
                         </div>
                         <div class="content">
-    
+
                             <h3>內灣老街</h3>
                             <div class="hashtag">
                                 <span>#熱門打卡</span>
                             </div>
                             <p>以懷舊的老街情懷帶動了觀光。
                             </p>
-                            <span id="joinsite-btn"><input class="addbutton" type="button" value="加入景點" onclick=""></span>
-    
+                            <div class="joinsite-btn"><input class="button" type="button" value="加入景點" onclick=""></div>
+
                         </div>
                     </a>
                 </div>
-    
+
                 <div class="card">
                     <a href="http://localhost:3000/attinsidepage.html">
                         <div class="pic">
                             <img src="./images/sight/parklane01.jpg">
                         </div>
                         <div class="content">
-    
+
                             <h3>勤美誠品綠園道</h3>
                             <div class="hashtag">
                                 <span>#熱門打卡</span>
                             </div>
                             <p>這裡可以遇見源源不絕的靈感，然後選擇自己喜歡的放在心中發芽。
                             </p>
-                            <span id="joinsite-btn"><input class="addbutton" type="button" value="加入景點" onclick=""></span>
-    
+                            <div class="joinsite-btn"><input class="button" type="button" value="加入景點" onclick=""></div>
+                            
                         </div>
                     </a>
-                </div>
-    
-    
-    
-    
-    
+                </div>   
+        
+
+
+            </div>
+
+            <div class="card-container">
+                
                 <div class="card">
                     <a href="http://localhost:3000/attinsidepage.html">
                         <div class="pic">
                             <img src="./images/sight/YiZhong01.jpg">
                         </div>
                         <div class="content">
-    
+
                             <h3>一中商圈</h3>
                             <div class="hashtag">
                                 <span>#熱門打卡</span>
                             </div>
                             <p>你想的到的這裡都有，來了保證流連忘返。</p>
-                            <span id="joinsite-btn"><input class="addbutton" type="button" value="加入景點" onclick=""></span>
-    
+                            <div class="joinsite-btn"><input class="button" type="button" value="加入景點" onclick=""></div>
+                            
                         </div>
                     </a>
                 </div>
-    
+            
                 <div class="card">
                     <a href="http://localhost:3000/attinsidepage.html">
                         <div class="pic">
                             <img src="./images/sight/lihpao01.jpg">
                         </div>
                         <div class="content">
-    
+
                             <h3>麗寶樂園</h3>
                             <div class="hashtag">
                                 <span>#熱門打卡</span>
                             </div>
-                            <p>玩樂園、住飯店、逛Outlet、開卡丁、搭摩天輪，一次滿足你的需求。
+                            <p>玩樂園、住飯店、逛Outlet、開卡丁、搭摩天輪，一次滿足你的需求。 
                             </p>
-                            <span id="joinsite-btn"><input class="addbutton" type="button" value="加入景點" onclick=""></span>
-    
+                            <div class="joinsite-btn"><input class="button" type="button" value="加入景點" onclick=""></div>
+
                         </div>
                     </a>
                 </div>
-    
-    
+
+
                 <div class="card">
                     <a href="http://localhost:3000/attinsidepage.html">
                         <div class="pic">
                             <img src="./images/sight/tendrum01.jpg">
                         </div>
                         <div class="content">
-    
+
                             <h3>十鼓文化村</h3>
                             <div class="hashtag">
                                 <span>#熱門打卡</span>
                             </div>
-                            <p>大人小孩都會喜歡的文化園區。
+                            <p>大人小孩都會喜歡的文化園區。 
                             </p>
-                            <span id="joinsite-btn"><input class="addbutton" type="button" value="加入景點" onclick=""></span>
-    
+                            <div class="joinsite-btn"><input class="button" type="button" value="加入景點" onclick=""></div>
+
                         </div>
                     </a>
                 </div>
-    
+
                 <div class="card">
                     <a href="http://localhost:3000/attinsidepage.html">
                         <div class="pic">
                             <img src="./images/sight/chimei01.jpg">
                         </div>
                         <div class="content">
-    
+
                             <h3>奇美博物館</h3>
                             <div class="hashtag">
                                 <span>#熱門打卡</span>
                             </div>
                             <p>結合西方神話，創造共享園地，成為心靈避風港。
                             </p>
-                            <span id="joinsite-btn"><input class="addbutton" type="button" value="加入景點" onclick=""></span>
-    
+                            <div class="joinsite-btn"><input class="button" type="button" value="加入景點" onclick=""></div>
+
                         </div>
                     </a>
                 </div>
-</div>
 
-            
-
+                
+            </div>
+        -->
         <div class="cart" id="cart">
             <div class="cart-list">
                 
-                <!-- <div class="item">
+                <div class="item">
                     <img src="./images/sight/tamsui02.jpg" alt="">
                     <p>淡水老街</p>
                 </div>
@@ -334,7 +413,7 @@
                 <div class="item">
                     <img src="./images/sight/YiZhong02.jpg" alt="">
                     <p>一中商圈</p>
-                </div> -->
+                </div>
             </div>
             <div class="sure"><input class="confirm-button" type="button" value="確定" onclick=""></div>
     
@@ -342,6 +421,7 @@
     
         </div>
 
+        
         <section class="page">
             <button class="prev">上一頁</button>
             <button class="pageNo">1</button>
@@ -353,7 +433,7 @@
         </section>
 
         <script src="./js/loginLightbox.js"></script>
-        @@include('./layout/footer.html')
+        @@include('../../layout/footer.html')
 
 
 </body>
