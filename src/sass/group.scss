@@ -217,6 +217,15 @@ h3 {
     display: flex;
     flex-wrap: wrap;
     margin: 20px 0;
+
+    .card {
+        >.pic {
+            img {
+                height: 200px;
+                object-fit: cover;
+            }
+        }
+    }
 }
 
 /*分頁數字*/

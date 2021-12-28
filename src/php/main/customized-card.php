@@ -1,3 +1,28 @@
+<?php
+try{
+  require_once("./php/connectAccount.php");
+
+    //取得好友
+    $sqlFD = "select mem_name, mem_pt, mem_mail
+    from member where mem_id in (select f.friend_id
+                                from  member m JOIN friend f on m.mem_id = f.mem_id
+                                where m.mem_id = 9455001);"; 
+    $friends = $pdo->query($sqlFD);
+
+    //貼紙 
+    $sql_sticker="select * from stamp_style;";
+    $stickers = $pdo->query($sql_sticker);
+
+    //卡片
+    $sql_card="select * from card_style;";
+    $cards = $pdo->query($sql_card);	
+    // $cardRows = $cards->fetchAll(PDO::FETCH_ASSOC);
+
+}catch(PDOException $e){
+    echo $e->getMessage();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,14 +32,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/customized-card.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.3/html2canvas.min.js"></script>
-    <script type="text/javascript" src="https://cdn.emailjs.com/sdk/2.3.2/email.min.js" async></script>
-    <!-- <script src="./js/customizedCard.js"></script> -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+    <script src="./js/customizedCard.js"></script>
+    
+    <script type="text/javascript">
+        (function () {
+            emailjs.init("user_IMcEsViZ8QX2YF42g5Xqu");
+        })();
+    </script>
     <title>客製卡片</title>
 </head>
 
 <body>
-    @@include('./layout/login.html')
-    @@include('./layout/header.html')
+    @@include('../../layout/login.html')
+    @@include('../../layout/header.html')
     <div class="container">
         <h2>客製卡片</h2>
         <section class="customized-card">
@@ -58,37 +90,37 @@
                 </div>
                 <div class="wrap-pattern">
                     <div class="card-pattern">
-                        <div class="pic cardFocus">
+                        <!-- <div class="pic cardFocus">
                             <img class="selectCard" src="./images/card/colorful-line.jpg" alt="">
-                        </div>
+                        </div> -->
+                        <?php
+                            while($cardRows = $cards->fetch(PDO::FETCH_ASSOC)){
+                                if($cardRows['cstyle_status']==0){
+                        ?>
                         <div class="pic">
-                            <img class="selectCard" src="./images/card/rainbow.jpg" alt="">
+                            <img class="selectCard" src="./images/card/<?=$cardRows['cstyle_pt']?>" alt="">
                         </div>
-                        <div class="pic">
-                            <img class="selectCard" src="./images/card/leaf.jpg" alt="">
-                        </div>
+
+                        <?php
+                        }
+                        }
+                        ?>
+
+                    
                     </div>
 
-                    <div class="sticker hidden">
-                        <div class="pic">
-                            <img src="./images/sticker/dog.png" alt="">
-                        </div>
-                        <div class="pic">
-                            <img src="./images/sticker/ufo.png" alt="">
-                        </div>
+               
 
+                    <div class="sticker hidden">
+                    <?php
+                        while($stickerRows = $stickers->fetch(PDO::FETCH_ASSOC)){
+                    ?>
                         <div class="pic">
-                            <img src="./images/sticker/plant.png" alt="">
+                            <img src="./images/sticker/<?=$stickerRows['sstyle_pt']?>" alt="">
                         </div>
-                        <div class="pic">
-                            <img src="./images/sticker/can.png" alt="">
-                        </div>
-                        <div class="pic">
-                            <img src="./images/sticker/thunder.png" alt="">
-                        </div>
-                        <div class="pic">
-                            <img src="./images/sticker/heart_2.png" alt="">
-                        </div>
+                    <?php
+                    }
+                    ?>
                     </div>
 
                     <!-- 按鈕 -->
@@ -115,52 +147,29 @@
 
                     <input type="text" class="friend-search" placeholder="搜尋好友">
                     <ul class="friend-list">
+                        <?php 
+                        while($friendRows = $friends->fetch(PDO::FETCH_ASSOC)){
+                        ?>
                         <li>
                             <div class="user">
-                                <img class="headshot" src="./images/user/m01.jpg" alt="">
-                                <span>陳珊迪</span>
+                                <img class="headshot" src="./images/user/<?=$friendRows['mem_pt'];?>" alt="">
+                                <span><?=$friendRows['mem_name'];?></span>
                             </div>
                             <button class="send btnYellow">寄送</button>
 
                         </li>
-                        <li>
-                            <div class="user">
-                                <div class="pic">
-                                    <img class="headshot" src="./images/user/m02.jpg" alt="">
-                                </div>
-                                <span>陳傑瑞</span>
-                            </div>
-                            <button class="send btnYellow">寄送</button>
-                        </li>
-                        <li>
-                            <div class="user">
-                                <div class="pic">
-                                    <img class="headshot" src="./images/user/m03.jpg" alt="">
-                                </div>
-
-                                <span>林安迪</span>
-                            </div>
-                            <button class="send btnYellow">寄送</button>
-
-                        </li>
-
-                        <li>
-                            <div class="user">
-                                <img class="headshot" src="./images/user/m04.jpg" alt="">
-
-                                <span>陳傑瑞</span>
-                            </div>
-                            <button class="send btnYellow">寄送</button>
-                        </li>
-                    </ul>
+                        <?php 
+                          }
+                        ?>
+                       
 
                 </section>
             </div>
         </section>
     </div>
     <!-- ============canvas=========== -->
-    @@include('./layout/footer.html')
-    <script src="./js/customizedCard.js"></script>
+    @@include('../../layout/footer.html')
+    <!-- <script src="./js/customizedCard.js"></script> -->
     <script src="./js/loginLightbox.js"></script>
 
 </body>
