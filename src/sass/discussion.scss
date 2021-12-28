@@ -64,7 +64,6 @@ margin: auto;
     display: flex;
     justify-content: center;
     width: calc(100vw - 10%);
-    height: 100px;
     background-color: #fff9d6;
     border: 1px solid #025A78;
     display: block;
@@ -96,7 +95,6 @@ margin: auto;
     display: flex;
     justify-content: center;
     width: calc(100vw - 10%);
-    height: 150px;
     background-color: #fff9d6;
     border: 1px solid #025A78;
     display: block;
@@ -121,7 +119,6 @@ margin: auto;
     display: flex;
     justify-content: center;
     width: calc(100vw - 10%);
-    height: 150px;
     background-color: #fff9d6;
     border: 1px solid #6B879D;
     display: block;
@@ -172,12 +169,24 @@ margin: auto;
     width: 150px;
 }
 .pic img{
-    object-fit: fill;
+    object-fit: cover;
     width: 100%;
-    height: 100%;
+    height: 150px;
     border-radius: 10px;
   }
 
+  .pic_me{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+
+  .pic_me img{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
 .me{
     display: flex;
     margin-top: 20px;
@@ -270,10 +279,6 @@ justify-content: center;
     flex-wrap: wrap;
 }
 
-.tag-box span{
-    margin: 10px;
-}
-
 .tag{
     display: flex;
 }
@@ -323,9 +328,8 @@ justify-content: center;
 .leave{
     padding: 10px;
     border-radius: 10px;
-    background-color: #fff9d6;
     border: none;
-    color: #025A78;
+    color: $mainBlue;
 }
 .section-all{
   display: flex;
@@ -346,7 +350,6 @@ justify-content: center;
 }
 .cute-text{
     border: none;
-    background-color: #fff9d6;
     height: 30px;
     border-radius: 10px;
 }
@@ -365,7 +368,6 @@ justify-content: center;
 
 textarea{
     resize: none;
-    background-color: #fff9d6;
     border-radius: 10px;
 }
 
@@ -387,7 +389,7 @@ textarea{
 .pic-box{
     width: 230px;
     height: 270px;
-    background-color: #fff9d6;
+    background-color: #fff;
     border-radius: 10px;
 }
 
@@ -398,8 +400,16 @@ textarea{
     justify-content: center;
 }
 
-.tager{
+.i{
     color: #6B879D;
+    font-size: 13px;
+    padding: 10px;
+}
+
+.tager{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 /*分頁數字*/
@@ -434,6 +444,13 @@ textarea{
     }
 }
 @media only screen and (max-width: 1024px){
+
+    .pic img{
+        object-fit: cover;
+        width: 100%;
+        height: 200px;
+        border-radius: 10px;
+      }
 
     .search-item{
         display: block;
