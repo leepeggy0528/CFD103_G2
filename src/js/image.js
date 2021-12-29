@@ -61,3 +61,16 @@ dropArea.addEventListener("drop",(e)=>{
            dropArea.classList.remove("active");
        }
    }
+   //--------------
+   window.addEventListener("load", function(){
+       document.getElementById("finished").onclick = function(){
+           let hobbies = document.getElementsByClassName("hobby");
+           let str = "";
+           for(let i=0; i<hobbies.length; i++){
+              str = str + (hobbies[i].checked == true ? "1" : "0");
+           }
+           document.getElementById("hobby").value = str;
+
+           document.querySelector(".login-form").submit(addMember.php);
+       }
+   })

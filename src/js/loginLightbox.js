@@ -95,6 +95,7 @@ function $id(id){
           document.getElementsByClassName("coins")[0].innerText=member.mem_money;
           document.querySelector(".loginmempic img").src = "./images/user/"+ member.mem_pt;
           console.log("./images/user/"+ member.mem_pt);
+          $id('LoginBTN').style.display='none';
         }
       }
       xhr.open("get", "./php/getMemberInfo.php", true);
