@@ -15,7 +15,7 @@
         $productsf = $pdo->prepare($sqlf);
         $productsf -> bindValue(1,$_GET["sig_no"]);
         $productsf -> execute();
-        $prodRowf = $productsf->fetchAll(PDO::FETCH_ASSOC);
+        $prodRowfs = $productsf->fetchAll(PDO::FETCH_ASSOC);
         //取回所有的資料, 放在2維陣列中
     } catch (Exception $e) {
         echo "錯誤行號 : ", $e->getLine(), "<br>";
@@ -54,7 +54,7 @@
 	</div>
 	<div class="small-pic-container">
 	<?php
-		foreach($prodRowf as $key =>$prodRowf){
+		foreach($prodRowfs as $key =>$prodRowf){
 			
 	?>
 		<img src="./images/sight/<?=$prodRowf["spt_pt"]?>" />
@@ -63,27 +63,25 @@
 	?>
 	</div>
 	
-	<!-- <div class="container">
+	<div class="container">
         <div class="slider">
             <div class="owl-carousel owl-theme">
                 <div class="item">
-                    <img src="./images/sight/tamsui02.jpg">
+                    <img src="./images/sight/<?=$prodRow["spt_pt"]?>">
                 </div>
-                <div class="item">
-                    <img src="./images/sight/tamsui06.jpg">
-                </div>
-                <div class="item">
-                    <img src="./images/sight/tamsui04.jpg">
-                </div>
-                <div class="item">
-                    <img src="./images/sight/tamsui05.jpg">
-                </div>
-                <div class="item">
-                    <img src="./images/sight/tamsui06.jpg">
-                </div>
+				<?php
+		foreach($prodRowfs as $key =>$prodRowf){
+			
+	?>
+		<div class="item">
+		<img src="./images/sight/<?=$prodRowf["spt_pt"]?>">
+		</div>
+	<?php
+		}
+	?>
             </div>
         </div>
-    </div> -->
+    </div>
 	
 	<script>
 		function showLarge(e) {
@@ -147,7 +145,7 @@
 				<p>一中商圈</p>
 			</div> -->
 		</div>
-		<div class="sure"><input class="confirm-button" type="button" value="確定" onclick=""></div>
+		<div class="sure"><input class="confirm-button" type="button" value="清空" onclick=""></div>
 
 		<input type="button" value=" < " class="move-out-button" id="moveOutButton">
 
@@ -196,7 +194,8 @@
 		});
 
 	</script>
-
+	<script src="./js/jquery-3.6.0.min.js"></script>
+    <script src="./js/attinsidepage.js"></script>
 </body>
 
 </html>
