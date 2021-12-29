@@ -57,7 +57,6 @@ function $id(id){
       xhr.onload = function(){
         member = JSON.parse(xhr.responseText);
         if(member.mem_mail){
-          console.log(member);
           $(document).ready(function(){
             $(".afterLogin").addClass("showMem");
           $(".usernameLogin").text(`${member.mem_name}`);
@@ -75,7 +74,10 @@ function $id(id){
       }
       xhr.open("post", "./php/mem_login.php", true);
       xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
-      let data_info = `mem_mail=${$id("memMail").value}&mem_pswd=${$id("memPsw").value}`;
+      let loginData = {};
+      loginData.memMail = $id("memMail").value;
+      loginData.memPsw = $id("memPsw").value;
+      let data_info = `login=${JSON.stringify(loginData)}`;
       console.log(data_info);
       xhr.send(data_info);
     }
@@ -84,7 +86,8 @@ function $id(id){
       let xhr = new XMLHttpRequest();
       xhr.onload = function(){
         member = JSON.parse(xhr.responseText);
-         if(member.memId){ //已登入
+        console.log(member);
+         if(member.mem_id){ //已登入
           $(".afterLogin").addClass("showMem");
           document.getElementsByClassName("usernameLogin")[0].innerText=member.mem_name;
           document.getElementsByClassName("diamonds")[0].innerText=member.mem_dom;

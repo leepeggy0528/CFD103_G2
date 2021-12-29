@@ -1,7 +1,6 @@
 <?php 
 try{
     require_once("php/connectAccount.php");
-	
 	//igroup 表單上傳
 	$mem_id= '9455010'; //欄位2 NOT_NULL ---->要改
 	$gro_name= $_POST['GRO_NAME']; //欄位3 NOT_NULL
@@ -30,11 +29,10 @@ try{
 	$gpt_pt= $_POST['GPT_PT'];
 
 	
-	$nowtime=strtotime(date("Y-m-d H:i:s"));
-	echo $nowtime,'<br/>';
-	echo $gpt_pt,'<br/>';
+	// $nowtime=strtotime(date("Y-m-d H:i:s"));
+	// echo $nowtime,'<br/>';
+	// echo $gpt_pt,'<br/>';
 	
-
 	$sql_1 = "INSERT INTO `gro_pt` (`gro_id`,`gpt_pt`)
 	VALUES ('{$gro_id}','{$gpt_pt}')";
 	$result_1 = $pdo->query($sql_1);
@@ -47,19 +45,18 @@ try{
 	$days_count = count($SCHEDULE,0);  
 	$spot_count = [];
 	for($i=0; $i<$days_count; $i++){
-		$spot_count[$i] = floor(count($SCHEDULE[$i],1)/4);
+		$spot_count[$i] = count($SCHEDULE[$i],0);
 	}
 	//schedul 表單上傳
-	for($a=0; $a<$days_count; $a++){
+	for($a=0; $a < $days_count; $a++){
 		$gro_id= $insert_id;
 		$sche_date = date("Ymd",strtotime("+$a day",strtotime("$gro_startd"))); //欄位5 NOT_NULL
 
-		for($b=0; $b<$spot_count[$a]; $b++){
+		for($b=0; $b < $spot_count[$a]; $b++){
 			$sche_name=  $SCHEDULE[$a][$b]["place_view"]; //欄位3 NOT_NULL
 			$sche_adress=  $SCHEDULE[$a][$b]["place_address"]; //欄位4 NOT_NULL
 			$sche_starttime=  $SCHEDULE[$a][$b]["input_time"]; //欄位6 NOT_NULL
 			$sche_endtime=  $SCHEDULE[$a][$b]["input_time_end"]; //欄位7 NOT_NULL
-		
 			$sql_2 = "INSERT INTO `schedule` (`gro_id`,`sche_name`,`sche_adress`,`sche_date`,`sche_starttime`,`sche_endtime`)
 			VALUES ('{$gro_id}','{$sche_name}','{$sche_adress}','{$sche_date}','{$sche_starttime}','{$sche_endtime}')";
 		
@@ -69,6 +66,7 @@ try{
 			}
 		}
 	}
+
 }catch (Exception $e){
 	echo "錯誤行號 : ", $e->getLine(), "<br>";
 	echo "錯誤原因 : ", $e->getMessage(), "<br>";
