@@ -51,6 +51,7 @@ function $id(id){
             $id('layerForLogin').style.display = 'none';
             $id('memId').value = '';
             $id('memPsw').value = '';
+            $id("LoginBTN").style.display='inline';
         }
     function sendForm(){
       //============使用Ajax 回server端,取回登入者姓名, 放到頁面上    

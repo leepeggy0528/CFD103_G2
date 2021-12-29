@@ -2,7 +2,7 @@
  <!-- 登入頁面    -->
 <div id="layerForLogin">
     <div class="login-wrapper">
-        <form class="login-form" method="post" action="./php/mem_login.php">
+        <form class="login-form" method="post" action="./php/mem_login.php" novalidate>
           <h1><img src="./images/photo/instagather logo.png" alt=""></h1>
           <div class="group">
             <input class="input" id="memMail" name="memMail"type="text" required="required"/>
@@ -17,17 +17,17 @@
                 <button id="submitLogin"class="btnYellow loggin-btn" type="button">登入</button>
             </div>
             <P>還沒有帳戶嗎?
-                    <button id="signUpNow">立即註冊</button>
+                    <button id="signUpNow" type="button">立即註冊</button>
             </P>
         </form>
     </div>
 </div>
 <!-- 註冊頁面一 -->
-<form class="login-form" method="post" action="./addMember.php">
+<form class="signup-form" method="post" action="./addMember.php">
   <input type="hidden" name="hobby" id="hobby">
-  <div id="layerForSignUp" class="whiteBackground">  
+  <fieldset  id="layerForSignUp">
+  <div class="whiteBackground">  
     <div class="login-wrapper">
-      <fieldset>
         <h1 class="join">
           立即加入Instagather
         </h1>
@@ -36,7 +36,7 @@
             建立帳戶
           </span>
           <div class="group first-group">
-            <input class="input" type="text" required="required" name="mem_mail"/>
+            <input class="input" type="text"  name="mem_mail" required="required"/>
             <label class="shrink">信箱</label>
           </div>
           <div class="group">
@@ -44,7 +44,7 @@
             <label class="shrink">密碼</label>
           </div>
           <div class="group">
-            <input class="input" type="password" required="required" name="mem_pswd"/>
+            <input class="input" type="password"  name="mem_pswd" required="required"/>
             <label class="shrink">確認密碼</label>
           </div>
             <div class="btn-box">
@@ -52,13 +52,13 @@
                 <button id="nextStep" class="btnYellow" type="button">下一步</button>
             </div>
         </div>
-      </fieldset>
+      </div>
     </div>
-  </div>
+  </fieldset>
   <!-- 註冊頁面二 -->
-  <div id="layerForSignUpTwo" class="whiteBackground">  
+  <fieldset id="layerForSignUpTwo">
+  <div class="whiteBackground">  
     <div class="login-wrapper">
-      <fieldset>
         <h1 class="join">編輯會員資料</h1> 
         <div class="drag-area">
           <button class="icon" type="button"><i class="fas fa-cloud-upload-alt"></i></button>
@@ -158,9 +158,9 @@
               <button id="finished" class="btnYellow " type="button">完成註冊</button>
             </div>
         </div>
-      </fieldset>
+      </div>
     </div>
-  </div>
+  </fieldset>
 </form>
 <script src="./js/image.js"></script>
 
