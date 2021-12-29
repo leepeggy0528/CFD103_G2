@@ -4,6 +4,9 @@ let filter;
 let themeLabel, themeCheck;
 let locLabel, locCheck;
 
+let themeArr = new Array();
+let filterLoc;
+let themes;
 // sort-nav focus樣式
 function sortFocus(e) {
     let checkStyle = document.querySelectorAll(".sort > a")
@@ -11,8 +14,9 @@ function sortFocus(e) {
         checkStyle[i].classList.remove("sortFocus");
     }
     e.target.classList.add("sortFocus");
-}
+    document.getElementById('switchTitle').innerText = e.target.innerText;
 
+}
 
 // 開關選取器
 function switchFilter() {
@@ -37,22 +41,34 @@ function themeFocus(e) {
         themeLabel[0].classList.add("filterFocus");
     }
 }
-//選擇地點
+
+// let filterLoc;
+//選擇地點 單選
 function locFocus(e) {
     let label = e.target;
-    if (label.innerText != "全部") {
-        label.classList.toggle("filterFocus");
-        locLabel[0].classList.remove("filterFocus");
-        locCheck[0].checked = false;
-
-
-    } else if (label.innerText == "全部") {
-        for (let i = 0; i < locLabel.length; i++) {
-            locLabel[i].classList.remove("filterFocus");
-            locCheck[i].checked = false;
-        }
-        locLabel[0].classList.add("filterFocus");
+    for (let i = 0; i < locLabel.length; i++) {
+        locLabel[i].classList.remove("filterFocus");
     }
+    label.classList.add("filterFocus");
+    filterLoc = e.target.innerText.substring(0, 2);
+
+
+    let xhr = new XMLHttpRequest;
+    xhr.onload = function () {
+        if (xhr.status == 200) {
+            console.log("成功", xhr.responseText);
+
+        } else {
+            alert(xhr.status);
+            console.log(xhr.responseText);
+        }
+    }
+    xhr.open("Post", "./php/filterLoc.php", true);
+    xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+    let data_info = "gro_loc=" + filterLoc;
+
+    console.log('data_info:', data_info);
+    xhr.send(data_info);
 }
 
 // 收藏活動 
@@ -199,7 +215,7 @@ function init() {
     }
 
     let theme = document.getElementsByName('theme[]');
-    let themeArr = new Array;
+    // let themeArr = new Array;
     for (let i = 0; i < theme.length; i++) {
         theme[i].onchange = function () {
             if (theme[i].checked == true) {
@@ -213,7 +229,7 @@ function init() {
                 themeArr.splice(index, 1);
             }
 
-            let themes = themeArr.toString();
+            themes = themeArr.toString();
             let xhr = new XMLHttpRequest();
             xhr.onload = function () {
                 if (xhr.status == 200) {
@@ -240,6 +256,10 @@ function init() {
     for (let i = 0; i < locLabel.length; i++) {
         locLabel[i].onclick = locFocus;
     }
+
+
+
+
 
     // 下拉式選單
     let selectArea = document.querySelector("#selectArea");

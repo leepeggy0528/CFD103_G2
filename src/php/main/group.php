@@ -7,7 +7,8 @@ try{
     from igroup g join schedule s on g.gro_id = s.gro_id
                   join member m on g.mem_id = m.mem_id
                   join gro_pt gp on g.gro_id = gp.gro_id
-                  group by g.gro_id;"; 
+                  group by g.gro_id
+                  order by s.sche_date desc;"; 
     $allGroup = $pdo->query($sql_allGroup);
 
     //取得標題、內文、開始日期、開始時間、結束、地點
@@ -39,7 +40,7 @@ try{
         <a>最新聚會</a>
     </div>
     <div class="container">
-        <h2>所有聚會</h2>
+        <h2 id="switchTitle">熱門聚會</h2>
         <div class="iFilter">
             <img id="filterIcon" src="./images/icon/filter.png" alt="">
         </div>
@@ -59,30 +60,30 @@ try{
                 <input type="checkbox" name="theme[]" value="購物" id="shopping">
             </div>
             <!-- 地區 -->
-            <div class="locDiv">
-                <input type="checkbox" name="loc[]" id="allLoc" checked>
-                <input type="checkbox" name="loc[]" id="YL">
-                <input type="checkbox" name="loc[]" id="KL">
-                <input type="checkbox" name="loc[]" id="TP">
-                <input type="checkbox" name="loc[]" id="NTP">
-                <input type="checkbox" name="loc[]" id="TY">
-                <input type="checkbox" name="loc[]" id="HS">
-                <input type="checkbox" name="loc[]" id="HSH">
-                <input type="checkbox" name="loc[]" id="ML">
-                <input type="checkbox" name="loc[]" id="TC">
-                <input type="checkbox" name="loc[]" id="CW">
-                <input type="checkbox" name="loc[]" id="NT">
-                <input type="checkbox" name="loc[]" id="YLin">
-                <input type="checkbox" name="loc[]" id="CY">
-                <input type="checkbox" name="loc[]" id="TN">
-                <input type="checkbox" name="loc[]" id="KS">
-                <input type="checkbox" name="loc[]" id="PT">
-                <input type="checkbox" name="loc[]" id="HL">
-                <input type="checkbox" name="loc[]" id="TT">
-                <input type="checkbox" name="loc[]" id="PH">
-                <input type="checkbox" name="loc[]" id="KM">
-                <input type="checkbox" name="loc[]" id="MZ">
-            </div>
+            <!-- <div class="locDiv">
+                <input type="checkbox" name="loc[]" value="全部" id="allLoc" checked>
+                <input type="checkbox" name="loc[]" value="宜蘭" id="YL">
+                <input type="checkbox" name="loc[]" value="基隆" id="KL">
+                <input type="checkbox" name="loc[]" value="台北" id="TP">
+                <input type="checkbox" name="loc[]" value="新北" id="NTP">
+                <input type="checkbox" name="loc[]" value="桃園" id="TY">
+                <input type="checkbox" name="loc[]" value="新竹" id="HS">
+                <input type="checkbox" name="loc[]" value="宜蘭" id="HSH">
+                <input type="checkbox" name="loc[]" value="宜蘭" id="ML">
+                <input type="checkbox" name="loc[]" value="宜蘭" id="TC">
+                <input type="checkbox" name="loc[]" value="宜蘭" id="CW">
+                <input type="checkbox" name="loc[]" value="宜蘭" id="NT">
+                <input type="checkbox" name="loc[]" value="宜蘭" id="YLin">
+                <input type="checkbox" name="loc[]" value="宜蘭" id="CY">
+                <input type="checkbox" name="loc[]" value="宜蘭" id="TN">
+                <input type="checkbox" name="loc[]" value="宜蘭" id="KS">
+                <input type="checkbox" name="loc[]" value="宜蘭" id="PT">
+                <input type="checkbox" name="loc[]" value="宜蘭" id="HL">
+                <input type="checkbox" name="loc[]" value="宜蘭" id="TT">
+                <input type="checkbox" name="loc[]" value="宜蘭" id="PH">
+                <input type="checkbox" name="loc[]" value="宜蘭" id="KM">
+                <input type="checkbox" name="loc[]" value="宜蘭" id="MZ">
+            </div> -->
         </form>
         <!--======篩選器======-->
         <section class="filter">

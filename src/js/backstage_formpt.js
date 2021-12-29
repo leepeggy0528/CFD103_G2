@@ -34,7 +34,6 @@ window.addEventListener("load", function () {
     document.getElementById("upSticker").onchange = function (e) {
         let file = e.target.files[0];
         // file info
-        console.log(file);
         let reader = new FileReader();
         reader.onload = function () {
             document.getElementById("preview1").hidden = false;
@@ -46,35 +45,35 @@ window.addEventListener("load", function () {
     let cardRows = document.querySelectorAll('.cardRow');
     for (let i = 0; i < cardRows.length; i++) {
         cardRows[i].onclick = function (e) {
+
             if (e.target.classList.value.indexOf('trash') != -1) {
-                //卡片號碼
-                let stickerNo = e.currentTarget.children[0].innerText;
+                let removeConfirm = confirm('確定要刪除貼紙？');
+                if (removeConfirm) {
+                    let stickerNo = e.currentTarget.children[0].innerText;
 
-                e.currentTarget.remove();
-                let xhr = new XMLHttpRequest();
-                xhr.onload = function () {
-                    if (xhr.status == 200) {
+                    e.currentTarget.remove();
+                    let xhr = new XMLHttpRequest();
+                    xhr.onload = function () {
+                        if (xhr.status == 200) {
 
-                    } else {
-                        alert(xhr.status);
+                        } else {
+                            alert(xhr.status);
+                        }
                     }
+                    xhr.open("Post", "./php/backstage_removeSticker.php", true);
+                    xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+                    let data_info = 'stickerNo=' + stickerNo;
+
+                    console.log('data_info:', data_info);
+                    xhr.send(data_info);
                 }
-                xhr.open("Post", "./php/backstage_removeSticker.php", true);
-                xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
-                let data_info = 'stickerNo=' + stickerNo;
-
-                console.log('data_info:', data_info);
-                xhr.send(data_info);
             }
-
         }
     }
 
     // add sticker
 
     document.getElementById('addStickerBtn').onclick = function () {
-        // let stickerName = document.getElementById('stickerName').value;
-        // let file_info = document.getElementById("upSticker").files[0];//檔案資訊
         let stickerForm = document.getElementById('stickerForm');//form表單
         let form_data = new FormData(stickerForm);
         let xhr = new XMLHttpRequest();
