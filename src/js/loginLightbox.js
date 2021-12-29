@@ -1,65 +1,30 @@
-// let close;
-// let open;
-// let signUp;
-// let showLogin; 
-// let showSignUp;
-// let returnLogin;
-// let Next;
-// let Last;
-// let showSignUpPage2;
+let signUp;
+let showLogin; 
+let showSignUp;
+let returnLogin;
+let Next;
+let Last;
+let showSignUpPage2;
 
 
-// function closeLogin() {
-//     showLogin = document.getElementById("layerForLogin");
-//     console.log(showLogin);
-//     showLogin.style.display = "none";
-// }
-
-// function openLogin() {
-//     showLogin = document.getElementById("layerForLogin");
-//     showLogin.style.display = "block";
-//     console.log(showLogin);
-// }
-// function singUpPage(){
-//     showSignUp=document.getElementById("layerForSignUp");
-//     showSignUp.style.display = "block";
-//     showLogin.style.display = "none";
-// }
-// function returnToLogin(){
-//     showLogin.style.display = "block";
-//     showSignUp.style.display = "none";
-// }
-// function continueToStep2(){
-//     Next=document.getElementById("layerForSignUpTwo"); 
-//     Next.style.display = "block";
-//     showSignUp.style.display = "none";
-// }
-// function backToStep1(){
-//     showSignUp.style.display = "block";
-//     Next.style.display = "none";
-// }
-// function init() {
-//     // 操作登入頁面
-//     close = document.getElementById("closeLogin");
-//     open = document.getElementById("LoginBTN");
-//     // 操作註冊頁面
-//     signUp = document.getElementById("signUpNow");
-//     returnLogin= document.getElementById("returnLogin");
-//     Next= document.getElementById("nextStep");
-//     Last=document.getElementById("lastStep");
-
-//     close.onclick = closeLogin;
-//     open.onclick = openLogin;
-//     signUp.onclick =singUpPage;
-//     returnLogin.onclick =returnToLogin;
-//     Next.onclick=continueToStep2;
-//     Last.onclick=backToStep1;
-// }
-// window.addEventListener("load", init, false);
-
-
-
-
+function singUpPage(){
+    showSignUp=document.getElementById("layerForSignUp");
+    showSignUp.style.display = "block";
+    $id('layerForLogin').style.display = "none";
+}
+function returnToLogin(){
+  $id('layerForLogin').style.display = "block";
+    showSignUp.style.display = "none";
+}
+function continueToStep2(){
+    Next=document.getElementById("layerForSignUpTwo"); 
+    Next.style.display = "block";
+    showSignUp.style.display = "none";
+}
+function backToStep1(){
+    showSignUp.style.display = "block";
+    Next.style.display = "none";
+}
 //連上資料庫後
 function $id(id){
 	return document.getElementById(id);
@@ -67,6 +32,7 @@ function $id(id){
     //登入
     function showLoginForm(){
       $id('layerForLogin').style.display = 'block';
+      $("#LoginBTN").css("display",'none');
       
     }
     //登出
@@ -92,7 +58,6 @@ function $id(id){
       xhr.onload = function(){
         member = JSON.parse(xhr.responseText);
         if(member.mem_mail){
-          console.log(member);
           $(document).ready(function(){
             $(".afterLogin").addClass("showMem");
           $(".usernameLogin").text(`${member.mem_name}`);
@@ -110,7 +75,10 @@ function $id(id){
       }
       xhr.open("post", "./php/mem_login.php", true);
       xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
-      let data_info = `mem_mail=${$id("memMail").value}&mem_pswd=${$id("memPsw").value}`;
+      let loginData = {};
+      loginData.memMail = $id("memMail").value;
+      loginData.memPsw = $id("memPsw").value;
+      let data_info = `login=${JSON.stringify(loginData)}`;
       console.log(data_info);
       xhr.send(data_info);
     }
@@ -119,13 +87,15 @@ function $id(id){
       let xhr = new XMLHttpRequest();
       xhr.onload = function(){
         member = JSON.parse(xhr.responseText);
-         if(member.memId){ //已登入
+        console.log(member);
+         if(member.mem_id){ //已登入
           $(".afterLogin").addClass("showMem");
           document.getElementsByClassName("usernameLogin")[0].innerText=member.mem_name;
           document.getElementsByClassName("diamonds")[0].innerText=member.mem_dom;
           document.getElementsByClassName("coins")[0].innerText=member.mem_money;
           document.querySelector(".loginmempic img").src = "./images/user/"+ member.mem_pt;
           console.log("./images/user/"+ member.mem_pt);
+          $id('LoginBTN').style.display='none';
         }
       }
       xhr.open("get", "./php/getMemberInfo.php", true);
@@ -144,6 +114,12 @@ function $id(id){
       //===設定btnLogin.onclick 事件處理程序是 sendForm
       $id('submitLogin').onclick = sendForm;
       $id('LogoutButton').onclick = MemLogout;
+
+      // 操作註冊頁面
+    $id('signUpNow').onclick =singUpPage;
+    $id('returnLogin').onclick =returnToLogin;
+    $id('nextStep').onclick=continueToStep2;
+    $id('lastStep').onclick=backToStep1;
       
     }; //window.onload
     let member = {};

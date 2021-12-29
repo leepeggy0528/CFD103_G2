@@ -9,6 +9,10 @@
   display: none;
   z-index: 1000;
 }
+.login_content{
+  margin: auto;
+  width: 65%;
+}
 .drag-area{
   border: 2px dashed black;
   width: 100px;
@@ -92,7 +96,7 @@
   @include borderR();
 }
 .gender{
-  font-size: $font-1;
+  font-size: 18px;
   margin-left: 50px;
   border: none;
 }
@@ -228,6 +232,9 @@
     transition: 300ms ease all;
    }
    @media (max-width: 960px) {
+    #layerForLogin{
+      display: block;
+    }
     .birthday-group{
       width: 50%;
     }

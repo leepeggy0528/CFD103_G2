@@ -5,6 +5,9 @@
         $sql = "select * from sight";
         $sight= $pdo -> query($sql);
         $sightRow = $sight -> fetchAll(PDO::FETCH_BOTH) ;
+        $sql1 = " select sig_no from sight order by sig_no desc limit 1";
+        $sight1= $pdo -> query($sql1);
+        $sightRow1 = $sight1 -> fetch(PDO::FETCH_BOTH) ;
     } catch (Exception $e) {
         echo "錯誤行號 : ", $e->getLine(), "<br>";
         echo "錯誤原因 : ", $e->getMessage(), "<br>";
@@ -57,6 +60,15 @@
                 <?php
                     }
                 ?>
+                 <tr class="sight_icon" style="display: none;">
+                     <td><a href="#" data-tip="view" class="view"><i class="fa fa-search"></i></a></td>
+                                     <td>
+                        <ul class="action-list">
+                            <li><a href="#" data-tip="edit" class="edit"><i class="fa fa-edit "></i></a></li>
+                            <li><a href="#" data-tip="delete" class="delete"><i class="fa fa-trash"></i></a></li>
+                        </ul>
+                                     </td>
+                 </tr>
             </tbody>
             <tfoot>
                 <tr>
@@ -97,30 +109,56 @@
         </div>
     </div>
     <div id="add" style="display: none;">
-        <form class="signup sight" method="post" action="#">
+        <form class="signup sight" id="sight" action="./php/backstage_addsight.php" method="post"  enctype="multipart/form-data">
             <h2>新增景點</h2>
-            <fieldset class="section active">
+            <fieldset form="sight" class="section active">
                   <div class="input-block">
                     <label for="name">景點名稱</label>
-                    <input name="name" type="text" required>
+                    <input id="add_name" name="name" type="text" required>
                   </div>
                   <div class="input-block">
                     <label for="address">地址</label>
-                    <input name="address" type="text">
+                    <div class="sig_address">
+                        <select name="loc" required id="loc">
+                            <option value="" selected>選擇縣市</option>
+                                <option value="台北市">台北市</option>
+                                <option value="新北市">新北市</option>
+                                <option value="桃園市">桃園市</option>
+                                <option value="新竹市">新竹市</option>
+                                <option value="新竹縣">新竹縣</option>
+                                <option value="宜蘭縣">宜蘭縣</option>
+                                <option value="基隆市">基隆市</option>
+                                <option value="苗栗縣">苗栗縣</option>
+                                <option value="台中市">台中市</option>
+                                <option value="彰化縣">彰化縣</option>
+                                <option value="南投縣">南投縣</option>
+                                <option value="雲林縣">雲林縣</option>
+                                <option value="嘉義縣">嘉義縣</option>
+                                <option value="台南市">台南市</option>
+                                <option value="高雄市">高雄市</option>
+                                <option value="屏東縣">屏東縣</option>
+                                <option value="花蓮縣">花蓮縣</option>
+                                <option value="台東縣">台東縣</option>
+                                <option value="澎湖縣">澎湖縣</option>
+                                <option value="金門縣">金門縣</option>
+                                <option value="馬祖縣">馬祖縣</option>
+                        </select>
+                        <input id="add_address" name="address" type="text" required>
+                    </div>
                   </div>
                   <div class="tselect">
                       <div class="input-block">
                         <label for="type">類別</label>
-                        <select name="type">
+                        <select name="type" required> 
                             <option value="" selected>請選擇類別</option>
-                            <option value="1">旅行</option>
-                            <option value="2">休閒</option>
-                            <option value="3">購物</option>
-                            <option value="4">學習</option>
-                            <option value="5">夜市</option>
-                            <option value="6">燒腦</option>
-                            <option value="7">運動</option>
-                            <option value="8">美食</option>
+                            <option value="旅行">旅行</option>
+                            <option value="休閒">休閒</option>
+                            <option value="購物">購物</option>
+                            <option value="學習">學習</option>
+                            <option value="夜市">夜市</option>
+                            <option value="燒腦">燒腦</option>
+                            <option value="運動">運動</option>
+                            <option value="美食">美食</option>
                         </select>
                       </div>
                       <div class="input-block">
@@ -141,47 +179,49 @@
                     <input type="reset" class="btnWhite btn cancel1" id="cancel" value="取消">
                 </div>
             </fieldset>
-            <fieldset class="section">
+            <fieldset form="sight" class="section">
                   <div class="input-block">
                     <label for="intro">景點介紹</label>
-                    <textarea name="intro" type="text" required placeholder="限50字內" rows="2" cols="25" ></textarea>
+                    <textarea name="intro" type="text" placeholder="限50字內" rows="2" cols="25" ></textarea>
                   </div>
                   <div class="input-block">
                     <label for="desc">景點描述</label>
-                    <textarea name="desc" type="text" required rows="8" cols="25" placeholder="限200字內"></textarea>
+                    <textarea name="desc" type="text" rows="8" cols="25" placeholder="限200字內"></textarea>
                   </div>
                   <div class="form_btn">
                     <button type="button" class="btnYellow btn next" >下一步</button>
                     <input type="reset" class="btnWhite btn cancel1" value="取消">
                 </div>
             </fieldset>
-            <fieldset class="section">  
+            <fieldset form="sight" class="section">  
                 <button id="btnAddPt"><i class="far  fa-plus-square"></i></button>
                 <div class="input-block photo" style="display: none;">
                         <label for="upfile">照片</label>
                         <input type="file" name="upFile[]" class="upFile">
                         <i class="fas fa-minus-circle"></i>
                         <br>
-                        <div class="pt">
+                       <!--  <div class="pt">
                             <img src="#" id="preview" hidden>
-                        </div>
+                        </div> -->
                     </div>
                 <div class="scroll" id="sight_btn">
                     <div class="input-block photo">
                         <label for="upfile">照片</label>
                         <input type="file" name="upFile[]" class="upFile"><br>
-                        <div class="pt">
+                        <!-- <div class="pt">
                             <img src="#" id="preview" hidden>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
+                <input id='sig_no' type='text'value=<?=$sightRow1["sig_no"]+1?> hidden>
                 <div class="form_btn">
-                  <button type="button" class="btnYellow btn " id="submit">確 認</button>
+                  <input type="submit" value="確認" class="btnYellow btn" id="submit">
                   <input type="reset" class="btnWhite btn cancel1" value="取消">
               </div>
-          </fieldset>
-          </form>
+           </fieldset>
+        </form>
     </div>
+
     <div id="edit_form" style="display: none;">
         <form class="signup sight" method="post" action="#">
             <h2>新增景點</h2>

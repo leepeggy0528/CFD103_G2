@@ -1,4 +1,4 @@
-
+<link rel="stylesheet" href="./css/style.css">
  <!-- 登入頁面    -->
 <div id="layerForLogin">
     <div class="login-wrapper">
@@ -23,140 +23,145 @@
     </div>
 </div>
 <!-- 註冊頁面一 -->
-<div id="layerForSignUp">  
-  <div class="login-wrapper">
-    <form class="login-form" >
-      <h1 class="join">
-        立即加入Instagather
-      </h1> 
-      <span class='joinPageGroup'>
-        建立帳戶
-      </span> 
-      <div class="group first-group">
-        <input class="input" type="text" required="required"/>
-        <label class="shrink">信箱</label>
-      </div>
-      <div class="group">
-        <input class="input" type="password" required="required"/>
-        <label class="shrink">密碼</label>
-      </div>
-      <div class="group">
-        <input class="input" type="password" required="required"/>
-        <label class="shrink">確認密碼</label>
-      </div>
-        <div class="btn-box">
-          <button id="returnLogin" class="btnBoredBlue" type="button">取消</button>   
-            <button id="nextStep" class="btnYellow" type="submit">下一步</button>
+<form class="login-form" method="post" action="./addMember.php">
+  <input type="hidden" name="hobby" id="hobby">
+  <div id="layerForSignUp" class="whiteBackground">  
+    <div class="login-wrapper">
+      <fieldset>
+        <h1 class="join">
+          立即加入Instagather
+        </h1>
+        <div class="login_content">
+          <span class='joinPageGroup'>
+            建立帳戶
+          </span>
+          <div class="group first-group">
+            <input class="input" type="text" required="required" name="mem_mail"/>
+            <label class="shrink">信箱</label>
+          </div>
+          <div class="group">
+            <input class="input" type="password" required="required"/>
+            <label class="shrink">密碼</label>
+          </div>
+          <div class="group">
+            <input class="input" type="password" required="required" name="mem_pswd"/>
+            <label class="shrink">確認密碼</label>
+          </div>
+            <div class="btn-box">
+              <button id="returnLogin" class="btnBoredBlue" type="button">取消</button>
+                <button id="nextStep" class="btnYellow" type="button">下一步</button>
+            </div>
         </div>
-    </form>
+      </fieldset>
+    </div>
   </div>
-</div>
-<!-- 註冊頁面二 -->
-<div id="layerForSignUpTwo">  
-  <div class="login-wrapper">
-    <form class="login-form">
-      <h1 class="join">編輯會員資料</h1> 
-      <div class="drag-area">
-        <button class="icon"><i class="fas fa-cloud-upload-alt"></i></button>
-        <input class="profile-upload" type="file" hidden>
-      </div>
-
-      <span class='joinPageGroup'>個人資料</span> 
-      <div class="group first-group">
-        <input class="input" type="text" required="required"/>
-        <label class="shrink">姓名</label>
-      </div>
-      <div class="gender-row">
-        <div class="gender-group">
-            <label class="gender-label" for="gender">性別</label>
-            <select name="gender" class="gender">
-                <option value="0">男</option>
-                <option value="1">女</option>
-                <option value="3">其他</option>
-            </select>
+  <!-- 註冊頁面二 -->
+  <div id="layerForSignUpTwo" class="whiteBackground">  
+    <div class="login-wrapper">
+      <fieldset>
+        <h1 class="join">編輯會員資料</h1> 
+        <div class="drag-area">
+          <button class="icon" type="button"><i class="fas fa-cloud-upload-alt"></i></button>
+          <input class="profile-upload" type="file" hidden name="mem_pt">
         </div>
-        <div class="birthday-group">
-            <label>生日</label>
-            <input class="birthday" type="date" required="required"/>
+        <div class="login_content">
+          <span class='joinPageGroup'>個人資料</span> 
+          <div class="group first-group">
+            <input class="input" type="text" required="required" name="mem_name"/>
+            <label class="shrink">姓名</label>
+          </div>
+          <div class="gender-row">
+            <div class="gender-group">
+                <label class="gender-label" for="gender">性別</label>
+                <select name="gender" class="gender">
+                    <option name="mem_sex" value="0">男</option>
+                    <option name="mem_sex" value="1">女</option>
+                    <option name="mem_sex" value="3">其他</option>
+                </select>
+            </div>
+            <div class="birthday-group">
+                <label>生日</label>
+                <input class="birthday" type="date" required="required" name="mem_birthday"/>
+            </div>
+          </div>
+          <div class="group">
+              <input class="input" type="text" required="required" name="mem_loc"/>
+              <label class="shrink">居住地</label>
+            </div>
+            <!-- 興趣 -->
+            <span class='joinPageGroup'>興趣</span>
+            <div class="chooseHobby">
+                <label class="checkbox path">
+                    <input type="checkbox" class="hobby" value="1">
+                    <svg viewBox="0 0 21 21">
+                        <path d="M5,10.75 L8.5,14.25 L19.4,2.3 C18.8333333,1.43333333 18.0333333,1 17,1 L4,1 C2.35,1 1,2.35 1,4 L1,17 C1,18.65 2.35,20 4,20 L17,20 C18.65,20 20,18.65 20,17 L20,7.99769186"></path>
+                    </svg>
+                    <label for="hobby"> 美食 </label><br>
+                </label>
+                <label class="checkbox path">
+                    <input type="checkbox" class="hobby" value="2">
+                    <svg viewBox="0 0 21 21">
+                        <path d="M5,10.75 L8.5,14.25 L19.4,2.3 C18.8333333,1.43333333 18.0333333,1 17,1 L4,1 C2.35,1 1,2.35 1,4 L1,17 C1,18.65 2.35,20 4,20 L17,20 C18.65,20 20,18.65 20,17 L20,7.99769186"></path>
+                    </svg>
+                    <label for="hobby"> 夜市 </label><br>
+                </label>
+                <label class="checkbox path">
+                    <input type="checkbox" class="hobby" value="3">
+                    <svg viewBox="0 0 21 21">
+                        <path d="M5,10.75 L8.5,14.25 L19.4,2.3 C18.8333333,1.43333333 18.0333333,1 17,1 L4,1 C2.35,1 1,2.35 1,4 L1,17 C1,18.65 2.35,20 4,20 L17,20 C18.65,20 20,18.65 20,17 L20,7.99769186"></path>
+                    </svg>
+                    <label for="hobby"> 學習 </label><br>
+                </label>
+                <label class="checkbox path">
+                    <input type="checkbox" class="hobby" value="4">
+                    <svg viewBox="0 0 21 21">
+                        <path d="M5,10.75 L8.5,14.25 L19.4,2.3 C18.8333333,1.43333333 18.0333333,1 17,1 L4,1 C2.35,1 1,2.35 1,4 L1,17 C1,18.65 2.35,20 4,20 L17,20 C18.65,20 20,18.65 20,17 L20,7.99769186"></path>
+                    </svg>
+                    <label for="hobby"> 運動 </label><br>
+                </label>
+                <label class="checkbox path">
+                    <input type="checkbox" class="hobby" value="5">
+                    <svg viewBox="0 0 21 21">
+                        <path d="M5,10.75 L8.5,14.25 L19.4,2.3 C18.8333333,1.43333333 18.0333333,1 17,1 L4,1 C2.35,1 1,2.35 1,4 L1,17 C1,18.65 2.35,20 4,20 L17,20 C18.65,20 20,18.65 20,17 L20,7.99769186"></path>
+                    </svg>
+                    <label for="hobby"> 休閒 </label><br>
+                </label>
+                <label class="checkbox path">
+                    <input type="checkbox" class="hobby" value="6">
+                    <svg viewBox="0 0 21 21">
+                        <path d="M5,10.75 L8.5,14.25 L19.4,2.3 C18.8333333,1.43333333 18.0333333,1 17,1 L4,1 C2.35,1 1,2.35 1,4 L1,17 C1,18.65 2.35,20 4,20 L17,20 C18.65,20 20,18.65 20,17 L20,7.99769186"></path>
+                    </svg>
+                    <label for="hobby"> 購物 </label><br>
+                </label>
+                <label class="checkbox path">
+                    <input type="checkbox" class="hobby" value="7">
+                    <svg viewBox="0 0 21 21">
+                        <path d="M5,10.75 L8.5,14.25 L19.4,2.3 C18.8333333,1.43333333 18.0333333,1 17,1 L4,1 C2.35,1 1,2.35 1,4 L1,17 C1,18.65 2.35,20 4,20 L17,20 C18.65,20 20,18.65 20,17 L20,7.99769186"></path>
+                    </svg>
+                    <label for="hobby"> 旅行 </label><br>
+                </label>
+                <label class="checkbox path">
+                    <input type="checkbox" class="hobby" value="8">
+                    <svg viewBox="0 0 21 21">
+                        <path d="M5,10.75 L8.5,14.25 L19.4,2.3 C18.8333333,1.43333333 18.0333333,1 17,1 L4,1 C2.35,1 1,2.35 1,4 L1,17 C1,18.65 2.35,20 4,20 L17,20 C18.65,20 20,18.65 20,17 L20,7.99769186"></path>
+                    </svg>
+                    <label for="hobby"> 燒腦 </label><br>
+                </label>
+            </div>
+            <!-- 自我介紹 -->
+            <div class="group biography">
+              <textarea class="input" id="bio" cols="10" rows="5" name="mem_describe"></textarea>
+              <label class="biography-label">個人介紹</label>
+            </div>
+            <div class="btn-box">
+              <button class="btnBoredBlue" id="lastStep" type="button">上一步</button>   
+              <button id="finished" class="btnYellow " type="button">完成註冊</button>
+            </div>
         </div>
-      </div>
-      <div class="group">
-          <input class="input" type="password" required="required"/>
-          <label class="shrink">居住地</label>
-        </div>
-        <!-- 興趣 -->
-        <span class='joinPageGroup'>興趣</span>
-        <div class="chooseHobby">
-            <label class="checkbox path">
-                <input type="checkbox" class="hobby">
-                <svg viewBox="0 0 21 21">
-                    <path d="M5,10.75 L8.5,14.25 L19.4,2.3 C18.8333333,1.43333333 18.0333333,1 17,1 L4,1 C2.35,1 1,2.35 1,4 L1,17 C1,18.65 2.35,20 4,20 L17,20 C18.65,20 20,18.65 20,17 L20,7.99769186"></path>
-                </svg>
-                <label for="hobby"> 美食 </label><br>
-            </label>
-            <label class="checkbox path">
-                <input type="checkbox" class="hobby">
-                <svg viewBox="0 0 21 21">
-                    <path d="M5,10.75 L8.5,14.25 L19.4,2.3 C18.8333333,1.43333333 18.0333333,1 17,1 L4,1 C2.35,1 1,2.35 1,4 L1,17 C1,18.65 2.35,20 4,20 L17,20 C18.65,20 20,18.65 20,17 L20,7.99769186"></path>
-                </svg>
-                <label for="hobby"> 夜市 </label><br>
-            </label>
-            <label class="checkbox path">
-                <input type="checkbox" class="hobby">
-                <svg viewBox="0 0 21 21">
-                    <path d="M5,10.75 L8.5,14.25 L19.4,2.3 C18.8333333,1.43333333 18.0333333,1 17,1 L4,1 C2.35,1 1,2.35 1,4 L1,17 C1,18.65 2.35,20 4,20 L17,20 C18.65,20 20,18.65 20,17 L20,7.99769186"></path>
-                </svg>
-                <label for="hobby"> 學習 </label><br>
-            </label>
-            <label class="checkbox path">
-                <input type="checkbox" class="hobby">
-                <svg viewBox="0 0 21 21">
-                    <path d="M5,10.75 L8.5,14.25 L19.4,2.3 C18.8333333,1.43333333 18.0333333,1 17,1 L4,1 C2.35,1 1,2.35 1,4 L1,17 C1,18.65 2.35,20 4,20 L17,20 C18.65,20 20,18.65 20,17 L20,7.99769186"></path>
-                </svg>
-                <label for="hobby"> 運動 </label><br>
-            </label>
-            <label class="checkbox path">
-                <input type="checkbox" class="hobby">
-                <svg viewBox="0 0 21 21">
-                    <path d="M5,10.75 L8.5,14.25 L19.4,2.3 C18.8333333,1.43333333 18.0333333,1 17,1 L4,1 C2.35,1 1,2.35 1,4 L1,17 C1,18.65 2.35,20 4,20 L17,20 C18.65,20 20,18.65 20,17 L20,7.99769186"></path>
-                </svg>
-                <label for="hobby"> 休閒 </label><br>
-            </label>
-            <label class="checkbox path">
-                <input type="checkbox" class="hobby">
-                <svg viewBox="0 0 21 21">
-                    <path d="M5,10.75 L8.5,14.25 L19.4,2.3 C18.8333333,1.43333333 18.0333333,1 17,1 L4,1 C2.35,1 1,2.35 1,4 L1,17 C1,18.65 2.35,20 4,20 L17,20 C18.65,20 20,18.65 20,17 L20,7.99769186"></path>
-                </svg>
-                <label for="hobby"> 購物 </label><br>
-            </label>
-            <label class="checkbox path">
-                <input type="checkbox" class="hobby">
-                <svg viewBox="0 0 21 21">
-                    <path d="M5,10.75 L8.5,14.25 L19.4,2.3 C18.8333333,1.43333333 18.0333333,1 17,1 L4,1 C2.35,1 1,2.35 1,4 L1,17 C1,18.65 2.35,20 4,20 L17,20 C18.65,20 20,18.65 20,17 L20,7.99769186"></path>
-                </svg>
-                <label for="hobby"> 旅行 </label><br>
-            </label>
-            <label class="checkbox path">
-                <input type="checkbox" class="hobby">
-                <svg viewBox="0 0 21 21">
-                    <path d="M5,10.75 L8.5,14.25 L19.4,2.3 C18.8333333,1.43333333 18.0333333,1 17,1 L4,1 C2.35,1 1,2.35 1,4 L1,17 C1,18.65 2.35,20 4,20 L17,20 C18.65,20 20,18.65 20,17 L20,7.99769186"></path>
-                </svg>
-                <label for="hobby"> 燒腦 </label><br>
-            </label>
-        </div>
-        <!-- 自我介紹 -->
-        <div class="biography">
-            <textarea name="bio" id="bio" cols="32" rows="5"></textarea>
-            <label class="biography-label">個人介紹</label>
-        </div>
-        <div class="btn-box">
-          <button class="btnBoredBlue" id="lastStep" type="button">上一步</button>   
-          <button id="finished" class="btnYellow " type="submit">完成註冊</button>
-      </div>
-    </form>
-</div>
-
+      </fieldset>
+    </div>
+  </div>
 </form>
-</div>
-</div>
+<script src="./js/image.js"></script>
+
 
