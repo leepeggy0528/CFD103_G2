@@ -29,30 +29,34 @@ function form() {
   function edit_cancel() {
     document.getElementById('edit_form').style.display='none';
   }
-  function sendForm(){ 
-    let xhr = new XMLHttpRequest();
-    xhr.onload = function(){
-        sight = JSON.parse(xhr.responseText);
-        if(signup.sp_id){
-            alert("已有此帳戶");
-        }else{
-            location.href="./backstage_admin.php";
-        }
-    }
-    if ($id("sp-pswd").value==$id("sp-pswd-cm").value) {
-        xhr.open("post", "./php/backstage_signup.php", true);
-        xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
-        //將要送到後端的資料打包
-        let signupData = {};
-        signupData.sp_id= $id("sp-id").value;
-        signupData.sp_pswd= $id("sp-pswd").value;
-        signupData.sp_name= $id("sp-name").value;
+  function addsight(){ 
+    let tbody = document.querySelector("table tbody");
+    let tr = document.createElement("tr");
+    tbody.appendChild(tr);
+    let td1 = document.createElement("td");
+    tr.appendChild(td1);
+    let textNode1 = document.createTextNode($id("sig_no").value);
+    td1.appendChild(textNode1); 
+    let td2 = document.createElement("td");
+    tr.appendChild(td2);
+    let textNode2 = document.createTextNode($id("add_name").value);
+    td2.appendChild(textNode2); 
+    let td3 = document.createElement("td");
+    tr.appendChild(td3);
+    let textNode3 = document.createTextNode($id("loc").value+$id("add_address").value);
+    td3.appendChild(textNode3);
 
-        let data_info = `signup=${JSON.stringify(signupData)}`;
-        xhr.send(data_info);
-    }else{
-        alert("請重新確認密碼");
-    }
+    let sight_icon = document.querySelector(".sight_icon");
+    console.log(sight_icon.children[0])
+    let newpt1 = sight_icon.children[0].cloneNode(true);
+    let newpt2 = sight_icon.children[1].cloneNode(true);
+    tr.insertBefore(newpt1,null);
+    tr.insertBefore(newpt2,null);
+    let xhr = new XMLHttpRequest();
+    xhr.open("post", "./php/backstage_addsight.php", true);
+    let myForm = new FormData($id("sight"));
+    xhr.send(myForm);
+    $id('add').style.display='none';
 }
 function searchForm(e){ 
     let edit=e.target;
@@ -124,7 +128,7 @@ let sight={};
     }
     $id("new").onclick = form;
     $id("btnAddPt").onclick = addpt;
-
+    $id("submit").onclick = addsight;
     //$id("edit_cancel").onclick = edit_cancel;
     //$id("edit_submit").onclick = updateForm;
   },false);
@@ -138,7 +142,7 @@ let sight={};
 
         $(".signup").submit(function(e) {
         e.preventDefault();
-        });
+        }); 
 
         if(currentSectionIndex === 3){
         $(document).find(".signup .section").first().addClass("active");
