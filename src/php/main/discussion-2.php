@@ -1,14 +1,16 @@
 <?php 
+ob_start();
+session_start();
 try {
 	//引入連線工作的檔案
 	require_once("./php/connectAccount.php");
 	
 	//執行sql指令並取得pdoStatement
-	$sql = "select *,count(post.post_no) as msg 
+	$sql = "select *,count(post_mes.pmes_no) as msg 
     from post join member on post.mem_id = member.mem_id 
-                join post_pt on post.post_no = post_pt.post_no
-                left join post_mes on post.post_no = post_mes.post_no
-    where ppt_pt like('picture%') and post_show=1
+    join post_pt on post.post_no = post_pt.post_no
+    left join post_mes on post.post_no = post_mes.post_no
+    where post_show=1
      group by post.post_no;";
 	$products = $pdo->query($sql); 
 
@@ -136,11 +138,11 @@ try {
                             <p><?=$prodRow["post_context"];?></p>
 
                             <div class="seemore">
-                            <a href="discussion-text.php?pno=<?=$prodRow["post_no"]?>">看更多</a>
+                            <a href="./discussion-text.php?pno=<?=$prodRow["post_no"]?>">看更多</a>
                             </div>
 
                             <div class="tag">
-                            <p><?=$prodRow["post_type"];?></p>
+                            <p>#<?=$prodRow["post_type"];?></p>
                             </div>
                         </div>
                     </div>
@@ -283,13 +285,14 @@ try {
             <div class="screen-wrapper">
                 <form class="screen-form" id="screen-form">
                 <h1 class="join">發貼文</h1> 
-                
+               
                     <div class="section-all">
                         <div class="section">
 
                             <div class="group-title">
                                 <span>貼文名稱:</span>
-                                <input type="text" placeholder="羊羊好可愛" class="cute-text">
+                                <input type="text" name="post_title" placeholder="羊羊好可愛" class="cute-text">
+                                <input type="text" name="memid" id="memid"hidden>
                             </div>
 
                             <div class="group-tag">
@@ -312,7 +315,7 @@ try {
                         
                             <span>貼文內容:</span>
                             <div class="group-text">
-                                <textarea class="group-text-i" maxlength="100" cols="10" rows="10" placeholder="請輸入內容"></textarea>
+                                <textarea class="group-text-i" maxlength="100" cols="10" rows="10" placeholder="請輸入內容" name="post_context"></textarea>
 
                                 <div class="Num">
                                     <span class="wordsNum">0/100</span>
@@ -324,7 +327,7 @@ try {
                         <div class="section">
                             <span>上傳照片:</span>
                                 <div class="pic-box">
-                                    <input type="file" accept="image/*" />
+                                    <input type="file" name="image" accept="image/*" />
                                     <img id="image" src="" alt="" />
                                 </div>
 
@@ -374,7 +377,7 @@ try {
       });  
 
 </script>
-
+<script src="./js/loginLightbox.js" asyn></script>
         <script>
         //留言功能、獲取元素、註冊時間(燈箱)
         var btn = document.querySelector('.btn-boxY .btnYellow');
@@ -382,10 +385,20 @@ try {
         var contents = document.querySelector('.group-text-i');
        
         btn.onclick = function(){
+            let xhr1 = new XMLHttpRequest();
+            xhr1.onload = function(){
+            member = JSON.parse(xhr1.responseText);
             alert("確定送出嗎?");
             var photo =  $('#image').attr('src');
             let post_types = document.querySelectorAll("input[type=radio][name=post_type]:checked");
-
+            let select_types = document.querySelectorAll('input[name="post_type"]');
+            for (var i = 0;i < select_types.length; i++){
+                if (select_types[i].checked){
+                    var selectValue = select_types[i].value;
+                   
+                }
+            }
+            
             if(titles.value == ''){
                 alert("您沒有輸入貼文名稱。")
                 return false;
@@ -404,10 +417,8 @@ try {
             }
             else{
                 //-----send to server , insert into db
-                let xhr = new XMLHttpRequest();
-                xhr.onload = function(){
-                //if succes then append Element into html
-                //--------create new post div------------
+                
+
                 var post = document.querySelector('.post');
                 var postItem = document.createElement('div');
                 post.appendChild(postItem);
@@ -434,7 +445,7 @@ try {
                 pic.classList.add("pic"); 
 
                 var imgBig = new Image();
-                imgBig.src=("photo");
+                imgBig.src= photo ;
                 pic.appendChild(imgBig);
 
                 var me = document.createElement('div');
@@ -446,12 +457,12 @@ try {
                 picMe.classList.add("pic_me"); 
 
                 var img = new Image();
-                img.src="./images/user/m01.jpg";
+                img.src=`./images/user/${member.mem_pt}`;
                 picMe.appendChild(img);
                 
                 var p = document.createElement('p');
                 me.appendChild(p);
-                p.innerText = "黃曉明";
+                p.innerText = member.mem_name;
                 
                 var instaTitle = document.createElement('span');
                 centerI.appendChild(instaTitle);
@@ -460,46 +471,64 @@ try {
                 var Title = document.createElement('h3');
                 instaTitle.appendChild(Title);
                 Title.innerText = titles.value;
+                post_title = titles.value;
 
                 var pp = document.createElement('p');
                 centerI.appendChild(pp);
+                var post_context = contents.value;
                 pp.innerText = contents.value;
+
+                var seemore = document.createElement('div');
+                centerI.appendChild(seemore);
+                seemore.classList.add("seemore"); 
+
+                var a = document.createElement('a');
+                seemore.appendChild(a);
+                a.innerText = "看更多";
+
+                var tag =  document.createElement('div');
+                centerI.appendChild(tag);
+                tag.classList.add("tag"); 
+
+                var tagP = document.createElement('p');
+                tag.appendChild(tagP);
+                tagP.innerText = "#"+selectValue;
 
                 var rightI = document.createElement('ul');
                 boxII.appendChild(rightI);
                 rightI.classList.add("right-i");
 
-                var i= '<i class="fas fa-comment-alt" style="color: #025A78;"></i>'
-
                 var commentItem = document.createElement('li');
                 rightI.appendChild(commentItem);
                 commentItem.classList.add("comment-item");
-                
-                commentItem.innerHtml = i;
-               
 
-
+            
                 var dateTime = document.createElement('div');
                 boxII.appendChild(dateTime);
                 dateTime.classList.add("date-time");
 
                 var time = document.createElement('p');
                 dateTime.appendChild(time);
-
+                $id("memid").value=member.mem_id;
 
                 let now = new Date()
                 time.innerText =(now.getFullYear()+'-'+(now.getMonth()+1)+'-'+now.getDate()+' '+now.getHours()+':'+ now.getMinutes()+':'+ now.getSeconds());
                 $('.screen').css('display','none');
-
-                }
-                xhr.open("post", "addPost.php", true);
+                
+                let xhr = new XMLHttpRequest();
+                xhr.open("post", "./php/addPost.php", true);
                 let formData = new FormData(document.getElementById("screen-form"));
+                console.log(formData);
                 xhr.send(formData);
                 }
             }
+            xhr1.open("get", "./php/getMemberInfo.php", true);
+            xhr1.send(null);
+        }
         </script>
+        <script src="./js/loginLightbox.js" asyn></script>
+      
 
-<script src="./js/loginLightbox.js"></script>
 @@include('../../layout/footer.html')
 </body>
 </html>
