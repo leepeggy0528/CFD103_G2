@@ -52,7 +52,7 @@ $(function () {
         if(item_length == 0){
                 alert('列表沒資料');
         }else{
-            if(confirm('真的要清空ㄇ?') == 1){
+            if(confirm('真的要清空嗎?') == 1){
                 localStorage.clear();
                 index_spot = [];
                 $('#cart .cart-list .item').remove();
