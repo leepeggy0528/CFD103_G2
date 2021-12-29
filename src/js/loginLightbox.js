@@ -32,6 +32,7 @@ function $id(id){
     //登入
     function showLoginForm(){
       $id('layerForLogin').style.display = 'block';
+      $("#LoginBTN").css("display",'none');
       
     }
     //登出
