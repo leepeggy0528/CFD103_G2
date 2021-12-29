@@ -38,13 +38,13 @@ function $id(id){
     //登出
     function MemLogout(){
         let xhr = new XMLHttpRequest();
-        xhr.onload = function(){
+        xhr.open("get", "./php/mem_logout.php", true);
+        xhr.send(null);
           $("#LoginBTN").css("display",'inline');
           $(".afterLogin").removeClass("showMem");         
           $(".smallMemInfo").removeClass("openInfo");         
-        }
-        xhr.open("get", "./php/mem_logout.php", true);
-        xhr.send(null);
+          location.href = "./front_page.html";
+        
     }
 
     function closeLogin() {
@@ -57,21 +57,25 @@ function $id(id){
       let xhr = new XMLHttpRequest();
       xhr.onload = function(){
         member = JSON.parse(xhr.responseText);
-        if(member.mem_mail){
-          $(document).ready(function(){
-            $(".afterLogin").addClass("showMem");
-          $(".usernameLogin").text(`${member.mem_name}`);
-          $(".diamonds").text(`${member.mem_dom}`);
-          $(".coins").text(`${member.mem_money}`);
-          }); 
-          $id('LoginBTN').style.display='none';
-          //將登入表單上的資料清空，並隱藏起來
-          $id('layerForLogin').style.display = 'none';
-          $id('memMail').value = '';
-          $id('memPsw').value = '';
-        }else{
-          alert("帳密錯誤");
-        }
+        if(member.mem_suspend==0){
+            if(member.mem_mail){
+              $(document).ready(function(){
+                $(".afterLogin").addClass("showMem");
+                $(".usernameLogin").text(`${member.mem_name}`);
+                $(".diamonds").text(`${member.mem_dom}`);
+                $(".coins").text(`${member.mem_money}`);
+              }); 
+              $id('LoginBTN').style.display='none';
+              //將登入表單上的資料清空，並隱藏起來
+              $id('layerForLogin').style.display = 'none';
+              $id('memMail').value = '';
+              $id('memPsw').value = '';
+            }else{
+              alert("帳密錯誤");
+            }
+          }else{
+            alert("此會員已被停權無法使用");
+          } 
       }
       xhr.open("post", "./php/mem_login.php", true);
       xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
@@ -81,6 +85,7 @@ function $id(id){
       let data_info = `login=${JSON.stringify(loginData)}`;
       console.log(data_info);
       xhr.send(data_info);
+      history.go(0);
     }
 
     function getMemberInfo(){ //取回登入者資訊

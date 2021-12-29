@@ -6,55 +6,75 @@ try {
 
 	//取回會員的資料
 	$sql_member = "select *from igroup i join  member m on m.mem_id=i.mem_id
-    join  gro_pt p on i.gro_id=p.gro_id group by m.mem_id having m.mem_id=9455003;";
-    $memInfo = $pdo->query($sql_member);
+    join  gro_pt p on i.gro_id=p.gro_id group by m.mem_id having m.mem_id=:mem_id;";
+    $memInfo = $pdo->prepare($sql_member);
+    $memInfo->bindValue(":mem_id", $_GET["mem_id"]);
+    $memInfo->execute();
 	$memInfoRows = $memInfo->fetchAll(PDO::FETCH_ASSOC); //----------
 
     //計算會員生日
     $sql_birthday = "select mem_id, floor(datediff(now(), mem_birthday)/365) as age
-    FROM member where mem_id=9455003;";
-    $memBirthday=$pdo->query($sql_birthday);
+    FROM member where mem_id=:mem_id;";
+    $memBirthday = $pdo->prepare($sql_birthday);
+    $memBirthday->bindValue(":mem_id", $_GET["mem_id"]);
+    $memBirthday->execute();
 	$memBirthdayRow = $memBirthday->fetch(PDO::FETCH_ASSOC);
 
     //計算揪團數
-    $sql_hostNum = "select count(gro_id) as 'gro_num' from igroup where mem_id=9455003;";
-    $memhostNum=$pdo->query($sql_hostNum);
+    $sql_hostNum = "select count(gro_id) as 'gro_num' from igroup where mem_id=:mem_id;";
+    $memhostNum = $pdo->prepare($sql_hostNum);
+    $memhostNum->bindValue(":mem_id", $_GET["mem_id"]);
+    $memhostNum->execute();
 	$memhostNumRow = $memhostNum->fetch(PDO::FETCH_ASSOC);
 
     //計算參團次數
-    $sql_partNum ="select count(gro_id) as 'part_num' from partic where partic_id=9455003;";
-    $memPartNum=$pdo->query($sql_partNum);
+    $sql_partNum ="select count(gro_id) as 'part_num' from partic where partic_id=:mem_id;";
+    $memPartNum = $pdo->prepare($sql_partNum);
+    $memPartNum->bindValue(":mem_id", $_GET["mem_id"]);
+    $memPartNum->execute();
 	$memPartNumRow = $memPartNum->fetch(PDO::FETCH_ASSOC);
 
     //計算朋友數
-    $sql_frd_Num ="select count(friend_id) as 'frd_num' from friend where mem_id=9455003;";
-    $memFrdNum=$pdo->query($sql_frd_Num);
+    $sql_frd_Num ="select count(friend_id) as 'frd_num' from friend where mem_id=:mem_id;";
+    $memFrdNum = $pdo->prepare($sql_frd_Num);
+    $memFrdNum->bindValue(":mem_id", $_GET["mem_id"]);
+    $memFrdNum->execute();
 	$memFrdNumRow = $memFrdNum->fetch(PDO::FETCH_ASSOC);
 
     //參團評分
-    $sql_rate_join="select COALESCE(round(jmem_score/jmem_people),0) jrate from member where mem_id=9455003;";
-    $rateJoin=$pdo->query($sql_rate_join);
+    $sql_rate_join="select COALESCE(round(sum(jrate_score)/count(host_id)),0) jrate from join_rate where join_id=:mem_id";
+    $rateJoin = $pdo->prepare($sql_rate_join);
+    $rateJoin->bindValue(":mem_id", $_GET["mem_id"]);
+    $rateJoin->execute();
 	$rateJoinRow= $rateJoin->fetch(PDO::FETCH_ASSOC);
 
     //開團評分
-    $sql_rate_host="select COALESCE(round(hmem_score/hmem_people),0) hrate from member where mem_id=9455003;";
-    $rateHost=$pdo->query($sql_rate_host);
+    $sql_rate_host="select COALESCE(round(sum(hrate_score)/count(mem_id)),0) hrate from host_rate where host_id=:mem_id;";
+    $rateHost = $pdo->prepare($sql_rate_host);
+    $rateHost->bindValue(":mem_id", $_GET["mem_id"]);
+    $rateHost->execute();
 	$rateHostRow= $rateHost->fetch(PDO::FETCH_ASSOC);
 
     //開團評論
-    $sql_HComment="select TIMESTAMPDIFF(Day, hrate_time, now()) time,hrate_time,hrate_score,hrate_context,mem_name,mem_loc, floor(datediff(now(), mem_birthday)/365) as age, mem_pt from host_rate h join member m on h.mem_id=m.mem_id where host_id=9455003;";
-    $HComment=$pdo->query($sql_HComment);
+    $sql_HComment="select TIMESTAMPDIFF(Day, hrate_time, now()) time,hrate_time,hrate_score,hrate_context,mem_name,mem_loc, floor(datediff(now(), mem_birthday)/365) as age, mem_pt from host_rate h join member m on h.mem_id=m.mem_id where host_id=:mem_id;";
+    $HComment = $pdo->prepare($sql_HComment);
+    $HComment->bindValue(":mem_id", $_GET["mem_id"]);
+    $HComment->execute();
 	$HCommentRows= $HComment->fetchAll(PDO::FETCH_ASSOC);
 
     //參團評論
-    $sql_JComment="select TIMESTAMPDIFF(Day, jrate_time, now()) time,jrate_time,jrate_score,jrate_context,mem_name,mem_loc, floor(datediff(now(), mem_birthday)/365) as age, mem_pt from join_rate j join member m on j.host_id=m.mem_id where j.join_id=9455003;";
-    $JComment=$pdo->query($sql_JComment);
+    $sql_JComment="select TIMESTAMPDIFF(Day, jrate_time, now()) time,jrate_time,jrate_score,jrate_context,mem_name,mem_loc, floor(datediff(now(), mem_birthday)/365) as age, mem_pt from join_rate j join member m on j.host_id=m.mem_id where j.join_id=:mem_id;";
+    $JComment = $pdo->prepare($sql_JComment);
+    $JComment->bindValue(":mem_id", $_GET["mem_id"]);
+    $JComment->execute();
 	$JCommentRows= $JComment->fetchAll(PDO::FETCH_ASSOC);
     
     //星星數開團
     
-        $sql_host_comment="select hrate_score,count(mem_id) count from host_rate where host_id=9455003 group by hrate_score;";
-        $hostComment = $pdo->query($sql_host_comment);
+        $sql_host_comment="select hrate_score,count(mem_id) count from host_rate where host_id=:mem_id group by hrate_score;";
+        $hostComment = $pdo->prepare($sql_host_comment);
+        $hostComment->bindValue(":mem_id", $_GET["mem_id"]);
+        $hostComment->execute();
         $comment = [];
         while($rateHostCommentRow= $hostComment->fetch(PDO::FETCH_ASSOC)){
             $comment[$rateHostCommentRow["hrate_score"]]=$rateHostCommentRow["count"];
@@ -62,8 +82,10 @@ try {
         ;
         
     //星星數參團
-        $sql_join_comment="select jrate_score,count(host_id) count from join_rate where join_id=9455003 group by jrate_score;";
-        $joinComment = $pdo->query($sql_join_comment);
+        $sql_join_comment="select jrate_score,count(host_id) count from join_rate where join_id=:mem_id group by jrate_score;";
+        $joinComment = $pdo->prepare($sql_join_comment);
+        $joinComment->bindValue(":mem_id", $_GET["mem_id"]);
+        $joinComment->execute();
         $jcomment = [];
         while($joinCommentRow= $joinComment->fetch(PDO::FETCH_ASSOC)){
             $jcomment[$joinCommentRow["jrate_score"]]=$joinCommentRow["count"];
@@ -84,6 +106,7 @@ try {
     <title><?=$memInfoRows[0]["mem_name"]?></title>
     <link rel="stylesheet" href="./css/profile-out.css">
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./layout/meta.html">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
     
 </head>
@@ -416,7 +439,7 @@ try {
                         foreach($memInfoRows as $i =>$memInfoRow ){
                           if($ongoing == 2){
                     ?>
-                            <a href="#">
+                            <a href="groupDetail.php?gro_id=<?=$memInfoRow['gro_id']?>">
                                 <div class="ongoing">
                                     <div class="activity-pic">
                                         <img src="./images/group/<?=$memInfoRow["gpt_pt"]?>"  alt="">
@@ -444,7 +467,7 @@ try {
                         foreach($memInfoRows as $i =>$memInfoRow ){
                             if($ongoing == 0 ||$ongoing == 1){
                     ?>
-                         <a href="#">
+                         <a href="groupDetail.php?gro_id=<?=$memInfoRow['gro_id']?>">
                             <div class="ongoing">
                                     <div class="activity-pic">
                                         <img src="./images/group/<?=$memInfoRow["gpt_pt"]?>"  alt="">

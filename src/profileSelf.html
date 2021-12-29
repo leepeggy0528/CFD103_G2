@@ -76,8 +76,8 @@
                             </div>
                         </div>
                         <div class="activity-btn activity-like">
-                            <a href="#" class="btnWhite">活動頁面</a>
-                            <a href="#" class="btnYellow">報名列表</a>
+                            <button class="btnYellow">報名列表</button>
+                            <a href="#" class="activity-page">活動頁面</a>
                         </div>
                     </div>
                     <p>已結束</p>
@@ -91,8 +91,8 @@
                             </div>
                         </div>
                         <div class="activity-btn activity-like">
-                            <button class="btnWhite"id="ratingParts">評價團員</button>
-                            <a href="#" class="btnYellow" >活動頁面</a>
+                            <button class="btnYellow"id="ratingParts">評價團員</button>
+                            <a href="#" class="activity-page" >活動頁面</a>
                         </div>
                     </div>
                     <div id="layerRatingContainer">
@@ -192,8 +192,8 @@
                             </div>
                         </div>
                         <div class="activity-btn activity-like">
-                            <button class="btnWhite">取消報名</button>
-                            <a href="#" class="btnYellow">活動頁面</a>
+                            <button class="btnYellow">取消報名</button>
+                            <a href="#" class="activity-page">活動頁面</a>
                         </div>
                     </div>
                     <p>已結束</p>
@@ -207,8 +207,8 @@
                             </div>
                         </div>
                         <div class="activity-btn activity-like">
-                            <button class="btnWhite" id="rateHost">評價活動</button>
-                            <a href="#" class="btnYellow">活動頁面</a>
+                            <button class="btnYellow" id="rateHost">評價活動</button>
+                            <a href="#" class="activity-page">活動頁面</a>
                         </div>
                         <div id="layerRatingHost">
                             <div class="ratingContainerHost">
@@ -263,8 +263,8 @@
                         </div>
                     </div>
                     <div class="activity-btn activity-like">
-                        <a href="#" class="btnWhite">活動頁面</a>
                         <a href="#" class="btnYellow">立即報名</a>
+                        <a href="#" class="activity-page">活動頁面</a>
                     </div>
                 </div>
                 <p>已結束</p> 
@@ -278,7 +278,7 @@
                             </div>
                         </div>
                         <div class="activity-btn activity-like">
-                            <a href="#" class="btnWhite">活動頁面</a>
+                            <a href="#" class="activity-page">活動頁面</a>
                         </div>
                     </div>
             </div> 
@@ -401,9 +401,33 @@
                    <div class="settingForBlack">
                        <button class="setting"><i class="fas fa-cog"></i></button>
                        <div class="blackList">
-                         <button class="blackMemList">
+                         <button id="myBlackList"class="blackMemList">
                              黑名單列表
                           </button>
+                       </div>
+                       <div id="layerBlackContainer">
+                           <div class="blackContainer">
+                                <p class="activityName">黑名單列表</p>
+                                <div class="wrapperForClose">
+                                    <button class="close-btn" id="closeBlack">X</button>
+                                </div>
+                                <table>
+                                    <thead class="titleBackground">
+                                        <tr>
+                                            <th>編號</th>
+                                            <th>姓名</th>
+                                            <th>移除黑名單</th>
+                                        </tr>
+                                    </thead>
+                                    <tr class="ratingMemRow">
+                                        <td>1</td>
+                                        <td class="rater">安迪哥</td>
+                                        <td>
+                                        <button class=" btnYellow removeBlack">移除</button>
+                                        </td>
+                                    </tr>
+                                </table>
+                           </div>
                        </div>
                    </div>
                       <div class="search-friend">
@@ -416,7 +440,7 @@
                     <div id="app" class="friend-card-list article-time">
                         <div class="show-card girl-card">
                             <div class="edit-wrapper">
-                                <button class="edit showButton">
+                                <button class="edit friendControl showButton">
                                     <i class="fas fa-ellipsis-v"></i>
                                 </button>
                                 <div class="friend-del-black">
@@ -429,18 +453,46 @@
                             </div>
                             <p class="name">胡山迪</p>
                             <div class="interact">
-                                <a class="edit edit-friend"><i class="far fa-user-circle"></i>
+                                <a href="#" class="edit edit-friend">
+                                    <i class="far fa-user-circle"></i>
                                 </a>
-                                <a class="edit edit-friend"><i class="far fa-comment-dots"></i>
-                                </i>
+                                <a href="#" class="edit edit-friend">
+                                    <i class="far fa-comment-dots"></i>
                                 </a>
-                                <a class="edit edit-friend"><i class="far fa-envelope"></i></i>
+                                <a href="#" class="edit edit-friend">
+                                    <i class="far fa-envelope"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="show-card boy-card">
+                            <div class="edit-wrapper">
+                                <button class="edit friendControl showButton">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </button>
+                                <div class="friend-del-black">
+                                    <button class="del-friend">刪除好友</button>
+                                    <button class="blackList-friend">加入黑名單</button>
+                                </div>
+                            </div>
+                            <div class="self-pic">
+                                <img src="./images/user/young-man-making-funny-faces-showing-tongue-fool-around-standing-white-t-shirt-against-yellow-background-copy-space_1258-73513.jpg" alt="">
+                            </div>
+                            <p class="name">胡山迪</p>
+                            <div class="interact">
+                                <a href="#" class="edit edit-friend">
+                                    <i class="far fa-user-circle"></i>
+                                </a>
+                                <a href="#" class="edit edit-friend">
+                                    <i class="far fa-comment-dots"></i>
+                               </a>
+                                <a href="#" class="edit edit-friend">
+                                    <i class="far fa-envelope"></i>
                                 </a>
                             </div>
                         </div>
                         <div class="show-card girl-card">
                             <div class="edit-wrapper">
-                                <button class="edit showButton">
+                                <button class="edit friendControl showButton">
                                     <i class="fas fa-ellipsis-v"></i>
                                 </button>
                                 <div class="friend-del-black">
@@ -453,38 +505,16 @@
                             </div>
                             <p class="name">胡山迪</p>
                             <div class="interact">
-                                <a class="edit edit-friend"><i class="far fa-user-circle"></i>
+                                <a href="#" class="edit edit-friend">
+                                    <i class="far fa-user-circle"></i>
                                 </a>
-                                <a class="edit edit-friend"><i class="far fa-comment-dots"></i>
-                                </i>
-                            </a>
-                            <a class="edit edit-friend"><i class="far fa-envelope"></i></i>
-                            </a>
-                        </div>
-                        </div>
-                        <div class="show-card girl-card">
-                            <div class="edit-wrapper">
-                                <button class="edit showButton">
-                                    <i class="fas fa-ellipsis-v"></i>
-                                </button>
-                                <div class="friend-del-black">
-                                    <button class="del-friend">刪除好友</button>
-                                    <button class="blackList-friend">加入黑名單</button>
-                                </div>
-                            </div>
-                            <div class="self-pic">
-                                <img src="./images/user/young-man-making-funny-faces-showing-tongue-fool-around-standing-white-t-shirt-against-yellow-background-copy-space_1258-73513.jpg" alt="">
-                            </div>
-                            <p class="name">胡山迪</p>
-                            <div class="interact">
-                                <a class="edit edit-friend"><i class="far fa-user-circle"></i>
+                                <a href="#" class="edit edit-friend">
+                                    <i class="far fa-comment-dots"></i>
                                 </a>
-                                <a class="edit edit-friend"><i class="far fa-comment-dots"></i>
-                                </i>
-                            </a>
-                            <a class="edit edit-friend"><i class="far fa-envelope"></i></i>
-                            </a>
-                        </div>
+                                <a href="#" class="edit edit-friend">
+                                    <i class="far fa-envelope"></i>
+                                </a>
+                           </div>
                         </div>
                     </div>
            </div>
@@ -492,9 +522,10 @@
     </div>
 @@include('./layout/footer.html')
 <script src="js/changeTabsForSelf.js"></script>
-<script src='./js/loginLightbox.js'></script>
+<script src='js/loginLightbox.js'></script>
 <script src="js/dropdown.js"></script>
-<script src="js/friendtoggle.js"></script>
+<script src="js/friendlisttoggle.js"></script>
+
 
 
     
