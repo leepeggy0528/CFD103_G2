@@ -1,12 +1,14 @@
 <?php
 ob_start();
 session_start();
+$json = $_POST["login"];
+$loginData = json_decode($json, true);
 try{
   require_once("./connectAccount.php");
   $sql = "select * from member where mem_mail=:memMail and mem_pswd=:memPsw"; 
   $member = $pdo->prepare($sql);
-  $member->bindValue(":memMail", $_POST["mem_mail"]);
-  $member->bindValue(":memPsw", $_POST["mem_pswd"]);
+  $member->bindValue(":memMail", $loginData["memMail"]);
+  $member->bindValue(":memPsw", $loginData["memPsw"]);
   $member->execute();
   if( $member->rowCount()==0){ //查無此人
 	  echo "{}";
@@ -33,7 +35,7 @@ try{
        
     //送出登入者的姓名資料
     // echo $memRow["memName"];
-     $member = ["mem_id"=>$_SESSION["memId"], "mem_name"=>$_SESSION["memName"], "mem_mail"=>$_SESSION["memMail"], "mem_sex"=>$_SESSION["memSex"],"mem_loc"=>$_SESSION["memLoc"],"mem_dom"=>$_SESSION["memDom"],"mem_money"=>$_SESSION["memMoney"],"jmem_score"=>$_SESSION["jmemScore"],"hmem_score"=>$_SESSION["hmemScore"],"hmem_people"=>$_SESSION["hmemPeople"],"mem_birthday"=>$_SESSION["memBirthday"],"mem_inter"=>$_SESSION["memInter"],"mem_discribe"=>$_SESSION["memDiscribe"],"mem_pt"=>$_SESSION["memPt"]];
+     $member = ["mem_id"=>$_SESSION["memId"], "mem_name"=>$_SESSION["memName"], "mem_mail"=>$_SESSION["memMail"], "mem_sex"=>$_SESSION["memSex"],"mem_loc"=>$_SESSION["memLoc"],"mem_dom"=>$_SESSION["memDom"],"mem_money"=>$_SESSION["memMoney"],"jmem_score"=>$_SESSION["jmemScore"],"hmem_score"=>$_SESSION["hmemScore"],"hmem_people"=>$_SESSION["hmemPeople"],"mem_birthday"=>$_SESSION["memBirthday"],"mem_inter"=>$_SESSION["memInter"],"mem_discribe"=>$_SESSION["memDiscribe"],"mem_pt"=>$_SESSION["memPt"],];
     echo json_encode($member);
 
 
