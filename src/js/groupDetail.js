@@ -65,15 +65,77 @@ function sliceTitle() {
     }
 }
 
+//動態產生留言
+function leaveComment(json) {
+    let memInfo = JSON.parse(json);
+    let comment = document.getElementById('comment').value; //留言內容
+
+
+
+
+    let today = new Date();
+    let y = today.getFullYear();
+    let m = today.getMonth() + 1;
+    let d = today.getDate();
+    let hh = today.getHours();
+    let mm = today.getMinutes();
+    let ss = today.getSeconds();
+    let datetime = `${y}-${m}-${d} ${hh}:${mm}:${ss}`;
+
+    if (comment == '') {
+        alert('請輸入留言內容');
+    } else {
+        let parent = document.querySelector('.comment .wrap')
+        let li = document.createElement('li');
+        li.classList.add('wrap-item');
+        let commentItem = `        
+            <div class="user">
+                <div class="pic smCircle">
+                    <img class="circle" src="./images/user/${memInfo.mem_pt}">
+                </div>
+                <span id="userName">${memInfo.mem_name}</span>
+            </div>
+            <p>${comment}</p>
+            <time>${datetime}</time>`;
+        li.innerHTML = commentItem;
+        parent.appendChild(li);
+
+    }
+
+}
+
+
+//留言存進資料庫
+function saveComment() {
+    let textarea = document.getElementById('comment').value; //留言內容
+    let xhr = new XMLHttpRequest();
+    xhr.onload = function () {
+        if (xhr.status == 200) {
+            console.log('success');
+        } else {
+            alert(xhr.status);
+            console.log(xhr.responseText);
+        }
+    }
+
+    let gro_id = location.href.split('?')[1]; // 取得gro_id
+
+    xhr.open("Post", "./php/gpComment.php", true);
+    xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+    let data = `${gro_id}&mem_id=9455001&comment=${textarea}`;
+    console.log('data_info:', data);
+    xhr.send(data);
+    document.getElementById('comment').value = "";
+}
+
+
 function init() {
-    console.log(123);
+
     // 收藏
     saveActivity = document.querySelectorAll('#saveActivity');
     for (let i = 0; i < saveActivity.length; i++) {
         saveActivity[i].onclick = switchSaveActivity;
     }
-
-
 
     //手機板資訊欄收合
     document.getElementById('info-toggle').onclick = () => {
@@ -90,7 +152,6 @@ function init() {
             btnIcon.title = '關閉資訊'
             btnIcon.src = './images/icon/up.png';
         }
-
     }
 
     // 取得標題字
@@ -103,10 +164,31 @@ function init() {
     // 去除多餘字元
     sliceTitle();
 
-    document.getElementById('sendComment').onclick = test => {
-        console.log('test button');
+    //send comment
+    document.getElementById('sendComment').onclick = function () {
+
+        //取得會員名稱、頭貼
+        let xhr1 = new XMLHttpRequest();
+        xhr1.onload = function () {
+            if (xhr1.status == 200) {
+                leaveComment(xhr1.responseText);
+                saveComment();
+            } else {
+                alert(xhr1.status);
+                console.log(xhr1.responseText);
+            }
+        }
+        xhr1.open("Post", "./php/getMemberName.php", true);
+        xhr1.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+        let dataInfo = 'mem_id=9455001';
+        console.log('data_info:', dataInfo);
+        xhr1.send(dataInfo);
     }
+
+    //取得網址
+
 }
+
 
 window.addEventListener("load", init, false);
 

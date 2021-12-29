@@ -41,7 +41,7 @@ try{
     // $sche = $pdo->query($sql_sche);
     
     //留言: 留言人 / 內容/ 留言時間
-    $sql_msg = 'select m.mem_pt, m.mem_name, gm.gmes_context
+    $sql_msg = 'select m.mem_pt, m.mem_name, gm.gmes_context, gm.gmes_time
     from gro_mes gm  join igroup g on g.gro_id = gm.gro_id
                      join member m on gm.mem_id = m.mem_id
                      where g.gro_id=:gro_id;';
@@ -200,6 +200,7 @@ try{
                             <span id="userName"><?=$msgRows['mem_name'];?></span>
                         </div>
                         <p><?=$msgRows['gmes_context'];?></p>
+                        <time><?=$msgRows['gmes_time'];?></time>
                     </li>
                 <?php
                  }
@@ -208,7 +209,7 @@ try{
 
                 <div class="leave-comment">
                     <form>
-                        <textarea placeholder="請輸入留言" name="" id="" cols="30" rows="3"></textarea>
+                        <textarea placeholder="請輸入留言" name="comment" id="comment" cols="30" rows="3"></textarea>
                         <div class="btn-pos">
                             <button type="button" id="sendComment" class="btnBlue">送出</button>
                         </div>
