@@ -1,65 +1,30 @@
-// let close;
-// let open;
-// let signUp;
-// let showLogin; 
-// let showSignUp;
-// let returnLogin;
-// let Next;
-// let Last;
-// let showSignUpPage2;
+let signUp;
+let showLogin; 
+let showSignUp;
+let returnLogin;
+let Next;
+let Last;
+let showSignUpPage2;
 
 
-// function closeLogin() {
-//     showLogin = document.getElementById("layerForLogin");
-//     console.log(showLogin);
-//     showLogin.style.display = "none";
-// }
-
-// function openLogin() {
-//     showLogin = document.getElementById("layerForLogin");
-//     showLogin.style.display = "block";
-//     console.log(showLogin);
-// }
-// function singUpPage(){
-//     showSignUp=document.getElementById("layerForSignUp");
-//     showSignUp.style.display = "block";
-//     showLogin.style.display = "none";
-// }
-// function returnToLogin(){
-//     showLogin.style.display = "block";
-//     showSignUp.style.display = "none";
-// }
-// function continueToStep2(){
-//     Next=document.getElementById("layerForSignUpTwo"); 
-//     Next.style.display = "block";
-//     showSignUp.style.display = "none";
-// }
-// function backToStep1(){
-//     showSignUp.style.display = "block";
-//     Next.style.display = "none";
-// }
-// function init() {
-//     // 操作登入頁面
-//     close = document.getElementById("closeLogin");
-//     open = document.getElementById("LoginBTN");
-//     // 操作註冊頁面
-//     signUp = document.getElementById("signUpNow");
-//     returnLogin= document.getElementById("returnLogin");
-//     Next= document.getElementById("nextStep");
-//     Last=document.getElementById("lastStep");
-
-//     close.onclick = closeLogin;
-//     open.onclick = openLogin;
-//     signUp.onclick =singUpPage;
-//     returnLogin.onclick =returnToLogin;
-//     Next.onclick=continueToStep2;
-//     Last.onclick=backToStep1;
-// }
-// window.addEventListener("load", init, false);
-
-
-
-
+function singUpPage(){
+    showSignUp=document.getElementById("layerForSignUp");
+    showSignUp.style.display = "block";
+    $id('layerForLogin').style.display = "none";
+}
+function returnToLogin(){
+  $id('layerForLogin').style.display = "block";
+    showSignUp.style.display = "none";
+}
+function continueToStep2(){
+    Next=document.getElementById("layerForSignUpTwo"); 
+    Next.style.display = "block";
+    showSignUp.style.display = "none";
+}
+function backToStep1(){
+    showSignUp.style.display = "block";
+    Next.style.display = "none";
+}
 //連上資料庫後
 function $id(id){
 	return document.getElementById(id);
@@ -144,6 +109,12 @@ function $id(id){
       //===設定btnLogin.onclick 事件處理程序是 sendForm
       $id('submitLogin').onclick = sendForm;
       $id('LogoutButton').onclick = MemLogout;
+
+      // 操作註冊頁面
+    $id('signUpNow').onclick =singUpPage;
+    $id('returnLogin').onclick =returnToLogin;
+    $id('nextStep').onclick=continueToStep2;
+    $id('lastStep').onclick=backToStep1;
       
     }; //window.onload
     let member = {};
