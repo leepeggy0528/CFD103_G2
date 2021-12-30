@@ -136,27 +136,44 @@
                 </button>
             </form>           
         </section>
+
+
+        <div class="modal-background">
+            <div class="external-modal">
+                <p>
+                    <span>時間:</span>
+                    <input id="model-start-time-input" value="" type="time">
+                    <span>~</span> 
+                    <input id="model-end-time-input" value="" type="time">
+                </p>
+                <p>
+                    <span>景點:</span>
+                    <input type="text" id="model-place-input" maxlength="10" placeholder="輸入景點名稱">
+                    <input type="text" id="model-address-input" placeholder="輸入景點地址">
+                </p>
+                <p>
+                    <button id="model-official-spot" class="btn">官方景點</button>
+                    <button id="model-chosen-spot" class="btn">已選景點</button>
+                </p>
+                <div class="select-model" style="display: none;">
+                    <label>官方景點:</label>
+                    <select name="official-spot-select" id="official-spot-select">
+                    </select>
+                </div>
+                <div class="select-model" style="display: none;">
+                    <label>已選景點:</label>
+                    <select name="chosen-spot-select" id="chosen-spot-select">
+                    </select>
+                </div>
+                <p>
+                    <button id="model-cancel-btn" class="btnWhite">取消</button>
+                    <button id="model-submit-btn" class="btnYellow">確定</button>
+                </p>
+            </div>
+        </div>    
     </article>
 
-    <div class="modal-background">
-        <div class="external-modal">
-            <p>
-                <span>時間:</span>
-                <input id="model-start-time-input" value="" type="time">
-                <span>~</span> 
-                <input id="model-end-time-input" value="" type="time">
-            </p>
-            <p>
-                <span>景點:</span>
-                <input type="text" id="model-place-input" maxlength="10" placeholder="輸入景點名稱">
-                <input type="text" id="model-address-input" placeholder="輸入景點地址">
-            </p>
-            <p>
-                <button id="model-cancel-btn" class="btnWhite">取消</button>
-                <button id="model-submit-btn" class="btnYellow">確定</button>
-            </p>
-        </div>
-    </div>    
+    
     
     
 
