@@ -6,7 +6,7 @@ try {
 	require_once("./php/connectAccount.php");
 	
 	//執行sql指令並取得pdoStatement
-	$sql = "select *,count(post_mes.pmes_no) as msg 
+	$sql = "select *,post.post_no as pno,count(post_mes.pmes_no) as msg 
     from post join member on post.mem_id = member.mem_id 
     join post_pt on post.post_no = post_pt.post_no
     left join post_mes on post.post_no = post_mes.post_no
@@ -16,7 +16,7 @@ try {
 	$products = $pdo->query($sql); 
 
 	//取回所有的資料, 放在2維陣列中
-	// $prodRows = $products->fetchAll(PDO::FETCH_ASSOC);
+	$prodRows = $products->fetchAll(PDO::FETCH_ASSOC);
 } catch (Exception $e) {
 	echo "錯誤行號 : ", $e->getLine(), "<br>";
 	echo "錯誤原因 : ", $e->getMessage(), "<br>";
@@ -117,8 +117,8 @@ try {
         <div class="insta-item-main">
         <ul class="post"></ul>
                 <?php 
-                // foreach($prodRows as $i => $prodRow){
-                    while($prodRow = $products->fetch(PDO::FETCH_ASSOC)){
+                foreach($prodRows as $i => $prodRow){
+                    // while($prodRow = $products->fetch(PDO::FETCH_ASSOC)){
                 ?>
 
             <div class="insta-item-main-i">
@@ -142,7 +142,7 @@ try {
                             <p><?=$prodRow["post_context"];?></p>
 
                             <div class="seemore">
-                            <a href="./discussion-text.php?pno=<?=$prodRow['post_no']?>">看更多</a>
+                            <a href="./discussion-text.php?pno=<?=$prodRow['pno']?>">看更多</a>
                             </div>
 
                             <div class="tag">
@@ -380,7 +380,6 @@ try {
       });  
 
 </script>
-<script src="./js/loginLightbox.js" asyn></script>
         <script>
         //留言功能、獲取元素、註冊時間(燈箱)
         var btn = document.querySelector('.btn-boxY .btnYellow');
@@ -485,9 +484,10 @@ try {
                 centerI.appendChild(seemore);
                 seemore.classList.add("seemore"); 
 
-                var a = document.createElement('a');
+                let a = document.createElement('a');
                 seemore.appendChild(a);
                 a.innerText = "看更多";
+                a.href="discussion-text.php?pno="
 
                 var tag =  document.createElement('div');
                 centerI.appendChild(tag);
@@ -519,10 +519,17 @@ try {
                 $('.screen').css('display','none');
                 
                 let xhr = new XMLHttpRequest();
+                xhr.onload = function(){
+                    console.log(22222)
+                    a.href="discussion-text.php?pno=" + xhr.responseText;
+                    console.log(a.href)
+                }
                 xhr.open("post", "./php/addPost.php", true);
                 let formData = new FormData(document.getElementById("screen-form"));
+                console.log("000000000000")
                 console.log(formData);
                 xhr.send(formData);
+                console.log(1)
                 }
             }
             xhr1.open("get", "./php/getMemberInfo.php", true);

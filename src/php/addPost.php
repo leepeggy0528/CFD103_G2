@@ -2,9 +2,9 @@
 	//引入連線工作的檔案
 	require_once("./connectAccount.php");
 	//.......確定是否上傳成功
-    echo  $_POST["post_title"];
-    echo  $_POST["post_context"];
-    echo  $_POST["post_type"];
+    // echo  $_POST["post_title"];
+    // echo  $_POST["post_context"];
+    // echo  $_POST["post_type"];
     
     $sql = "INSERT INTO `post` VALUES (null,:mem_id,:post_title, now(),:post_context,:has_nos,:post_times,:post_like,:post_type,:post_show);";
     
@@ -26,7 +26,7 @@
     
     $products->execute();
     $post_no = $pdo->lastInsertId();
-
+    echo $post_no;
 if( $_FILES["image"]["error"] == UPLOAD_ERR_OK){
 
     //決定檔案名稱

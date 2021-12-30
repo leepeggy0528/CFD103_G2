@@ -8,7 +8,7 @@ try {
 	//執行sql指令並取得貼文資料
   $sql = "select *,count(p.post_no) as msg ,mem_name,mem_pt
   from post p  left join post_mes pm on p.post_no = pm.post_no
-  join member m on pm.mem_id=m.mem_id
+  join member m on p.mem_id=m.mem_id
   group by p.post_no having p.post_no = :pno
   ORDER BY pm.pmes_time DESC;";
 	  $product = $pdo->prepare($sql);
@@ -18,7 +18,7 @@ try {
     $prodRow = $product->fetch(PDO::FETCH_ASSOC);
 
     //取得圖片
-    $sqlpt = "select ppt_pt
+    $sqlpt = "select *
     from post p join post_pt pp on p.post_no = pp.post_no
     where p.post_no = ?;";
 	  $products = $pdo->prepare($sqlpt);
@@ -28,7 +28,7 @@ try {
     $prodRows = $products->fetchAll(PDO::FETCH_ASSOC);
 
     //取留言
-    $sqlmsg = "select pm.pmes_context, m.mem_name, pm.pmes_time,mem_pt
+    $sqlmsg = "select pm.pmes_context, m.mem_name, pm.pmes_time,m.mem_pt
     from post_mes pm right join post p on p.post_no = pm.post_no
             join member m on pm.mem_id=m.mem_id
     where p.post_no = ? ORDER BY pm.pmes_time DESC;";
@@ -65,17 +65,17 @@ try {
 <body>
 @@include('../../layout/login.html')
 @@include('../../layout/header.html')
-    <div class="title"><h1><?=$prodRow["post_title"];?></h1></div>
+    <div class="title"><h1><?=$prodRows[0]["post_title"];?></h1></div>
 
 
     <div class="container">
       <div class="slider">
           <div class="owl-carousel owl-theme">
               <?php 
-                foreach($prodRows as $i => $prodRows){
+                foreach($prodRows as $i => $postRow){
               ?>
               <div class="item">
-              <img src="./images/discussion/<?=$prodRows["ppt_pt"];?>">
+              <img src="./images/discussion/<?=$postRow["ppt_pt"];?>">
               </div>
               <?php 
                 }
@@ -85,33 +85,33 @@ try {
     </div>
 
   <div class="insta-item">
-          <div class="insta-item-i">
+  <div class="insta-item-i">
               <div class="insta-item-me">
               <img src="./images/user/<?=$prodRow["mem_pt"];?>">
               <p class="me"><?=$prodRow["mem_name"];?></p>
               </div>
   
               <div class="insta-item-text">
-              <p><?=$prodRow["post_context"];?></p>
+              <p><?=$prodRows[0]["post_context"];?></p>
               </div>
   
               <div class="insta-item-tag">
-                <p>#<?=$prodRow["post_type"];?></p>
+                <p>#<?=$prodRows[0]["post_type"];?></p>
               </div>
   
               <div class="comment-item">
                 <i class="fas fa-comment-alt" style="color: #025A78;"></i>
-                <p><?=$prodRow["msg"];?></p>
+                <p><?php //echo $prodRowss[0]["msg"];?></p>
   
                 <i class="fas fa-thumbs-up" style="color: #025A78;"></i>
-                <p><?=$prodRow["post_like"];?></p>
+                <p><?=$prodRows[0]["post_like"];?></p>
   
                 <i class="fas fa-fire" style="color: #025A78;"></i>
-                <p><?=$prodRow["post_times"];?></p>
+                <p><?=$prodRows[0]["post_times"];?></p>
               </div>
                 
                 <div class="times">
-                <p><?=$prodRow["post_time"];?></p>
+                <p><?=$prodRows[0]["post_time"];?></p>
                 </div>
                 
               <div class="warn-box">
@@ -125,18 +125,18 @@ try {
               if ($productss->rowCount()==0) {
                 echo "<p>暫無留言</p>";
               }else{
-                foreach($prodRowss as $i => $prodRowss){
+                foreach($prodRowss as $i => $postMsgRow){
               ?>
               <ul class="list-box">
               </ul>
                 <li class="list">
                   <div class="insta-item-me">
                     <div class="pic_me">
-                    <img src="./images/user/<?=$prodRowss["mem_pt"];?>">
+                    <img src="./images/user/<?=$postMsgRow["mem_pt"];?>">
                     </div>
-                    <p class="me"><?=$prodRowss["mem_name"];?></p>
-                    <p class="commend"><?=$prodRowss["pmes_context"];?></p>
-                    <span class="time"><?=$prodRowss["pmes_time"];?></span>
+                    <p class="me"><?=$postMsgRow["mem_name"];?></p>
+                    <p class="commend"><?=$postMsgRow["pmes_context"];?></p>
+                    <span class="time"><?=$postMsgRow["pmes_time"];?></span>
                   </div>
                 </li>
               <?php 
