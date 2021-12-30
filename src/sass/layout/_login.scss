@@ -8,6 +8,7 @@
   position: fixed;
   display: none;
   z-index: 1000;
+  left: 0;
 }
 .login_content{
   margin: auto;
@@ -232,9 +233,6 @@
     transition: 300ms ease all;
    }
    @media (max-width: 960px) {
-    #layerForLogin{
-      display: block;
-    }
     .birthday-group{
       width: 50%;
     }
