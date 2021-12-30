@@ -431,52 +431,109 @@ textarea{
     top: 0;
     left: 0;
     display: none;
+    justify-content: center;
+    align-items: center;
     .external-modal{
-        max-width: 500px;
-        padding: $padding*5;
+        padding: $padding*2 $padding*4;
         z-index: 1;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%,-50%);
         @include borderR();
         background-color: $mainBlue;
+        box-sizing: border-box;
         p{
-            width: 100%;
+            width: 300px;
             padding: 0;
             font-size: 0;
+            margin: auto;
             span{
-                font-size: $font-4;
+                font-size: $font-3;
                 color: $white;
                 display: inline-block;
-                height: 40px;
-                line-height: 40px;
-            }
-            input{
-                height: 40px;
-                margin: $margin;
-                border: none;
-                text-indent: 5px;
-                @include borderR();
-            }
-            &:nth-of-type(1){
-                input{
-                    font-size: $font-3;
+                height: 35px;
+                line-height: 35px;
+                margin-right: 4px;
+                &:nth-of-type(2){
+                    margin: 0 4px;
                 }
             }
+            input{
+                height: 35px;
+                margin: $margin 0;
+                border: none;
+                @include borderR();
+            }
+            //time
+            &:nth-of-type(1){
+                input{
+                    font-size: $font-1;
+                    &::placeholder{
+                        font-size: $font-2;
+                        text-indent: 4px;
+                    }
+                }
+            }
+            //spot
             &:nth-of-type(2){
                 input{
                     width: 100%;
+                    &::placeholder{
+                        font-size: $font-2;
+                        text-indent: 4px;
+                    }
                 }
             }
+            //office or chosen
             &:nth-of-type(3){
+                button{
+                    width: 70px;
+                    border: none;
+                    background-color: $pageBlue;
+                    font-size: 
+                    12px;
+                    margin: $margin $margin*.5;
+                    padding: $padding*.5;
+                    color: $white;
+                    transition: all .3s ease-in-out;
+                    &.show{
+                        background-color: $linkBlue;
+                        transform: scale(1.2);
+                    }
+                }
+            }
+            //cancel or submit
+            &:nth-of-type(4){
                 text-align: center;
                 margin-top: $margin*2;
                 button{
-                    width: 120px;
-                    margin: 10px;
+                    width: 80px;
                     border: none;
-                    font-size: $font-4;
+                    margin: 0 $margin*.5;
+                    font-size: 
+                    $font-1;
+                    padding: $padding*.5;
+                }
+            }
+        }
+        .select-model{
+            margin: $margin 0;
+            label{
+                color: $white;
+                height: 35px;
+                line-height: 35px;
+                margin-right: 4px;
+            }
+            select{
+                width: 50%;
+                height: 35px;
+                text-align: center;
+                font-size: $font-2;
+                background-color: $bgGray;
+                border: none;
+                @include borderR();
+                &:focus{
+                    outline: none;
+                }
+                option{
+                    text-align: center;
                 }
             }
         }

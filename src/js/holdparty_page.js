@@ -1,9 +1,38 @@
 $(function () {	
+    $.ajax({
+        url:"php/holdparty_get.php",
+        method:"POST",
+        dataType : 'text',
+        success:function(res){
+        let arr = res.split('/');
+        let spotArr =[];
+          for(let i=0;i <arr.length; i++){
+            spotArr[i]= arr[i].split(':');
+          }
+          console.log(spotArr);
+          console.log(spotArr.length);
+          console.log(spotArr[0][1]);
+          
+          for(let i=0; i < spotArr.length; i++){
+            let official_temp = `<option value="${spotArr[i][0]}">${spotArr[i][0]}</option><span class='spot_address' style="display: none;">${spotArr[i][1]}</span>`;
+            $('#official-spot-select').append(official_temp);
+          }
+      
+        },
+        error: function (data) {
+            console.log("請求失敗");
+        }
+    });
     // 案+ 出現MODEL
     $('body').on('click','.add_place',function(){
-        $('.modal-background').css('display','block')
+        $('.modal-background').css('display','flex')
         $('.external-modal input').val('')
+
+        $('#model-official-spot').removeClass('show')
+        $('#model-chosen-spot').removeClass('show')
+        $('.select-model').css('display','none')
     });
+
 
     //按下確定新增行程
     $('body').on('click','#model-submit-btn',function(){
@@ -62,6 +91,83 @@ $(function () {
                 $('#day_lists').before(placeAllTemplate)
             }
     });
+    //案model-official-spot 官方
+    $('#model-official-spot').on('click',function(){
+        let target = $(this)
+        let official_spot = $('#official-spot-select')
+        if(target.hasClass('show')){
+            target.removeClass('show')
+            official_spot.parent().css('display','none')
+        }else{
+            target.addClass('show')
+            target.next().removeClass('show')     
+            official_spot.parent().css('display','block')
+            official_spot.parent().next().css('display','none')
+        }
+    });
+
+    //set chosen-spot 已選
+    if(localStorage.getItem('index_spot') != null){
+        let index_spot = localStorage.getItem('index_spot').split(',');
+        $('#chosen-spot-select option').remove();
+        for(let i=0; i < index_spot.length; i++){
+            let chosen_temp = `<option value="${index_spot[i]}">${index_spot[i]}</option>`
+            $('#chosen-spot-select').append(chosen_temp)
+        }
+    }
+    else{
+        let chosen_temp = `<option>--- 空 ---</option>`
+        $('#chosen-spot-select').append(chosen_temp)
+        $('#chosen-spot-select').attr('disabled','disabled')
+    }
+    //案model-chosen-spot 已選
+    $('#model-chosen-spot').on('click',function(){
+        let target = $(this)
+        let chosen_spot = $('#chosen-spot-select')
+        if(target.hasClass('show')){
+            target.removeClass('show')
+            chosen_spot.parent().css('display','none')
+        }else{
+            target.addClass('show')
+            target.prev().removeClass('show')   
+            chosen_spot.parent().css('display','block')
+            chosen_spot.parent().prev().css('display','none') 
+        }
+    });
+
+    //更換換已選景點
+    $('body').on('change click','#chosen-spot-select',function(){
+        let spot_name =$(this).val()
+        $('#model-place-input').val(spot_name)
+
+
+        
+        let target= $('#official-spot-select')
+        let option_length =  target.find('option').length
+        for(let i=0;i<option_length; i++){
+            if(spot_name == $(`#official-spot-select option:nth-of-type(${i+1})`).val()){
+                let target_spot_address = $(`#official-spot-select option:nth-of-type(${i+1})`).next('span').text()
+                $('#model-address-input').val(target_spot_address)
+            }
+        } 
+    });
+
+    //更換換官方景點
+    $('body').on('change click','#official-spot-select',function(){
+        let target= $(this)
+        let spot_name =target.val()
+        $('#model-place-input').val(spot_name)
+
+
+        let option_length =  target.find('option').length
+        for(let i=0;i<option_length; i++){
+            if(spot_name == $(`#official-spot-select option:nth-of-type(${i+1})`).val()){
+                let target_spot_address = $(`#official-spot-select option:nth-of-type(${i+1})`).next('span').text()
+                $('#model-address-input').val(target_spot_address)
+            }
+        } 
+    });
+
     //party_discribe 剩餘可輸入數字字數
     let textMax = 200;		
     $('#limit_words_count').html(textMax);
@@ -146,88 +252,94 @@ $(function () {
             alert("尚未上傳檔案無法刪除");
         }
     });
-
-
-
 });
 
 
 document.getElementById("hold_party").onclick = function(){
-    let arr=[];
-    let days=[];
-    let place_group = document.getElementsByClassName("place_group");
-
-    for(let d=0; d<place_group.length; d++){ 
-      let place = place_group[d].querySelectorAll(".place");
-
-      let input_time = place_group[d].querySelectorAll(".input_time");
-      let input_time_end = place_group[d].querySelectorAll(".input_time_end");				
-      let place_view = place_group[d].querySelectorAll(".place_view");
-      let place_address = place_group[d].querySelectorAll(".place_address");
-
-      days[d] = [];
-      for(let i=0; i<place.length; i++){
-          let spot = {};
-          spot.input_time = input_time[i].innerText;
-          spot.input_time_end = input_time_end[i].innerText;
-          spot.place_view = place_view[i].innerText;
-          spot.place_address = place_address[i].innerText;
-
-          days[d].push(spot);
-        }
-        arr.push(days[d]);		
-    }
     
-    let gro_name = document.getElementById("gro_name").value;
-    let gro_startd = document.getElementById("gro_startd").value;
-    let party_totalday = document.getElementById("party_totalday").value;
-    // 天數運算
-    let gro_endd =new Date(gro_startd);
-    gro_endd = gro_endd.setDate(gro_endd.getDate()+parseInt(party_totalday-1));
-    gro_endd = new Date(gro_endd).toLocaleDateString();
-    // 
+    if(member.mem_id){
+        let arr=[];
+        let days=[];
+        let place_group = document.getElementsByClassName("place_group");
     
-    let gro_loc = document.getElementById("gro_loc").value;
-    let gro_type = document.getElementById("gro_type").value;
-    let gro_paytype = document.getElementById("gro_paytype").value;
-    let gro_pay = document.getElementById("gro_pay").value;
-    let gro_infnumber = document.getElementById("gro_infnumber").value;
-    let gro_subnumber = document.getElementById("gro_subnumber").value;
-    // let schedule = document.getElementById("schedule").value;    
-    let gro_endadd = document.getElementById("gro_endadd").value;
-    let party_explan = document.getElementById("party_explan").value;
+        for(let d=0; d<place_group.length; d++){ 
+          let place = place_group[d].querySelectorAll(".place");
     
-    let gpt_pt = document.querySelector(".image_path").value;
-    let detail = {
-        
-        "GRO_NAME" : gro_name,
-        "GRO_STARTD" :gro_startd,
-        "GRO_ENDD" :  gro_endd,
-        "GRO_LOC" : gro_loc,
-        "GRO_TYPE" : gro_type,
-        "GRO_PAYTYPE" : gro_paytype,
-        "GRO_PAY" : gro_pay,
-        "GRO_INFNUMBER" : gro_infnumber,
-        "GRO_SUPNUMBER" : gro_subnumber,
-        "GRO_ENDADD" : gro_endadd,
-        "SCHEDULE" : arr,
-        "GRO_EXPLAN" : party_explan,
-        "GPT_PT" : gpt_pt,
-        // "GPT_PT" : name,
-    }
+          let input_time = place_group[d].querySelectorAll(".input_time");
+          let input_time_end = place_group[d].querySelectorAll(".input_time_end");				
+          let place_view = place_group[d].querySelectorAll(".place_view");
+          let place_address = place_group[d].querySelectorAll(".place_address");
     
-
-    $.ajax({
-        url:"holdparty_page.php",
-        method:"POST",
-        data : detail, 
-        success:function(res){
-            if(res){
-                alert('建立成功');
-                $("input").val('');
-                window.location.href = "http://localhost/CFD103_G2/dist/group.php";
+          days[d] = [];
+          for(let i=0; i<place.length; i++){
+              let spot = {};
+              spot.input_time = input_time[i].innerText;
+              spot.input_time_end = input_time_end[i].innerText;
+              spot.place_view = place_view[i].innerText;
+              spot.place_address = place_address[i].innerText;
+              days[d].push(spot);
             }
-        },
-        dataType : 'text'
-    })
+            arr.push(days[d]);		
+        }
+        
+        let gro_name = document.getElementById("gro_name").value;
+        let gro_startd = document.getElementById("gro_startd").value;
+        let party_totalday = document.getElementById("party_totalday").value;
+        // 天數運算
+        let gro_endd =new Date(gro_startd);
+        gro_endd = gro_endd.setDate(gro_endd.getDate()+parseInt(party_totalday-1));
+        gro_endd = new Date(gro_endd).toLocaleDateString();
+        // 
+    
+    
+        let mem_id = member.mem_id;
+        console.log(mem_id);
+        let gro_loc = document.getElementById("gro_loc").value;
+        let gro_type = document.getElementById("gro_type").value;
+        let gro_paytype = document.getElementById("gro_paytype").value;
+        let gro_pay = document.getElementById("gro_pay").value;
+        let gro_infnumber = document.getElementById("gro_infnumber").value;
+        let gro_subnumber = document.getElementById("gro_subnumber").value;
+        // let schedule = document.getElementById("schedule").value;    
+        let gro_endadd = document.getElementById("gro_endadd").value;
+        let party_explan = document.getElementById("party_explan").value;
+        
+        let gpt_pt = document.querySelector(".image_path").value;
+        let detail = {
+            "MEM_ID" : mem_id,
+            "GRO_NAME" : gro_name,
+            "GRO_STARTD" :gro_startd,
+            "GRO_ENDD" :  gro_endd,
+            "GRO_LOC" : gro_loc,
+            "GRO_TYPE" : gro_type,
+            "GRO_PAYTYPE" : gro_paytype,
+            "GRO_PAY" : gro_pay,
+            "GRO_INFNUMBER" : gro_infnumber,
+            "GRO_SUPNUMBER" : gro_subnumber,
+            "GRO_ENDADD" : gro_endadd,
+            "SCHEDULE" : arr,
+            "GRO_EXPLAN" : party_explan,
+            "GPT_PT" : gpt_pt,
+        };
+        console.log(arr);    
+    
+        $.ajax({
+            url:"holdparty_page.php",
+            method:"POST",
+            data : detail,
+            success:function(res){
+                if(res){
+                    alert(res);
+                    $("input").val('');
+                    $("#party_explan").val('');
+                    window.location.href = "./group.php";
+                }
+            },
+            dataType : 'text'
+        })
+    }
+    else{
+        alert("你尚未登入")
+    }
+    
 }

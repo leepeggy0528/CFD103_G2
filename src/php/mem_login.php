@@ -32,10 +32,11 @@ try{
     $_SESSION["memInter"] = $memRow["mem_inter"];
     $_SESSION["memDiscribe"] = $memRow["mem_discribe"];
     $_SESSION["memPt"] = $memRow["mem_pt"]; 
+    $_SESSION["memSuspend"] = $memRow["mem_Suspend"]; 
        
     //送出登入者的姓名資料
     // echo $memRow["memName"];
-     $member = ["mem_id"=>$_SESSION["memId"], "mem_name"=>$_SESSION["memName"], "mem_mail"=>$_SESSION["memMail"], "mem_sex"=>$_SESSION["memSex"],"mem_loc"=>$_SESSION["memLoc"],"mem_dom"=>$_SESSION["memDom"],"mem_money"=>$_SESSION["memMoney"],"jmem_score"=>$_SESSION["jmemScore"],"hmem_score"=>$_SESSION["hmemScore"],"hmem_people"=>$_SESSION["hmemPeople"],"mem_birthday"=>$_SESSION["memBirthday"],"mem_inter"=>$_SESSION["memInter"],"mem_discribe"=>$_SESSION["memDiscribe"],"mem_pt"=>$_SESSION["memPt"],];
+     $member = ["mem_id"=>$_SESSION["memId"], "mem_name"=>$_SESSION["memName"], "mem_mail"=>$_SESSION["memMail"], "mem_sex"=>$_SESSION["memSex"],"mem_loc"=>$_SESSION["memLoc"],"mem_dom"=>$_SESSION["memDom"],"mem_money"=>$_SESSION["memMoney"],"jmem_score"=>$_SESSION["jmemScore"],"hmem_score"=>$_SESSION["hmemScore"],"hmem_people"=>$_SESSION["hmemPeople"],"mem_birthday"=>$_SESSION["memBirthday"],"mem_inter"=>$_SESSION["memInter"],"mem_discribe"=>$_SESSION["memDiscribe"],"mem_pt"=>$_SESSION["memPt"],"mem_Suspend"=>$_SESSION["memSuspend"]];
     echo json_encode($member);
 
 

@@ -6,38 +6,53 @@ try {
 
 	//取回會員的資料
 	$sql_member = "select *from igroup i join  member m on m.mem_id=i.mem_id
-    join  gro_pt p on i.gro_id=p.gro_id group by m.mem_id having m.mem_id=9455003;";
-    $memInfo = $pdo->query($sql_member);
+    join  gro_pt p on i.gro_id=p.gro_id group by m.mem_id having m.mem_id=:mem_id;";
+    $memInfo = $pdo->prepare($sql_member);
+    $memInfo->bindValue(":mem_id", $_GET["mem_id"]);
+    $memInfo->execute();
 	$memInfoRows = $memInfo->fetchAll(PDO::FETCH_ASSOC);
 
     //參團資料
-    $sql_Join ="select i.gro_id,i.gro_name, i.gro_startd,i.gro_loc,i.gro_status, gpt_pt, p.partic_id from igroup i join partic p on i.gro_id= p.gro_id join gro_pt g on i.gro_id=g.gro_id where partic_id=9455002  group by gro_id order by gro_startd asc;";
-    $joinInfo = $pdo->query($sql_Join);
+    $sql_Join ="select i.gro_id,i.gro_name, i.gro_startd,i.gro_loc,i.gro_status, gpt_pt, p.partic_id from igroup i join partic p on i.gro_id= p.gro_id join gro_pt g on i.gro_id=g.gro_id where partic_id=:mem_id  group by gro_id order by gro_startd asc;";
+    $joinInfo = $pdo->prepare($sql_Join);
+    $joinInfo->bindValue(":mem_id", $_GET["mem_id"]);
+    $joinInfo->execute();
     $joinInfoRows = $joinInfo->fetchAll(PDO::FETCH_ASSOC); 
 
     //我的收藏
-    $sql_fav ="select i.gro_id,i.gro_name, i.gro_startd,i.gro_loc,i.gro_status, m.mem_id,g.gpt_pt from igroup i join mem_fav m on i.gro_id=m.gro_id join gro_pt  g on i.gro_id=g.gro_id where m.mem_id=9455002 group by gro_id order by gro_startd asc;";
-    $favInfo = $pdo->query($sql_fav);
+    $sql_fav ="select i.gro_id,i.gro_name, i.gro_startd,i.gro_loc,i.gro_status, m.mem_id,g.gpt_pt from igroup i join mem_fav m on i.gro_id=m.gro_id join gro_pt  g on i.gro_id=g.gro_id where m.mem_id=:mem_id group by gro_id order by gro_startd asc;";
+    $favInfo = $pdo->prepare($sql_fav);
+    $favInfo->bindValue(":mem_id", $_GET["mem_id"]);
+    $favInfo->execute();
  
 
     //我的發文
-    $sql_post="select * from post p join member m on p.mem_id=m.mem_id join hashtag h on p.has_nos=h.has_no join post_pt t on p.post_no=t.post_no where p.mem_id=9455002;";
-    $myPost = $pdo->query($sql_post);
+    $sql_post="select * , count(po.pmes_context) count from post p join member m on p.mem_id=m.mem_id 
+    join hashtag h on p.has_nos=h.has_no join post_pt t on p.post_no=t.post_no join post_mes po on po.post_no=p.post_no where p.mem_id=:mem_id;";
+    $myPost = $pdo->prepare($sql_post);
+    $myPost->bindValue(":mem_id", $_GET["mem_id"]);
+    $myPost->execute();
     $myPostRows = $myPost->fetchAll(PDO::FETCH_ASSOC);
 
     //好友列表
-    $sql_frd="select * from friend f join member m on m.mem_id=f.mem_id where friend_id=9455002;";
-    $myfrd = $pdo->query($sql_frd);
+    $sql_frd="select * from friend f join member m on m.mem_id=f.mem_id where friend_id=:mem_id;";
+    $myfrd = $pdo->prepare($sql_frd);
+    $myfrd->bindValue(":mem_id", $_GET["mem_id"]);
+    $myfrd->execute();
     $myfrdRows = $myfrd->fetchAll(PDO::FETCH_ASSOC);
 
     //開團評價團員
-    $sql_ratePart="select mem_name from partic p join igroup i on  p.gro_id=i.gro_id join member m on  partic_id=m.mem_id where i.mem_id=9455002;";
-    $rateJoin = $pdo->query($sql_ratePart);
+    $sql_ratePart="select mem_name from partic p join igroup i on  p.gro_id=i.gro_id join member m on  partic_id=m.mem_id where i.mem_id=:mem_id;";
+    $rateJoin = $pdo->prepare($sql_ratePart);
+    $rateJoin->bindValue(":mem_id", $_GET["mem_id"]);
+    $rateJoin->execute();
     $rateJoinRows = $rateJoin->fetchAll(PDO::FETCH_ASSOC);
 
     //黑名單
-    $sql_block="select mem_name from block b join member m on b.block_id=m.mem_id where b.mem_id=9455002;";
-    $blockList = $pdo->query($sql_block);
+    $sql_block="select mem_name from block b join member m on b.block_id=m.mem_id where b.mem_id=:mem_id;";
+    $blockList = $pdo->prepare($sql_block);
+    $blockList->bindValue(":mem_id", $_GET["mem_id"]);
+    $blockList->execute();
     $blockListRows = $blockList->fetchAll(PDO::FETCH_ASSOC);
 
 }catch (Exception $e) {
@@ -85,7 +100,7 @@ try {
                         <span><?=$memInfoRows[0]["mem_money"]?></span>
                    </div>
                 </div>
-                <div class="check-self"><a class="btnWhite" href="profileOut.html">查看個人頁面</a></div>
+                <div class="check-self"><a class="btnWhite" href="profileOut.php?mem_id=<?=$memInfoRows[0]["mem_id"]?>">查看個人頁面</a></div>
             </div>
            <ul class="main-tabs">
                <li class="tabs"><a class="tabs-for-a active" href="#self-infoone">發起的揪團</a></li>
@@ -130,7 +145,8 @@ try {
                         </div>
                         <div class="activity-btn activity-like">
                             <button class="btnYellow">報名列表</button>
-                            <a href="#" class="activity-page">活動頁面</a>
+                            <a href="groupDetail.php?gro_id=<?=$memInfoRow['gro_id']?>"
+                             class="activity-page">活動頁面</a>
                         </div>
                     </div>
                     <?php
@@ -153,7 +169,8 @@ try {
                             </div>
                             <div class="activity-btn activity-like">
                                 <button class="btnYellow"id="ratingParts">評價團員</button>
-                                <a href="#" class="activity-page" >活動頁面</a>
+                                <a href="groupDetail.php?gro_id=<?=$memInfoRow['gro_id']?>"
+                             class="activity-page">活動頁面</a>
                             </div>
                         </div>
                     <?php
@@ -242,7 +259,7 @@ try {
                         </div>
                         <div class="activity-btn activity-like">
                             <button class="btnYellow">取消報名</button>
-                            <a href="#" class="activity-page">活動頁面</a>
+                            <a href="groupDetail.php?gro_id=<?=$joinInfoRow['gro_id']?>" class="activity-page">活動頁面</a>
                         </div>
                     </div>
                     <?php
@@ -265,7 +282,7 @@ try {
                             </div>
                             <div class="activity-btn activity-like">
                                 <button class="btnYellow" id="rateHost">評價活動</button>
-                                <a href="#" class="activity-page">活動頁面</a>
+                                <a href="groupDetail.php?gro_id=<?=$joinInfoRow['gro_id']?>" class="activity-page">活動頁面</a>
                             </div>
                             <div id="layerRatingHost">
                                 <div class="ratingContainerHost">
@@ -288,7 +305,7 @@ try {
                                     </div>
                                         <form action="#" class="rating-form">
                                             <div class="rating-textarea rating-textarea-host">
-                                                <textarea name="" id="" cols="30" rows="10" placeholder="評價此團主"></textarea>
+                                                <textarea name="" id="<?php $i?>" cols="30" rows="10" placeholder="評價此團主"></textarea>
                                             </div>
                                             <p class="countWords">0/40</p>
                                         </form>
@@ -334,8 +351,8 @@ try {
                             </div>
                         </div>
                         <div class="activity-btn activity-like">
-                            <a href="#" class="btnYellow">立即報名</a>
-                            <a href="#" class="activity-page">活動頁面</a>
+                            <button href="#" class="btnYellow">立即報名</button>
+                            <a href="groupDetail.php?gro_id=<?=$favInfoRow['gro_id']?>" class="activity-page">活動頁面</a>
                         </div>
                     </div>
                 <?php
@@ -361,7 +378,7 @@ try {
                             </div>
                         </div>
                         <div class="activity-btn activity-like">
-                            <a href="#" class="activity-page">活動頁面</a>
+                            <a href="groupDetail.php?gro_id=<?=$favInfoRow['gro_id']?>" class="activity-page">活動頁面</a>
                         </div>
                     </div>
                 <?php
@@ -399,7 +416,7 @@ try {
                             <p><?=$myPostRow["post_context"]?></p>
     
                             <div class="seemore">
-                            <a href="discussion-text.html">看更多</a>
+                                <a href="discussion-text.php?pno=<?=$myPostRow["post_no"]?>">看更多</a>
                             </div>
     
                             <div class="tag">
@@ -411,9 +428,8 @@ try {
                             <ul class="right-i">
                                 <li class="comment-item">
                                     <i class="fas fa-comment-alt" style="color: #025A78;"></i>
-                                    <p>12</p>
+                                    <p><?=$myPostRow["count"]?></p>
                                 </li>
-    
                                 <li class="comment-item">
                                     <i class="fas fa-thumbs-up" style="color: #025A78;"></i>
                                     <p><?=$myPostRow["post_like"]?></p>
@@ -503,13 +519,13 @@ try {
                             </div>
                             <p class="name"><?=$myfrdRow["mem_name"]?></p>
                             <div class="interact">
-                                <a href="#" class="edit edit-friend">
+                                <a href="profileOut.php?mem_id=<?=$myfrdRow["mem_id"]?>" class="edit edit-friend">
                                     <i class="far fa-user-circle"></i>
                                 </a>
                                 <a href="#" class="edit edit-friend">
                                     <i class="far fa-comment-dots"></i>
                                 </a>
-                                <a href="#" class="edit edit-friend">
+                                <a href="customized-card.php" class="edit edit-friend">
                                     <i class="far fa-envelope"></i>
                                 </a>
                             </div>
@@ -532,13 +548,13 @@ try {
                             </div>
                             <p class="name"><?=$myfrdRow["mem_name"]?></p>
                             <div class="interact">
-                                <a href="#" class="edit edit-friend">
+                                <a href="profileOut.php?mem_id=<?=$myfrdRow["mem_id"]?>" class="edit edit-friend">
                                     <i class="far fa-user-circle"></i>
                                 </a>
                                 <a href="#" class="edit edit-friend">
                                     <i class="far fa-comment-dots"></i>
                                </a>
-                                <a href="#" class="edit edit-friend">
+                                <a href="customized-card.php" class="edit edit-friend">
                                     <i class="far fa-envelope"></i>
                                 </a>
                             </div>

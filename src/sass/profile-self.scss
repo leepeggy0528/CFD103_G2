@@ -584,7 +584,7 @@
         font-weight: bold;
         text-align: center;
         width: 100%;
-        padding: 10px;
+        padding: 10px 0;
         outline: none;
      }
     .profile-card{
@@ -625,7 +625,6 @@
     .friend-bar{
         flex-direction: row-reverse;
         justify-content: center;
-        width: 88%;
         margin-top: 30px;
     }
     .search-friend input{
@@ -637,5 +636,8 @@
     .show-card{
         width: 60%;
         margin: auto;
+    }
+    .search-friend{
+        margin:auto
     }
 }

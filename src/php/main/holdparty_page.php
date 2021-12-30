@@ -2,7 +2,7 @@
 try{
     require_once("php/connectAccount.php");
 	//igroup 表單上傳
-	$mem_id= '9455010'; //欄位2 NOT_NULL ---->要改
+	$mem_id= $_POST['MEM_ID']; //欄位2 NOT_NULL ---->要改
 	$gro_name= $_POST['GRO_NAME']; //欄位3 NOT_NULL
 	$gro_startd= $_POST['GRO_STARTD']; //欄位4 NOT_NULL
 	$gro_endd= $_POST['GRO_ENDD']; //欄位5 NOT_NULL
@@ -66,7 +66,7 @@ try{
 			}
 		}
 	}
-
+	echo "建立成功";
 }catch (Exception $e){
 	echo "錯誤行號 : ", $e->getLine(), "<br>";
 	echo "錯誤原因 : ", $e->getMessage(), "<br>";

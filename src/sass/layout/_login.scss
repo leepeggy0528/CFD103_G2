@@ -8,6 +8,11 @@
   position: fixed;
   display: none;
   z-index: 1000;
+  left: 0;
+}
+.login_content{
+  margin: auto;
+  width: 70%;
 }
 .drag-area{
   border: 2px dashed black;
@@ -92,7 +97,7 @@
   @include borderR();
 }
 .gender{
-  font-size: $font-1;
+  font-size: 18px;
   margin-left: 50px;
   border: none;
 }

@@ -151,16 +151,16 @@
     </section>
 
 
-
-    <h2>旅行趣</h2>
-
+    <div class="att-title">
+        <h2>旅行趣</h2>
+    </div>
   
     <div class="first-card">
         <a class="card-click" href="./attinsidepage.php?sig_no=<?=$prodRowf['sig_no']?>">
             <div class="pic">
                 <img src="./images/sight/<?=$prodRowf["spt_pt"]?>">
             </div>
-            <div class="first-card-content">
+            <div class="first-card-content spot-name">
                 
                 <h3><?=$prodRowf["sig_name"]?></h3>
                 <div class="hashtag">
@@ -170,8 +170,8 @@
                 
             </div>
         </a>
-        <span id="joinsite-btn">
-            <input class="addbutton" type="button" value="加入景點" onclick="">
+        <span class="joinsite-btn">
+            <input class="addbutton" type="button" value="加入景點">
         </span>    
     </div>
 
@@ -189,7 +189,7 @@
                     <div class="pic">
                         <img src="./images/sight/<?=$prodRow["spt_pt"]?>">
                     </div>
-                    <div class="content">
+                    <div class="content spot-name">
 
                         <h3><?=$prodRow["sig_name"]?></h3>
                         <div class="hashtag">
@@ -201,7 +201,7 @@
         
                     </div>
                 </a>
-                <span id="joinsite-btn"><input class="addbutton" type="button" value="加入景點" onclick=""></span>
+                <span class="joinsite-btn"><input class="addbutton" type="button" value="加入景點"></span>
             </div>
         <?php
                 }  
@@ -234,7 +234,7 @@
                     <p>一中商圈</p>
                 </div> -->
             </div>
-            <div class="sure"><input class="confirm-button" type="button" value="確定" onclick=""></div>
+            <div class="sure"><input class="confirm-button" type="button" value="清空"></div>
     
             <input type="button" value=" < " class="move-out-button" id="moveOutButton">
     
@@ -253,7 +253,8 @@
 
         <script src="./js/loginLightbox.js"></script>
         @@include('../../layout/footer.html')
-
+        <script src="./js/jquery-3.6.0.min.js"></script>
+        <script src="./js/attractions.js"></script>
 
 </body>
 </html>

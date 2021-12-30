@@ -1,4 +1,6 @@
 <?php 
+ob_start();
+session_start();
 try {
 	//引入連線工作的檔案
 	require_once("./php/connectAccount.php");
@@ -6,7 +8,7 @@ try {
 	//執行sql指令並取得貼文資料
   $sql = "select *,count(p.post_no) as msg ,mem_name,mem_pt
   from post p  left join post_mes pm on p.post_no = pm.post_no
-      join member m on pm.mem_id=m.mem_id
+  join member m on pm.mem_id=m.mem_id
   group by p.post_no having p.post_no = :pno;";
 	  $product = $pdo->prepare($sql);
 
@@ -112,13 +114,16 @@ try {
                 </div>
                 
               <div class="warn-box">
-                <input type="submit" class="warn-btn" value="檢舉"></button>
+                <input type="button" class="warn-btn" value="檢舉"></button>
               </div>
           </div>
 
 
           <div class="section">
               <?php 
+              if ($productss->rowCount()==0) {
+                echo "<p>暫無留言</p>";
+              }else{
                 foreach($prodRowss as $i => $prodRowss){
               ?>
                 <li class="list">
@@ -132,23 +137,25 @@ try {
                   </div>
                 </li>
               <?php 
+                  }
                 }
               ?>
 
-             
-            <ul class="list-box">
-            </ul>
-              
+              <ul class="list-box">
+              </ul>
+
           </div>
 
 
         <div class="insta-item-text">
-        <textarea class="insta-item-text-i"  placeholder="在此輸入內容..." maxlength="60"></textarea>
+        <textarea id="pmes_context" class="insta-item-text-i"  placeholder="在此輸入內容..." maxlength="60">
+        </textarea>
+        <!-- <input type="text" id="pmes_context" class="insta-item-text-i" > -->
         </div>
+        <input type="text" name="memid" id="memid" hidden>
 
-    
         <div class="insta-item-submit">
-            <button class="btnBlue" type="submit">留言
+            <button class="btnBlue" type="button">留言
             </button>
         </div>
   </div>
@@ -165,7 +172,7 @@ try {
           </div>
 
           <div class="insta-item-submit">
-            <button class="btnYellow" type="submit">送出</button>
+            <button class="btnYellow" type="button">送出</button>
           </div>
 
           <div class="leave-btn">
@@ -204,19 +211,30 @@ try {
         $('.wordsNum').html(`${textMaxs-textLengths}/60`);
       });  
    
-      var text = document.getElementsByClassName('insta-item-text-i').value;
+      // var text = document.getElementsByClassName('insta-item-text-i').value;
 
         //留言功能
+        let pno = <?php echo $_GET["pno"]?>;
         //獲取元素
         var btn = document.querySelector('.insta-item-submit .btnBlue');
         var texts = document.querySelector('.insta-item-text .insta-item-text-i');
         var uls = document.querySelector('.list-box');
         //註冊時間
         btn.onclick = function(){
+          console.log(1111, texts);
             if(texts.value == ''){
                 alert("您沒有輸入內容。")
                 return false;
             }else{
+                //if succes then append Element into html
+                //--------create new post div------------
+                let xhr1 = new XMLHttpRequest();
+                xhr1.onload = function(){
+                member = JSON.parse(xhr1.responseText);
+
+                console.log('22222222222');
+                console.log(document.getElementById("pmes_context"));             
+
                 var list = document.createElement('li');
                 uls.appendChild(list);
                 uls.insertBefore(list,uls.children[0]);
@@ -231,18 +249,19 @@ try {
                 divss.classList.add("pic_me");
     
                 var img = new Image();
-                img.src="./images/user/m01.jpg";
+                img.src=`./images/user/${member.mem_pt}`;
                 divss.appendChild(img);
                 
                 var p = document.createElement('p');
                 divs.appendChild(p);
                 p.classList.add("me");
-                p.innerText = "黃曉明";
+                p.innerText = member.mem_name;
 
                 var ps = document.createElement('p');
                 divs.appendChild(ps);
                 ps.classList.add("commend");
                 ps.innerText = texts.value;
+                // var pmes_context = texts.value;
 
                 var spans = document.createElement('span');
                 divs.appendChild(spans);
@@ -250,13 +269,29 @@ try {
 
                 let now = new Date()
                 spans.innerText =(now.getFullYear()+'-'+(now.getMonth()+1)+'-'+now.getDate()+' '+now.getHours()+':'+ now.getMinutes()+':'+ now.getSeconds());
-            }
-            texts.value='';
+
+                
+                let xhr = new XMLHttpRequest();
+                xhr.open("post", "./php/addPostmember.php", true);
+                xhr.setRequestHeader("content-type","application/x-www-form-urlencoded");
+                console.log('------------');
+                console.log(document.getElementById("pmes_context"));
+                $id("memid").value=member.mem_id;
+
+                let data_info = "pmes_context="+document.getElementById("pmes_context").value + "&pno="+pno+"&memid="+member.mem_id;
+                console.log(data_info);
+                xhr.send(data_info);
+                
+                texts.value='';
+                } 
+                xhr1.open("get", "./php/getMemberInfo.php", true);
+                xhr1.send(null);
+              }
         }
       </script>
 
   
-    <script src="./js/loginLightbox.js"></script>
+    <script src="./js/loginLightbox.js" asyn></script>
    <script src="./js/owl.carousel.min.js"></script>
    <script>
         $(document).ready(function () {
@@ -294,7 +329,7 @@ try {
         var btnYellow = document.querySelector(".insta-item-submit .btnYellow");
       btnYellow.onclick = function () {
       alert("確定送出嗎?");
-      location.href = "./discussion-2.html";
+      location.href = "./discussion-2.php";
       };
         </script>   
 @@include('../../layout/footer.html')
