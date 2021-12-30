@@ -9,7 +9,8 @@ try {
   $sql = "select *,count(p.post_no) as msg ,mem_name,mem_pt
   from post p  left join post_mes pm on p.post_no = pm.post_no
   join member m on pm.mem_id=m.mem_id
-  group by p.post_no having p.post_no = :pno;";
+  group by p.post_no having p.post_no = :pno
+  ORDER BY pm.pmes_time DESC;";
 	  $product = $pdo->prepare($sql);
 
 	  $product->bindValue(":pno", $_GET["pno"]);
@@ -30,7 +31,7 @@ try {
     $sqlmsg = "select pm.pmes_context, m.mem_name, pm.pmes_time,mem_pt
     from post_mes pm right join post p on p.post_no = pm.post_no
             join member m on pm.mem_id=m.mem_id
-    where p.post_no = ?;";
+    where p.post_no = ? ORDER BY pm.pmes_time DESC;";
 	  $productss = $pdo->prepare($sqlmsg);
 
 	  $productss->bindValue(1, $_GET["pno"]);
@@ -126,6 +127,8 @@ try {
               }else{
                 foreach($prodRowss as $i => $prodRowss){
               ?>
+              <ul class="list-box">
+              </ul>
                 <li class="list">
                   <div class="insta-item-me">
                     <div class="pic_me">
@@ -141,8 +144,6 @@ try {
                 }
               ?>
 
-              <ul class="list-box">
-              </ul>
 
           </div>
 

@@ -11,11 +11,12 @@ try {
     join post_pt on post.post_no = post_pt.post_no
     left join post_mes on post.post_no = post_mes.post_no
     where post_show=1
-     group by post.post_no;";
+    group by post.post_no
+    order by post.post_time desc;";
 	$products = $pdo->query($sql); 
 
 	//取回所有的資料, 放在2維陣列中
-	$prodRows = $products->fetchAll(PDO::FETCH_ASSOC);
+	// $prodRows = $products->fetchAll(PDO::FETCH_ASSOC);
 } catch (Exception $e) {
 	echo "錯誤行號 : ", $e->getLine(), "<br>";
 	echo "錯誤原因 : ", $e->getMessage(), "<br>";
@@ -114,9 +115,12 @@ try {
     <div class="insta-item"> 
 
         <div class="insta-item-main">
+        <ul class="post"></ul>
                 <?php 
-                foreach($prodRows as $i => $prodRow){
+                // foreach($prodRows as $i => $prodRow){
+                    while($prodRow = $products->fetch(PDO::FETCH_ASSOC)){
                 ?>
+
             <div class="insta-item-main-i">
                     <div class="box-i">
                         <div class="left-i">
@@ -138,7 +142,7 @@ try {
                             <p><?=$prodRow["post_context"];?></p>
 
                             <div class="seemore">
-                            <a href="./discussion-text.php?pno=<?=$prodRow["post_no"]?>">看更多</a>
+                            <a href="./discussion-text.php?pno=<?=$prodRow['post_no']?>">看更多</a>
                             </div>
 
                             <div class="tag">
@@ -175,7 +179,6 @@ try {
                 <?php
                     }
                 ?>	 
-                <div class="post"></div>
         </div>
 
         <div class="insta-item-sub">
