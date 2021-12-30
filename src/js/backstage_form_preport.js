@@ -37,6 +37,7 @@ function updateForm(){
         let updateData = {};
         updateData.sp_id= $id("title").innerText;
         updateData.ans= $('input[type=radio][name=ans]:checked').val();
+        updateData.context= $id("context").innerText;
         let data_info = `update=${JSON.stringify(updateData)}`;
         xhr.send(data_info);
         location.href="./backstage_preport.php";

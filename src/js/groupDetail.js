@@ -324,28 +324,39 @@ function init() {
     document.getElementById('rpSend').onclick = function () {
         let gro_id = location.href.split('?')[1];
         let reportText = document.getElementById("reportText").value;
-        if (reportText == "") {
-            alert('原因不得空白');
-        } else {
-
-            let xhr = new XMLHttpRequest();
-            xhr.onload = function () {
-                if (xhr.status == 200) {
-
+        let xhr = new XMLHttpRequest();
+        xhr.onload = function () {
+            member = JSON.parse(xhr.responseText);
+            console.log(member);
+            if (member.mem_id) { //已登入
+                //取得會員名稱、頭貼
+                if (reportText == "") {
+                    alert('原因不得空白');
                 } else {
-                    alert(xhr.status);
+        
+                    let xhr1 = new XMLHttpRequest();
+                    xhr1.onload = function () {
+                        if (xhr1.status == 200) {
+        
+                        } else {
+                            alert(xhr1.status);
+                        }
+                    }
+                    xhr1.open("Post", "./php/sendReport.php", true);
+                    xhr1.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+                    let data_info = gro_id + `&mem_id=${member.mem_id}&status=1&content=` + reportText
+                        + "&gro_show=0";
+        
+                    console.log('data_info:', data_info);
+                    xhr1.send(data_info);
+                    document.querySelector(".reportLayer").style.display = "none";
+                    reportText = "";
                 }
             }
-            xhr.open("Post", "./php/sendReport.php", true);
-            xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
-            let data_info = gro_id + '&mem_id=9455001&status=1&content=' + reportText
-                + "&gro_show=1";
-
-            console.log('data_info:', data_info);
-            xhr.send(data_info);
-            document.querySelector(".reportLayer").style.display = "none";
-            reportText = "";
         }
+        xhr.open("get", "./php/getMemberInfo.php", true);
+        xhr.send(null);
+        
     }
 
     //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -357,11 +368,22 @@ function init() {
         let gro_id = location.href.split("?")[1];
         console.log(gro_id);
         let xhr = new XMLHttpRequest();
-        xhr.open("Post", "./php/signUpGP.php", true);
-        xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
-        let data_info = gro_id + '&mem_id=9455001';
-        console.log('data_info:', data_info);
-        xhr.send(data_info);
+        xhr.onload = function () {
+            member = JSON.parse(xhr.responseText);
+            console.log(member);
+            if (member.mem_id) { //已登入
+                let xhr = new XMLHttpRequest();
+                xhr.open("Post", "./php/signUpGP.php", true);
+                xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+                let data_info = gro_id + `&mem_id=${member.mem_id}`;
+                console.log('data_info:', data_info);
+                xhr.send(data_info);
+            }
+        }
+        xhr.open("get", "./php/getMemberInfo.php", true);
+        xhr.send(null);
+        
+        
     }
 }
 

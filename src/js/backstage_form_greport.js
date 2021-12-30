@@ -38,6 +38,7 @@ function updateForm(){
         //將要送到後端的資料打包
         let updateData = {};
         updateData.sp_id= $id("title").innerText;
+        updateData.sp_context= $id("context").innerText;
         updateData.ans= $('input[type=radio][name=ans]:checked').val();
         for (let i = 0; i < tr.length; i++) {
           //let data = tr[i].data-status;

@@ -11,6 +11,18 @@
         $update -> bindValue(":sp_id",$updateData["sp_id"]);
         //$update -> bindValue(":sp_id","111");
         $update -> execute();
+        if ($updateData["ans"]==1) {
+            $sql = "UPDATE `post` SET `post_show`= 0 where post_context = :sp_id;";
+            $update= $pdo -> prepare($sql);
+            $update -> bindValue(":sp_id",$updateData["context"]);
+            $update -> execute();
+        }
+        if ($updateData["ans"]==2) {
+            $sql = "UPDATE `post` SET `post_show`= 1 where post_context = :sp_id;";
+            $update= $pdo -> prepare($sql);
+            $update -> bindValue(":sp_id",$updateData["context"]);
+            $update -> execute();
+        }
 
     } catch (Exception $e) {
         echo "錯誤行號 : ", $e->getLine(), "<br>";

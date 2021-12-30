@@ -95,6 +95,7 @@ function updateForm(){
     let xhr = new XMLHttpRequest();
         xhr.open("post", "./php/backstage_updatesight.php", true);
         let myForm1 = new FormData($id("sight_edit"));
+        console
         xhr.send(myForm1);
         var button1 = $(this);
         var currentSection1 = button1.parents(".section");

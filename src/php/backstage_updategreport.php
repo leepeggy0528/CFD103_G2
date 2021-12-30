@@ -11,6 +11,27 @@
         $update -> bindValue(":sp_id",$updateData["sp_id"]);
         //$update -> bindValue(":sp_id","111");
         $update -> execute();
+        /* if ($updateData["ans"]==1) {
+            $sql = "DELETE FROM `gro_pt` WHERE 0 where `gro_id` = :sp_id;";
+            $update= $pdo -> prepare($sql);
+            $update -> bindValue(":sp_id",$updateData["sp_id"]);
+            $update -> execute();
+            
+        } */
+        if ($updateData["ans"]==1) {
+            $sql1 = "update `igroup` set `gro_show`= 0 where gro_name = :sp_id;";
+            $update1= $pdo -> prepare($sql1);
+            $update1 -> bindValue(":sp_id",$updateData["sp_context"]);
+            $update1 -> execute();
+        }
+        if ($updateData["ans"]==2) {
+            $sql1 = "update `igroup` set `gro_show`= 1 where gro_name = :sp_id;";
+            $update1= $pdo -> prepare($sql1);
+            $update1 -> bindValue(":sp_id",$updateData["sp_context"]);
+            $update1 -> execute();
+        }
+        
+
 
     } catch (Exception $e) {
         echo "錯誤行號 : ", $e->getLine(), "<br>";
