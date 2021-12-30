@@ -186,7 +186,7 @@ main{
       opacity: 1;
       pointer-events: auto;
       transition: 1s;
-      left:-400px;
+      left:400px;
       }
       .ui-card.prev,.ui-card.next {
       z-index: 2;
@@ -194,7 +194,7 @@ main{
       opacity: 0.6;
       pointer-events: auto;
       transition: 1s;
-      left:-400px;
+      left:400px;
       }
   }
 }
@@ -303,42 +303,9 @@ main{
         flex-direction: row-reverse;
     }
   }
-  .sight{
+  .sight,.sight_edit{
         position: relative;
         height: 95%;
-        /* .scroll {
-          display: flex;
-          flex-wrap: wrap;
-          justify-content: space-between;
-          width: 100%;
-          height: 65vh;
-          margin-top: 5px;
-          overflow-y: scroll;
-          .input-block{
-            width: 49%;
-            position: relative;
-            i{
-              position: absolute;
-              top: 45px;
-              right: 4px;
-              &:hover{
-                cursor: pointer;
-                color: rgb(255, 67, 67);
-              }
-            }
-          }
-          &::-webkit-scrollbar {
-              width: 5px;
-          }
-        
-          &::-webkit-scrollbar-track {
-              background-color: rgb(209, 209, 209);
-          }
-        
-          &::-webkit-scrollbar-thumb {
-              background-color: rgb(235, 235, 235);
-          }
-        } */
         .section{
           opacity: 0;
           -webkit-transform: scale(1, 0);
@@ -374,7 +341,7 @@ main{
               textarea{
                 margin-top: 8px;
                 margin-bottom: 0px;
-                height: 270px;
+                height: 240px;
               }
             }
           }

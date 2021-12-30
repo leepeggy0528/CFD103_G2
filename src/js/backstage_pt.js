@@ -22,9 +22,9 @@ function viewpt(e) {
         container.insertBefore(newpt,null);
       
       }  
-      $('.ui-card:nth-child(2)').addClass('active');
-      $('.ui-card:nth-child(2)').prev().addClass('prev');
-      $('.ui-card:nth-child(2)').next().addClass('next');
+      $('.ui-card:nth-child(1)').addClass('active');
+      //$('.ui-card:nth-child(1)').prev().addClass('prev');
+      $('.ui-card:nth-child(1)').next().addClass('next');
   
       $('.ui-card').click(function() {
         console.log($('.active').width())

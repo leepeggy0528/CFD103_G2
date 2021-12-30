@@ -57,7 +57,7 @@
     }
 
     function prepage(){
-      location.href="./demo.html";
+      location.href="./index.html";
     }
 
 
