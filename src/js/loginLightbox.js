@@ -32,8 +32,6 @@ function $id(id){
     //登入
     function showLoginForm(){
       $id('layerForLogin').style.display = 'block';
-      $("#LoginBTN").css("display",'none');
-      
     }
     //登出
     function MemLogout(){
@@ -73,9 +71,11 @@ function $id(id){
               $id('memPsw').value = '';
             }else{
               alert("帳密錯誤");
+              
             }
           }else{
             alert("此會員已被停權無法使用");
+            MemLogout();
           } 
       }
       xhr.open("post", "./php/mem_login.php", true);
@@ -87,7 +87,7 @@ function $id(id){
       console.log(data_info);
       xhr.send(data_info);
       history.go(0);
-    }
+    };
 
     function getMemberInfo(){ //取回登入者資訊
       let xhr = new XMLHttpRequest();
@@ -95,15 +95,17 @@ function $id(id){
         member = JSON.parse(xhr.responseText);
         console.log(member);
          if(member.mem_id){ //已登入
-          $(".afterLogin").addClass("showMem");
-          document.getElementsByClassName("usernameLogin")[0].innerText=member.mem_name;
-          document.getElementsByClassName("diamonds")[0].innerText=member.mem_dom;
-          document.getElementsByClassName("coins")[0].innerText=member.mem_money;
-          document.querySelector(".loginmempic img").src = "./images/user/"+ member.mem_pt;
-          console.log("./images/user/"+ member.mem_pt);
-          $id('LoginBTN').style.display='none';
-        }
-      }
+            $(".afterLogin").addClass("showMem");
+            document.getElementsByClassName("usernameLogin")[0].innerText=member.mem_name;
+            document.getElementsByClassName("diamonds")[0].innerText=member.mem_dom;
+            document.getElementsByClassName("coins")[0].innerText=member.mem_money;
+            document.querySelector(".loginmempic img").src = "./images/user/"+ member.mem_pt;
+            console.log("./images/user/"+ member.mem_pt);
+            document.querySelector(".memLink").href="profileSelf.php?mem_id="+ member.mem_id;
+            $id('LoginBTN').style.display='none';
+            $id('loginForPhone').style.display='none';
+        };
+      };
       xhr.open("get", "./php/getMemberInfo.php", true);
       xhr.send(null);
     }
@@ -115,6 +117,7 @@ function $id(id){
       //===設定spanLogin.onclick 事件處理程序是 showLoginForm
 
       $id('LoginBTN').onclick = showLoginForm;
+      $id('loginForPhone').onclick=showLoginForm;
       $id('closeLogin').onclick = closeLogin;
 
       //===設定btnLogin.onclick 事件處理程序是 sendForm

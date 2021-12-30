@@ -220,7 +220,7 @@
 
  .menu-bars{
   display:flex;
-  margin-left: 100px;
+  margin-left: 30px;
   }
 
   nav ul{
@@ -243,5 +243,15 @@
   nav ul.slide{
     transform: translate(18px,0);
   }
-
+  
+  .usernameLogin{
+    display: none;
+  }
+  #loginForPhone{
+    display: block;
+    color: #025A78;
+    background-color: transparent;
+    border: none;
+    font-size: 1em;
+  }
 }
