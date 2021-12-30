@@ -76,45 +76,55 @@ function switchSaveActivity(e) {
 
     e.stopPropagation();
     let groupId = e.currentTarget.children[1].children[0].href.split("?")[1];
-    if (e.target.id == 'saveActivity') {
-        if (e.target.title == "收藏活動") {
-            e.target.src = "./images/icon/save.png";
-            e.target.title = "取消收藏";
-            let xhr = new XMLHttpRequest();
-            xhr.onload = function () {
-                if (xhr.status == 200) {
+    let xhr = new XMLHttpRequest();
+    xhr.onload = function () {
+        member = JSON.parse(xhr.responseText);
+        console.log(member);
+        if (member.mem_id) { //已登入
+            if (e.target.id == 'saveActivity') {
+                if (e.target.title == "收藏活動") {
+                    e.target.src = "./images/icon/save.png";
+                    e.target.title = "取消收藏";
+                    let xhr1 = new XMLHttpRequest();
+                    xhr1.onload = function () {
+                        if (xhr1.status == 200) {
 
 
-                } else {
-                    alert(xhr.status);
-                }
-            }
-            xhr.open("Post", "./php/saveGroup.php", true);
-            xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
-            let data_info = groupId + '&mem_id=9455001';
+                        } else {
+                            alert(xhr1.status);
+                        }
+                    }
+                    xhr1.open("Post", "./php/saveGroup.php", true);
+                    xhr1.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+                    let data_info = groupId + `&mem_id=${member.mem_id}`;
 
-            console.log('data_info:', data_info);
-            xhr.send(data_info);
-
-        } else {
-            e.target.src = "./images/icon/unsave.png";
-            e.target.title = "收藏活動";
-            let xhr = new XMLHttpRequest();
-            xhr.onload = function () {
-                if (xhr.status == 200) {
+                    console.log('data_info:', data_info);
+                    xhr1.send(data_info);
 
                 } else {
-                    alert(xhr.status);
+                    e.target.src = "./images/icon/unsave.png";
+                    e.target.title = "收藏活動";
+                    let xhr1 = new XMLHttpRequest();
+                    xhr1.onload = function () {
+                        if (xhr1.status == 200) {
+
+                        } else {
+                            alert(xhr1.status);
+                        }
+                    }
+                    xhr1.open("Post", "./php/unSaveGroup.php", true);
+                    xhr1.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+                    let data_info = groupId + `&mem_id=${member.mem_id}`;
+
+                    console.log('data_info:', data_info);
+                    xhr1.send(data_info);
                 }
             }
-            xhr.open("Post", "./php/unSaveGroup.php", true);
-            xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
-            let data_info = groupId + '&mem_id=9455001';
-
-            console.log('data_info:', data_info);
-            xhr.send(data_info);
         }
     }
+    xhr.open("get", "./php/getMemberInfo.php", true);
+    xhr.send(null);
+
 }
 
 
@@ -322,8 +332,7 @@ function init() {
 
     // 收藏
     saveActivity = document.querySelectorAll('.pageGroup .card');
-    console.log("========");
-    console.log(saveActivity);
+
     for (let i = 0; i < saveActivity.length; i++) {
         saveActivity[i].onclick = switchSaveActivity;
     }
@@ -343,6 +352,7 @@ function init() {
     let signUpBtn = document.querySelectorAll('.see_more .signUp');
     for (let i = 0; i < signUpBtn.length; i++) {
         signUpBtn[i].onclick = function () {
+            alert('報名成功');
             let gro_id = signUpBtn[i].previousElementSibling.href.split("?")[1];
             console.log(gro_id);
             let xhr = new XMLHttpRequest();

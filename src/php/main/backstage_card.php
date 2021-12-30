@@ -51,12 +51,12 @@ try{
                     <th>卡片狀態</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="cardTbody">
                 <?php
                     while($cardRows = $cards->fetch(PDO::FETCH_ASSOC)){
                         if($cardRows['cstyle_status']==0){        
                 ?>
-                <tr data-status="up">
+                <tr  class="cardRow" data-status="up">
                     <td><?=$cardRows['cstyle_no']?></td>
                     <td><div class="card"><img src="./images/card/<?=$cardRows['cstyle_pt']?>" alt="<?=$cardRows['cstyle_name']?>"></div></td>
                     <td><?=$cardRows['cstyle_name']?></td>
@@ -66,8 +66,7 @@ try{
                     </label></td>
                     <td>
                         <ul class="action-list">
-                            <li><a href="#" data-tip="edit"><i class="fa fa-edit"></i></a></li>
-                            <li><a href="#" data-tip="delete"><i class="fa fa-trash"></i></a></li>
+                            <li><i style="cursor:pointer;color:blue;" class="fa fa-trash"></i></li>
                         </ul>
                     </td>
                 </tr>
@@ -75,7 +74,7 @@ try{
                 <?php
                         }else{
                 ?>
-                <tr data-status="down">
+                <tr class="cardRow" data-status="down">
                     <td><?=$cardRows['cstyle_no']?></td>
                     <td><div class="card"><img src="./images/card/<?=$cardRows['cstyle_pt']?>" alt="<?=$cardRows['cstyle_name']?>"></div></td>
                     <td><?=$cardRows['cstyle_name']?></td>
@@ -85,8 +84,7 @@ try{
                     </label></td>
                     <td>
                         <ul class="action-list">
-                            <li><a href="#" data-tip="edit"><i class="fa fa-edit"></i></a></li>
-                            <li><a href="#" data-tip="delete"><i class="fa fa-trash"></i></a></li>
+                            <li><i style="cursor:pointer;color:blue;" class="fa fa-trash"></i></li>
                         </ul>
                     </td>
                 </tr>      
@@ -100,8 +98,7 @@ try{
                 <tr>
                     <th colspan="12">
                         <input type="button" class="btnYellow btn btn-l" id="new" value="新增樣式">
-                        <input type="button" class="btnYellow btn " value="確認修改">
-                        <input type="reset" class="btnWhite btn" value="取消修改">
+
                     </th>
                 </tr>
             </tfoot>
@@ -129,16 +126,16 @@ try{
         </div>
         <!-- add card lightnbox -->
         <div id="add" style="display: none;">
-            <form class="signup scard" method="post" action="#" enctype="multipart/form-data">
+            <form class="signup scard" id="cardForm" method="post" action="#" enctype="multipart/form-data">
                 <h2>新增卡片</h2>
                 <fieldset>
                   <div class="input-block">
                     <label for="cd-name">卡片名稱</label>
-                    <input name="cd-name" type="text" required>
+                    <input name="cd-name"id="cardName" type="text" required>
                   </div>
                   <div class="input-block">
                     <label for="type">類別</label>
-                    <select name="type">
+                    <select id="status" name="type">
                         <option value="0">上架</option>
                         <option value="1">下架</option>
                     </select>
@@ -171,19 +168,18 @@ try{
                     <th>貼紙名稱</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="stickerTbody">
                 <?php
                 while($stickerRows = $stickers->fetch(PDO::FETCH_ASSOC)){
                 ?>
-                <tr class="cardRow">
+                <tr class="stickerRow">
                     <td><?=$stickerRows['sstyle_no']?></td>
                     <td><div class="card"><img src="./images/sticker/<?=$stickerRows['sstyle_pt']?>" alt="<?=$stickerRows['sstyle_name']?>"></div></td>
                     <td><?=$stickerRows['sstyle_name']?></td>
 
                     <td>
                         <ul class="action-list">
-                            <li><i class="fa fa-edit"></i></li>
-                            <li><i class="fa fa-trash"></i></li>
+                            <li><i style="cursor:pointer;color:blue;"class="fa fa-trash"></i></li>
                         </ul>
                     </td>
                 </tr>

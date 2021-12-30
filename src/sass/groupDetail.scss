@@ -86,6 +86,15 @@ h3 {
             }
         }
 
+        .desc {
+            #report {
+                text-align: right;
+                >span{
+                    cursor: pointer;
+                }
+            }
+        }
+
         .plan {
             .timeline {
                 margin: 0px 30px 0px 30px;
@@ -359,7 +368,47 @@ h3 {
     }
 }
 
+.reportLayer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.309);
+    display: none;
 
+
+    .reportContent {
+
+        width: 30vw;
+        padding: 10px 20px;
+        box-sizing: border-box;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        border-radius: 10px;
+        background-color: $mainBlue;
+        text-align: center;
+
+        h2 {
+            color: $mainYellow;
+        }
+
+        textarea {
+            box-sizing: border-box;
+            padding: 10px;
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        #rpCancel {
+            background-color: white;
+        }
+
+    }
+}
 
 @media screen and (max-width:768px) {
     .main {

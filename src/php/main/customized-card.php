@@ -1,13 +1,17 @@
 <?php
+ob_start();
+session_start();
 try{
   require_once("./php/connectAccount.php");
-
+  if( isset($_SESSION["memMail"])){
     //取得好友
     $sqlFD = "select mem_name, mem_pt, mem_mail
     from member where mem_id in (select f.friend_id
                                 from  member m JOIN friend f on m.mem_id = f.mem_id
-                                where m.mem_id = 9455001);"; 
-    $friends = $pdo->query($sqlFD);
+                                where m.mem_id = :mem_id);"; 
+    $friends = $pdo->prepare($sqlFD);
+    $friends->bindValue(":mem_id",$_SESSION["memId"]);
+    $friends->execute();
 
     //貼紙 
     $sql_sticker="select * from stamp_style;";
@@ -17,6 +21,9 @@ try{
     $sql_card="select * from card_style;";
     $cards = $pdo->query($sql_card);	
     // $cardRows = $cards->fetchAll(PDO::FETCH_ASSOC);
+    }else{ //尚未登入
+    	$msg= "尚未登入";
+    }	
 
 }catch(PDOException $e){
     echo $e->getMessage();
@@ -149,6 +156,9 @@ try{
                     <input type="text" class="friend-search" placeholder="搜尋好友">
                     <ul class="friend-list">
                         <?php 
+                        if($friends->rowCount()==0){
+                            echo "<li>".$msg."</li>";
+                        }else{
                         while($friendRows = $friends->fetch(PDO::FETCH_ASSOC)){
                         ?>
                         <li>
@@ -160,6 +170,7 @@ try{
 
                         </li>
                         <?php 
+                            }
                           }
                         ?>
                        

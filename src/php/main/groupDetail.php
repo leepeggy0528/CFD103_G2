@@ -103,12 +103,8 @@ try{
                 <?php
                 while($picRows = $groupPics->fetch(PDO::FETCH_ASSOC)){
                 ?>
-    
-                
                     <img src="./images/group/<?=$picRows['gpt_pt'];?>">
-               
-
-                <?php }?>
+               <?php }?>
             </div>
         </div>
     </div>
@@ -126,6 +122,7 @@ try{
                     <p>
                         <?=nl2br($mainInfoRow['gro_explan']);?>
                     </p>
+                    <p id="report"><span>檢舉</span></p>
                 </div>
             </div>
             <div class="plan">
@@ -264,7 +261,7 @@ try{
     <!-- 類似活動 -->
     <div class="container">
         <section>
-            <h2>類似活動</h2>
+            <h2>相同地點</h2>
             <div class="similar">
             <?php
           
@@ -373,7 +370,7 @@ try{
 
         <!-- 相同地點 -->
         <section class="similar-activitis">
-            <h2>相同地點</h2>
+            <h2>類似活動</h2>
             <div class="same-loc">
         <?php
           
@@ -482,6 +479,16 @@ try{
 
         </section>
     </div>
+    <!-- report lightbox -->
+    <div class="reportLayer">
+        <div class="reportContent">
+            <h2>檢舉活動</h2>
+            <textarea placeholder="請描述原因" name="" id="reportText" cols="30" rows="10"></textarea>
+            <button class="btnYellow" id="rpCancel">取消</button>
+            <button class="btnYellow" id="rpSend">送出</button>
+        </div>
+    </div>
+
 
     @@include('../../layout/footer.html')
     <script src="./js/loginLightbox.js"></script>

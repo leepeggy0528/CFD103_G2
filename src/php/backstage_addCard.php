@@ -2,27 +2,27 @@
 try{
   require_once("./connectAccount.php");
 
-  $stickerName = $_POST['stickerName'];
-  echo $stickerName;
+  $cardName = $_POST['cd-name'];
+  $status =$_POST['type'];
 
-  switch($_FILES["upFile1"]["error"]){
+
+  switch($_FILES["upFile"]["error"]){
     case UPLOAD_ERR_OK : 
       //檔名
-      $fileInfo = pathinfo($_FILES["upFile1"]["name"]);
+      $fileInfo = pathinfo($_FILES["upFile"]["name"]);
       $rndNo = uniqid();
       $fileName = "{$rndNo}.{$fileInfo["extension"]}";  
 
       //檢查資料夾是否存在
-      $dir = "../images/sticker";
+      $dir = "../images/card";
       if(file_exists($dir) == false){
         mkdir($dir); //make directory
       }
-      $from = $_FILES["upFile1"]["tmp_name"]; //含路徑名稱
+      $from = $_FILES["upFile"]["tmp_name"]; //含路徑名稱
       $to = "$dir/".$fileName;//指定路徑名稱
       if(copy($from, $to)==true){
        
-       $no = $pdo->lastInsertId();
-       $sql = "insert into stamp_style values(null,'$stickerName','$fileName');";
+       $sql = "insert into card_style values(null,'$cardName','$fileName',$status);;";
        $pdo->exec($sql);
 
         echo "上傳成功~";
