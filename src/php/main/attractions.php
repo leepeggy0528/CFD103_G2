@@ -151,9 +151,9 @@
     </section>
 
 
-
-    <h2>旅行趣</h2>
-
+    <div class="att-title">
+        <h2>旅行趣</h2>
+    </div>
   
     <div class="first-card">
         <a class="card-click" href="./attinsidepage.php?sig_no=<?=$prodRowf['sig_no']?>">

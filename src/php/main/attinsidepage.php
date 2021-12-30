@@ -48,7 +48,10 @@
 	@@include('../../layout/login.html')
 	@@include('../../layout/header.html')
 
-	<h2><?=$prodRow["sig_name"]?></h2>
+	<div class="inside-title">
+		<h2><?=$prodRow["sig_name"]?></h2>
+	</div>
+
 	<div class="big-pic-container">
 		<img id="large" src="./images/sight/<?=$prodRow["spt_pt"]?>">
 	</div>
