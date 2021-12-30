@@ -80,6 +80,8 @@ function switchSaveActivity(e) {
                     xhr1.send(data_info);
                 }
             }
+        }else{
+            alert("請先登入")
         }
     }
     xhr.open("get", "./php/getMemberInfo.php", true);
@@ -133,6 +135,8 @@ function switchSaveThis() {
                 console.log('data_info:', data_info);
                 xhr1.send(data_info);
             }
+        }else{
+            alert("請先登入")
         }
     }
     xhr.open("get", "./php/getMemberInfo.php", true);
@@ -223,6 +227,8 @@ function saveComment() {
             console.log('data_info:', data);
             xhr1.send(data);
             document.getElementById('comment').value = "";
+        }else{
+            alert("請先登入")
         }
     }
     xhr.open("get", "./php/getMemberInfo.php", true);
@@ -302,6 +308,8 @@ function init() {
                 let dataInfo = `mem_id=${member.mem_id}`;
                 console.log('data_info:', dataInfo);
                 xhr1.send(dataInfo);
+            }else{
+                alert("請先登入")
             }
         }
         xhr.open("get", "./php/getMemberInfo.php", true);
@@ -323,6 +331,7 @@ function init() {
     // send report 
     document.getElementById('rpSend').onclick = function () {
         let gro_id = location.href.split('?')[1];
+        console.log(gro_id);
         let reportText = document.getElementById("reportText").value;
         let xhr = new XMLHttpRequest();
         xhr.onload = function () {
@@ -332,16 +341,9 @@ function init() {
                 //取得會員名稱、頭貼
                 if (reportText == "") {
                     alert('原因不得空白');
-                } else {
-        
+                } else {        
                     let xhr1 = new XMLHttpRequest();
-                    xhr1.onload = function () {
-                        if (xhr1.status == 200) {
-        
-                        } else {
-                            alert(xhr1.status);
-                        }
-                    }
+
                     xhr1.open("Post", "./php/sendReport.php", true);
                     xhr1.setRequestHeader("content-type", "application/x-www-form-urlencoded");
                     let data_info = gro_id + `&mem_id=${member.mem_id}&status=1&content=` + reportText
@@ -351,7 +353,11 @@ function init() {
                     xhr1.send(data_info);
                     document.querySelector(".reportLayer").style.display = "none";
                     reportText = "";
+                    alert("檢舉送出，審核中");
+                    location.href="./group.php"
                 }
+            }else{
+                alert("請先登入")
             }
         }
         xhr.open("get", "./php/getMemberInfo.php", true);
@@ -366,7 +372,7 @@ function init() {
 
         alert('報名成功');
         let gro_id = location.href.split("?")[1];
-        console.log(gro_id);
+        
         let xhr = new XMLHttpRequest();
         xhr.onload = function () {
             member = JSON.parse(xhr.responseText);
@@ -378,6 +384,8 @@ function init() {
                 let data_info = gro_id + `&mem_id=${member.mem_id}`;
                 console.log('data_info:', data_info);
                 xhr.send(data_info);
+            }else{
+                alert("請先登入")
             }
         }
         xhr.open("get", "./php/getMemberInfo.php", true);
