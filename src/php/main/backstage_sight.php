@@ -182,7 +182,7 @@
             <fieldset form="sight" class="section">
                   <div class="input-block">
                     <label for="intro">景點介紹</label>
-                    <textarea name="intro" type="text" placeholder="限50字內" rows="2" cols="25" ></textarea>
+                    <textarea name="intro" type="text" placeholder="限50字內" rows="3" cols="25" ></textarea>
                   </div>
                   <div class="input-block">
                     <label for="desc">景點描述</label>
@@ -223,93 +223,93 @@
     </div>
 
     <div id="edit_form" style="display: none;">
-        <form class="signup sight" method="post" action="#">
+        <form class="signup sight_edit" method="post" id="sight_edit" action="#">
             <h2>新增景點</h2>
+            <input type="text" name="sig_id" id="edit-id" hidden>
             <fieldset class="section active">
                   <div class="input-block">
                     <label for="name">景點名稱</label>
-                    <input name="name" type="text" required>
+                    <input name="name" type="text" id="edit-name" required>
                   </div>
                   <div class="input-block">
                     <label for="address">地址</label>
-                    <input name="address" type="text">
+                    <div class="sig_address">
+                        <select name="loc" required id="edit-loc">
+                                <option value="台北市">台北市</option>
+                                <option value="新北市">新北市</option>
+                                <option value="桃園市">桃園市</option>
+                                <option value="新竹市">新竹市</option>
+                                <option value="新竹縣">新竹縣</option>
+                                <option value="宜蘭縣">宜蘭縣</option>
+                                <option value="基隆市">基隆市</option>
+                                <option value="苗栗縣">苗栗縣</option>
+                                <option value="台中市">台中市</option>
+                                <option value="彰化縣">彰化縣</option>
+                                <option value="南投縣">南投縣</option>
+                                <option value="雲林縣">雲林縣</option>
+                                <option value="嘉義縣">嘉義縣</option>
+                                <option value="台南市">台南市</option>
+                                <option value="高雄市">高雄市</option>
+                                <option value="屏東縣">屏東縣</option>
+                                <option value="花蓮縣">花蓮縣</option>
+                                <option value="台東縣">台東縣</option>
+                                <option value="澎湖縣">澎湖縣</option>
+                                <option value="金門縣">金門縣</option>
+                                <option value="馬祖縣">馬祖縣</option>
+                        </select>
+                        <input id="edit-address" name="address" type="text" required>
+                    </div>
                   </div>
                   <div class="tselect">
                       <div class="input-block">
                         <label for="type">類別</label>
-                        <select name="type">
-                            <option value="" selected>請選擇類別</option>
-                            <option value="1">旅行</option>
-                            <option value="2">休閒</option>
-                            <option value="3">購物</option>
-                            <option value="4">學習</option>
-                            <option value="5">夜市</option>
-                            <option value="6">燒腦</option>
-                            <option value="7">運動</option>
-                            <option value="8">美食</option>
+                        <select id="edit-type" name="type">
+                            <option value="旅行">旅行</option>
+                            <option value="休閒">休閒</option>
+                            <option value="購物">購物</option>
+                            <option value="學習">學習</option>
+                            <option value="夜市">夜市</option>
+                            <option value="燒腦">燒腦</option>
+                            <option value="運動">運動</option>
+                            <option value="美食">美食</option>
                         </select>
                       </div>
                       <div class="input-block">
                         <label for="tel">電話</label>
-                        <input name="tel" type="tel">
+                        <input name="tel" id="edit-tel" type="tel">
                       </div>
                   </div>
                   <div class="input-block">
                     <label for="web">官網</label>
-                    <input name="web" type="url">
+                    <input name="web" id="edit-web" type="url">
                   </div>
                   <div class="input-block">
                     <label for="time">營業時間</label>
-                    <input name="time" type="text">
+                    <input name="time"  id="edit-time" type="text">
                   </div>
                   <div class="form_btn">
                     <button type="button" class="btnYellow btn next">下一步</button>
-                    <input type="reset" class="btnWhite btn cancel1" id="cancel" value="取消">
+                    <input type="reset" class="btnWhite btn edit_cancel" value="取消">
                 </div>
             </fieldset>
             <fieldset class="section">
                   <div class="input-block">
                     <label for="intro">景點介紹</label>
-                    <textarea name="intro" type="text" required placeholder="限50字內" rows="2" cols="25" ></textarea>
+                    <textarea name="intro" type="text" required  id="edit-intro" placeholder="限50字內" rows="3" cols="25" ></textarea>
                   </div>
                   <div class="input-block">
                     <label for="desc">景點描述</label>
-                    <textarea name="desc" type="text" required rows="8" cols="25" placeholder="限200字內"></textarea>
+                    <textarea id="edit-desc" name="desc" type="text" required rows="8" cols="25" placeholder="限200字內"></textarea>
                   </div>
                   <div class="form_btn">
-                    <button type="button" class="btnYellow btn next" >下一步</button>
-                    <input type="reset" class="btnWhite btn cancel1" value="取消">
+                  <button type="button" class="btnYellow btn " id="edit_submit">確 認</button>
+                  <input type="reset" class="btnWhite btn edit_cancel" value="取消" >
                 </div>
             </fieldset>
-            <fieldset class="section">  
-                <button id="btnAddPt"><i class="far  fa-plus-square"></i></button>
-                <div class="input-block photo" style="display: none;">
-                        <label for="upfile">照片</label>
-                        <input type="file" name="upFile[]" class="upFile">
-                        <i class="fas fa-minus-circle"></i>
-                        <br>
-                        <div class="pt">
-                            <img src="#" id="preview" hidden>
-                        </div>
-                    </div>
-                <div class="scroll" id="sight_btn">
-                    <div class="input-block photo">
-                        <label for="upfile">照片</label>
-                        <input type="file" name="upFile[]" class="upFile"><br>
-                        <div class="pt">
-                            <img src="#" id="preview" hidden>
-                        </div>
-                    </div>
-                </div>
-                <div class="form_btn">
-                  <button type="button" class="btnYellow btn " id="submit">確 認</button>
-                  <input type="reset" class="btnWhite btn cancel1" value="取消">
-              </div>
-          </fieldset>
           </form>
     </div>
     <script src="./js/backstage_pt.js" async></script>
-    <script src="./js/backstage_form_sight.js"></script>
+    <script src="./js/backstage_form_sight.js" async></script>
 </main>
 
 </body>

@@ -26,9 +26,6 @@ function form() {
     let trash = e.target;
     $id("sight_btn").removeChild(trash.parentNode);
   }
-  function edit_cancel() {
-    document.getElementById('edit_form').style.display='none';
-  }
   function addsight(){ 
     let tbody = document.querySelector("table tbody");
     let tr = document.createElement("tr");
@@ -60,40 +57,50 @@ function form() {
 }
 function searchForm(e){ 
     let edit=e.target;
-    let editId=edit.parentNode.parentNode.previousElementSibling.previousElementSibling.previousElementSibling.innerText;
+    let editId=edit.parentNode.parentNode.parentNode.parentNode.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.innerText;
     $id('edit_form').style.display='';
     let xhr = new XMLHttpRequest();
     xhr.onload = function(){
         sight = JSON.parse(xhr.responseText);
-        $id("edit-id").value = search.sp_id;
-        $id("edit-name").value = search.sp_name;
-        $id("edit-pswd").value = search.sp_pswd;
+        $id("edit-id").value = sight.sig_id;
+        $id("edit-name").value = sight.sig_name;
+        $id("edit-loc").value = sight.sig_loc;
+        $id("edit-address").value = sight.sig_address;
+        $id("edit-type").value = sight.sig_type;
+        if(sight.sig_tel){
+          $id("edit-tel").value = sight.sig_tel;
+        }else{
+          $id("edit-tel").placeholder= "暫無資料";
+        }
+        if(sight.sig_web){
+          $id("edit-web").value = sight.sig_web;
+        }else{
+          $id("edit-web").placeholder = "暫無資料";
+          
+        }
+        $id("edit-time").value = sight.sig_time;
+        $id("edit-intro").value = sight.sig_intro;
+        $id("edit-desc").value = sight.sig_desc;
     }
-        xhr.open("post", "./php/backstage_searchadmin.php", true);
+        xhr.open("post", "./php/backstage_searchsight.php", true);
         xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
         //將要送到後端的資料打包
         let searchData = {};
         searchData.sp_id=editId;
        
         let data_info = `search=${JSON.stringify(searchData)}`;
-        console.log(data_info);
         xhr.send(data_info);
 }
 function updateForm(){ 
-    $id('edit_form').style.display='';
     let xhr = new XMLHttpRequest();
-        xhr.open("post", "./php/backstage_updataad min.php", true);
-        xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
-        //將要送到後端的資料打包
-        let updateData = {};
-        updateData.sp_id= $id("edit-id").value;
-        updateData.sp_pswd= $id("edit-pswd").value;
-        updateData.sp_name= $id("edit-name").value;
-
-        let data_info = `update=${JSON.stringify(updateData)}`;
-        console.log(data_info);
-        xhr.send(data_info);
-        location.href="./backstage_admin.php";
+        xhr.open("post", "./php/backstage_updatesight.php", true);
+        let myForm1 = new FormData($id("sight_edit"));
+        xhr.send(myForm1);
+        var button1 = $(this);
+        var currentSection1 = button1.parents(".section");
+        currentSection1.removeClass("active");
+        $(document).find(".sight_edit .section").first().addClass("active");
+        $id("edit_form").style.display='none';
 }
 function deleteDate(e){ 
     let deleted=e.target;
@@ -115,7 +122,7 @@ let sight={};
   window.addEventListener('load',function () {
     let search = document.querySelectorAll(".edit");
     for (let i = 0; i < search.length; i++) {
-      search.onclick=searchForm;
+      search[i].onclick=searchForm;
       
     }
     let edit= document.querySelectorAll('.edit');
@@ -129,8 +136,7 @@ let sight={};
     $id("new").onclick = form;
     $id("btnAddPt").onclick = addpt;
     $id("submit").onclick = addsight;
-    //$id("edit_cancel").onclick = edit_cancel;
-    //$id("edit_submit").onclick = updateForm;
+    $id("edit_submit").onclick = updateForm;
   },false);
 
   $(document).ready(function(){
@@ -154,5 +160,12 @@ let sight={};
         currentSection.removeClass("active");
         $(document).find(".signup .section").first().addClass("active");
         document.getElementById('add').style.display='none';
+    });
+    $(".edit_cancel").click(function() {
+        var button1 = $(this);
+        var currentSection1 = button1.parents(".section");
+        currentSection1.removeClass("active");
+        $(document).find(".sight_edit .section").first().addClass("active");
+        $id("edit_form").style.display='none';
     });
     });
