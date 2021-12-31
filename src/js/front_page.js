@@ -23,7 +23,8 @@ $(document).ready(function(){
 
 
 
-    let showHeight = 480
+    let showHeight = 580
+    let showHeight_A = 880
     $(window).on('load scroll resize',function(){
         let windowsTop = $(window).scrollTop()
     
@@ -53,7 +54,7 @@ $(document).ready(function(){
             }
         }
 
-        if(windowsTop >= commentTop - showHeight){
+        if(windowsTop >= commentTop - showHeight_A){
             for(let i=1;i<=3;i++){
                 $(`.comment_board .comment_group li:nth-of-type(${i})`).delay(600*i).animate({
                     opacity: 1,

@@ -9,10 +9,6 @@ $(function () {
           for(let i=0;i <arr.length; i++){
             spotArr[i]= arr[i].split(':');
           }
-          console.log(spotArr);
-          console.log(spotArr.length);
-          console.log(spotArr[0][1]);
-          
           for(let i=0; i < spotArr.length; i++){
             let official_temp = `<option value="${spotArr[i][0]}">${spotArr[i][0]}</option><span class='spot_address' style="display: none;">${spotArr[i][1]}</span>`;
             $('#official-spot-select').append(official_temp);
@@ -23,6 +19,7 @@ $(function () {
             console.log("請求失敗");
         }
     });
+
     // 案+ 出現MODEL
     $('body').on('click','.add_place',function(){
         $('.modal-background').css('display','flex')
@@ -32,8 +29,6 @@ $(function () {
         $('#model-chosen-spot').removeClass('show')
         $('.select-model').css('display','none')
     });
-
-
     //按下確定新增行程
     $('body').on('click','#model-submit-btn',function(){
         
@@ -41,24 +36,25 @@ $(function () {
         let endTime = $('#model-end-time-input').val()
         let newPlace = $('#model-place-input').val()
         let newAddress = $('#model-address-input').val()
-        
-        let placeTemplate = `<li class="place"><p class="input_time">${startTime}</p><span class="input_time_end" style="display:none">${endTime}</span><h2 class="place_view">${newPlace}</h2><span class="place_address" style="display:none">${newAddress}</span><span class="delect_place">X</span></li>`
-       $('.place_group_show .add_place').before(placeTemplate)
-       //MODEL 消失
-       $('.modal-background').css('display','none')
+        if(!startTime || !endTime || !newPlace || !newAddress){
+            alert('請完整填寫')
+        }
+        else{
+            let placeTemplate = `<li class="place"><p class="input_time">${startTime}</p><span class="input_time_end" style="display:none">${endTime}</span><h2 class="place_view">${newPlace}</h2><span class="place_address" style="display:none">${newAddress}</span><span class="delect_place">X</span></li>`
+            $('.place_group_show .add_place').before(placeTemplate)
+            //MODEL 消失
+            $('.modal-background').css('display','none')
+        }
     });
-
     //按下取消【不】新增行程
     $('body').on('click','#model-cancel-btn',function(){
         //MODEL 消失
         $('.modal-background').css('display','none')
      });
-
     //刪除單一行程
     $('body').on('click','.delect_place',function(){
         $(this).parents('.place').remove()
     });
-
     //day_list 點案切換頁籤 DAY1,DAY2...
     $('body').on('click','.day_list',function(){
         // 初始化
@@ -70,11 +66,10 @@ $(function () {
         //更換顯示DAY
         $('#change_day').html(dayIndex+1)
     });
-
     //依照輸入天數新增daylist
     $('.party_totalday').on('change',function(){
             let partyTotalDay = $('.party_totalday').val()
-            if( parseInt(partyTotalDay) <= 0 || parseInt(partyTotalDay) >5 ){
+            if(partyTotalDay==''|| parseInt(partyTotalDay) <= 0 || parseInt(partyTotalDay) >5 ){
                 $('.party_totalday').val(1)
                 partyTotalDay='1'
                 alert('天數請選五天以內')
@@ -134,7 +129,6 @@ $(function () {
             chosen_spot.parent().prev().css('display','none') 
         }
     });
-
     //更換換已選景點
     $('body').on('change click','#chosen-spot-select',function(){
         let spot_name =$(this).val()
@@ -151,7 +145,6 @@ $(function () {
             }
         } 
     });
-
     //更換換官方景點
     $('body').on('change click','#official-spot-select',function(){
         let target= $(this)
@@ -167,7 +160,6 @@ $(function () {
             }
         } 
     });
-
     //party_discribe 剩餘可輸入數字字數
     let textMax = 200;		
     $('#limit_words_count').html(textMax);
@@ -175,8 +167,6 @@ $(function () {
         let textLength = $(this).val().length;
         $('#limit_words_count').html(`${textMax-textLength}`);
     }); 
-
-
     $('#gro_paytype').on('change',function(){
         let payType = $('#gro_paytype').val()
         switch (payType){
@@ -192,7 +182,6 @@ $(function () {
             break;
         }
     });
-     
     //上傳圖片
     let save_path = "images/group/";
     $('#upload_img').on("change",function(){
@@ -212,7 +201,6 @@ $(function () {
                 success:function(data){
                     if(data =='yes'){
                         $(".show_image").html("<img src='./" + save_path + file_data['name'] +"'>")
-
                         //把相對路徑放到input裡面，之後送出表單，才可以抓的到
                         $(".image_path").val(file_data['name']);
                     } 
@@ -255,8 +243,7 @@ $(function () {
 });
 
 
-document.getElementById("hold_party").onclick = function(){
-    
+document.getElementById("hold_party").onclick = function(){   
     if(member.mem_id){
         let arr=[];
         let days=[];
@@ -281,7 +268,6 @@ document.getElementById("hold_party").onclick = function(){
             }
             arr.push(days[d]);		
         }
-        
         let gro_name = document.getElementById("gro_name").value;
         let gro_startd = document.getElementById("gro_startd").value;
         let party_totalday = document.getElementById("party_totalday").value;
@@ -290,20 +276,15 @@ document.getElementById("hold_party").onclick = function(){
         gro_endd = gro_endd.setDate(gro_endd.getDate()+parseInt(party_totalday-1));
         gro_endd = new Date(gro_endd).toLocaleDateString();
         // 
-    
-    
         let mem_id = member.mem_id;
-        console.log(mem_id);
         let gro_loc = document.getElementById("gro_loc").value;
         let gro_type = document.getElementById("gro_type").value;
         let gro_paytype = document.getElementById("gro_paytype").value;
         let gro_pay = document.getElementById("gro_pay").value;
         let gro_infnumber = document.getElementById("gro_infnumber").value;
-        let gro_subnumber = document.getElementById("gro_subnumber").value;
-        // let schedule = document.getElementById("schedule").value;    
+        let gro_subnumber = document.getElementById("gro_subnumber").value;    
         let gro_endadd = document.getElementById("gro_endadd").value;
-        let party_explan = document.getElementById("party_explan").value;
-        
+        let party_explan = document.getElementById("party_explan").value;    
         let gpt_pt = document.querySelector(".image_path").value;
         let detail = {
             "MEM_ID" : mem_id,
@@ -321,25 +302,42 @@ document.getElementById("hold_party").onclick = function(){
             "GRO_EXPLAN" : party_explan,
             "GPT_PT" : gpt_pt,
         };
-        console.log(arr);    
-    
-        $.ajax({
-            url:"holdparty_page.php",
-            method:"POST",
-            data : detail,
-            success:function(res){
-                if(res){
-                    alert(res);
-                    $("input").val('');
-                    $("#party_explan").val('');
-                    window.location.href = "./group.php";
-                }
-            },
-            dataType : 'text'
-        })
+
+        let schedule_exist = 1;
+        for(let a=0; a < party_totalday; a++){
+            if(arr[a].length == 0){
+                schedule_exist *= 0;                
+            }
+            else
+            {
+                schedule_exist *= 1; 
+            }
+        }
+
+        if( !gro_name|| !gro_startd|| !party_totalday || !gro_infnumber || !gro_subnumber || !gro_endadd || !schedule_exist || !party_explan || !gpt_pt){
+            alert("請再檢查每個欄位是否都有確實填寫");
+        }
+        else
+        {
+            if(confirm('確定建立?') == 1){
+                $.ajax({
+                    url:"holdparty_page.php",
+                    method:"POST",
+                    data : detail,
+                    success:function(res){
+                        if(res){
+                            alert(res);
+                            $("input").val('');
+                            $("#party_explan").val('');
+                            window.location.href = "./group.php";
+                        }
+                    },
+                    dataType : 'text'
+                })
+            }
+        }
     }
     else{
         alert("你尚未登入")
     }
-    
 }

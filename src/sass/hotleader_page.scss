@@ -108,6 +108,7 @@
                         width: 300px;
                         margin: -180px auto 0;
                         font-size: $font-4;
+                        color: black;
                         letter-spacing: $letterSpacing;
                         opacity: 0;
                         transition: opacity .3s ease-in-out, margin-top .3s .3s  ease-in-out;
@@ -241,6 +242,7 @@
              display: none;
              >li{
               display: flex;
+              min-height: 300px;
               flex-wrap: wrap;
               background-color: $bgGray;
               @include borderR();
@@ -310,6 +312,8 @@
                     .self{
                         font-size: $font-4;
                         color: black;
+                        word-wrap: break-word;
+                        word-break: break-all;
                         letter-spacing: 3px;
                         line-height: 25px;
                         margin-top: 20px;
