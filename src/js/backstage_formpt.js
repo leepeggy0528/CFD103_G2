@@ -87,39 +87,8 @@ function addCardRow() {
 }
 
 //卡片狀態
-function changeStatus(e) {
-    let dataStatus = document.querySelectorAll('.cardRow');
-    let tr = e.target.parentNode.parentNode;
-    console.log(tr);
-    console.log(e.target);
-    let no = e.target.parentNode.parentNode.parentNode.firstElementChild.innerText;
-    console.log(no);
-    let cardStatus;
-    if (e.target.checked) {
-        cardStatus = 0;//上架
-        tr.setAttribute('data-status', 'up');
-        // console.log(tr);
+function changeStatus() {
 
-    } else {
-        cardStatus = 1;//下架
-        tr.setAttribute('data-status', 'down');
-        console.log(tr);
-
-    }
-    let xhr = new XMLHttpRequest();
-    xhr.onload = function () {
-        if (xhr.status == 200) {
-
-        } else {
-            alert(xhr.status);
-        }
-    }
-    xhr.open("Post", "./php/backstage_changeStatus.php", true);
-    xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
-    let data_info = `no=${no}&cardStatus=${cardStatus}`;
-
-    console.log('data_info:', data_info);
-    xhr.send(data_info);
 }
 
 window.addEventListener("load", function () {
@@ -248,12 +217,46 @@ window.addEventListener("load", function () {
         document.getElementById('sadd').style.display = "none";
     }
 
-    //卡片狀態
-    // let dataStatus = document.querySelectorAll('.cardRow');
+    //status control
+    let dataStatus = document.querySelectorAll('.cardRow');
     let statusControl = document.querySelectorAll('.custom-control-input');
 
     for (let i = 0; i < statusControl.length; i++) {
-        statusControl[i].onchange = changeStatus;
+
+        statusControl[i].onchange = function (e) {
+
+            changeStatus()
+            console.log(e.target);
+            let no = e.target.parentNode.parentNode.parentNode.firstElementChild.innerText;
+            console.log(no);
+            let cardStatus;
+            if (e.target.checked) {
+                cardStatus = 0;//上架
+                dataStatus[i].setAttribute('data-status', 'up');
+                alert('已上架');
+            } else {
+                cardStatus = 1;//下架
+                dataStatus[i].setAttribute('data-status', 'down');
+                alert('已下架');
+            }
+            let xhr = new XMLHttpRequest();
+            xhr.onload = function () {
+                if (xhr.status == 200) {
+
+                } else {
+                    alert(xhr.status);
+                }
+            }
+            xhr.open("Post", "./php/backstage_changeStatus.php", true);
+            xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+            let data_info = `no=${no}&cardStatus=${cardStatus}`;
+
+            console.log('data_info:', data_info);
+            xhr.send(data_info);
+
+        }
+
+
     }
 
 
