@@ -1,4 +1,6 @@
 <?php 
+ob_start();
+session_start();
 try {
 	//引入連線工作的檔案
 	require_once("./php/connectAccount.php");
@@ -91,6 +93,19 @@ try {
             $jcomment[$joinCommentRow["jrate_score"]]=$joinCommentRow["count"];
         }
         ;
+    //好友按鈕
+    // $current_page=$_SERVER['QUERY_STRING'];
+    // $frd=split("\=",$current_page)[1];
+    // echo $frd;
+    // echo $_SERVER['QUERY_STRING'];
+    $sql_frd_btn="select * from friend where mem_id =9455001 and friend_id =9455004;";
+    $sqlFrdBtn = $pdo->prepare($sql_frd_btn);
+    // $sqlFrdBtn->bindValue(":mem_id", $_SESSION["memId"]);
+    // $sqlFrdBtn->bindValue(":friend_id", $_GET["mem_id"]);
+    // $sqlFrdBtn->bindValue(":friend_id", $_GET["mem_id"]);
+    $sqlFrdBtn->execute();
+    $sqlFrdBtnRow= $sqlFrdBtn->fetch(PDO::FETCH_ASSOC);
+
 }catch (Exception $e) {
 	echo "錯誤行號 : ", $e->getLine(), "<br>";
 	echo "錯誤原因 : ", $e->getMessage(), "<br>";
@@ -106,7 +121,6 @@ try {
     <title><?=$memInfoRows[0]["mem_name"]?></title>
     <link rel="stylesheet" href="./css/profile-out.css">
     <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="./layout/meta.html">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
     
 </head>
@@ -276,78 +290,8 @@ try {
  
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
 <script src="./js/jquery-3.6.0.min.js"></script>
-<header>
-  
-  <div class="logo">
-    <a href="index.html"><img src="./images/logo.png" alt="" width="150px" height="75px"></a>
-  </div>
-  
-
-  <nav>
-    <ul>
-      <li><a href="group.html">揪團趣</a></li>
-      <li><a href="attractions.html">旅行趣</a></li>
-      <li><a href="discussion-2.html">討論趣</a></li>
-      <li><a href="hotleader_page.html">最HOT團主</a></li>
-      <li><a href="customized-card.html">客製卡片</a></li>
-      <li class="insta-i"><a href="holdparty_page.html">立即開團</a></li>
-
-      <li class="insta-i"><a href="#">登入</a></li>
-    </ul>
-    <div class="menu-bars" id="toggle">
-      <input type="checkbox">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-
-    <div class="insta-buttom">
-      <a href="holdparty_page.html"><button class="insta-buttom-i">立即開團</button></a>
-      <button Id="LoginBTN" class="insta-buttom-i-2">登入/註冊</button>
-    </div>
-      <!-- 登入過後 -->
-    <div class="memMenu">
-      <button class="afterLogin">
-        <div class="loginmempic">
-          <img src="./images/user/m01.jpg" alt="">
-        </div>
-        <span class="usernameLogin">王曉明</span>
-        <i class="fas fa-sort-down"></i>
-      </button>
-      <div class="smallMemInfo">
-        <div class="purseForHeader">
-          <div class="diamond">
-            <img src="./images/icon/diamond1.png" alt="">
-            <span>500</span>
-          </div>
-          <div class="coin">
-            <img src="./images/icon/coin1.png" alt="">
-            <span>1500</span>
-          </div>
-        </div>
-          <a class="memLink memfile" href="profileSelf.html">
-            <img src="./images/icon/Group 478.svg" alt="">
-          <span>個人檔案</span>
-          </a>
-          <button class="memLink" id="LogoutButton">
-            <img src="./images/icon/Group 477.svg" alt="">
-            <span>登出</span>
-          </button>
-      </div>
-    </div>
-  </nav>
-
-  <script>
-    const menuToggle= document.querySelector(".menu-bars");
-    const nav = document.querySelector("nav ul");
-
-
-    menuToggle.addEventListener("click", () => {
-    nav.classList.toggle("slide");
-    });
-  </script>
-  <script src="./js/friendtoggle.js"></script>
-</header>
+    @@include('../../layout/login.html')
+    @@include('../../layout/header.html')
     <div class="out-wrapper">
             <div class="MyInfo">
                 <div class="ContentInfo">
@@ -357,12 +301,27 @@ try {
                     <span class="age"><?=$memBirthdayRow["age"]?></span>
                   </h1>
                    <div class="friend-control">
-                  <button id="blackList" class="btnWhite contact-link" href="#">
+                <?php  
+                    if($sqlFrdBtn->rowCount()==1 and $_GET["mem_id"]!=$_SESSION["memId"]){ //not myself
+                ?>       
+                  <button id="blackList" class="btnWhite contact-link">
                     <i class="fas fa-ban">加黑名單</i>
                     </button> 
-                    <button id="addFriend" class="btnYellow" href="#"> 
+                    <button id="addFriend" class="btnYellow"> 
+                        <i class="fas fa-user-plus">解除好友</i>
+                    </button> 
+                <?php  
+                    }else{ //self
+                ?>  
+                  <button id="blackList" class="btnWhite contact-link" style="visibility:hidden;">
+                    <i class="fas fa-ban">加黑名單</i>
+                    </button> 
+                    <button id="addFriend" class="btnYellow" style="visibility:hidden;"> 
                         <i class="fas fa-user-plus">加好友</i>
                     </button> 
+                <?php  
+                    };
+                ?>
                   </div>
                 </div>
                 <div class="placeImage">
