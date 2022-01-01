@@ -72,7 +72,7 @@ try{
                 </tr>
 
                 <?php
-                        }else{
+              }else{
                 ?>
                 <tr class="cardRow" data-status="down">
                     <td><?=$cardRows['cstyle_no']?></td>
