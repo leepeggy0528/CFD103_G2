@@ -98,11 +98,13 @@ function changeStatus(e) {
     if (e.target.checked) {
         cardStatus = 0;//上架
         tr.setAttribute('data-status', 'up');
-        alert('上架');
+        // console.log(tr);
+
     } else {
         cardStatus = 1;//下架
         tr.setAttribute('data-status', 'down');
-        alert('下架');
+        console.log(tr);
+
     }
     let xhr = new XMLHttpRequest();
     xhr.onload = function () {
@@ -246,7 +248,7 @@ window.addEventListener("load", function () {
         document.getElementById('sadd').style.display = "none";
     }
 
-    //status control
+    //卡片狀態
     // let dataStatus = document.querySelectorAll('.cardRow');
     let statusControl = document.querySelectorAll('.custom-control-input');
 
