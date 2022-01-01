@@ -62,7 +62,7 @@ function addCardRow() {
         </td>
     `;
     } else {
-        tr.setAttribute("data-tatus", "down");
+        tr.setAttribute("data-status", "down");
         tr.innerHTML = `
         <td>${no}</td>
         <td><div class="card"><img src="${src}"></div></td>
@@ -84,6 +84,40 @@ function addCardRow() {
     tr.setAttribute(name, value);
     document.getElementById("cardForm").reset();
     document.querySelector('#cardForm .pt img').src = "";
+}
+
+//卡片狀態
+function changeStatus(e) {
+    let dataStatus = document.querySelectorAll('.cardRow');
+    let tr = e.target.parentNode.parentNode;
+    console.log(tr);
+    console.log(e.target);
+    let no = e.target.parentNode.parentNode.parentNode.firstElementChild.innerText;
+    console.log(no);
+    let cardStatus;
+    if (e.target.checked) {
+        cardStatus = 0;//上架
+        tr.setAttribute('data-status', 'up');
+        alert('上架');
+    } else {
+        cardStatus = 1;//下架
+        tr.setAttribute('data-status', 'down');
+        alert('下架');
+    }
+    let xhr = new XMLHttpRequest();
+    xhr.onload = function () {
+        if (xhr.status == 200) {
+
+        } else {
+            alert(xhr.status);
+        }
+    }
+    xhr.open("Post", "./php/backstage_changeStatus.php", true);
+    xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+    let data_info = `no=${no}&cardStatus=${cardStatus}`;
+
+    console.log('data_info:', data_info);
+    xhr.send(data_info);
 }
 
 window.addEventListener("load", function () {
@@ -213,38 +247,12 @@ window.addEventListener("load", function () {
     }
 
     //status control
+    // let dataStatus = document.querySelectorAll('.cardRow');
     let statusControl = document.querySelectorAll('.custom-control-input');
+
     for (let i = 0; i < statusControl.length; i++) {
-        statusControl[i].onchange = function (e) {
-            console.log(statusControl[i]);
-            let no = e.target.parentNode.parentNode.parentNode.firstElementChild.innerText;
-            let cardStatus;
-            if (statusControl[i].checked == true) {
-                cardStatus = 0;
-            } else {
-                cardStatus = 1;
-            }
-
-            let xhr = new XMLHttpRequest();
-            xhr.onload = function () {
-                if (xhr.status == 200) {
-
-                } else {
-                    alert(xhr.status);
-                }
-            }
-            xhr.open("Post", "./php/backstage_changeStatus.php", true);
-            xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
-            let data_info = `no=${no}&cardStatus=${cardStatus}`;
-
-            console.log('data_info:', data_info);
-            xhr.send(data_info);
-
-        }
+        statusControl[i].onchange = changeStatus;
     }
-
-
-
 
 
     let add = document.getElementById('new');
