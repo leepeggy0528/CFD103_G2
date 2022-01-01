@@ -45,13 +45,17 @@ dropArea.addEventListener("drop",(e)=>{
        let validExtensions=["image/jpeg","image/jpg","image/png",]//規範使用者上傳檔案類型
        
        if(validExtensions.includes(fileType)){
-           console.log("this is an image file");
+           //console.log("this is an image file");
            let fileReader=new FileReader();
            fileReader.onload=()=>{
                let fileURL= fileReader.result;
-               console.log(fileURL);
-               let imgTag=`<img src="${fileURL}" alt="">`;
-               dropArea.innerHTML= imgTag;
+               //console.log(fileURL);
+               //let imgTag=`<img src="${fileURL}" alt="">`;
+               let imgTag=document.createElement("img");
+               imgTag.src=fileURL;
+               dropArea.appendChild(imgTag);
+               button.hidden=true;
+               //dropArea.innerHTML= imgTag;
            }
            fileReader.readAsDataURL(file);
            //可看到檔案路徑
@@ -70,8 +74,6 @@ dropArea.addEventListener("drop",(e)=>{
               str = str + (hobbies[i].checked == true ? "1" : "0");
            }
            document.getElementById("hobby").value = str;
-
-           document.querySelector(".signup-form").submit("./php/addMember.php").window.location.href="./front_page.html";
-           
+           document.querySelector(".signup-form").submit("./php/addMember.php");
        }
    })
