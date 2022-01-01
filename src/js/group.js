@@ -352,16 +352,42 @@ function init() {
     let signUpBtn = document.querySelectorAll('.see_more .signUp');
     for (let i = 0; i < signUpBtn.length; i++) {
         signUpBtn[i].onclick = function () {
-            alert('報名成功');
+            member = JSON.parse(xhr.responseText);
             let gro_id = signUpBtn[i].previousElementSibling.href.split("?")[1];
-            console.log(gro_id);
-            let xhr = new XMLHttpRequest();
-            xhr.open("Post", "./php/signUpGP.php", true);
-            xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
-            let data_info = gro_id;
+            // let xhr = new XMLHttpRequest();
 
-            console.log('data_info:', data_info);
-            xhr.send(data_info);
+            // xhr.open("Post", "./php/signUpGP.php", true);
+            // xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+            // let data_info = gro_id;
+
+            // console.log('data_info:', data_info);
+            // xhr.send(data_info);
+            // alert('報名成功');
+
+
+
+
+            let xhr = new XMLHttpRequest();
+            xhr.onload = function () {
+                member = JSON.parse(xhr.responseText);
+
+                if (member.mem_id) { //已登入
+                    let xhr = new XMLHttpRequest();
+                    xhr.open("Post", "./php/signUpGP.php", true);
+                    xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+                    let data_info = gro_id + `&mem_id=${member.mem_id}`;
+                    console.log('data_info:', data_info);
+                    xhr.send(data_info);
+                    alert('報名成功');
+                } else {
+                    alert("請先登入")
+                }
+            }
+            xhr.open("get", "./php/getMemberInfo.php", true);
+            xhr.send(null);
+
+
+
         }
     }
 
