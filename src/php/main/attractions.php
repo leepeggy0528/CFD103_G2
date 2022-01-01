@@ -3,13 +3,19 @@
         //引入連線工作的檔案
         require_once("./php/connectAccount.php");
         //require_once("../connectAccount.php");
-        
+    
         //執行sql指令並取得pdoStatement
-        $sql = "select * from sight s join sight_pt spt on s.sig_no=spt.sig_no
-        where spt.spt_pt like('%01%');";
+        $sql = "select * ,s.sig_no from sight s left join sight_pt spt on s.sig_no=spt.sig_no group by s.sig_no;";
         $products = $pdo->query($sql); 
-        $r = rand(3333001,3333010);
-        $sqlf = "select * from sight s join sight_pt spt on s.sig_no=spt.sig_no where s.sig_no=? and spt.spt_pt like('%01%')";
+        $prodRowss = $products->fetchAll(PDO::FETCH_ASSOC);
+        $sig_no = [];
+        foreach($prodRowss as $key => $prodRows){
+            $sig_no[]=$prodRows["sig_no"];
+        }
+        $no=rand(0,sizeof($sig_no)-1);
+        $r=$sig_no[$no];
+
+        $sqlf = "select * from sight s left join sight_pt spt on s.sig_no=spt.sig_no group by s.sig_no having s.sig_no=?;";
         $productsf = $pdo->prepare($sqlf);
         $productsf -> bindValue(1,$r);
         $productsf -> execute();
@@ -158,7 +164,7 @@
     <div class="first-card">
         <a class="card-click" href="./attinsidepage.php?sig_no=<?=$prodRowf['sig_no']?>">
             <div class="pic">
-                <img src="./images/sight/<?=$prodRowf["spt_pt"]?>">
+                <img src="./images/sight/<?=$prodRowf["spt_pt"]?>" alt="<?=$prodRowf['sig_name']?>">
             </div>
             <div class="first-card-content spot-name">
                 
@@ -178,8 +184,7 @@
     
     <div class="card-container">
         <?php 
-            
-            while($prodRow = $products->fetch(PDO::FETCH_ASSOC)){
+            foreach($prodRowss as $key => $prodRow){
                 if($prodRow["sig_no"]==$r){
                     continue;
             }else{
@@ -187,13 +192,13 @@
             <div class="card">
                 <a href="./attinsidepage.php?sig_no=<?=$prodRow['sig_no']?>">
                     <div class="pic">
-                        <img src="./images/sight/<?=$prodRow["spt_pt"]?>">
+                        <img src="./images/sight/<?=$prodRow['spt_pt']?>" alt="<?=$prodRow['sig_name']?>">
                     </div>
                     <div class="content spot-name">
 
-                        <h3><?=$prodRow["sig_name"]?></h3>
+                        <h3><?=$prodRow['sig_name']?></h3>
                         <div class="hashtag">
-                            <span>#<?=$prodRow["sig_type"]?></span>
+                            <span>#<?=$prodRow['sig_type']?></span>
                         </div>
                         <p>
                         <?=$prodRow["sig_intro"]?>

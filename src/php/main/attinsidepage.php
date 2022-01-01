@@ -5,13 +5,13 @@
         //require_once("../connectAccount.php");
 
         //執行sql指令並取得pdoStatement
-        $sql = "select * from sight s join sight_pt spt on s.sig_no=spt.sig_no where spt.sig_no=:sig_no and spt.spt_pt like('%02%');";
+        $sql = "select * from sight s left join (select *,ROW_NUMBER() OVER (PARTITION BY sig_no ORDER BY spt_no ASC) as ROW_ID from sight_pt)as spt on s.sig_no=spt.sig_no where s.sig_no=:sig_no and (spt.ROW_ID =2 or spt.ROW_ID is null);";
         $products = $pdo->prepare($sql);
         $products -> bindValue(":sig_no",$_GET["sig_no"]);
 		$products -> execute();
 		$prodRow = $products->fetch(PDO::FETCH_ASSOC);
 
-        $sqlf = "select spt.spt_pt from sight s join sight_pt spt on s.sig_no=spt.sig_no where s.sig_no=? and spt.spt_pt not like('%02%') and spt.spt_pt not like('%01%');";
+        $sqlf = "select * from sight s left join (select *,ROW_NUMBER() OVER (PARTITION BY sig_no ORDER BY spt_no ASC) as ROW_ID from sight_pt)as KKK on s.sig_no=KKK.sig_no where s.sig_no=? and (KKK.ROW_ID not in(1,2) or KKK.ROW_ID is null);";
         $productsf = $pdo->prepare($sqlf);
         $productsf -> bindValue(1,$_GET["sig_no"]);
         $productsf -> execute();

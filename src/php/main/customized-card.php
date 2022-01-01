@@ -1,16 +1,16 @@
 <?php
 ob_start();
 session_start();
-//貼紙 
-$sql_sticker="select * from stamp_style;";
-$stickers = $pdo->query($sql_sticker);
 
-//卡片
-$sql_card="select * from card_style;";
-$cards = $pdo->query($sql_card);	
-// $cardRows = $cards->fetchAll(PDO::FETCH_ASSOC);
 try{
   require_once("./php/connectAccount.php");
+  //貼紙 
+  $sql_sticker="select * from stamp_style;";
+  $stickers = $pdo->query($sql_sticker);
+  //卡片
+  $sql_card="select * from card_style;";
+  $cards = $pdo->query($sql_card);	
+  // $cardRows = $cards->fetchAll(PDO::FETCH_ASSOC);
   if( isset($_SESSION["memMail"])){
     //取得好友
     $sqlFD = "select mem_name, mem_pt, mem_mail
