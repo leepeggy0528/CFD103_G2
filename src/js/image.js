@@ -71,6 +71,7 @@ dropArea.addEventListener("drop",(e)=>{
            }
            document.getElementById("hobby").value = str;
 
-           document.querySelector(".signup-form").submit("./php/addMember.php");
+           document.querySelector(".signup-form").submit("./php/addMember.php").window.location.href="./front_page.html";
+           
        }
    })
