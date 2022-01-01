@@ -41,8 +41,9 @@ function switchSaveActivity(e) {
     xhr.onload = function () {
         member = JSON.parse(xhr.responseText);
         console.log(member);
-        if (member.mem_id) { //已登入
-            if (e.target.id == 'saveActivity') {
+
+        if (e.target.id == 'saveActivity') {
+            if (member.mem_id) { //已登入
                 if (e.target.title == "收藏活動") {
                     e.target.src = "./images/icon/save.png";
                     e.target.title = "取消收藏";
@@ -79,9 +80,9 @@ function switchSaveActivity(e) {
                     console.log('data_info:', data_info);
                     xhr1.send(data_info);
                 }
+            } else {
+                alert("請先登入")
             }
-        } else {
-            alert("請先登入")
         }
     }
     xhr.open("get", "./php/getMemberInfo.php", true);
@@ -375,7 +376,7 @@ function init() {
         let xhr = new XMLHttpRequest();
         xhr.onload = function () {
             member = JSON.parse(xhr.responseText);
-            console.log(member);
+
             if (member.mem_id) { //已登入
                 let xhr = new XMLHttpRequest();
                 xhr.open("Post", "./php/signUpGP.php", true);
