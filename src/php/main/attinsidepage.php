@@ -51,6 +51,15 @@
 	<div class="inside-title">
 		<h2><?=$prodRow["sig_name"]?></h2>
 	</div>
+	<?php
+		if($prodRow["spt_pt"]==null){
+	?>
+		<div class="big-pic-container">
+			<img id="large" src="./images/no_pt.png">
+		</div>
+	<?php
+		}else{
+	?>
 
 	<div class="big-pic-container">
 		<img id="large" src="./images/sight/<?=$prodRow["spt_pt"]?>">
@@ -65,27 +74,45 @@
 		}
 	?>
 	</div>
-	
-	<div class="container">
-        <div class="slider">
-            <div class="owl-carousel owl-theme">
-                <div class="item">
-                    <img src="./images/sight/<?=$prodRow["spt_pt"]?>">
-                </div>
-				<?php
-		foreach($prodRowfs as $key =>$prodRowf){
-			
-	?>
-		<div class="item">
-		<img src="./images/sight/<?=$prodRowf["spt_pt"]?>">
-		</div>
 	<?php
 		}
 	?>
-            </div>
-        </div>
-    </div>
-	
+	<?php
+		if($prodRow["spt_pt"]==null){
+	?>
+		<div class="container">
+			<div class="slider">
+				<div class="owl-carousel owl-theme">
+					<div class="item">
+						<img src="./images/no_pt.png">
+					</div>
+				</div>
+			</div>
+		</div>
+	<?php
+		}else{
+	?>	
+		<div class="container">
+			<div class="slider">
+				<div class="owl-carousel owl-theme">
+					<div class="item">
+						<img src="./images/sight/<?=$prodRow["spt_pt"]?>">
+					</div>
+					<?php
+					foreach($prodRowfs as $key =>$prodRowf){
+					?>
+					<div class="item">
+						<img src="./images/sight/<?=$prodRowf["spt_pt"]?>">
+					</div>
+					<?php
+						}
+					?>
+				</div>
+			</div>
+		</div>
+	<?php
+		}
+	?>		
 	<script>
 		function showLarge(e) {
 			let small = e.target;
