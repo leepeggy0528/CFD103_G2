@@ -165,7 +165,7 @@ try {
         <div class="screen-wrapper">
           <div class="screen-form">
           <h2>檢舉</h2>
-          <textarea class="group-text-i" maxlength="60" cols="40" rows="15" placeholder="請描述原因"></textarea>
+          <textarea class="group-text-i" id="reportText" maxlength="60" cols="40" rows="15" placeholder="請描述原因"></textarea>
           </div>
 
           <div class="Num">
@@ -289,6 +289,44 @@ try {
                 xhr1.send(null);
               }
         }
+
+        //檢舉
+        var btnYellow = document.querySelector(".insta-item-submit .btnYellow");
+        btnYellow.onclick = function () {
+          let post_id = location.href.split('?')[1];
+          console.log(post_id);
+          let reportText = document.getElementById("reportText").value;
+          let xhr = new XMLHttpRequest();
+          xhr.onload = function () {
+              member = JSON.parse(xhr.responseText);
+              console.log(member);
+              if (member.mem_id) { //已登入
+                  //取得會員名稱、頭貼
+                  if (reportText == "") {
+                      alert('原因不得空白');
+                  } else {
+                      let xhr1 = new XMLHttpRequest();
+
+                      xhr1.open("Post", "./php/postReport.php", true);
+                      xhr1.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+                      let data_info = post_id + `&mem_id=${member.mem_id}&status=1&content=` + reportText
+                          + "&post_show=0";
+                      console.log('data_info:', data_info);
+                      xhr1.send(data_info);
+                      document.querySelector(".screen-wrapper").style.display = "none";
+                      reportText = "";
+                      alert("確定送出嗎?");
+                      alert("檢舉送出，審核中");
+                      location.href = "./discussion-2.php";
+                  }
+            } else {
+                alert("請先登入")
+            }
+          }
+          xhr.open("get", "./php/getMemberInfo.php", true);
+          xhr.send(null);
+
+        }
       </script>
 
   
@@ -327,11 +365,6 @@ try {
         $('.stop').on('click', function () {
             owl.trigger('stop.owl.autoplay')
         });
-        var btnYellow = document.querySelector(".insta-item-submit .btnYellow");
-      btnYellow.onclick = function () {
-      alert("確定送出嗎?");
-      location.href = "./discussion-2.php";
-      };
         </script>   
 @@include('../../layout/footer.html')
 </body>
