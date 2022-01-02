@@ -6,8 +6,8 @@ try {
 	require_once("./php/connectAccount.php");
 	
 	//執行sql指令並取得貼文資料
-  $sql = "select *,count(p.post_no) as msg ,mem_name,mem_pt
-  from post p  left join post_mes pm on p.post_no = pm.post_no
+  $sql = "select *,count(p.post_no) as msg,p.post_no ,mem_name,mem_pt
+  from post p left join post_mes pm on p.post_no = pm.post_no
   join member m on p.mem_id=m.mem_id
   group by p.post_no having p.post_no = :pno
   ORDER BY pm.pmes_time DESC;";

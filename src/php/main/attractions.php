@@ -3,19 +3,28 @@
         //引入連線工作的檔案
         require_once("./php/connectAccount.php");
         //require_once("../connectAccount.php");
-    
+        if (isset($_GET["p"])) {
+            $p=$_GET["p"];
+        }else{
+            $p=1;
+        }
+        $start=($p-1)*8;
         //執行sql指令並取得pdoStatement
-        $sql = "select * ,s.sig_no from sight s left join sight_pt spt on s.sig_no=spt.sig_no group by s.sig_no;";
+        $sql = "select * ,s.sig_no from sight s left join sight_pt spt on s.sig_no=spt.sig_no group by s.sig_no limit $start, 8;";
         $products = $pdo->query($sql); 
         $prodRowss = $products->fetchAll(PDO::FETCH_ASSOC);
+
+        $sql1 = "select * ,s.sig_no from sight s left join sight_pt spt on s.sig_no=spt.sig_no group by s.sig_no;";
+        $productss = $pdo->query($sql1); 
+        $prodRowsss = $productss->fetchAll(PDO::FETCH_ASSOC);
         $sig_no = [];
-        foreach($prodRowss as $key => $prodRows){
+        foreach($prodRowsss as $key => $prodRows){
             $sig_no[]=$prodRows["sig_no"];
         }
         $no=rand(0,sizeof($sig_no)-1);
         $r=$sig_no[$no];
 
-        $sqlf = "select * from sight s left join sight_pt spt on s.sig_no=spt.sig_no group by s.sig_no having s.sig_no=?;";
+        $sqlf = "select *,s.sig_no from sight s left join sight_pt spt on s.sig_no=spt.sig_no group by s.sig_no having s.sig_no=?;";
         $productsf = $pdo->prepare($sqlf);
         $productsf -> bindValue(1,$r);
         $productsf -> execute();
@@ -164,7 +173,17 @@
     <div class="first-card">
         <a class="card-click" href="./attinsidepage.php?sig_no=<?=$prodRowf['sig_no']?>">
             <div class="pic">
-                <img src="./images/sight/<?=$prodRowf["spt_pt"]?>" alt="<?=$prodRowf['sig_name']?>">
+                <?php
+                    if ($prodRowf["spt_pt"]==null) {
+                ?>
+                    <img src="./images/no_pt.png" alt="<?=$prodRowf['sig_name']?>">
+                <?php
+                    }else{
+                ?>
+                    <img src="./images/sight/<?=$prodRowf["spt_pt"]?>" alt="<?=$prodRowf['sig_name']?>">
+                <?php
+                    }
+                ?>
             </div>
             <div class="first-card-content spot-name">
                 
@@ -185,14 +204,21 @@
     <div class="card-container">
         <?php 
             foreach($prodRowss as $key => $prodRow){
-                if($prodRow["sig_no"]==$r){
-                    continue;
-            }else{
         ?>
             <div class="card">
                 <a href="./attinsidepage.php?sig_no=<?=$prodRow['sig_no']?>">
                     <div class="pic">
-                        <img src="./images/sight/<?=$prodRow['spt_pt']?>" alt="<?=$prodRow['sig_name']?>">
+                        <?php
+                            if ($prodRow["spt_pt"]==null) {
+                        ?>
+                            <img src="./images/no_pt.png" alt="<?=$prodRow['sig_name']?>">
+                        <?php
+                            }else{
+                        ?>
+                            <img src="./images/sight/<?=$prodRow['spt_pt']?>" alt="<?=$prodRow['sig_name']?>">
+                        <?php
+                            }
+                        ?>
                     </div>
                     <div class="content spot-name">
 
@@ -209,7 +235,6 @@
                 <span class="joinsite-btn"><input class="addbutton" type="button" value="加入景點"></span>
             </div>
         <?php
-                }  
             }
         ?>	
     </div>
@@ -248,11 +273,16 @@
         
         <section class="page">
             <button class="prev">上一頁</button>
-            <button class="pageNo">1</button>
+            <?php
+                for ($i=1; $i <= ceil($productss->rowCount()/8); $i++) { 
+                    echo "<a href='./attractions.php?p=$i'><button class='pageNo'> ".$i."</button></a>";
+                }
+            ?>
+<!--             
             <button class="pageNo">2</button>
             <button class="pageNo">3</button>
             <span>...</span>
-            <button class="pageNo">10</button>
+            <button class="pageNo">10</button> -->
             <button class="next">下一頁</button>
         </section>
 
