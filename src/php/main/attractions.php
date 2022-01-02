@@ -8,9 +8,9 @@
         }else{
             $p=1;
         }
-        $start=($p-1)*9;
+        $start=($p-1)*8;
         //執行sql指令並取得pdoStatement
-        $sql = "select * ,s.sig_no from sight s left join sight_pt spt on s.sig_no=spt.sig_no group by s.sig_no limit $start, 9;";
+        $sql = "select * ,s.sig_no from sight s left join sight_pt spt on s.sig_no=spt.sig_no group by s.sig_no limit $start, 8;";
         $products = $pdo->query($sql); 
         $prodRowss = $products->fetchAll(PDO::FETCH_ASSOC);
 
@@ -24,7 +24,7 @@
         $no=rand(0,sizeof($sig_no)-1);
         $r=$sig_no[$no];
 
-        $sqlf = "select * from sight s left join sight_pt spt on s.sig_no=spt.sig_no group by s.sig_no having s.sig_no=?;";
+        $sqlf = "select *,s.sig_no from sight s left join sight_pt spt on s.sig_no=spt.sig_no group by s.sig_no having s.sig_no=?;";
         $productsf = $pdo->prepare($sqlf);
         $productsf -> bindValue(1,$r);
         $productsf -> execute();
@@ -204,9 +204,6 @@
     <div class="card-container">
         <?php 
             foreach($prodRowss as $key => $prodRow){
-                if($prodRow["sig_no"]==$r){
-                    continue;
-            }else{
         ?>
             <div class="card">
                 <a href="./attinsidepage.php?sig_no=<?=$prodRow['sig_no']?>">
@@ -238,7 +235,6 @@
                 <span class="joinsite-btn"><input class="addbutton" type="button" value="加入景點"></span>
             </div>
         <?php
-                }  
             }
         ?>	
     </div>
@@ -278,7 +274,7 @@
         <section class="page">
             <button class="prev">上一頁</button>
             <?php
-                for ($i=1; $i <= ceil($productss->rowCount()/9); $i++) { 
+                for ($i=1; $i <= ceil($productss->rowCount()/8); $i++) { 
                     echo "<a href='./attractions.php?p=$i'><button class='pageNo'> ".$i."</button></a>";
                 }
             ?>
