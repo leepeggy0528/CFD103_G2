@@ -5,7 +5,7 @@ try {
 	// require_once("../connectAccount.php");
 
 	//取回會員的資料
-	$sql_member = "select *from igroup i join  member m on m.mem_id=i.mem_id
+	$sql_member = "select *, m.mem_id from igroup i join  member m on m.mem_id=i.mem_id
     join  gro_pt p on i.gro_id=p.gro_id group by m.mem_id having m.mem_id=:mem_id;";
     $memInfo = $pdo->prepare($sql_member);
     $memInfo->bindValue(":mem_id", $_GET["mem_id"]);
@@ -27,7 +27,7 @@ try {
  
 
     //我的發文
-    $sql_post="select * , count(po.pmes_context) count from post p join member m on p.mem_id=m.mem_id 
+    $sql_post="select * ,m.mem_id ,count(po.pmes_context) count from post p join member m on p.mem_id=m.mem_id 
     join hashtag h on p.has_nos=h.has_no join post_pt t on p.post_no=t.post_no join post_mes po on po.post_no=p.post_no where p.mem_id=:mem_id;";
     $myPost = $pdo->prepare($sql_post);
     $myPost->bindValue(":mem_id", $_GET["mem_id"]);
@@ -35,21 +35,21 @@ try {
     $myPostRows = $myPost->fetchAll(PDO::FETCH_ASSOC);
 
     //好友列表
-    $sql_frd="select * from friend f join member m on m.mem_id=f.mem_id where friend_id=:mem_id;";
+    $sql_frd="select * , m.mem_id from friend f join member m on m.mem_id=f.mem_id where friend_id=:mem_id;";
     $myfrd = $pdo->prepare($sql_frd);
     $myfrd->bindValue(":mem_id", $_GET["mem_id"]);
     $myfrd->execute();
     $myfrdRows = $myfrd->fetchAll(PDO::FETCH_ASSOC);
 
     //開團評價團員
-    $sql_ratePart="select mem_name from partic p join igroup i on  p.gro_id=i.gro_id join member m on  partic_id=m.mem_id where i.mem_id=:mem_id;";
+    $sql_ratePart="select mem_name , m.mem_id  from partic p join igroup i on  p.gro_id=i.gro_id join member m on  partic_id=m.mem_id where i.mem_id=:mem_id;";
     $rateJoin = $pdo->prepare($sql_ratePart);
     $rateJoin->bindValue(":mem_id", $_GET["mem_id"]);
     $rateJoin->execute();
     $rateJoinRows = $rateJoin->fetchAll(PDO::FETCH_ASSOC);
 
     //黑名單
-    $sql_block="select mem_name from block b join member m on b.block_id=m.mem_id where b.mem_id=:mem_id;";
+    $sql_block="select mem_name , m.mem_id from block b join member m on b.block_id=m.mem_id where b.mem_id=:mem_id;";
     $blockList = $pdo->prepare($sql_block);
     $blockList->bindValue(":mem_id", $_GET["mem_id"]);
     $blockList->execute();
