@@ -28,12 +28,11 @@ try {
 
     //我的發文
     $sql_post="select * , count(po.pmes_context) count from post p join member m on p.mem_id=m.mem_id 
-    join hashtag h on p.has_nos=h.has_no join post_pt t on p.post_no=t.post_no join post_mes po on po.post_no=p.post_no where p.mem_id=:mem_id;";
+    join hashtag h on p.has_nos=h.has_no join post_pt t on p.post_no=t.post_no join post_mes po on po.post_no=p.post_no where m.mem_id=:mem_id;";
     $myPost = $pdo->prepare($sql_post);
     $myPost->bindValue(":mem_id", $_GET["mem_id"]);
     $myPost->execute();
     $myPostRows = $myPost->fetchAll(PDO::FETCH_ASSOC);
-
     //好友列表
     $sql_frd="select * from friend f join member m on m.mem_id=f.mem_id where friend_id=:mem_id;";
     $myfrd = $pdo->prepare($sql_frd);
@@ -332,7 +331,7 @@ try {
                 </div>
                 <p>揪團中</p>
                 <?php
-                   if($favInfo->rowCount() == 0){ //查無此書籍資料
+                   if($favInfo->rowCount() == 0){ 
                     echo "目前還沒加入任何活動喔!";
                    }else{ //若有滿足篩選條件的資料
                        $favInfoRows = $favInfo->fetchAll(PDO::FETCH_ASSOC);
@@ -392,6 +391,10 @@ try {
                 <h2><span>我</span>的發文</h2>
                 <p class="article-time">2021年12月</p>
                 <?php
+                    if($myPostRows["post_no"]== null){ 
+                       echo "目前還發沒出任何貼文喔!";
+                    }
+                    else{
                     foreach($myPostRows as $i =>$myPostRow){
                 ?>
                 <div class="insta-item-main-i">
@@ -447,7 +450,8 @@ try {
                         </div>      
                 </div>
                 <?php
-                };
+                     };
+                    };
                 ?> 
             </div>
            <!-- 好友列表 -->
