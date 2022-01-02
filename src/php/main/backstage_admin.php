@@ -177,7 +177,7 @@
             updateData.sp_pswd= $id("edit-pswd").value;
             updateData.sp_name= $id("edit-name").value;
             for (let i = 0; i < tr.length; i++) {
-                if(tr[i].children[0].innerText==updateData.sp_id){
+                if(tr[i].children[1].innerText==updateData.sp_id){
                         tr[i].children[0].innerText=updateData.sp_name;
                         tr[i].children[2].innerText=updateData.sp_pswd;
                         break;
