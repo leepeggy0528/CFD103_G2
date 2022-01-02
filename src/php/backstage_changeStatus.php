@@ -5,7 +5,7 @@ try{
   $no=$_POST['no'];
   $status=$_POST['cardStatus'];
 
-  $sql = "update card_style set cstyle_status=$status where $no;"; 
+  $sql = "update card_style set cstyle_status=$status where cstyle_no=$no;"; 
   $pdo->exec($sql);
 
 }catch(PDOException $e){

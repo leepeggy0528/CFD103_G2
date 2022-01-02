@@ -31,6 +31,7 @@ function cancelform() {
 }
 function updateForm(){ 
     let xhr = new XMLHttpRequest();
+    let tr = document.querySelectorAll("table tbody tr");
         xhr.open("post", "./php/backstage_updatepreport.php", true);
         xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
         //將要送到後端的資料打包
@@ -38,6 +39,25 @@ function updateForm(){
         updateData.sp_id= $id("title").innerText;
         updateData.ans= $('input[type=radio][name=ans]:checked').val();
         updateData.context= $id("context").innerText;
+        for (let i = 0; i < tr.length; i++) {
+          //let data = tr[i].data-status;
+          if(tr[i].children[0].innerText==updateData.sp_id){
+            switch (updateData.ans) {
+              case "2":
+                tr[i].setAttribute('data-status', 'unsuccess');
+                tr[i].children[4].innerText="不通過";
+                break;
+              case "1":
+                tr[i].setAttribute('data-status', 'success');
+                tr[i].children[4].innerText="通過";
+                break;
+              default:
+                break;
+            }
+            $id('edit_form').style.display='none';
+          }
+          
+        }
         let data_info = `update=${JSON.stringify(updateData)}`;
         xhr.send(data_info);
         location.href="./backstage_preport.php";

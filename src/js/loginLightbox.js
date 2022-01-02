@@ -56,7 +56,7 @@ function $id(id){
       let xhr = new XMLHttpRequest();
       xhr.onload = function(){
         member = JSON.parse(xhr.responseText);
-        if(member.mem_suspend==0){
+        if(member.mem_Suspend==0){
             if(member.mem_mail){
               $(document).ready(function(){
                 $(".afterLogin").addClass("showMem");

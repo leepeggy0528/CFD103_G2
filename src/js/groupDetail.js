@@ -41,8 +41,9 @@ function switchSaveActivity(e) {
     xhr.onload = function () {
         member = JSON.parse(xhr.responseText);
         console.log(member);
-        if (member.mem_id) { //已登入
-            if (e.target.id == 'saveActivity') {
+
+        if (e.target.id == 'saveActivity') {
+            if (member.mem_id) { //已登入
                 if (e.target.title == "收藏活動") {
                     e.target.src = "./images/icon/save.png";
                     e.target.title = "取消收藏";
@@ -79,9 +80,9 @@ function switchSaveActivity(e) {
                     console.log('data_info:', data_info);
                     xhr1.send(data_info);
                 }
+            } else {
+                alert("請先登入")
             }
-        }else{
-            alert("請先登入")
         }
     }
     xhr.open("get", "./php/getMemberInfo.php", true);
@@ -135,7 +136,7 @@ function switchSaveThis() {
                 console.log('data_info:', data_info);
                 xhr1.send(data_info);
             }
-        }else{
+        } else {
             alert("請先登入")
         }
     }
@@ -206,7 +207,7 @@ function saveComment() {
     let xhr = new XMLHttpRequest();
     xhr.onload = function () {
         member = JSON.parse(xhr.responseText);
-        console.log(member);
+        console.log(member.mem_id);
         if (member.mem_id) { //已登入
             let textarea = document.getElementById('comment').value; //留言內容
             let xhr1 = new XMLHttpRequest();
@@ -227,7 +228,7 @@ function saveComment() {
             console.log('data_info:', data);
             xhr1.send(data);
             document.getElementById('comment').value = "";
-        }else{
+        } else {
             alert("請先登入")
         }
     }
@@ -261,7 +262,6 @@ function init() {
     document.getElementById('info-toggle').onclick = () => {
         let btnIcon = document.querySelector('#info-toggle img');
         let info = document.querySelector('aside .info-wrap .main-info');
-        console.log('click');
 
         if (btnIcon.title == '關閉資訊') {
             info.style.display = 'block';
@@ -308,7 +308,7 @@ function init() {
                 let dataInfo = `mem_id=${member.mem_id}`;
                 console.log('data_info:', dataInfo);
                 xhr1.send(dataInfo);
-            }else{
+            } else {
                 alert("請先登入")
             }
         }
@@ -341,28 +341,28 @@ function init() {
                 //取得會員名稱、頭貼
                 if (reportText == "") {
                     alert('原因不得空白');
-                } else {        
+                } else {
                     let xhr1 = new XMLHttpRequest();
 
                     xhr1.open("Post", "./php/sendReport.php", true);
                     xhr1.setRequestHeader("content-type", "application/x-www-form-urlencoded");
                     let data_info = gro_id + `&mem_id=${member.mem_id}&status=1&content=` + reportText
                         + "&gro_show=0";
-        
+
                     console.log('data_info:', data_info);
                     xhr1.send(data_info);
                     document.querySelector(".reportLayer").style.display = "none";
                     reportText = "";
                     alert("檢舉送出，審核中");
-                    location.href="./group.php"
+                    location.href = "./group.php"
                 }
-            }else{
+            } else {
                 alert("請先登入")
             }
         }
         xhr.open("get", "./php/getMemberInfo.php", true);
         xhr.send(null);
-        
+
     }
 
     //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -370,13 +370,13 @@ function init() {
     let registerGp = document.querySelector('.info .sign-up button');
     registerGp.onclick = function () {
 
-        alert('報名成功');
+
         let gro_id = location.href.split("?")[1];
-        
+
         let xhr = new XMLHttpRequest();
         xhr.onload = function () {
             member = JSON.parse(xhr.responseText);
-            console.log(member);
+
             if (member.mem_id) { //已登入
                 let xhr = new XMLHttpRequest();
                 xhr.open("Post", "./php/signUpGP.php", true);
@@ -384,14 +384,15 @@ function init() {
                 let data_info = gro_id + `&mem_id=${member.mem_id}`;
                 console.log('data_info:', data_info);
                 xhr.send(data_info);
-            }else{
+                alert('報名成功');
+            } else {
                 alert("請先登入")
             }
         }
         xhr.open("get", "./php/getMemberInfo.php", true);
         xhr.send(null);
-        
-        
+
+
     }
 }
 

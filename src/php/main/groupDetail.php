@@ -55,7 +55,7 @@ try{
     from igroup g join schedule s on g.gro_id = s.gro_id
                       join member m on g.mem_id = m.mem_id
                       join gro_pt gp on g.gro_id = gp.gro_id
-                      where g.gro_loc='$loc'
+                      where g.gro_loc='$loc' and gro_show =1 
                       group by g.gro_id;";
     $sameLoc = $pdo->query($sql_sameLoc);
     $sameLocRows = $sameLoc->fetchAll(PDO::FETCH_ASSOC); 
@@ -66,7 +66,7 @@ try{
     from igroup g join schedule s on g.gro_id = s.gro_id
                       join member m on g.mem_id = m.mem_id
                       join gro_pt gp on g.gro_id = gp.gro_id
-                      where g.gro_loc='$type'
+                      where g.gro_type='$type' and gro_show =1
                       group by g.gro_id;";
     $sameType = $pdo->query($sql_sameType);
     $sameTypeRows = $sameType->fetchAll(PDO::FETCH_ASSOC); 
@@ -261,13 +261,19 @@ try{
     <!-- 類似活動 -->
     <div class="container">
         <section>
-            <h2>相同地點</h2>
+        <?php 
+          if (count($sameTypeRows)>1){
+        ?>
+            <h2>類似活動</h2>
+        <?php 
+          }
+        ?>    
             <div class="similar">
             <?php
           
-          if (count($sameLocRows)>4){
+          if (count($sameTypeRows)>4){
               for($i=0;$i<=3;+$i++){
-                  if($sameTypeRows[$i]['gro_show']==1){
+                  if($sameTypeRows[$i]['gro_id']!=$_GET['gro_id']){
           ?>
                <div id="card" class="card">
                   <div class="iSave">
@@ -316,7 +322,7 @@ try{
               }
           }else{
               for($i=0;$i<count($sameTypeRows);+$i++){
-                  if($sameTypeRows[$i]['gro_show']==1){ ?>
+                  if($sameTypeRows[$i]['gro_id']!=$_GET['gro_id']){ ?>
               <div id="card" class="card">
                   <div class="iSave">
                       <img id="saveActivity" src="./images/icon/unsave.png" title="收藏活動" alt="">
@@ -370,13 +376,21 @@ try{
 
         <!-- 相同地點 -->
         <section class="similar-activitis">
-            <h2>類似活動</h2>
+
+        <?php 
+          if (count($sameLocRows)>1){
+        ?>
+            <h2>相同地點</h2>
+            <?php 
+          }
+        ?>
             <div class="same-loc">
+      
+
         <?php
-          
         if (count($sameLocRows)>4){
             for($i=0;$i<=3;+$i++){
-                if($sameLocRows[$i]['gro_show']==1){
+                if($sameLocRows[$i]['gro_id']!= $_GET['gro_id']){
         ?>
              <div id="card" class="card">
                 <div class="iSave">
@@ -425,7 +439,7 @@ try{
             }
         }else{
             for($i=0;$i<count($sameLocRows);+$i++){
-                if($sameLocRows[$i]['gro_show']==1){ ?>
+                if( $sameLocRows[$i]['gro_id']!= $_GET['gro_id']){ ?>
             <div id="card" class="card">
                 <div class="iSave">
                     <img id="saveActivity" src="./images/icon/unsave.png" title="收藏活動" alt="">

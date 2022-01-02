@@ -80,8 +80,9 @@ function switchSaveActivity(e) {
     xhr.onload = function () {
         member = JSON.parse(xhr.responseText);
         console.log(member);
-        if (member.mem_id) { //已登入
-            if (e.target.id == 'saveActivity') {
+
+        if (e.target.id == 'saveActivity') {
+            if (member.mem_id) { //已登入
                 if (e.target.title == "收藏活動") {
                     e.target.src = "./images/icon/save.png";
                     e.target.title = "取消收藏";
@@ -119,6 +120,8 @@ function switchSaveActivity(e) {
                     console.log('data_info:', data_info);
                     xhr1.send(data_info);
                 }
+            } else {
+                alert('請先登入');
             }
         }
     }
@@ -352,16 +355,30 @@ function init() {
     let signUpBtn = document.querySelectorAll('.see_more .signUp');
     for (let i = 0; i < signUpBtn.length; i++) {
         signUpBtn[i].onclick = function () {
-            alert('報名成功');
-            let gro_id = signUpBtn[i].previousElementSibling.href.split("?")[1];
-            console.log(gro_id);
-            let xhr = new XMLHttpRequest();
-            xhr.open("Post", "./php/signUpGP.php", true);
-            xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
-            let data_info = gro_id;
 
-            console.log('data_info:', data_info);
-            xhr.send(data_info);
+            let gro_id = signUpBtn[i].previousElementSibling.href.split("?")[1];
+
+            let xhr = new XMLHttpRequest();
+            xhr.onload = function () {
+                member = JSON.parse(xhr.responseText);
+
+                if (member.mem_id) { //已登入
+                    let xhr = new XMLHttpRequest();
+                    xhr.open("Post", "./php/signUpGP.php", true);
+                    xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+                    let data_info = gro_id + `&mem_id=${member.mem_id}`;
+                    console.log('data_info:', data_info);
+                    xhr.send(data_info);
+                    alert('報名成功');
+                } else {
+                    alert("請先登入")
+                }
+            }
+            xhr.open("get", "./php/getMemberInfo.php", true);
+            xhr.send(null);
+
+
+
         }
     }
 

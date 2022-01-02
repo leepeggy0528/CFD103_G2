@@ -95,13 +95,14 @@ function updateForm(){
     let xhr = new XMLHttpRequest();
         xhr.open("post", "./php/backstage_updatesight.php", true);
         let myForm1 = new FormData($id("sight_edit"));
-        console
+        console.log($id("sight_edit"));
         xhr.send(myForm1);
         var button1 = $(this);
         var currentSection1 = button1.parents(".section");
         currentSection1.removeClass("active");
         $(document).find(".sight_edit .section").first().addClass("active");
         $id("edit_form").style.display='none';
+        history.go(0);
 }
 function deleteDate(e){ 
     let deleted=e.target;

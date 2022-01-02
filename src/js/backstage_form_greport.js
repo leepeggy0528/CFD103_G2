@@ -45,9 +45,11 @@ function updateForm(){
           if(tr[i].children[0].innerText==updateData.sp_id){
             switch (updateData.ans) {
               case "2":
+                tr[i].setAttribute('data-status', 'unsuccess');
                 tr[i].children[4].innerText="不通過";
                 break;
               case "1":
+                tr[i].setAttribute('data-status', 'success');
                 tr[i].children[4].innerText="通過";
                 break;
               default:
