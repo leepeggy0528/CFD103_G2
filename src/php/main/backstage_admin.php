@@ -168,6 +168,7 @@
     function updateForm(){ 
         $id('edit_form').style.display='';
         let xhr = new XMLHttpRequest();
+        let tr = document.querySelectorAll("table tbody tr");
             xhr.open("post", "./php/backstage_updataadmin.php", true);
             xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
             //將要送到後端的資料打包
@@ -175,12 +176,19 @@
             updateData.sp_id= $id("edit-id").value;
             updateData.sp_pswd= $id("edit-pswd").value;
             updateData.sp_name= $id("edit-name").value;
-
+            for (let i = 0; i < tr.length; i++) {
+                if(tr[i].children[0].innerText==updateData.sp_id){
+                        tr[i].children[0].innerText=updateData.sp_name;
+                        tr[i].children[2].innerText=updateData.sp_pswd;
+                        break;
+                }
+                $id('edit_form').style.display='none';
+            }
             let data_info = `update=${JSON.stringify(updateData)}`;
             console.log(data_info);
             xhr.send(data_info);
-            location.href="./backstage_admin.php";
     }
+
     function deleteDate(e){ 
         let deleted=e.target;
         let deletedId=deleted.parentNode.parentNode.parentNode.parentNode.previousElementSibling.previousElementSibling.innerText;

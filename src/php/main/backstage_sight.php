@@ -224,7 +224,7 @@
 
     <div id="edit_form" style="display: none;">
         <form class="signup sight_edit" method="post" id="sight_edit" action="#">
-            <h2>新增景點</h2>
+            <h2>編輯景點</h2>
             <input type="text" name="sig_id" id="edit-id" hidden>
             <fieldset class="section active">
                   <div class="input-block">

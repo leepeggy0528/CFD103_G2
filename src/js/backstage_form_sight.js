@@ -93,16 +93,23 @@ function searchForm(e){
 }
 function updateForm(){ 
     let xhr = new XMLHttpRequest();
+    let tr = document.querySelectorAll("table tbody tr");
         xhr.open("post", "./php/backstage_updatesight.php", true);
+        for (let i = 0; i < tr.length; i++) {
+          if(tr[i].children[0].innerText==$id("edit-id").value){
+                  tr[i].children[1].innerText=$id("edit-name").value;
+                  tr[i].children[2].innerText=$id("edit-loc").value+$id("edit-address").value;
+                  break;
+          }
+          $id('edit_form').style.display='none';
+      }
         let myForm1 = new FormData($id("sight_edit"));
-        console.log($id("sight_edit"));
         xhr.send(myForm1);
         var button1 = $(this);
         var currentSection1 = button1.parents(".section");
         currentSection1.removeClass("active");
         $(document).find(".sight_edit .section").first().addClass("active");
         $id("edit_form").style.display='none';
-        history.go(0);
 }
 function deleteDate(e){ 
     let deleted=e.target;

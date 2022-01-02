@@ -71,7 +71,6 @@ function $id(id){
               $id('memPsw').value = '';
             }else{
               alert("帳密錯誤");
-              
             }
           }else{
             alert("此會員已被停權無法使用");

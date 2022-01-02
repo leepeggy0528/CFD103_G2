@@ -32,7 +32,7 @@ try{
     $_SESSION["memInter"] = $memRow["mem_inter"];
     $_SESSION["memDiscribe"] = $memRow["mem_discribe"];
     $_SESSION["memPt"] = $memRow["mem_pt"]; 
-    $_SESSION["memSuspend"] = $memRow["mem_Suspend"]; 
+    $_SESSION["memSuspend"] = $memRow["mem_suspend"]; 
        
     //送出登入者的姓名資料
     // echo $memRow["memName"];
