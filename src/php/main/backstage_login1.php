@@ -7,6 +7,7 @@
 <head>
 <meta charset="utf-8">
 <title>管理員登入</title>
+<link rel="icon" href="instagaher.ico">
 <link rel="stylesheet" href="./css/login copy.css">
 </head>
 

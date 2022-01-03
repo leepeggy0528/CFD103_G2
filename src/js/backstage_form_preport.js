@@ -60,7 +60,6 @@ function updateForm(){
         }
         let data_info = `update=${JSON.stringify(updateData)}`;
         xhr.send(data_info);
-        location.href="./backstage_preport.php";
 }
 let report={};
   window.addEventListener('load',function () {

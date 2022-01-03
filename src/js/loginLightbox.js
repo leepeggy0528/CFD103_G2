@@ -56,8 +56,8 @@ function $id(id){
       let xhr = new XMLHttpRequest();
       xhr.onload = function(){
         member = JSON.parse(xhr.responseText);
-        if(member.mem_Suspend==0){
-            if(member.mem_mail){
+        if(member.mem_mail){
+              if(member.mem_Suspend==0){
               $(document).ready(function(){
                 $(".afterLogin").addClass("showMem");
                 $(".usernameLogin").text(`${member.mem_name}`);
@@ -70,11 +70,12 @@ function $id(id){
               $id('memMail').value = '';
               $id('memPsw').value = '';
             }else{
-              alert("帳密錯誤");
+              alert("此會員已被停權無法使用");
+              MemLogout();
             }
+            history.go(0);
           }else{
-            alert("此會員已被停權無法使用");
-            MemLogout();
+            alert("帳密錯誤");
           } 
       }
       xhr.open("post", "./php/mem_login.php", true);
@@ -85,7 +86,7 @@ function $id(id){
       let data_info = `login=${JSON.stringify(loginData)}`;
       console.log(data_info);
       xhr.send(data_info);
-      history.go(0);
+      
     };
 
     function getMemberInfo(){ //取回登入者資訊
