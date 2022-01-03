@@ -268,7 +268,7 @@ function init() {
         sendBtn[i].onclick = sendCard;
     }
 
-
+    $id('LoginBTN1').onclick = showLoginForm;
 
     //canvas
     document.getElementById('download').onclick = drawCanvas;

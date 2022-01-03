@@ -8,7 +8,7 @@ try{
     $post_show= $_POST['post_show'];
 
 
-    $sql="insert into post_report(post_no,preport_reason) value($postId,$content)";
+    $sql="insert into post_report(post_no,preport_reason) value($postId,'$content')";
     $pdo->exec($sql);
  
 

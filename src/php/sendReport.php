@@ -8,7 +8,7 @@ try{
     $gro_show = $_POST['gro_show'];
 
 
-    $sql="insert into gro_report(gro_id,greport_reason) value($groupId,$content)";
+    $sql="insert into gro_report(gro_id,greport_reason) value($groupId,'$content')";
     $pdo->exec($sql);
  
 

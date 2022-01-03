@@ -22,9 +22,7 @@ try{
     $friends->execute();
 
     
-    }else{ //尚未登入
-    	$msg= "尚未登入";
-    }	
+  }
 
 }catch(PDOException $e){
     echo $e->getMessage();
@@ -38,6 +36,7 @@ try{
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="instagaher.ico">
     <link rel="stylesheet" href="./css/customized-card.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.3/html2canvas.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
@@ -157,10 +156,13 @@ try{
                     <input type="text" class="friend-search" placeholder="搜尋好友">
                     <ul class="friend-list">
                         <?php 
-                        if($friends->rowCount()==0){
-                            echo "<li>".$msg."</li>";
+                        if (!isset($_SESSION["memMail"])) {
+                            echo "<li><button id='LoginBTN1' class='insta-buttom-i-2'>登入/註冊</button></li>";
                         }else{
-                        while($friendRows = $friends->fetch(PDO::FETCH_ASSOC)){
+                            if($friends->rowCount()==0){
+                                echo "<li>暫無好友</li>";
+                            }else{
+                                while($friendRows = $friends->fetch(PDO::FETCH_ASSOC)){
                         ?>
                         <li>
                             <div class="user">
@@ -171,6 +173,7 @@ try{
 
                         </li>
                         <?php 
+                                }
                             }
                           }
                         ?>
